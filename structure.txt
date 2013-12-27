@@ -1,0 +1,13 @@
+src/main/java			Java Dateien
+						-> controller/model/services
+src/main/resources		spring Komponenten
+src/test/java			Tests
+src/main/webapp			Dateien für die Webapplication
+	./resources			statische Dateien 
+						- CSS, JS, Bilder usw.
+	./WEB_INF			JSP Dateien und Web Konfigurationen
+	
+MavenDependencies		Abhängigkeiten Maven (<- buildTool)
+JRE System Library		Java Runtime Environment Systemdateien 
+						-> ermöglichen das ausführen von Javaanwendungen
+						zur Laufzeit

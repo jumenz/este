@@ -1,0 +1,24 @@
+.report-menue {
+	width: 10%;
+	background-color: black;
+	opacity: 0.8;
+	margin-left: 5%;
+	margin-bottom: 5%;
+	margin-right: 2%;
+	padding: 2%;
+	float: left;
+}
+.content {
+	width: 65%;
+	margin-left: 0%;
+	display: inline-block;
+}
+.report-info {
+	margin-left: 10%;
+	margin-right: auto;
+	margin-bottom: 3%;
+	width: 80%;
+}
+.table-heading {
+	font-weight: bolder;
+}

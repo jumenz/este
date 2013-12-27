@@ -1,0 +1,20 @@
+<!-- 
+	enthält die verwendeten Tag-Bibliotheken und wichtige Variablen 
+-->
+
+<!-- Tag - Bibliotheken -->
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!-- Variablen -->
+<!-- TODO BESCHREIBUNG -->
+<c:set var="requestContextPath" value="<%=request.getContextPath()%>"></c:set>
+<!-- Pfad zu den resourcen (css, js, images usw.) -->
+<c:set var="resourcesPath" value="${requestContextPath}/resources"></c:set>
+<!-- Pfad zu den css-Dateien -->
+<c:set var="cssPath" value="${resourcesPath}/css"></c:set>
+<!-- Pfad zum Javascript -->
+<c:set var="jsPath" value="${resourcesPath}/js"></c:set>
+<!-- Pfad zu weiteren Dateien (Bilder, Icons usw. --> 
+<c:set var="dataPath" value="${resourcesPath}/data"></c:set>

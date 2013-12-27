@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Application Contexts implementieren den Spring Container.
+    Der Spring Container dient dazu, die Objekte zu erzeugen, verwalten, konfigurieren und gegenseitig zu verdrahten (wiren).
+    Hierfür wird die Dependency Injection verwendet.
+    Application Contects können außerdem Textnachrichten von einem property file interpretieren
+    und Events feuern. 
+    
+    beans: von JavaBeans - öffentlicher Konstruktor und öffentliche Zugriffsmethode (  
+    _________________________________________________________________________________________________________________________
+    
+    Beispiel Angabe von Dependencies:
+    
+    <bean id="eins" class="pfad.KlassenNameEins">		// Klasse braucht bestimmte Klasse und bekommt diese
+    	<constructor-arg ref="param"/>					// über einen Parameter in den Konstruktor,   													
+    </bean>												// hier referenziert über id
+    
+    <bean id="param" class="pfad.KlassenNameParam"/>	// hier zur id die Klasse angeben
+    													// so bekannt, wo die Klasse des Parameters herkommt
+    													// wird automatisch erzeugt statt in der Klasse per Hand
+    _________________________________________________________________________________________________________________________
+    
+    Beispiel Angabe von aspects (für AOP, z.B. logging)
+    
+    <bean id="logging" class="pfad.LoggingKlasse" />
+    <aop:config>
+    	<aop:ascpect ref="logging" >								// Klasse die bestimmten "Aspekt" der Arbeit übernimmt
+    		<aop:pointcut id="aktion" 
+    			expression="execution(* *.aktionOnQuest(..))" />	// Methode, bei deren Aufruf reagiert werden soll
+    		<aop:before point-cut-ref="aktion"
+    					method="printSomethint()" />				// was soll logging-Klasse dann run (vorher/nachher)
+    		<aop:after point-cut-ref="aktion"
+    					method="printSomethingElse()" />
+    	</aop:aspect>
+    </aop:config>
+    _________________________________________________________________________________________________________________________
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+ 	
+ 	<import resource="data-access-config.xml"/>
+ 	<import resource="mvc-config.xml"/>
+ 	<context:component-scan base-package="fhwedel.medienprojekt.fussball"/>
+
+    
+</beans>

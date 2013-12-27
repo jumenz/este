@@ -1,0 +1,39 @@
+/* Alte Kommentare */
+.comment-element {
+	color: black;
+	background: white;
+	padding: 2em;
+	margin-bottom: 1em;
+	border-radius: 3px;
+	position: relative;
+}
+.comment-name {
+	font-weight: bold;
+}
+.comment-text {
+	font-weight: lighter;
+}
+.comment-delete {
+	display: inline-block;
+	background-image: url("../data/buttons/button-delete.png");
+	background-repeat: no-repeat;
+	height: 11px;
+	width: 11px;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+.comment-delete:hover {
+	background-image: url("../data/buttons/button-delete-hover.png");
+}
+
+/* Neuen Kommentare verfassen */
+.new-comment-name {
+	border-radius: 3px;
+	margin-bottom: 1em;
+}
+.new-comment-text {
+	border-radius: 3px;
+	width: 100%;
+}
+

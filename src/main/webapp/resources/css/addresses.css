@@ -1,0 +1,22 @@
+#addresses .input.input-text {
+    width: 98%;
+    padding-left: 2%;
+}
+#addresses .input#street {
+    width: 83%;
+}
+#addresses .input#nr {
+    width: 14%;
+}
+#addresses .input#zipcode {
+    width: 34%;
+}
+#addresses .input#city {
+    width: 63%;
+}
+#addresses #require {
+    margin-top: 12px;
+}
+fieldset#buttons {
+    width: 100%;
+}
