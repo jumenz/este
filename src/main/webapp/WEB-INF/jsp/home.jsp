@@ -8,7 +8,6 @@
 	<body>		
 		<!-- include head with title and description of this page -->
 		<jsp:include page="./includes/header.jsp"/>
-			
 		<!-- content der Seite -->
         <div class="main-container">
         <!-- Content -->
