@@ -1,7 +1,7 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Home"/>
+		<jsp:param name="title" value="Forum"/>
 		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
 	</jsp:include>
 		
@@ -32,12 +32,12 @@
         
 			<div id="..." class="content-list">
 				<ul>
-					<c:forEach var="entry" items="${forumModel.entries}" varStatus="status">		<!-- TODO anders befüllen -->
+					<c:forEach var="entry" items="${forumModel.entries}" varStatus="status">
 						<li class="one-col">
 							<!-- reports -->
 							<div  class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle" id="address-name" ><c:out value="${entry.topic }"></c:out></h2>
-								<div id="submit-${status.index}xxx" class="box-link down-raquo toggle-link right toggle">
+								<div id="submit-${status.index}" class="box-link down-raquo toggle-link right toggle">
 								</div>
 								<div class="toggle-content" style="display: none">
 									<div class="box-info clearfix light-bg">

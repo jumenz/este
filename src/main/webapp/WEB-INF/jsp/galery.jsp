@@ -1,7 +1,7 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Home"/>
+		<jsp:param name="title" value="Galerie"/>
 		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
 	</jsp:include>
 		
@@ -29,7 +29,7 @@
         	<!-- sidebar -->
         	<!-- TODO javascript anders ausführen (funktioniert so auch nicht) -->
 			<jsp:include page="./includes/sidebar.jsp">
-				<jsp:param name="sidebarTitle" value="..."/>
+				<jsp:param name="sidebarTitle" value="Galerie"/>
 				<jsp:param name="timer" value="include"/>
 				<jsp:param name="nav" value="Alle Bilder"/>
 				<jsp:param name="ref" value="hideElement('galery-preview--all--wrapper');showElement('galery-preview--multiple--wrapper');" />

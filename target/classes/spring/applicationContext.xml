@@ -3,10 +3,10 @@
     Application Contexts implementieren den Spring Container.
     Der Spring Container dient dazu, die Objekte zu erzeugen, verwalten, konfigurieren und gegenseitig zu verdrahten (wiren).
     Hierfür wird die Dependency Injection verwendet.
-    Application Contects können außerdem Textnachrichten von einem property file interpretieren
+    Application Contexts können außerdem Textnachrichten von einem property file interpretieren
     und Events feuern. 
     
-    beans: von JavaBeans - öffentlicher Konstruktor und öffentliche Zugriffsmethode (  
+    beans: von JavaBeans - öffentlicher Konstruktor und öffentliche Zugriffsmethode
     _________________________________________________________________________________________________________________________
     
     Beispiel Angabe von Dependencies:

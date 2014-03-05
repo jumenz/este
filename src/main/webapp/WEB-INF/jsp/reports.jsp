@@ -1,7 +1,7 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Home"/>
+		<jsp:param name="title" value="Spielberichte"/>
 		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
 	</jsp:include>
 		
@@ -15,27 +15,27 @@
         <div class="container">
         <div class="main">
         <div class="main-inner">
-        	<!-- sidebar -->
-			<jsp:include page="./includes/sidebar.jsp">
-				<jsp:param name="sidebarTitle" value="Forum"/>
+        	<!-- Sidebar -->
+        	<jsp:include page="./includes/sidebar.jsp">
+				<jsp:param name="sidebarTitle" value="Spielberichte"/>
+				<jsp:param name="abc" value="include" />
 				<jsp:param name="timer" value="include"/>
-				<jsp:param name="abc" value="include"/>
 				<jsp:param name="nav" value="linkname1"/>
-				<jsp:param name="ref" value="link1"/>
+				<jsp:param name="ref" value="#" />
 				<jsp:param name="nav" value="linkname2"/>
-				<jsp:param name="ref" value="link2"/>
+				<jsp:param name="ref" value="#" />
 				<jsp:param name="nav" value="linkname3"/>
-				<jsp:param name="ref" value="link3"/>
+				<jsp:param name="ref" value="#" />
 			</jsp:include>
         
 			<div id="..." class="content-list">
 				<ul>
-						<% for($i=1; $i<=12; $i++) { %>					<!-- TODO anders befüllen -->
+					<c:forEach var="entry" items="${reportModel.entries}" varStatus="status">
 						<li class="one-col">
 							<!-- reports -->
 							<div  class="main-content-box box-borders-top bg clearfix toggle-item">
-								<h2 class="box-title link toggle" id="address-name" >Box Überschrift</h2>
-								<div id="submit-<%=$i %>" class="box-link down-raquo toggle-link right toggle">
+								<h2 class="box-title link toggle" id="address-name" >${entry.topic}</h2>
+								<div id="submit-${status.index}" class="box-link down-raquo toggle-link right toggle">
 								</div>
 								<div class="toggle-content" style="display: none">
 									<div class="box-info clearfix light-bg">
@@ -69,16 +69,16 @@
 										</div>
 									</div>
 									<div class="box-body">
-										<p>Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!</p>
+										<p>${entry.text}</p>
 									</div>
 								</div>
 							</div>
 							<!-- reports -->
 						</li>
-						<% } %>
-					</ul>
-					
-					<!-- end Contentbox One-Col -->
+					</c:forEach>
+				</ul>
+				
+				<!-- end Contentbox One-Col -->
 			</div>
 		</div>
 		</div>

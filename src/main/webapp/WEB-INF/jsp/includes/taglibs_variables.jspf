@@ -18,3 +18,16 @@
 <c:set var="jsPath" value="${resourcesPath}/js"></c:set>
 <!-- Pfad zu weiteren Dateien (Bilder, Icons usw. --> 
 <c:set var="dataPath" value="${resourcesPath}/data"></c:set>
+
+<!-- Pfade zu den verschiedenen Links -->
+<c:set var="linkWelcome" value="${requestContextPath}/willkommen/"></c:set>
+<c:set var="linkReports" value="${requestContextPath}/berichte/"></c:set>
+<c:set var="linkRegister" value="${requestContextPath}/registrieren/"></c:set>
+<c:set var="linkLogin" value="${requestContextPath}/login/"></c:set>
+<c:set var="linkImpressum" value="${requestContextPath}/impressum/"></c:set>
+<c:set var="linkLinks" value="${requestContextPath}/links/"></c:set>
+<c:set var="linkHome" value="${requestContextPath}/home/"></c:set>
+<c:set var="linkGalery" value="${requestContextPath}/galerie/"></c:set>
+<c:set var="linkForum" value="${requestContextPath}/forum/"></c:set>
+<c:set var="linkAdresses" value="${requestContextPath}/adressbuch/"></c:set>
+<c:set var="linkAboutUs" value="${requestContextPath}/ueber-uns/"></c:set>

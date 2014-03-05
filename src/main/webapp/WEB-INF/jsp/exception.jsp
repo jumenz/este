@@ -6,7 +6,7 @@
 <html lang="de">
 <body>
 <div class="container">
-    <h2>Ups...</h2>
+    <h2>Es ist leider etwas schief gegangen...</h2>
 
     <p>${exception.message}</p>
 

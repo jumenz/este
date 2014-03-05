@@ -1,7 +1,7 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Home"/>
+		<jsp:param name="title" value="Willkommen"/>
 		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
 	</jsp:include>
 		
@@ -82,7 +82,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Kontakt</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />s
+								<img src="${dataPath}/images/demo.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Du hast noch Fragen oder Anliegen?</p>

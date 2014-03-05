@@ -19,7 +19,7 @@
 				<ul>
 					<li class="three-col first">
 						<div class="main-content-box box-borders bg clearfix">
-							<h2 class="box-title">Über Uns</h2>
+							<h2 class="box-title">Adressbuch</h2>
 							<div class="box-head">
 								<img src="${dataPath}/images/demo.jpg" />
 							</div>
@@ -34,7 +34,7 @@
 					</li>
 					<li class="three-col first">
 						<div class="main-content-box box-borders bg clearfix">
-							<h2 class="box-title">Spielberichte</h2>
+							<h2 class="box-title">Terminplaner</h2>
 							<div class="box-head">
 								<img src="${dataPath}/images/demo.jpg" />
 							</div>
@@ -49,7 +49,7 @@
 					</li>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
-							<h2 class="box-title">Links</h2>
+							<h2 class="box-title">Forum</h2>
 							<div class="box-head">
 								<img src="${dataPath}/images/demo.jpg" />
 							</div>
@@ -64,7 +64,7 @@
 					</li>
 					<li class="three-col first">
 						<div class="main-content-box box-borders bg clearfix">
-							<h2 class="box-title">Galerie</h2>
+							<h2 class="box-title">Dokumente</h2>
 							<div class="box-head">
 								<img src="${dataPath}/images/demo.jpg" />
 							</div>
@@ -79,7 +79,7 @@
 					</li>
 					<li class="three-col first">
 						<div class="main-content-box box-borders bg clearfix">
-							<h2 class="box-title">Kontakt</h2>
+							<h2 class="box-title">Spielberichte</h2>
 							<div class="box-head">
 								<img src="${dataPath}/images/demo.jpg" />
 							</div>
@@ -94,7 +94,7 @@
 					</li>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
-							<h2 class="box-title">Registrierung</h2>
+							<h2 class="box-title">Links</h2>
 							<div class="box-head">
 								<img src="${dataPath}/images/demo.jpg" />
 							</div>

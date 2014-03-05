@@ -8,7 +8,7 @@
  *
  * @returns {boolean}
  */
-function chekAddressForm() {
+/* function chekAddressForm() {
     var error_message = "Fehler:\n";
     var error = false;
     var prefix = false;
@@ -64,18 +64,18 @@ function chekAddressForm() {
         return false;
     }
     return true;
-}
+} */
 
 /**
 * Validate mail-addresses
 * @param email
 * @return {Boolean}
 */
-function validEmail(email) {
+/* function validEmail(email) {
     var strReg = "^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+\.+([a-zA-Z0-9]{2,4})+$";
     var regex = new RegExp(strReg);
     return(regex.test(email));
-}
+} */
 
 /**
  * Checks if reset is deliberate

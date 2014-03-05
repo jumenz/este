@@ -5,27 +5,27 @@
 	<!-------------- main navigation ------->
 	<ul class="nav">
 		<li class="nav-wide">
-			<a href="./about-us/">
+			<a href="${linkAboutUs}">
 				Über uns
 			</a>
 		</li>
 		<li class="nav-wide">
-			<a href="./reports/">
+			<a href="${linkReports}">
 				Spielberichte
 			</a>
 			<ul class="submenue">
 				<li class="online-only">
-					<a href="neuer-bericht.php">verfassen</a>
+					<a href="#">verfassen</a> 
 				</li>
 			</ul>
 		</li>
 		<li class="nav-wide">
-			<a href="./galery/">
+			<a href="${linkGalery}">
 				Galerie
 			</a>
 		</li>
 		<li class="nav-wide">
-			<a>
+			<a href="${linkLinks}">
 				Links
 			</a>
 			<ul class="submenue">
@@ -35,20 +35,20 @@
 			</ul>
 		</li>
 		<li class="offline-only nav-wide">
-			<a href="login.php">
+			<a href="${linkLogin}">
 				<span class="nav-wide">Login</span>
 				<img class="nav-reduced icon" src="../../data/icons/icon-login.png"/>
 			</a>
 		</li>
 		<li class="online-only nav-wide">
-			<a href="home.php">
+			<a href="${linkHome}">
 				Home
 			</a>
             <ul class="submenue">
                 <!--<li><form name="add_list" action="../Controller/AddressesController.php" method="get" ><button class="submenu-link" type="submit" name="action" value="list">Adressbuch</button></form></li>-->
-                <li><a href="adressbuch.php">Adressbuch</a></li>
-                <li><a href="termine.php">Termine</a></li>
-                <li><a href="forum.php">Forum</a></li>
+                <li><a href="">Adressbuch</a></li>
+                <li><a href="#">Termine</a></li>
+                <li><a href="${linkForum}">Forum</a></li>
                 <li><a>Logout</a></li>
             </ul>
 		</li>
@@ -56,13 +56,13 @@
 		<li class="nav-reduced">
 			<img src="../../data/icons/icon-menue.png"/>
 			<ul class="submenue">
-				<li><a href="ueber-uns.php">Über uns</a></li>
-				<li><a href="bericht.php">Spielberichte</a></li>
-				<li><a href="galerie.php">Galerie</a></li>
-				<li><a href="...">Links</a></li>
-				<li class="online-only"><a href="home.php">Home</a></li>
+				<li><a href="${linkAboutUs}">Über uns</a></li>
+				<li><a href="${linkReports}">Spielberichte</a></li>
+				<li><a href="${linkGalery}">Galerie</a></li>
+				<li><a href="${linkLinks}">Links</a></li>
+				<li class="online-only"><a href="${linkHome}">Home</a></li>
 				<li class="online-only"><a href="#">Logout</a></li>
-				<li class="offline-only">Login</li>
+				<li class="offline-only"><a href="${linkLogin}">Login</a></li>
 			</ul>
 		</li>
 	</ul>

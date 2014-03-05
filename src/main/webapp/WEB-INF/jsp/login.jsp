@@ -1,7 +1,7 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Home"/>
+		<jsp:param name="title" value="Login"/>
 		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
 	</jsp:include>
 		
@@ -17,12 +17,13 @@
         <div class="main-inner">
         	<!-- sidebar -->
 			<jsp:include page="./includes/sidebar.jsp">
-				<jsp:param name="sidebarTitle" value="..."/>
+				<jsp:param name="sidebarTitle" value="Login"/>
 				<jsp:param name="timer" value="include"/>
 				<jsp:param name="abc" value="include"/>
 				<jsp:param name="nav" value="linkname1"/>
+				<jsp:param name="ref" value="#"/>
 				<jsp:param name="nav" value="linkname2"/>
-				<jsp:param name="nav" value="linkname3"/>
+				<jsp:param name="ref" value="#"/>
 			</jsp:include>
         
 			<div id="..." class="content-list">

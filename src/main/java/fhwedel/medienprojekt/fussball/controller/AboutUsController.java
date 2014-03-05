@@ -13,6 +13,6 @@ public class AboutUsController {
 	 */
 	@RequestMapping("/ueber-uns/")
 	public String displayAboutUs() {
-		return "about-us";
+		return "aboutUs";
 	}
 }
