@@ -63,6 +63,7 @@
 		<webjars-jquery.version>1.9.0</webjars-jquery.version>
 		<dandelion.datatables.version>0.9.1</dandelion.datatables.version>
 
+		<!--<mysql.version>5.1.22</mysql.version>-->
 		<mysql.version>5.1.22</mysql.version>
 
 	</properties>
@@ -211,7 +212,12 @@
 		</dependency>
 
 		<!-- For MySql only -->
-		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> <version>${mysql.version}</version> </dependency> -->
+		<dependency> 
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		
 		<!-- HIBERNATE -->
 		<dependency>
 			<groupId>org.hibernate</groupId>

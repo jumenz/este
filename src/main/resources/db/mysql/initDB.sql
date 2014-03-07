@@ -1,4 +1,16 @@
-CREATE DATABASE IF NOT EXISTS petclinic;
+CREATE DATABASE IF NOT EXISTS este;
+GRANT ALL PRIVILEGES ON este.* TO julia@localhost IDENTIFIED BY 'julia';
+
+USE petclinic;
+
+CREATE TABLE team (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  first_name VARCHAR(30),
+  last_name  VARCHAR(30)
+);
+CREATE INDEX team_last_name ON team (last_name);
+
+/*CREATE DATABASE IF NOT EXISTS petclinic;
 GRANT ALL PRIVILEGES ON petclinic.* TO pc@localhost IDENTIFIED BY 'pc';
 
 USE petclinic;
@@ -58,3 +70,4 @@ CREATE TABLE IF NOT EXISTS visits (
   description VARCHAR(255),
   FOREIGN KEY (pet_id) REFERENCES pets(id)
 ) engine=InnoDB;
+*/
