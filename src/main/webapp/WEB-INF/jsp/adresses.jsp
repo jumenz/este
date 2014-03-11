@@ -37,6 +37,15 @@
 		</div>
 		
 		<!-- footer -->
-		<jsp:include page="./includes/footer.jsp"/>
+		<jsp:include page="./includes/footer.jsp"/>	
 	</body>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $('.toggle-item').each(function(idx, itm) {
+	        $(itm).find('.toggle').on('click', function() {
+	            $(itm).find('.content').toggle(200);
+	        });
+	    });
+	});
+	</script>
 </html>

@@ -63,8 +63,7 @@
 		<webjars-jquery.version>1.9.0</webjars-jquery.version>
 		<dandelion.datatables.version>0.9.1</dandelion.datatables.version>
 
-		<!--<mysql.version>5.1.22</mysql.version>-->
-		<mysql.version>5.1.22</mysql.version>
+		<mysql.version>5.1.21</mysql.version>
 
 	</properties>
 
