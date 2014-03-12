@@ -22,6 +22,9 @@
 <!-- Pfade zu den verschiedenen Links -->
 <c:set var="linkWelcome" value="${requestContextPath}/willkommen/"></c:set>
 <c:set var="linkReports" value="${requestContextPath}/berichte/"></c:set>
+<c:set var="linkReportsNext" value="${requestContextPath}/berichte/weitere/"></c:set>
+<c:set var="linkReportsPrev" value="${requestContextPath}/berichte/vorherige/"></c:set>
+<c:set var="linkReportsNew" value="${requestContextPath}/berichte/verfassen/"></c:set>
 <c:set var="linkRegister" value="${requestContextPath}/registrieren/"></c:set>
 <c:set var="linkLogin" value="${requestContextPath}/login/"></c:set>
 <c:set var="linkImpressum" value="${requestContextPath}/impressum/"></c:set>
@@ -29,5 +32,8 @@
 <c:set var="linkHome" value="${requestContextPath}/home/"></c:set>
 <c:set var="linkGalery" value="${requestContextPath}/galerie/"></c:set>
 <c:set var="linkForum" value="${requestContextPath}/forum/"></c:set>
+<c:set var="linkForumNext" value="${requestContextPath}/forum/weiteres/"></c:set>
+<c:set var="linkForumPrev" value="${requestContextPath}/forum/vorheriges/"></c:set>
+<c:set var="linkForumNewEntry" value="${requestContextPath}/forum/neuer-Eintrag/"></c:set>
 <c:set var="linkAdresses" value="${requestContextPath}/adressbuch/"></c:set>
 <c:set var="linkAboutUs" value="${requestContextPath}/ueber-uns/"></c:set>

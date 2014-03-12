@@ -2,7 +2,7 @@
 <html>
 	<jsp:include page="./includes/head.jsp">
 		<jsp:param name="title" value="Forum"/>
-		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
+		<jsp:param name="description" value="Hier kannst du Spielberichte zu den Spielen der Frauen des Este 06/70 verfolgen."/>
 	</jsp:include>
 		
 	<body>
@@ -20,17 +20,18 @@
 				<jsp:param name="sidebarTitle" value="Forum"/>
 				<jsp:param name="timer" value="include"/>
 				<jsp:param name="abc" value="include"/>
-				<jsp:param name="nav" value="linkname1"/>
-				<jsp:param name="ref" value="link1"/>
-				<jsp:param name="nav" value="linkname2"/>
-				<jsp:param name="ref" value="link2"/>
-				<jsp:param name="nav" value="linkname3"/>
-				<jsp:param name="ref" value="link3"/>
+				<jsp:param name="nav" value="Weitere Einträge"/>
+				<jsp:param name="ref" value="${linkForumNext}"/>
+				<jsp:param name="nav" value="vorherige Einträge"/>
+				<jsp:param name="ref" value="${linkForumPrev}"/>
+				<jsp:param name="nav" value="Eintrag verfassen"/>
+				<jsp:param name="ref" value="${linkForumNewEntry}"/>
 			</jsp:include>
 
-			
-        
-			<div id="..." class="content-list">
+			<div id="main-content-small" class="content-layout-cell main-content main-content-small">
+			<div class="outer">
+			<div class="inner">				
+			<div class="content-list">
 				<ul>
 					<c:forEach var="entry" items="${forumModel.entries}" varStatus="status">
 						<li class="one-col">
@@ -51,26 +52,25 @@
 									<div>
 										<div  class="comment-content-box box-borders-top bg clearfix further-toggle-item">
 											<h2 class="box-title link further-toggle" id="address-name" >Kommentare: X</h2>
-											<div class="box-link down-raquo toggle-link further-toggle right">
-											</div>
+											<div class="box-link down-raquo toggle-link further-toggle right"></div>
 											<div class="further-toggle-content" style="display: none">
-													<div class="box-body box-borders-bottom">
-														<div class="comments">
-															<div class="comment">
-																<p class="comment-name">Name</p>
-																<p class="comment-content">Ein Kommentar zu diesem Thema.</p>
-																<div class="button-delete online-only"></div>
-															</div>
-															<div class="comment">
-																<p class="comment-name">Name</p>
-																<p class="comment-content">Ein Kommentar zu diesem Thema. Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.</p>
-																<div class="button-delete online-only"></div>
-															</div>
+												<div class="box-body box-borders-bottom">
+													<div class="comments">
+														<div class="comment">
+															<p class="comment-name">Name</p>
+															<p class="comment-content">Ein Kommentar zu diesem Thema.</p>
+															<div class="button-delete online-only"></div>
+														</div>
+														<div class="comment">
+															<p class="comment-name">Name</p>
+															<p class="comment-content">Ein Kommentar zu diesem Thema. Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.</p>
+															<div class="button-delete online-only"></div>
 														</div>
 													</div>
 												</div>
+											</div>
 										</div>
-									<div>
+									</div>
 									<!-- end Comment Box -->
 								</div>
 							</div>
@@ -80,6 +80,9 @@
 						</c:forEach>
 						
 					</ul>
+			</div>
+			</div>
+			</div>
 			</div>
 		</div>
 		</div>
