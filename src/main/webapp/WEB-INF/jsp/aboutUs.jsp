@@ -34,7 +34,10 @@
 				<jsp:param name="ref" value="./ueber-uns.jsp#kontakt" />
 			</jsp:include>
         
-			<div id="..." class="content-list">
+			<div id="main-content-small" class="content-layout-cell main-content main-content-small">
+			<div class="outer">
+			<div class="inner">				
+			<div class="content-list">
 				<ul>
 					<!-- Der Verein -->
 					<li class="one-col">
@@ -226,6 +229,9 @@
 							</div>
 						</li>
 				</ul>				
+			</div>
+			</div>
+			</div>
 			</div>
 		</div>
 		</div>

@@ -2,13 +2,14 @@
 <html>
 	<jsp:include page="./includes/head.jsp">
 		<jsp:param name="title" value="Galerie"/>
-		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
+		<jsp:param name="description" value="Die Bildergalerie der Frauen des Este 06/70."/>
 	</jsp:include>
-		
+	<link rel="stylesheet" type="text/css" href="${cssPath}/galery.css"/>
+	
 	<body>
 		<!-- header -->
 		<jsp:include page="./includes/header.jsp"/>
-
+		
 		<!-- Fullview -->
 		<div id="galery-preview--full" class="hidden"> <!-- onclick="hideElement( this.id );" -->
 			<div class="button-prev" onclick=""></div>
@@ -39,7 +40,10 @@
 				<jsp:param name="ref" value="showElement('galery-preview--full')" />
 			</jsp:include>
         
-			<div id="..." class="content-list">
+        	<div id="main-content-small" class="content-layout-cell main-content main-content-small">
+			<div class="outer">
+			<div class="inner">				
+			<div class="content-list">
 				<!--Contentbox One-Col -->
 						<ul>
 							<li class="one-col">
@@ -67,11 +71,11 @@
 											<!-- medium view -->
 											<div id="galery-preview--multiple" class="round-corners" >
 												<div class="button-prev" onclick=""></div>
-												<?php for($i=1; $i<=4; $i++) : ?>
-												<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery-img--medium"
-													onclick="fullView( this.src );"
-												>
-												<?php endfor ?>
+													<% for(int i=0; i<=4; i++) { %>
+														<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery-img--medium"
+															onclick="fullView( this.src );"
+														>
+													<% } %>
 												<div class="button-next" onclick=""></div>
 											</div>
 											<div class="round-corners" id="galery-preview--medium">
@@ -137,6 +141,9 @@
 							</li>
 						</ul>
 						<!-- end Contentbox One-Col -->
+			</div>
+			</div>
+			</div>
 			</div>
 		</div>
 		</div>
