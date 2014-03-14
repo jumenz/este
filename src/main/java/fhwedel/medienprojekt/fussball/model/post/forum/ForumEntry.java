@@ -21,8 +21,19 @@ public class ForumEntry extends Post {
 	/** Kommentarliste */
 	private List<Comment> comments = new ArrayList<Comment>();
 	
+	/** Kurzbeschreibung */
+	//@Pattern(regexp=".*", message="Bitte gib eine Kurzbeschreibung ein.")
+	private String description;
+	
 	/* ---------- Funktionen ----------------- */
 	/* --------- Konstruktor ----------------- */
+	/**
+	 * Default Konstruktor.
+	 */
+	public ForumEntry() {
+		this("Kein Thema", "Kein Inhalt", "unbekannter Author", new DateTime());
+	}
+	
 	/**
 	 * Konstruktorfunktion.
 	 * @param topic		String		Thema
@@ -31,9 +42,10 @@ public class ForumEntry extends Post {
 	 * @param dateTime	DateTime	Erstellungszeitpunkt
 	 * @param comments	List		Kommentarliste
 	 */
-	public ForumEntry(String topic, String text, String author, DateTime dateTime, List<Comment> comments) {
+	public ForumEntry(String topic, String text, String author, DateTime dateTime, String description, List<Comment> comments) {
 		super(topic, text, author, dateTime);
 		this.comments = comments;
+		this.description = description;
 	}
 	
 	/**
@@ -44,7 +56,7 @@ public class ForumEntry extends Post {
 	 * @param dateTime	DateTime	Erstellungszeitpunkt
 	 */
 	public ForumEntry(String topic, String text, String author, DateTime dateTime) {
-		this(topic, text, author, dateTime, new ArrayList<Comment>());
+		this(topic, text, author, dateTime, "", new ArrayList<Comment>());
 	}
 	
 	/* --------- getter / setter ------------- */
@@ -55,12 +67,26 @@ public class ForumEntry extends Post {
 	public void setCommentList(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
 	/**
 	 * Liefert die Kommentarliste des Forenbeitrags.
 	 * @return
 	 */
 	public List<Comment> getCommentList() {
 		return this.comments;
+	}
+	
+	/**
+	 * Setzt die Kurzbeschreibung des Foreneintrags.
+	 * @param description	Kurzbeschreibung
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	/**
+	 * Liefert die Kurzbeschreibung des Foreneintrags.
+	 * @return	String
+	 */
+	public String getDescription() {
+		return this.description;
 	}
 }

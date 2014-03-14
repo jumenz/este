@@ -12,15 +12,19 @@ import org.joda.time.DateTime;
 public class Post {
 	/* ---------- Variablen ------------------ */
 	/** Thema des Beitrags */
+	//@Pattern(regexp=".*", message="Bitte gib einen Titel ein.")
 	private String topic;
 	
 	/** Inhalt des Beitrags */
+	//@Pattern(regexp=".*", message="Bitte gib einen Text ein.")
 	private String text;
 	
 	/** Zeit und Datum der Erstellung */
+	//@Pattern(regexp=".*", message="Bitte gib Datum und Uhrzeit an.")
 	private DateTime dateTime;
 	
 	/** Autor des Beitrags */
+	//@Pattern(regexp=".*", message="Der Author darf nicht leer sein.")
 	private String author;
 	
 	/* ---------- Funktionen ----------------- */

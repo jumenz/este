@@ -3,10 +3,6 @@ package fhwedel.medienprojekt.fussball.model.post.comment;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.Post;
 
-/** externe Klassen  */
-import java.util.ArrayList;
-import java.util.List;
-
 import org.joda.time.DateTime;
 
 /**

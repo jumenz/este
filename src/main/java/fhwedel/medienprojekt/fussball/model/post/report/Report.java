@@ -15,12 +15,20 @@ import org.joda.time.DateTime;
 public class Report extends Post {
 	/* ---------- Variablen ------------------ */
 	/** Name des Gegners */
+	//@Pattern(regexp=".*", message="Bitte gib den Namen des Gegners ein.")
 	private String opponent;
 	/** Spielstände */
 	private int[] scores = new int[4];
 	
 	/* ---------- Funktionen ----------------- */
 	/* --------- Konstruktor ----------------- */
+	/**
+	 * Default Konstruktor.
+	 */
+	public Report() {
+		this("Kein Thema", "Kein Text", "Unbekannter Autor", new DateTime());
+	}
+	
 	/**
 	 * Konstruktorfunktion.
 	 * @param topic		String		Thema

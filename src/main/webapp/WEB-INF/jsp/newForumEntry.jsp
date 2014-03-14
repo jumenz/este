@@ -18,25 +18,46 @@
        
 			<div id="..." class="content-list">
 				<ul>
-					<li class="one-col">
-						<form action="${linkForum}" method="post">
-							<!-- reports -->
-							<div  class="main-content-box box-borders-top bg clearfix">
-								<h2 class="box-title link toggle" id="address-name" ><c:out value="${entry.topic }"></c:out></h2>
-								<div id="submit-${status.index}" class="box-link down-raquo toggle-link right toggle">
-								</div>
-								<div class="toggle-content" style="display: none">
-									<div class="box-info clearfix light-bg">
-										<input type="text" value="Kurztext" name="description"/>										
-									</div>
-									<div class="box-body">
-										<input type="text" value="text" name="Tippe hier den Text des Foreneintrages ein."/>
-									</div>
-								</div>
-							</div>
-							<!-- reports -->
-						</form>		
-					</li>
+					<!--Contentbox One-Col -->
+                     <li class="one-col">
+                         <div class="main-content-box box-borders bg clearfix">
+                             <h2 class="box-title">Neuen Foreneintrag anlegen</h2>
+                             <div class="box-body">
+                             	<!-- Formular zum anlegen eines neuen Spielberichts -->	
+								<sf:form method="POST" modelAttribute="forumEntry">
+									<fieldset>
+										<table>
+											<tr>
+												<th><label for="topic">Thema:</label></th>
+												<td>
+													<sf:input path="topic" size="15" id="topic"/><br>
+													<sf:errors path="topic" cssClass="error"/>
+												</td>
+											</tr>
+											<tr>
+												<th><label for="description">Kurzbeschreibung:</label></th>
+												<td>
+													<sf:input path="description" size="15" id="description"/><br>
+													<sf:errors path="description" cssClass="error"/>
+												</td>
+											</tr>	
+											<tr>
+												<th><label for="text">Text:</label></th>
+												<td>
+													<sf:input path="text" size="100" id="text"/><br>
+													<sf:errors path="text" cssClass="error"/>
+												</td>
+											</tr>
+											<tr>
+												<td><input name="commit" type="submit" value="Speichern"/></td>
+											</tr>
+										</table>
+									</fieldset>
+								</sf:form>
+                             </div>
+                         </div>
+                     </li>
+                 	<!-- end Contentbox One-Col -->
 				</ul>
 			</div>
 		</div>

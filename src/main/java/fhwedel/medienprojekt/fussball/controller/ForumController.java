@@ -35,4 +35,17 @@ public class ForumController {
 		
 		return "forum";
 	}
+	
+	/**
+	 * Lädt das Formular zum Erstellen eines neuen Foreneintrags.
+	 * @param 	model	Model
+	 * @return	Name der jsp
+	 */
+	@RequestMapping("/forum/neuer-Eintrag/")
+	public String displayNewForumEntryForm(Model model) {
+		// Neues ForumEntry Objekt in jsp zugreifbar machen
+		model.addAttribute(new ForumEntry());
+		// Formular laden
+		return "newForumEntry";
+	}
 }

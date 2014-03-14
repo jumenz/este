@@ -37,10 +37,14 @@ public class ReportsController {
 	
 	/**
 	 * Lädt die Seite um einen neuen Spielbericht zu verfassen.
+	 * @param	model	Model
 	 * @return	String	Name des JSP
 	 */
 	@RequestMapping("/berichte/verfassen/")
-	public String displayReports() {
+	public String displayNewReportForm(Model model) {
+		// neues Report Objekt in jsp zugreifbar machen
+		model.addAttribute(new Report());
+		// jsp zum Erstellen eines neuen Berichts laden
 		return "newReport";
 	}
 	
