@@ -26,7 +26,7 @@ public class ReportsController {
 	public String displayReports(Model model) {
 		PostView<Report> view = new PostView<Report>();
 		// TODO Einträge aus Datenbank auslesen
-		Report entry = new Report("Erster Spielbericht", "Etwas Text", "Author Eins", new DateTime());
+		Report entry = new Report("Erster Spielbericht", "Etwas Text", "Author Eins", new DateTime(), "Gegner", 0,0,1,1);
 		view.addEntry(entry);	
 		
 		// In jsp zugreifbar machen
@@ -34,4 +34,14 @@ public class ReportsController {
 		
 		return "reports";
 	}
+	
+	/**
+	 * Lädt die Seite um einen neuen Spielbericht zu verfassen.
+	 * @return	String	Name des JSP
+	 */
+	@RequestMapping("/berichte/verfassen/")
+	public String displayReports() {
+		return "newReport";
+	}
+	
 }
