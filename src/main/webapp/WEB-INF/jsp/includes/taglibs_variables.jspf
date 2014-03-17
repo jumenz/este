@@ -8,7 +8,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
-<!-- Variablen -->
+<!-- 
+	Variablen 
+-->
 <!-- TODO BESCHREIBUNG -->
 <c:set var="requestContextPath" value="<%=request.getContextPath()%>"></c:set>
 <!-- Pfad zu den resourcen (css, js, images usw.) -->
@@ -20,22 +22,33 @@
 <!-- Pfad zu weiteren Dateien (Bilder, Icons usw. --> 
 <c:set var="dataPath" value="${resourcesPath}/data"></c:set>
 
-<!-- Pfade zu den verschiedenen Links -->
+<!-- 
+	Pfade zu den verschiedenen Links 
+-->
+<!-- LandingPages -->
 <c:set var="linkWelcome" value="${requestContextPath}/willkommen/"></c:set>
+<c:set var="linkHome" value="${requestContextPath}/home/"></c:set>
+<!-- Spielberichte -->
 <c:set var="linkReports" value="${requestContextPath}/berichte/"></c:set>
 <c:set var="linkReportsNext" value="${requestContextPath}/berichte/weitere/"></c:set>
 <c:set var="linkReportsPrev" value="${requestContextPath}/berichte/vorherige/"></c:set>
 <c:set var="linkReportsNew" value="${requestContextPath}/berichte/verfassen/"></c:set>
+<!-- Login und Registrierung -->
 <c:set var="linkRegister" value="${requestContextPath}/registrieren/"></c:set>
 <c:set var="linkLogin" value="${requestContextPath}/login/"></c:set>
+<!-- Impressum -->
 <c:set var="linkImpressum" value="${requestContextPath}/impressum/"></c:set>
+<!-- wichtige weiterführende Links -->
 <c:set var="linkLinks" value="${requestContextPath}/links/"></c:set>
-<c:set var="linkHome" value="${requestContextPath}/home/"></c:set>
+<!-- Galerie -->
 <c:set var="linkGalery" value="${requestContextPath}/galerie/"></c:set>
 <c:set var="linkGaleryUpload" value="${requestContextPath}/galerie/upload/"></c:set>
+<!-- Forum -->
 <c:set var="linkForum" value="${requestContextPath}/forum/"></c:set>
 <c:set var="linkForumNext" value="${requestContextPath}/forum/weiteres/"></c:set>
 <c:set var="linkForumPrev" value="${requestContextPath}/forum/vorheriges/"></c:set>
 <c:set var="linkForumNewEntry" value="${requestContextPath}/forum/neuer-Eintrag/"></c:set>
+<!-- Adressbuch -->
 <c:set var="linkAdresses" value="${requestContextPath}/adressbuch/"></c:set>
+<!-- Über uns -->
 <c:set var="linkAboutUs" value="${requestContextPath}/ueber-uns/"></c:set>

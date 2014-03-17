@@ -27,7 +27,7 @@
 								<p>Adressen aller Spielerinnen und Trainer.</p>
 								<p>Finde hier die Übersicht über alle Kontaktdaten.</p>
 							</div>
-							<a href="./adressbuch.jsp">
+							<a href="${linkAdresses}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -42,7 +42,7 @@
 								<p>Terminplaner der Mannschaft.</p>
 								<p>Hier kannst du aktuelle Termine einsehen und Angaben zu deiner Teilnahme vornehmen.</p>
 							</div>
-							<a href="./termine.jsp">
+							<a href="#">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -57,7 +57,7 @@
 								<p>Hier geht es zum Forum.</p>
 								<p>Es dient als Austauschplattform über aktuelle Themen.</p>
 							</div>
-							<a href="./forum.jsp">
+							<a href="${linkForum}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -72,7 +72,7 @@
 								<p>Download wichtiger Dateien.</p>
 								<p>Hier findest die Übersicht der Mannschaftskasse und Ähnliches.</p>
 							</div>
-							<a href="./dokumente.jsp">
+							<a href="#">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -87,7 +87,7 @@
 								<p>Texte zu den vergangenen Spielen.</p>
 								<p>Lies hier den Bericht zum letzten Spiel.</p>
 							</div>
-							<a href="./berichte.jsp">
+							<a href="${linkReports}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -101,7 +101,7 @@
 							<div class="box-body">
 								<p>Shortcuts zu den wichtigsten, für alle sichtbaren Seiten.</p>
 							</div>
-							<a href="./willkommen.jsp">
+							<a href="${linkWelcome}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
