@@ -91,6 +91,9 @@
 		
 		<!-- footer -->
 		<jsp:include page="./includes/footer.jsp"/>
+		
+		<!-- javascript, das nach Laden ausgeführt werden soll -->
+		<script type="text/javascript" src="${jsPath}/onLoad.js"></script>
 	</body>
 </html>
 
