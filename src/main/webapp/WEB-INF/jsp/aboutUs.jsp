@@ -21,17 +21,17 @@
 				<jsp:param name="timer" value="false"/>
 				<jsp:param name="abc" value="false"/>
 				<jsp:param name="nav" value="Der Verein"/>
-				<jsp:param name="ref" value="./ueber-uns.jsp#verein" />
+				<jsp:param name="ref" value="${linkAboutUs}#verein" />
 				<jsp:param name="nav" value="Die Mannschaft"/>
-				<jsp:param name="ref" value="./ueber-uns.jsp#mannschaft" />
+				<jsp:param name="ref" value="${linkAboutUs}#mannschaft" />
 				<jsp:param name="nav" value="Die Trainer"/>
-				<jsp:param name="ref" value="./ueber-uns.jsp#trainer" />
+				<jsp:param name="ref" value="${linkAboutUs}#trainer" />
 				<jsp:param name="nav" value="Das Training"/>
-				<jsp:param name="ref" value="./ueber-uns.jsp#training" />
+				<jsp:param name="ref" value="${linkAboutUs}#training" />
 				<jsp:param name="nav" value="Anfahrt"/>
-				<jsp:param name="ref" value="./ueber-uns.jsp#anfahrt" />
+				<jsp:param name="ref" value="${linkAboutUs}#anfahrt" />
 				<jsp:param name="nav" value="Kontakt"/>
-				<jsp:param name="ref" value="./ueber-uns.jsp#kontakt" />
+				<jsp:param name="ref" value="${linkAboutUs}#kontakt" />
 			</jsp:include>
         
 			<div id="main-content-small" class="content-layout-cell main-content main-content-small">
