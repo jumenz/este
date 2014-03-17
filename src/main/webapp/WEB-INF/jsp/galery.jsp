@@ -60,11 +60,11 @@
 											<!-- show all pictures -->
 											<div id="galery-preview--all">						<!-- TODO ID RAUS -->
 												<div class="galery-preview--all-images">
-													<?php for($i=1; $i<=50; $i++) : ?>
+													<% for(int i=0; i<=50; i++) { %>
 													<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery-img--small"
 														onclick="fullView( this.src );"
 													>
-													<?php endfor ?>
+													<% } %>
 												</div>
 											</div>
 											
