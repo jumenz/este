@@ -15,4 +15,14 @@ public class GaleryController {
 	public String displayGalery() {
 		return "galery";
 	}
+	
+	/**
+	 * Lädt das Formular zum hinzufügen neuer Bilder in die Bildergalerie.
+	 * @return string jsp
+	 */
+	@RequestMapping("/galerie/upload/")
+	public String displayGaleryImgUploadForm() {
+		
+		return "galeryImgUpload";
+	}
 }
