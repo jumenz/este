@@ -45,7 +45,7 @@ public class ReportsController {
 		// neues Report Objekt in jsp zugreifbar machen
 		model.addAttribute(new Report());
 		// jsp zum Erstellen eines neuen Berichts laden
-		return "newReport";
+		return "reportNew";
 	}
 	
 }

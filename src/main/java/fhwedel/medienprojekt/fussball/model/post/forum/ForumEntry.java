@@ -5,9 +5,18 @@ import fhwedel.medienprojekt.fussball.model.post.Post;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 
 
+import fhwedel.medienprojekt.fussball.service.DataAccessForum;
+
+
+
+
+import java.security.Timestamp;
+import java.sql.Date;
+import java.sql.Time;
 /** externe Klassen  */
 import java.util.ArrayList;
 import java.util.List;
+
 import org.joda.time.DateTime;
 
 /**
@@ -31,7 +40,7 @@ public class ForumEntry extends Post {
 	 * Default Konstruktor.
 	 */
 	public ForumEntry() {
-		this("Kein Thema", "Kein Inhalt", "unbekannter Author", new DateTime());
+		this("Kein Thema", "Kein Inhalt", "unbekannter Author", new Date(1000), new Time(1000)); /* TODO rausfinden wie das geht */
 	}
 	
 	/**
@@ -42,8 +51,8 @@ public class ForumEntry extends Post {
 	 * @param dateTime	DateTime	Erstellungszeitpunkt
 	 * @param comments	List		Kommentarliste
 	 */
-	public ForumEntry(String topic, String text, String author, DateTime dateTime, String description, List<Comment> comments) {
-		super(topic, text, author, dateTime);
+	public ForumEntry(String topic, String text, String author, Date date, Time time, String description, List<Comment> comments) {
+		super(topic, text, author, date, time);
 		this.comments = comments;
 		this.description = description;
 	}
@@ -55,8 +64,8 @@ public class ForumEntry extends Post {
 	 * @param author	String		Author
 	 * @param dateTime	DateTime	Erstellungszeitpunkt
 	 */
-	public ForumEntry(String topic, String text, String author, DateTime dateTime) {
-		this(topic, text, author, dateTime, "", new ArrayList<Comment>());
+	public ForumEntry(String topic, String text, String author, Date date, Time time) {
+		this(topic, text, author, date, time, "", new ArrayList<Comment>());
 	}
 	
 	/* --------- getter / setter ------------- */
@@ -88,5 +97,15 @@ public class ForumEntry extends Post {
 	 */
 	public String getDescription() {
 		return this.description;
+	}
+	
+	/**
+	 * Setzt die Id des Foren-Eintrags ausgehend von der Id in der Datenbank.
+	 */
+	public void setId() {
+		/* Service holen */
+		DataAccessForum dataAccessService = new DataAccessForum();
+		/* Id auslesen und speichern */
+		this.id = dataAccessService.getId(this);
 	}
 }

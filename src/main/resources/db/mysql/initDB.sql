@@ -5,16 +5,17 @@ CREATE TABLE IF NOT EXISTS team  (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS forum  (
-  id		INT NOT NULL PRIMARY KEY,
-  date_time	DATETIME NOT NULL,
-  author 	VARCHAR(30),
-  topic 	VARCHAR(30),
-  text		VARCHAR(500),
+  id			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  date_time		DATETIME NOT NULL,
+  author 		VARCHAR(30),
+  topic 		VARCHAR(30),
+  description 	VARCHAR(150),
+  text			VARCHAR(500),
   has_comments	BOOLEAN
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS report  (
-  id				INT NOT NULL PRIMARY KEY,
+  id				INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   date_time 		DATETIME NOT NULL,
   author 			VARCHAR(30),
   topic 			VARCHAR(30),
@@ -27,7 +28,7 @@ CREATE TABLE IF NOT EXISTS report  (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS comments (
-  id			INT NOT NULL PRIMARY KEY,
+  id			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   date_time		DATETIME NOT NULL,
   author		VARCHAR(30),
   text			VARCHAR(30),

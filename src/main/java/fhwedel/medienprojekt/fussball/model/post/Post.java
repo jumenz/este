@@ -1,5 +1,8 @@
 package fhwedel.medienprojekt.fussball.model.post;
 
+import java.sql.Date;
+import java.sql.Time;
+
 import org.joda.time.DateTime;
 
 /**
@@ -11,6 +14,8 @@ import org.joda.time.DateTime;
  */
 public class Post {
 	/* ---------- Variablen ------------------ */
+	/** id des Eintrags */
+	protected int id;
 	/** Thema des Beitrags */
 	//@Pattern(regexp=".*", message="Bitte gib einen Titel ein.")
 	private String topic;
@@ -21,7 +26,8 @@ public class Post {
 	
 	/** Zeit und Datum der Erstellung */
 	//@Pattern(regexp=".*", message="Bitte gib Datum und Uhrzeit an.")
-	private DateTime dateTime;
+	private Date date;
+	private Time time;
 	
 	/** Autor des Beitrags */
 	//@Pattern(regexp=".*", message="Der Author darf nicht leer sein.")
@@ -36,10 +42,11 @@ public class Post {
 	 * @param dateTime	DateTime	Erstellungszeitpunkt
 	 * @param author	String		Author
 	 */
-	public Post(String topic, String text, String author, DateTime dateTime) {
+	public Post(String topic, String text, String author, Date date, Time time) {
 		this.topic = topic;
 		this.text = text;
-		this.dateTime = dateTime;
+		this.date = date;
+		this.time = time;
 		this.author = author;
 	}
 	
@@ -94,17 +101,48 @@ public class Post {
 	
 	/**
 	 * Setzt Datum und Zeit des Beitrags.
-	 * @param dateTime
+	 * @param date
 	 */
-	public void setDateTime(DateTime dateTime) {
-		this.dateTime = dateTime;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	/**
 	 * Liefert Datum und Zeit des Beitrags.
 	 * @return DateTime
 	 */
-	public DateTime getDateTime() {
-		return this.dateTime;
+	public Date getDate() {
+		return this.date;
+	}
+	
+	/**
+	 * Setzt Datum und Zeit des Beitrags.
+	 * @param date
+	 */
+	public void setTime(Time time) {
+		this.time = time;
+	}
+	
+	/**
+	 * Liefert Datum und Zeit des Beitrags.
+	 * @return DateTime
+	 */
+	public Time getTime() {
+		return this.time;
+	}
+	
+	/**
+	 * Liefert die Id.
+	 * return int
+	 */
+	public int getId() {
+		return this.id;
+	}
+	/**
+	 * Setzt die id.
+	 * @param id	Wert der id
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -41,11 +41,11 @@ public class ForumController {
 	 * @param 	model	Model
 	 * @return	Name der jsp
 	 */
-	@RequestMapping("/forum/neuer-Eintrag/")
+	@RequestMapping("/forum/neuer-eintrag/")
 	public String displayNewForumEntryForm(Model model) {
 		// Neues ForumEntry Objekt in jsp zugreifbar machen
 		model.addAttribute(new ForumEntry());
 		// Formular laden
-		return "newForumEntry";
+		return "forumNewEntry";
 	}
 }

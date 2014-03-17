@@ -1,7 +1,12 @@
 package fhwedel.medienprojekt.fussball.model.post.report;
 
 /** eigene Klassen */
+import java.sql.Date;
+import java.sql.Time;
+
 import fhwedel.medienprojekt.fussball.model.post.Post;
+
+
 
 /** externe Klassen  */
 import org.joda.time.DateTime;
@@ -26,7 +31,7 @@ public class Report extends Post {
 	 * Default Konstruktor.
 	 */
 	public Report() {
-		this("Kein Thema", "Kein Text", "Unbekannter Autor", new DateTime());
+		this("Kein Thema", "Kein Text", "Unbekannter Autor", new Date(1000), new Time(1000));
 	}
 	
 	/**
@@ -36,8 +41,8 @@ public class Report extends Post {
 	 * @param author	String		Author
 	 * @param dateTime	DateTime	Erstellungszeitpunkt
 	 */
-	public Report(String topic, String text, String author, DateTime dateTime) {
-		this(topic, text, author, dateTime, "", 0, 0, 0, 0);
+	public Report(String topic, String text, String author, Date date, Time time) {
+		this(topic, text, author, date, time, "", 0, 0, 0, 0);
 	}
 	
 	/**
@@ -47,9 +52,9 @@ public class Report extends Post {
 	 * @param author	String		Author
 	 * @param dateTime	DateTime	Erstellungszeitpunkt
 	 */
-	public Report(	String topic, String text, String author, DateTime dateTime, String opponent,
+	public Report(	String topic, String text, String author, Date date, Time time, String opponent,
 					int firstHalfHome, int firstHalfGuest, int secondHalfHome, int secondHalfGuest) {
-		super(topic, text, author, dateTime);
+		super(topic, text, author, date, time);
 		this.opponent = opponent;
 		setScore(Scores.FIRST_HALF_HOME, firstHalfHome);
 		setScore(Scores.FIRST_HALF_GUEST, firstHalfGuest);

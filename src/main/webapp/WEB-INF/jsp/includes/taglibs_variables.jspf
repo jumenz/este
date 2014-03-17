@@ -47,7 +47,7 @@
 <c:set var="linkForum" value="${requestContextPath}/forum/"></c:set>
 <c:set var="linkForumNext" value="${requestContextPath}/forum/weiteres/"></c:set>
 <c:set var="linkForumPrev" value="${requestContextPath}/forum/vorheriges/"></c:set>
-<c:set var="linkForumNewEntry" value="${requestContextPath}/forum/neuer-Eintrag/"></c:set>
+<c:set var="linkForumNewEntry" value="${requestContextPath}/forum/neuer-eintrag/"></c:set>
 <!-- Adressbuch -->
 <c:set var="linkAdresses" value="${requestContextPath}/adressbuch/"></c:set>
 <!-- Über uns -->
