@@ -28,7 +28,7 @@
 								<p>Erfahre mehr über Este 06/70.</p>
 								<p>Hier findest du Informationen zum Verein, der Mannschaft, den Trainern und den Trainingszeiten.</p>
 							</div>
-							<a href="./ueber-uns.jsp">
+							<a href="${linkAboutUs}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -43,7 +43,7 @@
 								<p>Texte zu den vergangenen Spielen.</p>
 								<p>Lies hier den Bericht zum letzten Spiel.</p>
 							</div>
-							<a href="./termine.jsp">
+							<a href="#">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -58,7 +58,7 @@
 								<p>Weitere Informationen findest du hier!</p>
 								<p>Wirf einen Blick auf die aktuelle Tabelle oder den Staffelspielplan.</p>
 							</div>
-							<a href="./links.jsp">
+							<a href="${linkLinks}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -73,7 +73,7 @@
 								<p>Weitere Impressionen.</p>
 								<p>Erlebe unsere Spielerinnen in Aktion und durchstöbere unsere Galerie!</p>
 							</div>
-							<a href="./dokumente.jsp">
+							<a href="${linkGalery}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -88,7 +88,7 @@
 								<p>Du hast noch Fragen oder Anliegen?</p>
 								<p>Hier kannst du uns erreichen.</p>
 							</div>
-							<a href="./ueber-uns.jsp">
+							<a href="${linkAboutUs}#kontakt">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
@@ -103,7 +103,7 @@
 								<p>Melde dich hier an.</p>
 								<p>Diese Option ist den Spielerinnen und Trainern des Este 06/70 vorbehalten.</p>
 							</div>
-							<a href="./berichte.jsp">
+							<a href="${linkRegister}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
