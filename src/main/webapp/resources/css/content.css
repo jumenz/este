@@ -9,6 +9,7 @@ body {
     font-style: normal;
     text-align: center;
     margin: 0;
+    position: relative;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: "Trebuchet MS",Arial,Helvetica,Sans-Serif;
@@ -642,13 +643,13 @@ a.show-link {
 		height: 110px;
 	}
 	
-	.content-list ul li:nth-of-type(2n + 1) {
+	.content-list ul li.three-col:nth-of-type(2n + 1) {
 		clear: both;
 	}
 	
-	.content-list ul li:nth-of-type(2n-1) {
+	.content-list ul li.three-col:nth-of-type(2n-1) {
 		margin-left: 17%;
-		margin-right: 1% !important; /* important um nth-of-type(3n zu überschreiben) */
+		margin-right: 1%;
 	}
 }
 
@@ -669,7 +670,7 @@ a.show-link {
     .content-list ul li.three-col {
     	width: 96%;
     	clear: both;
-    	margin: 1%;
+    	margin: 1% !important;
     }
     .content-list ul li.three-col .box-body {
     	height: 70px;

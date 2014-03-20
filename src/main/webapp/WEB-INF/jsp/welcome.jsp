@@ -118,6 +118,21 @@
 		
 		<!-- footer -->
 		<jsp:include page="./includes/footer.jsp"/>
+		
+		<script type="text/javascript">
+		$(function (){
+			$(window).scroll(function (){
+				var header = $('#header');
+				if ($(this).scrollTop() > $('#header').offset().top){
+					$('#header').css('marginTop','0');
+					window.alert("nicht sichtbar");
+				} else {
+					//window.alert("sichtbar");
+					//$('#header').css('marginTop','-130');
+				}
+			});
+		})(jQuery);
+		</script>
 	</body>
 </html>
 

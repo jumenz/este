@@ -3,8 +3,8 @@
 	<li> <!-- login -->
 		<form action="post" name="footer-login-register-form">
 			<input class="buttom-invisible footer-space-bottom" type="submit" value="Login"><br>
-			<span class="footer-info"><input class="input-with-default" type="text" name="login-name" value="Name" data-default="Name" ></span><br>
-			<span class="footer-info footer-space-bottom"><input type="password" name="login-name" value="Passwort"  onfocus="this.value=clearDefault(this.value, 'Passwort');" onblur="this.value=setDefault(this.value, 'Passwort');"></span><br>
+			<span class="footer-info"><input class="input-with-default" type="text" name="login-name" data-default="Name" ></span><br>
+			<span class="footer-info footer-space-bottom"><input type="password" name="login-name" data-default="Passwort"></span><br>
 			<input class="buttom-invisible" type="submit" value="Registrieren">
 		</form>
 	</li>
