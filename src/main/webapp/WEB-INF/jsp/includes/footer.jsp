@@ -18,10 +18,10 @@
 	</li>	
 	<li> <!-- shortlinks -->
 		<span class="footer-heading footer-space-bottom">Nützliches</span>
-		<span class="footer-info"><a href="ueber-uns.php">Über uns</a></span>
-		<span class="footer-info"><a href="berichte.php">Spielberichte</a></span>
-		<span class="footer-info"><a href="galerie.php">Galerie</a></span>
-		<span class="footer-info  footer-space-bottom"><a href="ueber-uns#kontakt.php">weiterer Kontakt</a></span>
-		<span class="footer-info"><a href="impressum.php">Impressum</a></span>
+		<span class="footer-info"><a href="${linkAboutUs}">Über uns</a></span>
+		<span class="footer-info"><a href="${linkReports}">Spielberichte</a></span>
+		<span class="footer-info"><a href="${linkGalery}">Galerie</a></span>
+		<span class="footer-info  footer-space-bottom"><a href="${linkAboutUs}#kontakt">weiterer Kontakt</a></span>
+		<span class="footer-info"><a href="${linkImpressum}">Impressum</a></span>
 	</li>
 </ul>

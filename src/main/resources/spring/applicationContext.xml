@@ -48,8 +48,8 @@
  	<context:component-scan base-package="fhwedel.medienprojekt.fussball"/>
 
 	<!-- Test der Datenbankanbindung -->
-	<bean id="dataAccessTestClass" class="fhwedel.medienprojekt.fussball.service.dataAccessTest">
+	<!--  <bean id="dataAccessTestClass" class="fhwedel.medienprojekt.fussball.service.dataAccessTest">
 		<property name="jdbcTemplate" ref="jdbcTemplate"/>
-	</bean>
+	</bean> -->
     
 </beans>
