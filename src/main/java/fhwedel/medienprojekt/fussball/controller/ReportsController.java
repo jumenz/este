@@ -1,7 +1,7 @@
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
-import org.joda.time.DateTime;
+import java.util.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,7 @@ public class ReportsController {
 	public String displayReports(Model model) {
 		PostView<Report> view = new PostView<Report>();
 		// TODO Einträge aus Datenbank auslesen
-		Report entry = new Report("Erster Spielbericht", "Etwas Text", "Author Eins", new DateTime(), "Gegner", 0,0,1,1);
+		Report entry = new Report("Erster Spielbericht", "Etwas Text", "Author Eins", new Date(), "Gegner", 0,0,1,1);
 		view.addEntry(entry);	
 		
 		// In jsp zugreifbar machen

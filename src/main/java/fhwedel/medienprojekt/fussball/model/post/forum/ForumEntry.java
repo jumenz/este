@@ -3,21 +3,13 @@ package fhwedel.medienprojekt.fussball.model.post.forum;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.Post;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
-
-
 import fhwedel.medienprojekt.fussball.service.DataAccessForum;
 
-
-
-
-import java.security.Timestamp;
-import java.sql.Date;
-import java.sql.Time;
 /** externe Klassen  */
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
-import org.joda.time.DateTime;
 
 /**
  * Klasse zur Implementierung von Forenbeiträgen.
@@ -40,7 +32,7 @@ public class ForumEntry extends Post {
 	 * Default Konstruktor.
 	 */
 	public ForumEntry() {
-		this("Kein Thema", "Kein Inhalt", "unbekannter Author", new Date(1000), new Time(1000)); /* TODO rausfinden wie das geht */
+		this("Kein Thema", "Kein Inhalt", "unbekannter Author", new Date());
 	}
 	
 	/**
@@ -48,11 +40,11 @@ public class ForumEntry extends Post {
 	 * @param topic		String		Thema
 	 * @param text		String		Inhalt
 	 * @param author	String		Author
-	 * @param dateTime	DateTime	Erstellungszeitpunkt
+	 * @param dateTime	Date		Erstellungszeitpunkt
 	 * @param comments	List		Kommentarliste
 	 */
-	public ForumEntry(String topic, String text, String author, Date date, Time time, String description, List<Comment> comments) {
-		super(topic, text, author, date, time);
+	public ForumEntry(String topic, String text, String author, Date date, String description, List<Comment> comments) {
+		super(topic, text, author, date);
 		this.comments = comments;
 		this.description = description;
 	}
@@ -62,10 +54,10 @@ public class ForumEntry extends Post {
 	 * @param topic		String		Thema
 	 * @param text		String		Inhalt
 	 * @param author	String		Author
-	 * @param dateTime	DateTime	Erstellungszeitpunkt
+	 * @param date		Date		Erstellungszeitpunkt
 	 */
-	public ForumEntry(String topic, String text, String author, Date date, Time time) {
-		this(topic, text, author, date, time, "", new ArrayList<Comment>());
+	public ForumEntry(String topic, String text, String author, Date date) {
+		this(topic, text, author, date, "", new ArrayList<Comment>());
 	}
 	
 	/* --------- getter / setter ------------- */

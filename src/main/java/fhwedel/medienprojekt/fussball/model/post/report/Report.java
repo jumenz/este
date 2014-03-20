@@ -1,15 +1,11 @@
 package fhwedel.medienprojekt.fussball.model.post.report;
 
 /** eigene Klassen */
-import java.sql.Date;
-import java.sql.Time;
-
 import fhwedel.medienprojekt.fussball.model.post.Post;
+import fhwedel.medienprojekt.fussball.service.DataAccessForum;
 
-
-
-/** externe Klassen  */
-import org.joda.time.DateTime;
+/** externe Klassen */
+import java.util.Date;
 
 /**
  * Klasse zur Implementierung von Spielberichten.
@@ -31,7 +27,7 @@ public class Report extends Post {
 	 * Default Konstruktor.
 	 */
 	public Report() {
-		this("Kein Thema", "Kein Text", "Unbekannter Autor", new Date(1000), new Time(1000));
+		this("Kein Thema", "Kein Text", "Unbekannter Autor", new Date());
 	}
 	
 	/**
@@ -39,10 +35,10 @@ public class Report extends Post {
 	 * @param topic		String		Thema
 	 * @param text		String		Inhalt
 	 * @param author	String		Author
-	 * @param dateTime	DateTime	Erstellungszeitpunkt
+	 * @param dateTime	Date		Erstellungszeitpunkt
 	 */
-	public Report(String topic, String text, String author, Date date, Time time) {
-		this(topic, text, author, date, time, "", 0, 0, 0, 0);
+	public Report(String topic, String text, String author, Date date) {
+		this(topic, text, author, date, "", 0, 0, 0, 0);
 	}
 	
 	/**
@@ -50,11 +46,11 @@ public class Report extends Post {
 	 * @param topic		String		Thema
 	 * @param text		String		Inhalt
 	 * @param author	String		Author
-	 * @param dateTime	DateTime	Erstellungszeitpunkt
+	 * @param dateTime	Date		Erstellungszeitpunkt
 	 */
-	public Report(	String topic, String text, String author, Date date, Time time, String opponent,
+	public Report(	String topic, String text, String author, Date date, String opponent,
 					int firstHalfHome, int firstHalfGuest, int secondHalfHome, int secondHalfGuest) {
-		super(topic, text, author, date, time);
+		super(topic, text, author, date);
 		this.opponent = opponent;
 		setScore(Scores.FIRST_HALF_HOME, firstHalfHome);
 		setScore(Scores.FIRST_HALF_GUEST, firstHalfGuest);
@@ -93,5 +89,15 @@ public class Report extends Post {
 	 */
 	public int getScore(Scores score) {
 		return this.scores[score.ordinal()];
+	}
+	
+	/**
+	 * Setzt die Id des Foren-Eintrags ausgehend von der Id in der Datenbank.
+	 */
+	public void setId() {
+		/* Service holen */
+		//DataAccessForum dataAccessService = new DataAccessForum();
+		/* Id auslesen und speichern */
+		//this.id = dataAccessService.getId(this);
 	}
 }
