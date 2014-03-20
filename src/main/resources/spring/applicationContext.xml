@@ -47,14 +47,9 @@
  	<import resource="mvc-config.xml"/>
  	<context:component-scan base-package="fhwedel.medienprojekt.fussball"/>
 
-	<!-- Test der Datenbankanbindung -->
-	<bean id="dataAccessTestClass" class="fhwedel.medienprojekt.fussball.service.dataAccessTest">
-		<property name="jdbcTemplate" ref="jdbcTemplate"/>
-	</bean>
 	<!-- Datenbankanbindung Forum -->
 	<bean id="DataAccessForum" class="fhwedel.medienprojekt.fussball.service.DataAccessForum">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
-	
     
 </beans>

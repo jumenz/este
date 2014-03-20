@@ -18,7 +18,7 @@
 			<div id="..." class="content-list">
 				<!-- three col view -->
 				<ul>
-					<li class="three-col first">
+					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Über Uns</h2>
 							<div class="box-head">
@@ -33,7 +33,7 @@
 							</a>
 						</div>
 					</li>
-					<li class="three-col first">
+					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Spielberichte</h2>
 							<div class="box-head">
@@ -63,7 +63,7 @@
 							</a>
 						</div>
 					</li>
-					<li class="three-col first">
+					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Galerie</h2>
 							<div class="box-head">
@@ -78,7 +78,7 @@
 							</a>
 						</div>
 					</li>
-					<li class="three-col first">
+					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Kontakt</h2>
 							<div class="box-head">
@@ -118,6 +118,21 @@
 		
 		<!-- footer -->
 		<jsp:include page="./includes/footer.jsp"/>
+		
+		<script type="text/javascript">
+		$(function (){
+			$(window).scroll(function (){
+				var header = $('#header');
+				if ($(this).scrollTop() > $('#header').offset().top){
+					$('#header').css('marginTop','0');
+					window.alert("nicht sichtbar");
+				} else {
+					//window.alert("sichtbar");
+					//$('#header').css('marginTop','-130');
+				}
+			});
+		})(jQuery);
+		</script>
 	</body>
 </html>
 
