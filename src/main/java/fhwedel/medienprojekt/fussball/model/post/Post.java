@@ -1,9 +1,8 @@
 package fhwedel.medienprojekt.fussball.model.post;
 
-import java.sql.Date;
-import java.sql.Time;
+/** externe Klassen */
+import java.util.Date;
 
-import org.joda.time.DateTime;
 
 /**
  * Klasse für allgemeine Posts.
@@ -27,7 +26,6 @@ public class Post {
 	/** Zeit und Datum der Erstellung */
 	//@Pattern(regexp=".*", message="Bitte gib Datum und Uhrzeit an.")
 	private Date date;
-	private Time time;
 	
 	/** Autor des Beitrags */
 	//@Pattern(regexp=".*", message="Der Author darf nicht leer sein.")
@@ -39,14 +37,13 @@ public class Post {
 	 * Konstruiert die Klasse Post.
 	 * @param topic		String		Thema des Beitrags
 	 * @param text		String		Inhalt des Beitrags
-	 * @param dateTime	DateTime	Erstellungszeitpunkt
+	 * @param date		Date		Erstellungszeitpunkt
 	 * @param author	String		Author
 	 */
-	public Post(String topic, String text, String author, Date date, Time time) {
+	public Post(String topic, String text, String author, Date date) {
 		this.topic = topic;
 		this.text = text;
 		this.date = date;
-		this.time = time;
 		this.author = author;
 	}
 	
@@ -100,7 +97,7 @@ public class Post {
 	}
 	
 	/**
-	 * Setzt Datum und Zeit des Beitrags.
+	 * Setzt den Zeitpunkt des Beitrags.
 	 * @param date
 	 */
 	public void setDate(Date date) {
@@ -108,27 +105,11 @@ public class Post {
 	}
 	
 	/**
-	 * Liefert Datum und Zeit des Beitrags.
+	 * Liefert den Zeitpunkt des Beitrags.
 	 * @return DateTime
 	 */
 	public Date getDate() {
 		return this.date;
-	}
-	
-	/**
-	 * Setzt Datum und Zeit des Beitrags.
-	 * @param date
-	 */
-	public void setTime(Time time) {
-		this.time = time;
-	}
-	
-	/**
-	 * Liefert Datum und Zeit des Beitrags.
-	 * @return DateTime
-	 */
-	public Time getTime() {
-		return this.time;
 	}
 	
 	/**

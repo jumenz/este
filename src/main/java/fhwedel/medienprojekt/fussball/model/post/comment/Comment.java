@@ -1,10 +1,11 @@
 package fhwedel.medienprojekt.fussball.model.post.comment;
 
-/** externe Klassen */
-import java.util.Date;
 /** eigene Klassen */
+import java.util.Date;
+
 import fhwedel.medienprojekt.fussball.model.post.Post;
 
+import org.joda.time.DateTime;
 
 /**
  * Klasse zur Implementierung von Kommentaren.
@@ -22,7 +23,7 @@ public class Comment extends Post {
 	 * @param topic		String		Thema
 	 * @param text		String		Inhalt
 	 * @param author	String		Author
-	 * @param dateTime	Date		Erstellungszeitpunkt
+	 * @param date		Date 		Erstellungszeitpunkt
 	 */
 	public Comment(String topic, String text, String author, Date date) {
 		super(topic, text, author, date);
