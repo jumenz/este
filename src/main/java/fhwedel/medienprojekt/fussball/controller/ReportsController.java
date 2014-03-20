@@ -2,9 +2,12 @@ package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
 import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
@@ -22,7 +25,7 @@ public class ReportsController {
 	 * @param	model	Model
 	 * @return	String	Name des JSP
 	 */
-	@RequestMapping("/berichte/")
+	@RequestMapping(value="/berichte/", method=RequestMethod.GET)
 	public String displayReports(Model model) {
 		PostView<Report> view = new PostView<Report>();
 		// TODO Einträge aus Datenbank auslesen

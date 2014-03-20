@@ -5,7 +5,10 @@ import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import java.util.Date;
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
@@ -22,7 +25,7 @@ public class ForumController {
 	 * Lädt das Forum
 	 * @return string page name
 	 */
-	@RequestMapping("/forum/")
+	@RequestMapping(value="/forum/", method=RequestMethod.GET)
 	public String displayForum(Model model) {
 		PostView<ForumEntry> view = new PostView<ForumEntry>();
 		
@@ -42,7 +45,7 @@ public class ForumController {
 	 * @param 	model	Model
 	 * @return	Name der jsp
 	 */
-	@RequestMapping("/forum/neuer-eintrag/")
+	@RequestMapping(value="/forum/neuer-eintrag/", method=RequestMethod.GET)
 	public String displayNewForumEntryForm(Model model) {
 		// Neues ForumEntry Objekt in jsp zugreifbar machen
 		model.addAttribute(new ForumEntry());

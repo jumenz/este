@@ -23,7 +23,7 @@ public class GaleryController {
 	 * Lädt das Formular zum hinzufügen neuer Bilder in die Bildergalerie.
 	 * @return string jsp
 	 */
-	@RequestMapping(value="/galerie/upload", method=RequestMethod.GET)
+	@RequestMapping(value="/galerie/upload/", method=RequestMethod.GET)
 	public String displayGaleryImgUploadForm() {
 		return "galeryImgUpload";
 	}
