@@ -3,7 +3,6 @@ package fhwedel.medienprojekt.fussball.service;
 /** Externe Klassen */
 import java.sql.ResultSet;  
 import java.sql.SQLException;  
-import org.springframework.jdbc.core.RowMapper;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS team  (
 
 CREATE TABLE IF NOT EXISTS forum  (
   id			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  date_time		DATETIME NOT NULL,
+  date_time		DATE NOT NULL,
   author 		VARCHAR(30),
   topic 		VARCHAR(30),
   description 	VARCHAR(150),
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS forum  (
 
 CREATE TABLE IF NOT EXISTS report  (
   id				INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  date_time 		DATETIME NOT NULL,
+  date		 		DATE NOT NULL,
   author 			VARCHAR(30),
   topic 			VARCHAR(30),
   text				VARCHAR(500),
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS report  (
 
 CREATE TABLE IF NOT EXISTS comments (
   id			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  date_time		DATETIME NOT NULL,
+  date			DATE NOT NULL,
   author		VARCHAR(30),
   text			VARCHAR(30),
   ref			INT NOT NULL,
