@@ -21,7 +21,7 @@
     	Verhindert, dass für statische Seiten der DispatcherController aufgerufen wird
     	-> Hier liegen Dateien wie css, js, Bilder ...
     -->
-    <mvc:resources mapping="/resources/**" location="/resources/"/>  
+    <mvc:resources mapping="/resources/**" location="/resources/" />  
     
     <!-- 
     	Einschalten von Annotationen (wie @Controller)
