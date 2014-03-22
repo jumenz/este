@@ -15,6 +15,7 @@ import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 import fhwedel.medienprojekt.fussball.service.DataAccessForum;
 
+
 /**
  * Controller zur Anzeige des Forums.
  * @author Ellen
@@ -22,11 +23,11 @@ import fhwedel.medienprojekt.fussball.service.DataAccessForum;
  */
 @Controller
 public class ForumController {
-	
+
 	/** Service für die Datenbankarbeit */
 	@Autowired
 	private DataAccessForum dataAccess;
-	
+
 	/**
 	 * Lädt das Forum
 	 * @return string page name
@@ -42,10 +43,10 @@ public class ForumController {
 		
 		// In jsp zugreifbar machen
 		model.addAttribute("forumModel", view);
-		
+
 		// TEST
 		dataAccess.save(entry);
-		
+
 		return "forum";
 	}
 	

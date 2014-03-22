@@ -5,7 +5,7 @@
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
-	<!-- Einstellungen für Web-Anwednungen mit Spring -->
+	<!-- Einstellungen fï¿½r Web-Anwednungen mit Spring -->
 
     <display-name>Fussball</display-name>
     <description>Fussball</description>
@@ -29,15 +29,19 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		- Location der XML Datei, die den root application context definiert.
 		- Wird von ContextLoaderListener angewandt.
 	-->
+	<!--  
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/empty.xml</param-value>
     </context-param>
+    -->
 
-	<!-- Listener für Web Application Context -->
+	<!-- Listener fï¿½r Web Application Context -->
+	<!--  
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    -->
 
 	<!-- DispatcherServlet dient als Front Controller, der eingehende Reqeuests
 		an andere Komponenten (z.B.MVC Controller) weiterleitet -->
@@ -52,10 +56,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     </servlet>
 
 	<!-- 
-		Angabe auf welche URLs der Dispatcher hören soll (hier alle, um URLs einfach zu halten) 
-		Alternativ wäre z.B. /app/ möglich, damit für statische Seiten kein Dispatcher 
+		Angabe auf welche URLs der Dispatcher hï¿½ren soll (hier alle, um URLs einfach zu halten) 
+		Alternativ wï¿½re z.B. /app/ mï¿½glich, damit fï¿½r statische Seiten kein Dispatcher 
 		verwendet wird
-		Um statische Seiten nicht über Dispatcher zu laden: <mvc:ressources> verwenden)
+		Um statische Seiten nicht ï¿½ber Dispatcher zu laden: <mvc:ressources> verwenden)
 	-->
     <servlet-mapping>
         <servlet-name>fussball</servlet-name>

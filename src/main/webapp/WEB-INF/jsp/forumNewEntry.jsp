@@ -28,23 +28,23 @@
 									<fieldset>
 										<table>
 											<tr>
-												<th><label for="topic">Thema:</label></th>
+												<th><label for="topic" class="form_label">Thema:</label></th>
 												<td>
-													<sf:input path="topic" size="15" id="topic"/><br>
+													<sf:input path="topic" size="15" id="topic" class="form_input_short"/><br>
 													<sf:errors path="topic" cssClass="error"/>
 												</td>
 											</tr>
 											<tr>
-												<th><label for="description">Kurzbeschreibung:</label></th>
+												<th><label for="description" class="form_label">Kurzbeschreibung:</label></th>
 												<td>
-													<sf:input path="description" size="15" id="description"/><br>
+													<sf:input path="description" size="15" id="description" class="form_input_medium"/><br>
 													<sf:errors path="description" cssClass="error"/>
 												</td>
 											</tr>	
 											<tr>
-												<th><label for="text">Text:</label></th>
+												<th><label for="text" class="form_label">Text:</label></th>
 												<td>
-													<sf:input path="text" size="100" id="text"/><br>
+													<sf:input path="text" size="100" id="text" class="form_input_large"/><br>
 													<sf:errors path="text" cssClass="error"/>
 												</td>
 											</tr>
