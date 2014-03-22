@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS team  (
 
 CREATE TABLE IF NOT EXISTS forum  (
   id			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  date_time		DATE NOT NULL,
+  date			DATE NOT NULL,
   author 		VARCHAR(30),
   topic 		VARCHAR(30),
   description 	VARCHAR(150),

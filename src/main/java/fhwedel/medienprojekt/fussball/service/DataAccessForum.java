@@ -4,19 +4,36 @@ package fhwedel.medienprojekt.fussball.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 
+/**
+ * Service
+ * Übernimmt die Datenbankarbeit zum Verarbeiten von Foreneinträgen.
+ * Ermöglich beispielsweise das Updaten bestehender, einfügen neuer
+ * oder auslesen von Informationen über bestehende Foreneinträge.
+ * 
+ * @author Ellen
+ *
+ */
 public class DataAccessForum {
+	
 	/** JDBC Template */
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
+	/**
+	 * Konstruktorfunktion.
+	 */
 	public DataAccessForum() {}
 	
 	/**
@@ -45,10 +62,11 @@ public class DataAccessForum {
 	public void save(ForumEntry newForumEntry) {
 		/* SQL Befehl*/
 		final String SQL_INSERT_FORUM_ENTRY = 
-				"INSERT INTO forum (:date, :time, author, topic, description, text, has_comments) "
-				+ "VALUES (CURDATE(), CURTIME(), :author, :topic, :description, :text, :has_comments)";
+				"INSERT INTO forum (date, author, topic, description, text, has_comments) "
+				+ "VALUES (CURDATE(), :author, :topic, :description, :text, :has_comments)";
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("date", new Date());
 		params.put("author", newForumEntry.getAuthor());
 		params.put("topic", newForumEntry.getTopic());
 		params.put("text", newForumEntry.getText());
@@ -57,7 +75,6 @@ public class DataAccessForum {
 		
 		/* Speichern */
 		this.namedParameterJdbcTemplate.update(SQL_INSERT_FORUM_ENTRY, params);
-		newForumEntry.setId();
 	}
 	
 	public int getId(ForumEntry entry) {
