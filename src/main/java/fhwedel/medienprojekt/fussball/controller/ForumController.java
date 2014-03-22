@@ -13,11 +13,13 @@ import java.util.ArrayList;
 
 
 
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 import fhwedel.medienprojekt.fussball.service.DataAccessForum;
+import fhwedel.medienprojekt.fussball.service.AbstractDataAccessPost;
 
 
 /**
@@ -134,4 +136,5 @@ public class ForumController {
 		
 		return "redirect:/forum/";
 	}
+
 }

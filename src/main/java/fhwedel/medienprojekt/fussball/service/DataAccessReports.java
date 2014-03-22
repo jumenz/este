@@ -16,16 +16,14 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 
 
+
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
 import fhwedel.medienprojekt.fussball.model.post.report.Scores;
 
-public class DataAccessReports {
+public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	/* ---------------------- Klassenvariablen ------------------------------ */
-	/** JDBC Template */
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
 	/** Row Mapper */
 	private ParameterizedRowMapper<Report> reportRowMapper = 
 			// RowMapper, der den Spalten des Ergebnisses Variablen des ForenEntry zuweist
@@ -61,22 +59,6 @@ public class DataAccessReports {
 	 */
 	public DataAccessReports(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-	}
-	
-	/* ----------------- Setter / Getter Methoden -------------------------- */
-	/**
-	 * Setzt das Template
-	 * @param jdbcTemplate
-	 */
-	public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
-		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-	}
-	/**
-	 * Liefert das jdbcTemplate
-	 * @return NamedParameterJdbcTemplate
-	 */
-	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
-		return this.namedParameterJdbcTemplate;
 	}
 	
 	/* ------------------- Datenbankarbeit ----------------------------- */
@@ -156,60 +138,5 @@ public class DataAccessReports {
 				SQL_SELECT_ALL_REPORTS,
 				this.reportRowMapper
 			);
-	}
-	
-	/**
-	 * Liefert alle Foreneinträge, die mit einem bestimmten Buchstaben
-	 * beginnen.
-	 * Groß- und Kleinschreibung wird hierbei nicht beachtet.
-	 * @aram 	char					gesuchter Buchstabe
-	 * @return 	ArrayList<Report>	Liste von Einträgen
-	 */
-	public ArrayList<Report> getAllStartingWith(String sub) {
-		ArrayList<Report> res = new ArrayList<Report>();
-		// Alle auslesen
-		ArrayList<Report> all = this.getAll();
-		
-		// Alle finden, die mit gesuchtem String beginnen
-		for(int i=0; i < all.size(); i++) {
-			if(all.get(i).getTopic().toLowerCase().startsWith(sub, 0)) {
-				res.add(all.get(i));
-			}
-		}
-		
-		return res;
-	}
-	
-	/**
-	 * Hilfsfunktion
-	 * Liefert als Ergebnis, ob ein String einen Substring enthält.
-	 * @param	string	String in dem gesucht wird
-	 * @param	sub		String, dessen Enthalten geprüft werden soll
-	 * @return	boolean
-	 */
-	private boolean stringContainsSub(String string, String sub) {
-		return string.toLowerCase().indexOf(sub.toLowerCase()) != -1;
-	}
-	
-	/**
-	 * Liefert alle Foreneinträge, die einen Substring beinhaltet.
-	 * Groß- und Kleinschreibung wird hierbei nicht beachtet.
-	 * beginnen.
-	 * @aram 	char					gesuchter Buchstabe
-	 * @return 	ArrayList<Report>	Liste von Einträgen
-	 */
-	public ArrayList<Report> getAllIncluding(String sub) {
-		ArrayList<Report> res = new ArrayList<Report>();
-		// Alle auslesen
-		ArrayList<Report> all = this.getAll();
-		
-		// Alle finden, die einen gesuchten String enthalten
-		for(int i=0; i < all.size(); i++) {
-			if(stringContainsSub(all.get(i).getTopic(), sub)) {
-				res.add(all.get(i));
-			}
-		}
-		
-		return res;
 	}
 }

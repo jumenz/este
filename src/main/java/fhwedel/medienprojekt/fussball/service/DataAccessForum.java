@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 
@@ -26,7 +27,7 @@ import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
  * @author Ellen
  *
  */
-public class DataAccessForum {
+public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	/* ----------------------- Klassenvariablen --------------------------------- */
 	/** JDBC Template */
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -64,23 +65,6 @@ public class DataAccessForum {
 	 */
 	public DataAccessForum(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-	}
-	
-	/* ----------------- Setter / Getter-Methoden ------------------------------- */
-	/**
-	 * Setzt das Template
-	 * @param jdbcTemplate
-	 */
-	public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
-		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-	}
-	
-	/**
-	 * Liefert das jdbcTemplate
-	 * @return NamedParameterJdbcTemplate
-	 */
-	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
-		return this.namedParameterJdbcTemplate;
 	}
 	
 	/* ---------------------------- Datenbankarbeit ----------------------------------- */
@@ -122,61 +106,6 @@ public class DataAccessForum {
 				SQL_ALL_FORUM_ENTRIES,
 				this.forumEntryMapper
 			);
-	}
-	
-	/**
-	 * Liefert alle Foreneinträge, die mit einem bestimmten Buchstaben
-	 * beginnen.
-	 * Groß- und Kleinschreibung wird hierbei nicht beachtet.
-	 * @aram 	char					gesuchter Buchstabe
-	 * @return 	ArrayList<ForumEntry>	Liste von Einträgen
-	 */
-	public ArrayList<ForumEntry> getAllStartingWith(String sub) {
-		ArrayList<ForumEntry> res = new ArrayList<ForumEntry>();
-		// Alle auslesen
-		ArrayList<ForumEntry> all = this.getAll();
-		
-		// Alle finden, die mit gesuchtem String beginnen
-		for(int i=0; i < all.size(); i++) {
-			if(all.get(i).getTopic().toLowerCase().startsWith(sub, 0)) {
-				res.add(all.get(i));
-			}
-		}
-		
-		return res;
-	}
-	
-	/**
-	 * Hilfsfunktion
-	 * Liefert als Ergebnis, ob ein String einen Substring enthält.
-	 * @param	string	String in dem gesucht wird
-	 * @param	sub		String, dessen Enthalten geprüft werden soll
-	 * @return	boolean
-	 */
-	private boolean stringContainsSub(String string, String sub) {
-		return string.toLowerCase().indexOf(sub.toLowerCase()) != -1;
-	}
-	
-	/**
-	 * Liefert alle Foreneinträge, die einen Substring beinhaltet.
-	 * Groß- und Kleinschreibung wird hierbei nicht beachtet.
-	 * beginnen.
-	 * @aram 	char					gesuchter Buchstabe
-	 * @return 	ArrayList<ForumEntry>	Liste von Einträgen
-	 */
-	public ArrayList<ForumEntry> getAllIncluding(String sub) {
-		ArrayList<ForumEntry> res = new ArrayList<ForumEntry>();
-		// Alle auslesen
-		ArrayList<ForumEntry> all = this.getAll();
-		
-		// Alle finden, die einen gesuchten String enthalten
-		for(int i=0; i < all.size(); i++) {
-			if(stringContainsSub(all.get(i).getTopic(), sub)) {
-				res.add(all.get(i));
-			}
-		}
-		
-		return res;
 	}
 	
 	/**
