@@ -27,46 +27,80 @@
 									<fieldset>
 										<table>
 											<tr>
-												<th><label for="topic">Titel:</label></th>
 												<td>
-													<sf:input path="topic" size="15" id="topic"/><br>
+													<!-- Titeleingabe -->
+													<sf:textarea 	path="topic"
+																	id="topic"
+																	rows="1"
+																	cols="120"
+																	placeholder="Titel"
+													/><br>
+													<!-- Fehlermeldung für den Titel -->
 													<sf:errors path="topic" cssClass="error"/>
 												</td>
 											</tr>
 											<tr>
-												<th><label for="opponent">Gegner:</label></th>
 												<td>
-													<sf:input path="opponent" size="15" id="opponent"/><br>
-													<sf:errors path="opponent" cssClass="error"/>
+													<!-- Titeleingabe -->
+													<sf:textarea 	path="opponent"
+																	id="opponent"
+																	rows="1"
+																	cols="120"
+																	placeholder="Gegner"
+													/><br>
+													<!-- Fehlermeldung für den Titel -->
+													<sf:errors path="topic" cssClass="error"/>
 												</td>
 											</tr>	
 											<tr>
-												<th><label for="datetime">Datum:</label></th>
+												<!-- Datumsangabe 
 												<td>
-													<sf:input path="dateTime" size="15" id="datetime"/><br>
-													<sf:errors path="dateTime" cssClass="error"/>
+													<sf:textarea 	path="date"
+																	id="date"
+																	rows="1" 
+																	cols="30"
+																	placeholder="Datum der Form: Sat Mar 22 19:53:56 CET 2014"
+																	/><br>
+													<sf:errors path="date" cssClass="error"/>
+												</td> -->
+											</tr>
+											<tr>
+												<!-- Punktestände -->
+												<td>Halbzeit (Heim:Gast)
+													<sf:input path="scoreFirstHalfHome" size="2" id="scoreHalftime"/> :
+													<sf:input path="scoreFirstHalfGuest" size="2" id="scoreHalftimeGuest"/><br>
+													<!-- Fehlermeldung -->
+													<sf:errors path="scoreFirstHalfHome" cssClass="error"/><br>
+													<sf:errors path="scoreFirstHalfGuest" cssClass="error"/>
 												</td>
 											</tr>
 											<tr>
-												<th><label for="scoreHalftime">Halbzeit:</label></th>
-												<td>
-													<sf:input path="scores[0]" size="5" id="scoreHalftime"/>:<sf:input path="scores[1]" size="5" id="scoreHalftimeGuest"/><br>
-													<sf:errors path="scores[0]" cssClass="error"/><br>
-													<sf:errors path="scores[1]" cssClass="error"/>
+												<td>Endstand (Heim:Gast)
+													<sf:input path="scoreSecondHalfHome" size="2" id="finalScore"/> :
+													<sf:input path="scoreSecondHalfGuest" size="2" id="scoreHalftimeGuest"/><br>
+													<!-- Fehlermeldung -->
+													<sf:errors path="scoreSecondHalfHome" cssClass="error"/><br>
+													<sf:errors path="scoreSecondHalfGuest" cssClass="error"/>
 												</td>
 											</tr>
 											<tr>
-												<th><label for="finalScore">Endstand:</label></th>
+												<!-- Heimspielangabe -->
 												<td>
-													<sf:input path="scores[2]" size="5" id="finalScore"/>:<sf:input path="scores[3]" size="5" id="finalScoreGuest"/><br>
-													<sf:errors path="scores[2]" cssClass="error"/><br>
-													<sf:errors path="scores[3]" cssClass="error"/>
+													<sf:checkbox path="homeMatch" label="Heimspiel"/><br>
+													<!-- Fehlermeldung -->
+													<sf:errors path="homeMatch" cssClass="error"/>
 												</td>
 											</tr>
 											<tr>
-												<th><label for="text">Text:</label></th>
 												<td>
-													<sf:input path="text" size="100" id="text"/><br>
+													<!-- Text -->
+													<sf:textarea 	path="text" 
+																	id="text" 
+																	placeholder="Tippe hier deinen Text"
+																	rows="20"
+																	cols="120"
+													/><br>
+													<!-- Fehlermeldung für den Text -->
 													<sf:errors path="text" cssClass="error"/>
 												</td>
 											</tr>

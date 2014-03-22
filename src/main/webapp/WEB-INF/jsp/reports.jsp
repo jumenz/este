@@ -52,8 +52,8 @@
 												<tr>
 													<th class="first">Halbzeit:</th>
 													<td class="last">
-														<c:out value="${entry.scores[0]}"></c:out>:
-														<c:out value="${entry.scores[1]}"></c:out>
+														<c:out value="${entry.scoreFirstHalfHome}"></c:out>:
+														<c:out value="${entry.scoreFirstHalfGuest}"></c:out>
 													</td>
 												</tr>
 												</tbody>
@@ -64,13 +64,13 @@
 												<tbody>
 												<tr>
 													<th class="first">Datum:</th>
-													<td class="last">${entry.dateTime}</td>
+													<td class="last">${entry.date}</td>
 												</tr>
 												<tr>
 													<th class="first">Endstand:</th>
 													<td class="last">
-														<c:out value="${entry.scores[2]}"></c:out>:
-														<c:out value="${entry.scores[3]}"></c:out>
+														<c:out value="${entry.scoreSecondHalfHome}"></c:out>:
+														<c:out value="${entry.scoreSecondHalfGuest}"></c:out>
 													</td>
 												</tr>
 												</tbody>

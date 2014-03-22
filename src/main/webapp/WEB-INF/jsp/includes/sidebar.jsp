@@ -58,7 +58,7 @@
 					});
 				</script>
 				<!-- end Sidebar Menu -->
-
+				
 				<!-- include Timer if timer is set true -->
 				<c:set var="timerSetting" scope="request" value="${param.timer}"/>
 				<c:if test="${timerSetting == 'include'}">

@@ -90,14 +90,4 @@ public class ForumEntry extends Post {
 	public String getDescription() {
 		return this.description;
 	}
-	
-	/**
-	 * Setzt die Id des Foren-Eintrags ausgehend von der Id in der Datenbank.
-	 */
-	public void setId() {
-		/* Service holen */
-		DataAccessForum dataAccessService = new DataAccessForum();
-		/* Id auslesen und speichern */
-		this.id = dataAccessService.getId(this);
-	}
 }

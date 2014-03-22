@@ -65,6 +65,28 @@
 															<p class="comment-content">Ein Kommentar zu diesem Thema. Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.</p>
 															<div class="button-delete online-only"></div>
 														</div>
+														<!-- Formular für neuen Kommentar -->
+														<div class="comment">
+															<p class="comment-name">Neuen Kommentar verfassen</p>
+															<p class="comment-content">
+																<c:set var="comment" value="${comment}"/>
+																<sf:form method="POST" modelAttribute="comment">
+																	<!-- Neuer Kommentar -->
+																	<sf:textarea 	path="text"
+																					id="text"
+																					rows="3"
+																					cols="80"
+																					placeholder="..."
+																	/><br>
+																	<!-- Fehlermeldung für den neuen Kommentar -->
+																	<sf:errors path="text" cssClass="error"/><br>
+																	<!-- Buttons -->
+																	<input name="commit" type="submit" value="Speichern"/>
+																	<input name="reset" type="reset" value="Zurücksetzen"/>
+																</sf:form>
+															</p>
+															<div class="button-delete online-only"></div>
+														</div>
 													</div>
 												</div>
 											</div>
