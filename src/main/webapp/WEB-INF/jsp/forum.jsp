@@ -37,16 +37,15 @@
 						<li class="one-col">
 							<!-- reports -->
 							<div  class="main-content-box box-borders-top bg clearfix toggle-item">
-								<h2 class="box-title link toggle" id="address-name" ><c:out value="${entry.topic }"></c:out></h2>
+								<h2 class="box-title link toggle" id="address-name" ><c:out value="${entry.topic}"></c:out></h2>
 								<div id="submit-${status.index}" class="box-link down-raquo toggle-link right toggle">
 								</div>
 								<div class="toggle-content" style="display: none">
 									<div class="box-info clearfix light-bg">
-										Beschreibung des Themas
-										
+										${entry.description}										
 									</div>
 									<div class="box-body">
-										<p>Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!</p>
+										<p>${entry.text}</p>
 									</div>
 									<!-- Contentbox Comments -->
 									<div>

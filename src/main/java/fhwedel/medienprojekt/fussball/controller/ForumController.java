@@ -4,11 +4,11 @@ package fhwedel.medienprojekt.fussball.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import java.util.ArrayList;
 import java.util.Date;
-
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
@@ -36,16 +36,14 @@ public class ForumController {
 	public String displayForum(Model model) {
 		PostView<ForumEntry> view = new PostView<ForumEntry>();
 		
-		// TODO Einträge aus Datenbank auslesen
-		ForumEntry entry = new ForumEntry("Erster Eintrag", "Etwas Text", "Author Eins", new Date());
-		entry.setTopic("Forum Eintrag");
-		view.addEntry(entry);
+		// Einträge aus der Datenbank auslesen
+		ArrayList<ForumEntry> list = this.dataAccess.getAll();
+		for(int i=0; i<list.size(); i++) {
+			view.addEntry(list.get(i));
+		}
 		
 		// In jsp zugreifbar machen
 		model.addAttribute("forumModel", view);
-
-		// TEST
-		dataAccess.save(entry);
 
 		return "forum";
 	}
@@ -61,5 +59,22 @@ public class ForumController {
 		model.addAttribute(new ForumEntry());
 		// Formular laden
 		return "forumNewEntry";
+	}
+	
+	/**
+	 * Speichert einen neuen Foreneintrag.
+	 * 
+	 */
+	@RequestMapping(value="/forum/neuer-eintrag/", method=RequestMethod.POST)
+	public String saveNewForumEntry(ForumEntry newEntry, BindingResult bindingResult) {
+		// Bei Fehlern wieder auf Formular redirecten
+		if(bindingResult.hasErrors()) {
+			return "forumNewEntry";
+		}
+		
+		// sonst speichern und Forum laden
+		this.dataAccess.save(newEntry);
+		
+		return "redirect:/forum/";
 	}
 }

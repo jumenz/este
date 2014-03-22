@@ -32,7 +32,7 @@ public class ForumEntry extends Post {
 	 * Default Konstruktor.
 	 */
 	public ForumEntry() {
-		this("Kein Thema", "Kein Inhalt", "unbekannter Author", new Date());
+		this("", "", "", new Date());
 	}
 	
 	/**

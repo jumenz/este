@@ -111,12 +111,12 @@ public class DataAccessForum {
 										// Objekt erzeugen
 										ForumEntry entry = new ForumEntry();
 										// Spalten des Ergebnisses zuweisen
-										entry.setId(resultSet.getInt(0));
-										entry.setDate(resultSet.getDate(1));
-										entry.setAuthor(resultSet.getString(2));
-										entry.setTopic(resultSet.getString(3));
-										entry.setDescription(resultSet.getString(4));
-										entry.setText(resultSet.getString(5));
+										entry.setId(resultSet.getInt(1));
+										entry.setDate(resultSet.getDate(2));
+										entry.setAuthor(resultSet.getString(3));
+										entry.setTopic(resultSet.getString(4));
+										entry.setDescription(resultSet.getString(5));
+										entry.setText(resultSet.getString(6));
 										
 										return entry;
 									}
@@ -126,16 +126,27 @@ public class DataAccessForum {
 		/* TODO Kommentarliste laden */
 	
 	public ArrayList<ForumEntry> getAll() {
-		/** Beispiel named Parameter */
-		/* public void addSpitter(Spitter spitter){
-		*	Map<String,Object> params=newHashMap<String,Object>();
-		*	params.put("username",spitter.getUsername());
-		*	params.put("password",spitter.getPassword());
-		*	params.put("fullname",spitter.getFullName());
-		*	jdbcTemplate.update(SQL_INSERT_SPITTER,params);
-		*	spitter.setId(queryForIdentity());
-		*	}*/
-		return new ArrayList<ForumEntry>();
+		final String SQL_ALL_FORUM_ENTRIES = "SELECT * FROM forum";
+		
+		return (ArrayList<ForumEntry>) namedParameterJdbcTemplate.query(
+				SQL_ALL_FORUM_ENTRIES,
+				// RowMapper, der den Spalten des Ergebnisses Variablen des ForenEntry zuweist
+				new ParameterizedRowMapper<ForumEntry>() {
+					public ForumEntry mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+						// Objekt erzeugen
+						ForumEntry entry = new ForumEntry();
+						// Spalten des Ergebnisses zuweisen
+						entry.setId(resultSet.getInt(1));
+						entry.setDate(resultSet.getDate(2));
+						entry.setAuthor(resultSet.getString(3));
+						entry.setTopic(resultSet.getString(4));
+						entry.setDescription(resultSet.getString(5));
+						entry.setText(resultSet.getString(6));
+						
+						return entry;
+					}
+				}
+			);
 	}
 	
 }

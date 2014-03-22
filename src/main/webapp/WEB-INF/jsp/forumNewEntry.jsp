@@ -28,28 +28,50 @@
 									<fieldset>
 										<table>
 											<tr>
-												<th><label for="topic" class="form_label">Thema:</label></th>
 												<td>
-													<sf:input path="topic" size="15" id="topic" class="form_input_short"/><br>
+													<!-- Titeleingabe -->
+													<sf:textarea 	path="topic"
+																	id="topic"
+																	rows="1"
+																	cols="120"
+																	placeholder="Titel"
+													/><br>
+													<!-- Fehlermeldung für den Titel -->
 													<sf:errors path="topic" cssClass="error"/>
 												</td>
 											</tr>
 											<tr>
-												<th><label for="description" class="form_label">Kurzbeschreibung:</label></th>
 												<td>
-													<sf:input path="description" size="15" id="description" class="form_input_medium"/><br>
+													<!-- Kurzbeschreibung -->
+													<sf:textarea 	path="description" 
+																	id="description"
+																	rows="5"
+																	cols="120"
+																	placeholder="Kurzbeschreibung"
+													/><br>
+													<!-- Fehlermeldung für die Kurzbeschreibung -->
 													<sf:errors path="description" cssClass="error"/>
 												</td>
 											</tr>	
 											<tr>
-												<th><label for="text" class="form_label">Text:</label></th>
 												<td>
-													<sf:input path="text" size="100" id="text" class="form_input_large"/><br>
+													<!-- Text -->
+													<sf:textarea 	path="text" 
+																	id="text" 
+																	placeholder="Tippe hier deinen Text"
+																	rows="20"
+																	cols="120"
+													/><br>
+													<!-- Fehlermeldung für den Text -->
 													<sf:errors path="text" cssClass="error"/>
 												</td>
 											</tr>
 											<tr>
-												<td><input name="commit" type="submit" value="Speichern"/></td>
+												<!-- Buttons -->
+												<td>
+													<input name="commit" type="submit" value="Speichern"/>
+													<input name="reset" type="reset" value="Zurücksetzen"/>
+												</td>
 											</tr>
 										</table>
 									</fieldset>
