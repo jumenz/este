@@ -105,7 +105,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td><input name="commit" type="submit" value="Speichern"/></td>
+												<td>
+													<input name="commit" type="submit" value="Speichern"/>
+													<input name="reset" type="reset" value="Zurücksetzen"/>
+												</td>
 											</tr>
 										</table>
 									</fieldset>

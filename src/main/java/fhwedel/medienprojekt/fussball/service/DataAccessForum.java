@@ -15,6 +15,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 
 
+
+import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 
@@ -29,9 +31,6 @@ import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
  */
 public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	/* ----------------------- Klassenvariablen --------------------------------- */
-	/** JDBC Template */
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
 	/**
 	 * ForumEntryMapper
 	 */
@@ -50,6 +49,26 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 					entry.setText(resultSet.getString(6));
 					
 					return entry;
+				}
+			};
+			
+	/**
+	 * Comment Mapper
+	 */
+	private ParameterizedRowMapper<Comment> commentMapper = 
+			// RowMapper, der den Spalten des Ergebnisses Variablen des ForenEntry zuweist
+			new ParameterizedRowMapper<Comment>() {
+				public Comment mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+					// Objekt erzeugen
+					Comment comment = new Comment();
+					// Spalten des Ergebnisses zuweisen
+					comment.setId(resultSet.getInt(1));
+					comment.setDate(resultSet.getDate(2));
+					comment.setAuthor(resultSet.getString(3));
+					comment.setText(resultSet.getString(4));
+					comment.setRef(resultSet.getInt(5));
+					
+					return comment;
 				}
 			};
 	
@@ -85,7 +104,7 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 		params.put("topic", newForumEntry.getTopic());
 		params.put("text", newForumEntry.getText());
 		params.put("description", newForumEntry.getDescription());
-		params.put("has_comments", !newForumEntry.getCommentList().isEmpty());
+		params.put("has_comments", !newForumEntry.getComments().isEmpty());
 		
 		/* Speichern */
 		this.namedParameterJdbcTemplate.update(SQL_INSERT_FORUM_ENTRY, params);
@@ -99,13 +118,31 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 */
 	public ArrayList<ForumEntry> getAll() {
 		// Alle Foren-Einträge nach Datum sortiert auslesen (neueste zuerst)
-		final String SQL_ALL_FORUM_ENTRIES = "SELECT * FROM forum ORDER BY date ASC";
+		final String SQL_ALL_FORUM_ENTRIES = "SELECT * FROM forum ORDER BY date DESC";
 		
 		/* TODO Kommentarliste laden */
 		return (ArrayList<ForumEntry>) namedParameterJdbcTemplate.query(
 				SQL_ALL_FORUM_ENTRIES,
 				this.forumEntryMapper
 			);
+	}
+	
+	/**
+	 * Liefert die Kommentarliste zu einem Foreneintrag.
+	 * @param 	Integer				id des Foreneintrags
+	 * @return	ArrayList<Comment>	Liste an Kommentaren
+	 */
+	public ArrayList<Comment> getComments(Integer id) {
+		final String SQL_SELECT_COMMENTS_OF_FORUM_ENTRY = "SELECT * FROM comments WHERE (ref = :ref) ORDER BY date DESC";
+		// Parameter zuweisen
+		SqlParameterSource namedParameters = new MapSqlParameterSource("ref", Integer.valueOf(id));
+		// SQL Abfrage ausführen und Ergebnis auf einen Foren-Eintrag mappen
+		return (ArrayList<Comment>) namedParameterJdbcTemplate.query(
+								// SQL Abfrage
+								SQL_SELECT_COMMENTS_OF_FORUM_ENTRY,
+								namedParameters,
+								this.commentMapper
+							);
 	}
 	
 	/**
@@ -145,4 +182,24 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 							);
 	}
 	
+	/* ------------------- Kommentare ---------------------------------- */
+	/* ------------------- speichern ----------------------------------- */
+	/**
+	 * Speichert einen neuen Kommentar mit referenz auf den entsprechenden Foreneintrag.
+	 * @param newComment	neuer Kommentar
+	 * @param idForumEntry	Referenz auf Foreneintrag
+	 */
+	public void saveComment(Comment newComment, int idForumEntry) {
+		final String SQL_SAVE_COMMENT = "INSERT INTO comments (date, author, text, ref) "
+				+ "VALUES (:date, :author, :text, :ref)";
+		/* Werte Namen zuweisen */
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("date", new Date());
+		params.put("author", newComment.getAuthor());
+		params.put("text", newComment.getText());
+		params.put("ref", idForumEntry);
+		
+		/* Kommentar speichern */
+		this.namedParameterJdbcTemplate.update(SQL_SAVE_COMMENT, params);
+	}
 }

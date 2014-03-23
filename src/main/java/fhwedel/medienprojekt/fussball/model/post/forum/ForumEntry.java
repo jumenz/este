@@ -65,14 +65,14 @@ public class ForumEntry extends Post {
 	 * Setzt die Kommentarliste des Forenbeitrags.
 	 * @param comments
 	 */
-	public void setCommentList(List<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 	/**
 	 * Liefert die Kommentarliste des Forenbeitrags.
 	 * @return
 	 */
-	public List<Comment> getCommentList() {
+	public List<Comment> getComments() {
 		return this.comments;
 	}
 	

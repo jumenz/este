@@ -48,14 +48,22 @@ public class ForumController {
 		
 		// Einträge aus der Datenbank auslesen
 		ArrayList<ForumEntry> list = this.dataAccess.getAll();
+
+		// Kommentarliste laden
+		for (int j=0; j<list.size(); j++) {
+			Integer id = list.get(j).getId();
+			ArrayList<Comment> comments = this.dataAccess.getComments(id);
+			list.get(j).setComments(comments);
+		}
+		
 		for(int i=0; i<list.size(); i++) {
 			view.addEntry(list.get(i));
 		}
 		
 		// In jsp zugreifbar machen
 		model.addAttribute("forumModel", view);
-		// Neuen Kommentar anfügen
-		model.addAttribute("comment", new Comment());
+		// Neuen Kommentar anfügen, um Speichern zu ermöglichen
+		model.addAttribute("newComment", new Comment());
 		
 		return "forum";
 	}
@@ -133,6 +141,24 @@ public class ForumController {
 		
 		// sonst speichern und Forum laden
 		this.dataAccess.save(newEntry);
+		
+		return "redirect:/forum/";
+	}
+	
+	/* --------------------- Kommentare ----------------------------*/
+	/**
+	 * Speichert einen neuen Foreneintrag.
+	 * 
+	 */
+	@RequestMapping(value="/forum/neuer-kommentar/{id}", method=RequestMethod.POST)
+	public String saveNewForumComment(@PathVariable int id, Comment newComment, BindingResult bindingResult) {
+		// Bei Fehlern wieder auf Formular redirecten
+		if(bindingResult.hasErrors()) {
+			return "forum";
+		}
+		
+		// sonst speichern und Forum laden
+		this.dataAccess.saveComment(newComment, id);
 		
 		return "redirect:/forum/";
 	}

@@ -49,28 +49,29 @@
 									</div>
 									<!-- Contentbox Comments -->
 									<div>
+										<!-- Kommentare für den Foreneintrag laden -->
+										<c:set var="comments" value="${entry.comments}"/>
 										<div  class="comment-content-box box-borders-top bg clearfix further-toggle-item">
-											<h2 class="box-title link further-toggle" id="address-name" >Kommentare: X</h2>
+											<!-- Liste auslesen -->
+											<h2 class="box-title link further-toggle" id="address-name" >Kommentare: ${fn:length(comments)}</h2>
 											<div class="box-link down-raquo toggle-link further-toggle right"></div>
 											<div class="further-toggle-content" style="display: none">
 												<div class="box-body box-borders-bottom">
 													<div class="comments">
-														<div class="comment">
-															<p class="comment-name">Name</p>
-															<p class="comment-content">Ein Kommentar zu diesem Thema.</p>
-															<div class="button-delete online-only"></div>
-														</div>
-														<div class="comment">
-															<p class="comment-name">Name</p>
-															<p class="comment-content">Ein Kommentar zu diesem Thema. Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.</p>
-															<div class="button-delete online-only"></div>
-														</div>
+														<!-- bisherige Kommentare zum Foreneintrag -->
+														<c:forEach var="comment" items="${comments}" varStatus="status">
+															<div class="comment">
+																<p class="comment-name">${comment.author}AUTHOR</p>
+																<p class="comment-content">${comment.text}</p>
+																<div class="button-delete online-only"></div>
+															</div>
+														</c:forEach>
 														<!-- Formular für neuen Kommentar -->
 														<div class="comment">
 															<p class="comment-name">Neuen Kommentar verfassen</p>
 															<p class="comment-content">
-																<c:set var="comment" value="${comment}"/>
-																<sf:form method="POST" modelAttribute="comment">
+																<c:set var="newComment" value="${newComment}"/>
+																<sf:form action="./neuer-kommentar/${entry.id}" method="POST" modelAttribute="newComment">
 																	<!-- Neuer Kommentar -->
 																	<sf:textarea 	path="text"
 																					id="text"
@@ -81,7 +82,7 @@
 																	<!-- Fehlermeldung für den neuen Kommentar -->
 																	<sf:errors path="text" cssClass="error"/><br>
 																	<!-- Buttons -->
-																	<input name="commit" type="submit" value="Speichern"/>
+																	<input name="commit" type="submit" value="Speichern" />
 																	<input name="reset" type="reset" value="Zurücksetzen"/>
 																</sf:form>
 															</p>
