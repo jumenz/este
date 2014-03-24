@@ -1,11 +1,13 @@
 <!-- footer -->
 		<ul class="footer">
 	<li> <!-- Login, bzw. Registrierung -->
-		<form action="post" name="footer-login-register-form" action="${linkRegister}">
+		<form method="post" name="footer-login-register-form" action="${linkRegister}">
 			<input class="buttom-invisible footer-space-bottom" type="submit" value="Login"><br>
-			<span class="footer-info"><input class="input-with-default" type="text" name="login-name" data-default="Name" ></span><br>
-			<span class="footer-info footer-space-bottom"><input type="password" name="login-name" data-default="Passwort"></span><br>
-			<input class="buttom-invisible" type="submit" value="Registrieren">
+			<span class="footer-info"><input class="input-with-default" type="text" name="login-name" data-default="Name" value="Name"></span><br>
+			<span class="footer-info footer-space-bottom"><input type="password" name="login-name" data-default="Passwort" value="Passwort"></span><br>
+		</form>
+		<form method="post" action="${linkRegister}">
+			<input class="buttom-invisible" type="submit" value="Registrieren"/>
 		</form>
 	</li>
 	<li> <!-- Addresse -->

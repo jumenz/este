@@ -118,5 +118,17 @@ public class DataAccessUsers extends AbstractDataAccess {
 				this.userMapper
 			);
 	}
+	
+	/**
+	 * Überprüft die Login Daten auf Richtigkeit.
+	 * @param 	user	Userdaten
+	 * @return	boolean	true:	Logindaten stimmen
+	 * 					false:	Logindaten sind falsch
+	 */
+	public boolean checkLogin(User user) {
+		// final SQL_GET_USERNAME_AND_PASSWORD 
+		
+		return true;
+	}
 
 }
