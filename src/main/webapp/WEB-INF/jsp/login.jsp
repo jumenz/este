@@ -1,7 +1,7 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Login"/>
+		<jsp:param name="title" value="Registrieren"/>
 		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
 	</jsp:include>
 		
@@ -14,20 +14,42 @@
         <!-- Content -->
         <div class="container">
         <div class="main">
-        <div class="main-inner">
-        	<!-- sidebar -->
-			<jsp:include page="./includes/sidebar.jsp">
-				<jsp:param name="sidebarTitle" value="Login"/>
-				<jsp:param name="timer" value="include"/>
-				<jsp:param name="abc" value="include"/>
-				<jsp:param name="nav" value="linkname1"/>
-				<jsp:param name="ref" value="#"/>
-				<jsp:param name="nav" value="linkname2"/>
-				<jsp:param name="ref" value="#"/>
-			</jsp:include>
-        
+        <div class="main-inner">     
 			<div id="..." class="content-list">
-				
+				<ul>
+					<!--Contentbox One-Col -->
+					<!-- Formular zum Registrieren -->	
+                     <li class="one-col">
+                         <div class="main-content-box box-borders bg clearfix">
+                             <h2 class="box-title">Registrieren</h2>
+                             <div class="box-body">
+								<sf:form action="${linkRegister}user-speichern/" method="POST" modelAttribute="newUser">
+									<fieldset>
+										<!-- Username -->
+										<sf:input 	path="username"
+													data-default="Username"
+													value="Username"
+													class="full-width"
+										/><br>
+										<!-- Passwort -->
+										<sf:input	path="password" 
+													type="password"
+													data-default="Passwort"
+													value="Passwort"
+													class="full-width"
+										/><br>
+										<!-- Fehlermeldung für den Login -->
+										<sf:errors path="*" cssClass="error"/><br>
+										<!-- Buttons -->
+										<button name="commit" type="submit">Anmelden</button>
+										<button name="reset" type="reset">Abbrechen</button>
+									</fieldset>
+								</sf:form>
+                             </div>
+                         </div>
+                     </li>
+                 	<!-- end Contentbox One-Col -->
+				</ul>
 			</div>
 		</div>
 		</div>
@@ -38,4 +60,3 @@
 		<jsp:include page="./includes/footer.jsp"/>
 	</body>
 </html>
-

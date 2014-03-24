@@ -2,6 +2,7 @@ package controller;
 /** import Java classes */
 import static org.junit.Assert.*;
 import org.junit.Test;
+
 /** import own classes */
 import fhwedel.medienprojekt.fussball.controller.RegisterPageController;
 

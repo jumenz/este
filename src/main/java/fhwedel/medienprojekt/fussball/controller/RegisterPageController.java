@@ -50,6 +50,14 @@ public class RegisterPageController {
 	}
 	
 	/* --------------- neuen User registrieren ----------- */
+	/**
+	 * Registriert einen neuen User mit der Vorraussetzund, dass dessen 
+	 * eMail-Adresse zugelassen wurde.
+	 * @param newUser
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/registrieren/user-speichern/", method=RequestMethod.POST)
 	public String register(User newUser, BindingResult bindingResult, Model model) {
 		// Bei Fehlern wieder auf Formular redirecten
@@ -63,7 +71,7 @@ public class RegisterPageController {
 		if(this.dataAccessPermissions.hasPermission(newUser)) {
 			this.dataAccessUsers.save(newUser);
 		}
-		
+		// TODO einloggen
 		return "redirect:/home/";
 	}
 	
