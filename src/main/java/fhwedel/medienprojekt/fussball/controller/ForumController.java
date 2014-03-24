@@ -87,7 +87,7 @@ public class ForumController {
 		// In jsp zugreifbar machen
 		model.addAttribute("forumModel", view);
 		// Neuen Kommentar anfügen
-		model.addAttribute("comment", new Comment());
+		model.addAttribute("newComment", new Comment());
 		
 		return "forum";
 	}
@@ -109,7 +109,7 @@ public class ForumController {
 		// In jsp zugreifbar machen
 		model.addAttribute("forumModel", view);
 		// Neuen Kommentar anfügen
-		model.addAttribute("comment", new Comment());
+		model.addAttribute("newComment", new Comment());
 		
 		return "forum";
 	}
