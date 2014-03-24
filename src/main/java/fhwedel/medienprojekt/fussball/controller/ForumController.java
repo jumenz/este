@@ -114,6 +114,19 @@ public class ForumController {
 		return "forum";
 	}
 	
+	/**
+	 * Ermöglicht die Suche über das Suchfeld der Sidebar und leitet auf die 
+	 * URL der Form "/forum/~<Sucheingabe>" weiter
+	 * @param 	src		String nach dem gesucht wird
+	 * @return	String	url
+	 */
+	@RequestMapping(value="/forum/?search={src}", method=RequestMethod.GET)
+	public String searchEntries(@PathVariable String src) {
+		// Auf entsprechenden Pfad weiterleiten
+		return "redirect:/forum/~" + src;
+		// TODO geht noch nicht
+	}
+	
 	/* ------------------ Neue Einträge -------------------------------- */
 	/**
 	 * Lädt das Formular zum Erstellen eines neuen Foreneintrags.
