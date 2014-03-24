@@ -26,54 +26,36 @@
                              	<!-- Formular zum anlegen eines neuen Spielberichts -->	
 								<sf:form method="POST" modelAttribute="forumEntry">
 									<fieldset>
-										<table>
-											<tr>
-												<td>
-													<!-- Titeleingabe -->
-													<sf:textarea 	path="topic"
-																	id="topic"
-																	rows="1"
-																	cols="120"
-																	placeholder="Titel"
-													/><br>
-													<!-- Fehlermeldung für den Titel -->
-													<sf:errors path="topic" cssClass="error"/>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<!-- Kurzbeschreibung -->
-													<sf:textarea 	path="description" 
-																	id="description"
-																	rows="5"
-																	cols="120"
-																	placeholder="Kurzbeschreibung"
-													/><br>
-													<!-- Fehlermeldung für die Kurzbeschreibung -->
-													<sf:errors path="description" cssClass="error"/>
-												</td>
-											</tr>	
-											<tr>
-												<td>
-													<!-- Text -->
-													<sf:textarea 	path="text" 
-																	id="text" 
-																	placeholder="Tippe hier deinen Text"
-																	rows="20"
-																	cols="120"
-													/><br>
-													<!-- Fehlermeldung für den Text -->
-													<sf:errors path="text" cssClass="error"/>
-												</td>
-											</tr>
-											<tr>
-												<!-- Buttons -->
-												<td>
-													<input name="commit" type="submit" value="Speichern"/>
-													<input name="reset" type="reset" value="Zurücksetzen"/>
-												</td>
-											</tr>
-										</table>
+										<!-- Titeleingabe -->
+										<sf:textarea 	path="topic"
+														id="topic"
+														rows="1"
+														cols="120"
+														placeholder="Titel"
+										/><br>
+										<!-- Fehlermeldung für den Titel -->
+										<sf:errors path="topic" cssClass="error"/><br>
+										<!-- Kurzbeschreibung -->
+										<sf:textarea 	path="description" 
+														id="description"
+														rows="5"
+														cols="120"
+														placeholder="Kurzbeschreibung"
+										/><br>
+										<!-- Fehlermeldung für die Kurzbeschreibung -->
+										<sf:errors path="description" cssClass="error"/><br>
+										<!-- Text -->
+										<sf:textarea 	path="text" 
+														id="text" 
+														placeholder="Tippe hier deinen Text"
+														rows="20"
+														cols="120"
+										/><br>
+										<!-- Fehlermeldung für den Text -->
+										<sf:errors path="text" cssClass="error"/><br>
+										<!-- Buttons -->
+										<button name="commit" type="submit">Speichern</button>
+										<button name="reset" type="reset">Zurücksetzen</button>
 									</fieldset>
 								</sf:form>
                              </div>

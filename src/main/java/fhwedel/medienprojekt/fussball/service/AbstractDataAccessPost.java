@@ -14,27 +14,7 @@ import fhwedel.medienprojekt.fussball.model.post.Post;
  * @author Ellen
  *
  */
-public abstract class AbstractDataAccessPost<E extends Post> {
-	/* ----------------------- Klassenvariablen --------------------------------- */
-	/** JDBC Template */
-	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
-	/* ----------------- Setter / Getter-Methoden ------------------------------- */
-	/**
-	 * Setzt das Template
-	 * @param jdbcTemplate
-	 */
-	public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
-		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-	}
-	
-	/**
-	 * Liefert das jdbcTemplate
-	 * @return NamedParameterJdbcTemplate
-	 */
-	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
-		return this.namedParameterJdbcTemplate;
-	}
+public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDataAccess {
 	
 	/* ---------------------------- Datenbankarbeit ----------------------------------- */
 	/* ------------------------- Auslesen ------------------------------------- */

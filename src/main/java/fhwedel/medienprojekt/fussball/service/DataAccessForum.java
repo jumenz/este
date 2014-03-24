@@ -93,7 +93,7 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 * @param newForumEntry Eintrag
 	 */
 	public void save(ForumEntry newForumEntry) {
-		/* SQL Befehl*/
+		/* SQL Befehl */
 		final String SQL_INSERT_FORUM_ENTRY = 
 				"INSERT INTO forum (date, author, topic, description, text, has_comments) "
 				+ "VALUES (:date, :author, :topic, :description, :text, :has_comments)";
