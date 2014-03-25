@@ -13,6 +13,8 @@ public class Permission {
 	private int id;
 	/** zugelassene EMail-Adresse */
 	private String email;
+	/** Adminstatus */
+	private boolean adminStatus;
 	
 	/* ------------- Getter / Setter ------------ */
 	/**
@@ -42,5 +44,19 @@ public class Permission {
 	 */
 	public String getEmail() {
 		return this.email;
+	}
+	/**
+	 * Setzt den Admin Status.
+	 * @param 	adminStatus	boolean
+	 */
+	public void setAdminStatus(boolean adminStatus) {
+		this.adminStatus = adminStatus;
+	}
+	/**
+	 * Liefert den Admin Status.
+	 * @return	Boolean
+	 */
+	public boolean getAdminStatus() {
+		return this.adminStatus;
 	}
 }

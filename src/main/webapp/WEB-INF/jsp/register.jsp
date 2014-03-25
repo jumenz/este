@@ -77,6 +77,8 @@
 													value="E-Mail Adresse"
 													class="full-width"
 										/><br>
+										<!-- Admin Status -->
+										<sf:checkbox path="adminStatus"/>User soll Admin Status erhalten<br>
 										<!-- Fehlermeldung für die E-Mail Adresse -->
 										<sf:errors path="email" cssClass="error"/><br>
 										<!-- Buttons -->
@@ -94,10 +96,13 @@
                              <h2 class="box-title">Bisher zugelassene EMails</h2>
                              <div class="box-body">
 								<c:forEach var="permission" items="${allPermissions}" varStatus="status">
-									<sf:form action="${linkRegister}loeschen-${permission.id}/">
-										${permission.email}
-										<button name="commit" type="submit">Löschen</button><br>
+									<sf:form style="display: inline-block" action="${linkRegister}loeschen-${permission.id}/">
+										<button name="commit" type="submit">Löschen</button>
 									</sf:form>
+									<sf:form style="display: inline-block" action="${linkRegister}status-${permission.id}/">
+										<button name="commit" type="submit">Status ändern</button>
+									</sf:form>
+									${permission.email} Status: <br>
 								</c:forEach>
                              </div>
                          </div>
