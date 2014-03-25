@@ -1,6 +1,8 @@
 package fhwedel.medienprojekt.fussball.controller;
 
 /** Externe Klassen */
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,11 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
-
-
-
 
 
 /** Eigene Klassen */
@@ -45,12 +42,11 @@ public class RegisterPageController {
 	
 	/* ------------- Anzeige ------------------------------ */
 	/**
-	 * Lädt die Registrierungs-Seite
-	 * @param model	Model
-	 * @return string page name
+	 * Bereitet das Anzeigen der Registerseite vor.
+	 * @param 	model	Model
+	 * @return	String	Viewname der JSP
 	 */
-	@RequestMapping(value=Constants.linkRegister, method=RequestMethod.GET)
-	public String displayRegisterPage(Model model) {
+	private String prepareRegisterDisplay(Model model) {
 		// neues User Objekt zugreifbar machen
 		model.addAttribute("newUser", new User());
 		// TODO nur wenn Admin
@@ -59,6 +55,16 @@ public class RegisterPageController {
 		model.addAttribute("allPermissions", this.dataAccessPermissions.getAll());
 		
 		return Constants.viewNameRegister;
+	}
+	
+	/**
+	 * Lädt die Registrierungs-Seite
+	 * @param model	Model
+	 * @return string page name
+	 */
+	@RequestMapping(value=Constants.linkRegister, method=RequestMethod.GET)
+	public String displayRegisterPage(Model model) {
+		return this.prepareRegisterDisplay(model);
 	}
 	
 	/* --------------- neuen User registrieren ----------- */
@@ -74,9 +80,7 @@ public class RegisterPageController {
 	public String register(User newUser, BindingResult bindingResult, Model model) {
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors() || this.dataErrors.hasErrors(newUser, bindingResult)) {
-			model.addAttribute("newUser", newUser);
-			model.addAttribute("newPermission", new Permission());
-			return Constants.viewNameRegister;
+			return this.prepareRegisterDisplay(model);
 		}
 		
 		// User speichern, wenn dieser zur Registrierung zugelassen wurde
@@ -99,7 +103,7 @@ public class RegisterPageController {
 	public String addPermission(Permission newPermission, BindingResult bindingResult, Model model) {
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors()) {
-			return Constants.viewNameRegister;
+			return this.prepareRegisterDisplay(model);
 		}
 		
 		// User speichern, wenn dieser zur Registrierung zugelassen wurde
