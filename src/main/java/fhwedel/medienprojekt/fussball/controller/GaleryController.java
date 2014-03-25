@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
+import fhwedel.medienprojekt.fussball.controller.Constants;
 
 @Controller
 public class GaleryController {
@@ -14,27 +14,27 @@ public class GaleryController {
 	 * Lädt die Galerie
 	 * @return string page name
 	 */
-	@RequestMapping(value="/galerie/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkGalerie, method=RequestMethod.GET)
 	public String displayGalery() {
-		return "galery";
+		return Constants.viewNameGalerie;
 	}
 	
 	/**
 	 * Lädt das Formular zum hinzufügen neuer Bilder in die Bildergalerie.
 	 * @return string jsp
 	 */
-	@RequestMapping(value="/galerie/upload/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkGalerieUpload, method=RequestMethod.GET)
 	public String displayGaleryImgUploadForm() {
-		return "galeryImgUpload";
+		return Constants.viewNameGalerieUpload;
 	}
 	
 	/**
 	 * Speichert ein neues Bild in der Bildergalerie.
 	 */
-	@RequestMapping(value="/galerie/upload/", method=RequestMethod.POST)
+	@RequestMapping(value=Constants.linkGalerieUpload, method=RequestMethod.POST)
 	public String uploadImage(@RequestParam(value="image") MultipartFile image) {
 		
-		return "/galerie/";
+		return Constants.viewNameGalerie;
 	}
 	
 }

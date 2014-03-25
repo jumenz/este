@@ -8,7 +8,14 @@ import fhwedel.medienprojekt.fussball.service.TopPlayerService;
 import org.springframework.ui.Model;
 */
 import org.springframework.web.bind.annotation.RequestMethod;
+import fhwedel.medienprojekt.fussball.controller.Constants;
 
+/**
+ * HommeController
+ * 
+ * @author Ellen
+ *
+ */
 @Controller
 public class HomeController {
 	/* Beispiel
@@ -26,8 +33,8 @@ public class HomeController {
 	 * Lädt die Home Seite
 	 * @return string page name
 	 */
-	@RequestMapping(value="/home/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkHome, method=RequestMethod.GET)
 	public String displayHome() {
-		return "home";
+		return Constants.viewNameHome;
 	}
 }

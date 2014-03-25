@@ -8,21 +8,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import java.util.ArrayList;
-
-
-
-
-
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
-import fhwedel.medienprojekt.fussball.service.dataAccess.AbstractDataAccessPost;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessForum;
-
+import fhwedel.medienprojekt.fussball.controller.Constants;
 
 /**
  * Controller zur Anzeige des Forums.
@@ -35,16 +28,6 @@ public class ForumController {
 	/** Service für die Datenbankarbeit */
 	@Autowired
 	private DataAccessForum dataAccess;
-	
-	/** view name der Forums */
-	final String forumViewName = "forum";
-	
-	/** view name für einen neuen Foreneintrag */
-	final String forumNewEntryViewName = "forumNewEntry";
-	
-	/** Redirect auf die Forumsseite */
-	final String forumRedirect ="redirect:/forum/";
-	
 	
 	/* ------------------ Methoden --------------------------- */
 	/* ------------------ Anzeige ---------------------------- */
@@ -66,7 +49,7 @@ public class ForumController {
 		// Neuen Kommentar anfügen, um Speichern zu ermöglichen
 		model.addAttribute("newComment", new Comment());
 		
-		return this.forumViewName;
+		return Constants.viewNameForum;
 	}
 	
 	/**
@@ -74,7 +57,7 @@ public class ForumController {
 	 * @param 	mode	Model
 	 * @return  String 	Viewname
 	 */
-	@RequestMapping(value="/forum/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkForum, method=RequestMethod.GET)
 	public String displayForum(Model model) {
 		// Foreneinträge und Kommentare laden
 		return this.prepareForumView(this.dataAccess.getAll(), model);
@@ -85,7 +68,7 @@ public class ForumController {
 	 * @param	sub		String		gesuchter Anfangsstring
 	 * @param	model	Model
 	 */
-	@RequestMapping(value="/forum/{sub}", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkForum + "{sub}", method=RequestMethod.GET)
 	public String getForumEntriesStartingWith(@PathVariable String sub, Model model) {
 		// Einträge aus der Datenbank auslesen, die mit Substring beginnen
 		return this.prepareForumView(this.dataAccess.getAllStartingWith(sub), model);
@@ -96,7 +79,7 @@ public class ForumController {
 	 * @param	sub		String		gesuchter Substring
 	 * @param	model	Model
 	 */
-	@RequestMapping(value="/forum/~{sub}", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkForum + "~{sub}", method=RequestMethod.GET)
 	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
 		return this.prepareForumView(this.dataAccess.getAllIncluding(sub), model);
 	}
@@ -107,10 +90,10 @@ public class ForumController {
 	 * @param 	src		String nach dem gesucht wird
 	 * @return	String	url auf die Redirect ausgeführt wird
 	 */
-	@RequestMapping(value="/forum/?search={src}", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkForum + "?search={src}", method=RequestMethod.GET)
 	public String searchEntries(@PathVariable String src) {
 		// Auf entsprechenden Pfad weiterleiten
-		return this.forumRedirect +"~" + src;
+		return Constants.redirectForum +"~" + src;
 		// TODO geht noch nicht
 	}
 	
@@ -120,12 +103,12 @@ public class ForumController {
 	 * @param 	model	Model
 	 * @return	String	viewname
 	 */
-	@RequestMapping(value="/forum/neuer-eintrag/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkForumNewEntry, method=RequestMethod.GET)
 	public String displayNewForumEntryForm(Model model) {
 		// Neues ForumEntry Objekt in jsp zugreifbar machen
 		model.addAttribute(new ForumEntry());
 		// Formular laden
-		return this.forumNewEntryViewName;
+		return Constants.viewNameForumNewEntry;
 	}
 	
 	/**
@@ -133,17 +116,17 @@ public class ForumController {
 	 * @param	entry			ForumEntry		Eintrag der gespeichert werden soll
 	 * @param	bindingResult	BindingResult
 	 */
-	@RequestMapping(value="/forum/neuer-eintrag/", method=RequestMethod.POST)
+	@RequestMapping(value=Constants.linkForumNewEntry, method=RequestMethod.POST)
 	public String saveNewForumEntry(ForumEntry newEntry, BindingResult bindingResult) {
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors()) {
-			return this.forumNewEntryViewName;
+			return Constants.viewNameForumNewEntry;
 		}
 		
 		// sonst speichern und Forum laden
 		this.dataAccess.save(newEntry);
 		
-		return this.forumRedirect;
+		return Constants.redirectForum;
 	}
 	
 	/* --------------------- Kommentare ----------------------------*/
@@ -153,17 +136,17 @@ public class ForumController {
 	 * @param 	newComment		Comment			zu speichernder Kommentar
 	 * @param 	bindingResult	BindingResult
 	 */
-	@RequestMapping(value="/forum/neuer-kommentar/{id}", method=RequestMethod.POST)
+	@RequestMapping(value=Constants.linkForumNewComment + "{id}", method=RequestMethod.POST)
 	public String saveNewForumComment(@PathVariable int id, Comment newComment, BindingResult bindingResult) {
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors()) {
-			return this.forumViewName;
+			return Constants.viewNameForum;
 		}
 		
 		// sonst speichern und Forum laden
 		this.dataAccess.saveComment(newComment, id);
 		
-		return this.forumRedirect;
+		return Constants.redirectForum;
 	}
 
 }

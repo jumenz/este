@@ -3,7 +3,14 @@ package fhwedel.medienprojekt.fussball.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import fhwedel.medienprojekt.fussball.controller.Constants;
 
+/**
+ * LinksController
+ * 
+ * @author Ellen
+ *
+ */
 @Controller
 public class LinksController {
 	
@@ -11,8 +18,8 @@ public class LinksController {
 	 * Lädt die Seite mit verlinkten Links
 	 * @return string page name
 	 */
-	@RequestMapping(value="/links/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkLinks, method=RequestMethod.GET)
 	public String displayLinks() {
-		return "links";
+		return Constants.viewNameLinks;
 	}
 }

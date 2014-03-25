@@ -21,7 +21,13 @@ import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessPermissions;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
 import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers;
 import fhwedel.medienprojekt.fussball.model.user.Permission;
+import fhwedel.medienprojekt.fussball.controller.Constants;
 
+/**
+ * RegisterController
+ * @author Ellen Schwartau Minf9888
+ *
+ */
 @Controller
 public class RegisterPageController {
 	/* ------------- Klassenvariablen --------------------- */
@@ -33,6 +39,7 @@ public class RegisterPageController {
 	@Autowired
 	private DataAccessPermissions dataAccessPermissions;
 	
+	/** Service zum prüfen von Errors */
 	@Autowired
 	private DataErrorsUsers dataErrors;
 	
@@ -42,7 +49,7 @@ public class RegisterPageController {
 	 * @param model	Model
 	 * @return string page name
 	 */
-	@RequestMapping(value="/registrieren/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkRegister, method=RequestMethod.GET)
 	public String displayRegisterPage(Model model) {
 		// neues User Objekt zugreifbar machen
 		model.addAttribute("newUser", new User());
@@ -50,7 +57,8 @@ public class RegisterPageController {
 		model.addAttribute("newPermission", new Permission());
 		// TODO nur wenn Admin
 		model.addAttribute("allPermissions", this.dataAccessPermissions.getAll());
-		return "register";
+		
+		return Constants.viewNameRegister;
 	}
 	
 	/* --------------- neuen User registrieren ----------- */
@@ -62,13 +70,13 @@ public class RegisterPageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/registrieren/user-speichern/", method=RequestMethod.POST)
+	@RequestMapping(value=Constants.linkRegisterSaveUser, method=RequestMethod.POST)
 	public String register(User newUser, BindingResult bindingResult, Model model) {
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors() || this.dataErrors.hasErrors(newUser, bindingResult)) {
 			model.addAttribute("newUser", newUser);
 			model.addAttribute("newPermission", new Permission());
-			return "register";
+			return Constants.viewNameRegister;
 		}
 		
 		// User speichern, wenn dieser zur Registrierung zugelassen wurde
@@ -76,44 +84,43 @@ public class RegisterPageController {
 			this.dataAccessUsers.save(newUser);
 		}
 		// TODO einloggen
-		return "redirect:/home/";
+		return Constants.redirectHome;
 	}
 	
 	/**
 	 * Speichert eine EMail in der Permission Tabelle, um die EMail-Adresse 
 	 * zur Registrierung zuzulassen.
-	 * @param newPermission
-	 * @param bindingResult
-	 * @param model
-	 * @return
+	 * @param 	newPermission		Permission		Neue Registrierungszulassung
+	 * @param 	bindingResult		BindingResult
+	 * @param 	model				Model
+	 * @return	String				Redirect auf Registrierungsseite
 	 */
-	@RequestMapping(value="/registrieren/email-zulassen/", method=RequestMethod.POST)
+	@RequestMapping(value=Constants.linkRegisterNewPermission, method=RequestMethod.POST)
 	public String addPermission(Permission newPermission, BindingResult bindingResult, Model model) {
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors()) {
-			return "register";
+			return Constants.viewNameRegister;
 		}
 		
 		// User speichern, wenn dieser zur Registrierung zugelassen wurde
 		this.dataAccessPermissions.save(newPermission);
 		
-		return "redirect:/registrieren/";
+		return Constants.redirectRegister;
 	}
 
 	/* -------------------- Nutzer löschen --------------------------- */
 	/**
-	 * Speichert eine EMail in der Permission Tabelle, um die EMail-Adresse 
-	 * zur Registrierung zuzulassen.
-	 * @param newPermission
-	 * @param bindingResult
-	 * @param model
-	 * @return
+	 * Löscht eine Email-Adresse auf der Permission Tabelle, der zugehörige User
+	 * wird ebenfalls gelöscht, falls einer vorhanden ist.
+	 * @param	id		PathVariable	id der Permission, die gelöscht werden soll
+	 * @param 	model	Model
+	 * @return	String
 	 */
-	@RequestMapping(value="/registrieren/loeschen-{id}/", method=RequestMethod.POST)
-	public String addPermission(@PathVariable int id, Model model) {
+	@RequestMapping(value=Constants.linkRegisterRemovePermission + "{id}/", method=RequestMethod.POST)
+	public String removePermission(@PathVariable int id, Model model) {
 		// User speichern, wenn dieser zur Registrierung zugelassen wurde
 		this.dataAccessPermissions.remove(id);
 		
-		return "redirect:/registrieren/";
+		return Constants.redirectRegister;
 	}
 }

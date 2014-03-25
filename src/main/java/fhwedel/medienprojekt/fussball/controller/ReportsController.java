@@ -2,8 +2,6 @@ package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
 import java.util.ArrayList;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,17 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
-
-
-
-
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
-import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
-import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessReports;
+import fhwedel.medienprojekt.fussball.controller.Constants;
 
 /**
  * Controller für die Spielberichte.
@@ -42,7 +34,7 @@ public class ReportsController {
 	 * @param	model	Model
 	 * @return	String	Name des JSP
 	 */
-	@RequestMapping(value="/berichte/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkReports, method=RequestMethod.GET)
 	public String displayReports(Model model) {
 		PostView<Report> view = new PostView<Report>();
 		
@@ -55,14 +47,14 @@ public class ReportsController {
 		// In jsp zugreifbar machen
 		model.addAttribute("reportModel", view);
 		
-		return "reports";
+		return Constants.viewNameReports;
 	}
 	
 	/**
 	 * Liefert Spielberichte, die mit bestimmtem String beginnen.
 	 * 
 	 */
-	@RequestMapping(value="/berichte/{sub}", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkReports + "{sub}", method=RequestMethod.GET)
 	public String getForumEntriesStartingWith(@PathVariable String sub, Model model) {
 		PostView<Report> view = new PostView<Report>();
 		
@@ -75,14 +67,14 @@ public class ReportsController {
 		// In jsp zugreifbar machen
 		model.addAttribute("reportModel", view);
 		
-		return "reports";
+		return Constants.viewNameReports;
 	}
 	
 	/**
 	 * Liefert Foreneinträge, die mit bestimmtem String beginnen.
 	 * 
 	 */
-	@RequestMapping(value="/berichte/~{sub}", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkReports + "~{sub}", method=RequestMethod.GET)
 	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
 		PostView<Report> view = new PostView<Report>();
 		
@@ -95,7 +87,7 @@ public class ReportsController {
 		// In jsp zugreifbar machen
 		model.addAttribute("reportModel", view);
 		
-		return "reports";
+		return Constants.viewNameReports;
 	}
 	
 	/* ----------------------- Berichte verfassen ------------------------ */
@@ -104,12 +96,12 @@ public class ReportsController {
 	 * @param	model	Model
 	 * @return	String	Name des JSP
 	 */
-	@RequestMapping(value="/berichte/verfassen/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkReportsNew, method=RequestMethod.GET)
 	public String displayNewReportForm(Model model) {
 		// neues Report Objekt in jsp zugreifbar machen
 		model.addAttribute(new Report());
 		// jsp zum Erstellen eines neuen Berichts laden
-		return "reportNew";
+		return Constants.viewNameReportsNew;
 	}
 	
 	/**
@@ -118,17 +110,17 @@ public class ReportsController {
 	 * @param	bindingResult	BindingResult
 	 * @return	String	Name der JSP
 	 */
-	@RequestMapping(value="/berichte/verfassen/", method=RequestMethod.POST)
+	@RequestMapping(value=Constants.linkReportsNew, method=RequestMethod.POST)
 	public String save(Report newReport, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
 		if(bindingResult.hasErrors()) {
-			return "reportNew";
+			return Constants.viewNameReportsNew;
 		}
 		
 		// Speichern und Spielberichte laden
 		this.dataAccess.save(newReport);
 		
 		// jsp zum Erstellen eines neuen Berichts laden
-		return "redirect:/berichte/";
+		return Constants.redirectReports;
 	}
 }

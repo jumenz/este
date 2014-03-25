@@ -8,11 +8,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
-
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
+import fhwedel.medienprojekt.fussball.controller.Constants;
 
 /**
  * Login Page Controller.
@@ -29,18 +28,18 @@ public class LoginPageController {
 	 * Lädt die Login Seite
 	 * @return string page name
 	 */
-	@RequestMapping(value="/login/", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkLogin, method=RequestMethod.GET)
 	public String displayLoginPage(Model model) {
 		model.addAttribute("loginUser", new User());
-		return "login";
+		return Constants.viewNameLogin;
 	}
 	
-	@RequestMapping(value="/login/", method=RequestMethod.POST)
+	@RequestMapping(value=Constants.linkLogin, method=RequestMethod.POST)
 	public String login(User user, BindingResult bindingResult) {
 		if(bindingResult.hasErrors() || !this.dataAccessUsers.checkLogin(user)) {
-			return "login";
+			return Constants.viewNameLogin;
 		}
 		
-		return "home";
+		return Constants.redirectHome;
 	}
 }
