@@ -8,9 +8,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
-import fhwedel.medienprojekt.fussball.service.DataAccessUsers;
+import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
 
 /**
  * Login Page Controller.

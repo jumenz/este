@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service;
+package fhwedel.medienprojekt.fussball.service.dataAccess;
 
 /** externe Klassen */
 import java.sql.ResultSet;

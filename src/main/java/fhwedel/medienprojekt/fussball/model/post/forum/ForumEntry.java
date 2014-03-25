@@ -3,7 +3,8 @@ package fhwedel.medienprojekt.fussball.model.post.forum;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.Post;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
-import fhwedel.medienprojekt.fussball.service.DataAccessForum;
+
+import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessForum;
 
 /** externe Klassen  */
 import java.util.ArrayList;

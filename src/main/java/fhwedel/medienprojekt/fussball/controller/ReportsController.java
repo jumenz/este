@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
+
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
-import fhwedel.medienprojekt.fussball.service.DataAccessReports;
+import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessReports;
 
 /**
  * Controller für die Spielberichte.

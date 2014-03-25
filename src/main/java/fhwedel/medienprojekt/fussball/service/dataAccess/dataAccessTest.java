@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service;
+package fhwedel.medienprojekt.fussball.service.dataAccess;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 

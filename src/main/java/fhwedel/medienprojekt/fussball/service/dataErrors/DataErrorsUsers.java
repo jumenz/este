@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service;
+package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /** externe Klassen */
 import org.springframework.validation.BindingResult;

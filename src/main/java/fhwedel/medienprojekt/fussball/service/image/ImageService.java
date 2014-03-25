@@ -1,14 +1,17 @@
-package fhwedel.medienprojekt.fussball.service;
+package fhwedel.medienprojekt.fussball.service.image;
 
 /** externe Klassen */
 import java.io.File;
 import java.io.IOException;
+
 import org.junit.runner.Request;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.github.dandelion.datatables.core.util.FileUtils;
 
 /** eigene Klassen */
-import fhwedel.medienprojekt.fussball.service.ImageUploadException;
+
+import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
 
 /**
  * ImageService

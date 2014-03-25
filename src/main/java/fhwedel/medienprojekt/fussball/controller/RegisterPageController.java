@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
+
+
+
+
 /** Eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
-import fhwedel.medienprojekt.fussball.service.DataAccessPermissions;
-import fhwedel.medienprojekt.fussball.service.DataAccessUsers;
-import fhwedel.medienprojekt.fussball.service.DataErrorsUsers;
+import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessPermissions;
+import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
+import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers;
 import fhwedel.medienprojekt.fussball.model.user.Permission;
 
 @Controller

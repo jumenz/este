@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service;
+package fhwedel.medienprojekt.fussball.service.date;
 
 /** externe Klassen */
 import java.text.SimpleDateFormat;
