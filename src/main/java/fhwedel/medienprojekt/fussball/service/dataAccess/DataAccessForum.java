@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 
 
+
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
@@ -119,12 +120,29 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	public ArrayList<ForumEntry> getAll() {
 		// Alle Foren-Einträge nach Datum sortiert auslesen (neueste zuerst)
 		final String SQL_ALL_FORUM_ENTRIES = "SELECT * FROM forum ORDER BY date DESC";
-		
-		/* TODO Kommentarliste laden */
-		return (ArrayList<ForumEntry>) namedParameterJdbcTemplate.query(
-				SQL_ALL_FORUM_ENTRIES,
-				this.forumEntryMapper
-			);
+		// Foreneinträge laden
+		ArrayList<ForumEntry> list = 
+				(ArrayList<ForumEntry>) namedParameterJdbcTemplate.query(
+					SQL_ALL_FORUM_ENTRIES,
+					this.forumEntryMapper
+				);
+		// Kommentare laden
+		this.getAllComments(list);
+		return list;
+	}
+	
+	/**
+	 * Liest zu einer Liste von Foreneinträgen die Kommentare aus 
+	 * und fügt die den Foreneinträgen an.
+	 * @param 	list	Liste an Foreneinträgen
+	 */
+	public void getAllComments(ArrayList<ForumEntry> list) {
+		// Kommentarliste laden
+		for (int j=0; j<list.size(); j++) {
+			Integer id = list.get(j).getId();
+			ArrayList<Comment> comments = this.getComments(id);
+			list.get(j).setComments(comments);
+		}
 	}
 	
 	/**
@@ -133,7 +151,7 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 * @return	ArrayList<Comment>	Liste an Kommentaren
 	 */
 	public ArrayList<Comment> getComments(Integer id) {
-		final String SQL_SELECT_COMMENTS_OF_FORUM_ENTRY = "SELECT * FROM comments WHERE (ref = :ref) ORDER BY date DESC";
+		final String SQL_SELECT_COMMENTS_OF_FORUM_ENTRY = "SELECT * FROM comments WHERE (ref = :ref) ORDER BY date ASC";
 		// Parameter zuweisen
 		SqlParameterSource namedParameters = new MapSqlParameterSource("ref", Integer.valueOf(id));
 		// SQL Abfrage ausführen und Ergebnis auf einen Foren-Eintrag mappen

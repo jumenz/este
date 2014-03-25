@@ -9,7 +9,7 @@ import fhwedel.medienprojekt.fussball.model.post.Post;
 
 /**
  * Abstralte Service Klasse
- * Implementiert gemeinsame Methoden für die erbenden Klassen
+ * Implementiert enthält das JDBC Template für die Datenbankarbeit.
  * 
  * @author Ellen
  *

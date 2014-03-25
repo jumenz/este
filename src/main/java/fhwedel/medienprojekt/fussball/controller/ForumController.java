@@ -35,97 +35,82 @@ public class ForumController {
 	/** Service für die Datenbankarbeit */
 	@Autowired
 	private DataAccessForum dataAccess;
-
+	
+	/** view name der Forums */
+	final String forumViewName = "forum";
+	
+	/** view name für einen neuen Foreneintrag */
+	final String forumNewEntryViewName = "forumNewEntry";
+	
+	/** Redirect auf die Forumsseite */
+	final String forumRedirect ="redirect:/forum/";
+	
 	
 	/* ------------------ Methoden --------------------------- */
 	/* ------------------ Anzeige ---------------------------- */
 	/**
-	 * Lädt das Forum
-	 * @param Model
-	 * @return string page name
+	 * Hilfsfunktion.
+	 * Fügt die Liste an einträgen dem Model an und stellt ein neues
+	 * Comment Object bereit.
+	 * @param 	list	ArrayList<ForumEntry>	Liste mit Foreneinträgen
+	 * @param	model	Model
 	 */
-	@RequestMapping(value="/forum/", method=RequestMethod.GET)
-	public String displayForum(Model model) {
+	public String prepareForumView(ArrayList<ForumEntry> list, Model model) {
 		PostView<ForumEntry> view = new PostView<ForumEntry>();
-		
-		// Einträge aus der Datenbank auslesen
-		ArrayList<ForumEntry> list = this.dataAccess.getAll();
-
-		// Kommentarliste laden
-		for (int j=0; j<list.size(); j++) {
-			Integer id = list.get(j).getId();
-			ArrayList<Comment> comments = this.dataAccess.getComments(id);
-			list.get(j).setComments(comments);
-		}
-		
 		for(int i=0; i<list.size(); i++) {
+			// Einträge hinzufügen
 			view.addEntry(list.get(i));
 		}
-		
 		// In jsp zugreifbar machen
 		model.addAttribute("forumModel", view);
 		// Neuen Kommentar anfügen, um Speichern zu ermöglichen
 		model.addAttribute("newComment", new Comment());
 		
-		return "forum";
+		return this.forumViewName;
 	}
 	
-	// TODO vorherige und folgende Funktion zusammenfassen
+	/**
+	 * Lädt das Forum
+	 * @param 	mode	Model
+	 * @return  String 	Viewname
+	 */
+	@RequestMapping(value="/forum/", method=RequestMethod.GET)
+	public String displayForum(Model model) {
+		// Foreneinträge und Kommentare laden
+		return this.prepareForumView(this.dataAccess.getAll(), model);
+	}
 	
 	/**
 	 * Liefert Foreneinträge, die mit bestimmtem String beginnen.
-	 * 
+	 * @param	sub		String		gesuchter Anfangsstring
+	 * @param	model	Model
 	 */
 	@RequestMapping(value="/forum/{sub}", method=RequestMethod.GET)
 	public String getForumEntriesStartingWith(@PathVariable String sub, Model model) {
-		PostView<ForumEntry> view = new PostView<ForumEntry>();
-		
 		// Einträge aus der Datenbank auslesen, die mit Substring beginnen
-		ArrayList<ForumEntry> list = this.dataAccess.getAllStartingWith(sub);
-		for(int i=0; i<list.size(); i++) {
-			view.addEntry(list.get(i));
-		}
-		
-		// In jsp zugreifbar machen
-		model.addAttribute("forumModel", view);
-		// Neuen Kommentar anfügen
-		model.addAttribute("newComment", new Comment());
-		
-		return "forum";
+		return this.prepareForumView(this.dataAccess.getAllStartingWith(sub), model);
 	}
 	
 	/**
 	 * Liefert Foreneinträge, die mit bestimmtem String beginnen.
-	 * 
+	 * @param	sub		String		gesuchter Substring
+	 * @param	model	Model
 	 */
 	@RequestMapping(value="/forum/~{sub}", method=RequestMethod.GET)
 	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
-		PostView<ForumEntry> view = new PostView<ForumEntry>();
-		
-		// Einträge aus der Datenbank auslesen, die den Substring enthalten
-		ArrayList<ForumEntry> list = this.dataAccess.getAllIncluding(sub);
-		for(int i=0; i<list.size(); i++) {
-			view.addEntry(list.get(i));
-		}
-		
-		// In jsp zugreifbar machen
-		model.addAttribute("forumModel", view);
-		// Neuen Kommentar anfügen
-		model.addAttribute("newComment", new Comment());
-		
-		return "forum";
+		return this.prepareForumView(this.dataAccess.getAllIncluding(sub), model);
 	}
 	
 	/**
 	 * Ermöglicht die Suche über das Suchfeld der Sidebar und leitet auf die 
 	 * URL der Form "/forum/~<Sucheingabe>" weiter
 	 * @param 	src		String nach dem gesucht wird
-	 * @return	String	url
+	 * @return	String	url auf die Redirect ausgeführt wird
 	 */
 	@RequestMapping(value="/forum/?search={src}", method=RequestMethod.GET)
 	public String searchEntries(@PathVariable String src) {
 		// Auf entsprechenden Pfad weiterleiten
-		return "redirect:/forum/~" + src;
+		return this.forumRedirect +"~" + src;
 		// TODO geht noch nicht
 	}
 	
@@ -133,49 +118,52 @@ public class ForumController {
 	/**
 	 * Lädt das Formular zum Erstellen eines neuen Foreneintrags.
 	 * @param 	model	Model
-	 * @return	Name der jsp
+	 * @return	String	viewname
 	 */
 	@RequestMapping(value="/forum/neuer-eintrag/", method=RequestMethod.GET)
 	public String displayNewForumEntryForm(Model model) {
 		// Neues ForumEntry Objekt in jsp zugreifbar machen
 		model.addAttribute(new ForumEntry());
 		// Formular laden
-		return "forumNewEntry";
+		return this.forumNewEntryViewName;
 	}
 	
 	/**
 	 * Speichert einen neuen Foreneintrag.
-	 * 
+	 * @param	entry			ForumEntry		Eintrag der gespeichert werden soll
+	 * @param	bindingResult	BindingResult
 	 */
 	@RequestMapping(value="/forum/neuer-eintrag/", method=RequestMethod.POST)
 	public String saveNewForumEntry(ForumEntry newEntry, BindingResult bindingResult) {
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors()) {
-			return "forumNewEntry";
+			return this.forumNewEntryViewName;
 		}
 		
 		// sonst speichern und Forum laden
 		this.dataAccess.save(newEntry);
 		
-		return "redirect:/forum/";
+		return this.forumRedirect;
 	}
 	
 	/* --------------------- Kommentare ----------------------------*/
 	/**
-	 * Speichert einen neuen Foreneintrag.
-	 * 
+	 * Speichert einen neuen Kommentar
+	 * @param 	id				int				id des zugehörigen Foreneintrags
+	 * @param 	newComment		Comment			zu speichernder Kommentar
+	 * @param 	bindingResult	BindingResult
 	 */
 	@RequestMapping(value="/forum/neuer-kommentar/{id}", method=RequestMethod.POST)
 	public String saveNewForumComment(@PathVariable int id, Comment newComment, BindingResult bindingResult) {
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors()) {
-			return "forum";
+			return this.forumViewName;
 		}
 		
 		// sonst speichern und Forum laden
 		this.dataAccess.saveComment(newComment, id);
 		
-		return "redirect:/forum/";
+		return this.forumRedirect;
 	}
 
 }

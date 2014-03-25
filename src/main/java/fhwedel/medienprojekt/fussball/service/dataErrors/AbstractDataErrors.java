@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service.dataAccess;
+package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /** externe Klassen */
 import java.util.ArrayList;
