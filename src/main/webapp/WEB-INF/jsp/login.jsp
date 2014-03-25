@@ -21,9 +21,9 @@
 					<!-- Formular zum Registrieren -->	
                      <li class="one-col">
                          <div class="main-content-box box-borders bg clearfix">
-                             <h2 class="box-title">Registrieren</h2>
+                             <h2 class="box-title">Login</h2>
                              <div class="box-body">
-								<sf:form action="${linkRegister}user-speichern/" method="POST" modelAttribute="newUser">
+								<sf:form action="${linkLogin}" method="POST" modelAttribute="loginUser">
 									<fieldset>
 										<!-- Username -->
 										<sf:input 	path="username"

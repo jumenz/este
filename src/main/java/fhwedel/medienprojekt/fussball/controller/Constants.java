@@ -21,6 +21,7 @@ public class Constants {
 	static final String linkRegisterNewPermission = "/registrieren/email-zulassen/";
 	static final String linkRegisterRemovePermission = "/registrieren/loeschen-";
 	static final String linkLogin = "/login/";
+	static final String linkLogout = "/logout/";
 	static final String linkImpressum = "/impressum/";
 	static final String linkLinks = "/links/";
 	static final String linkGalerie = "/galerie/";
@@ -66,4 +67,8 @@ public class Constants {
 	static final String viewNameLinks = "links";
 	static final String viewNameGalerie = "galery";
 	static final String viewNameGalerieUpload = "galeryImgUpload";
+	
+	/** Cookienames */
+	static final String cookieUser = "user";
+	static final String cookieUserState = "user_state";
 }

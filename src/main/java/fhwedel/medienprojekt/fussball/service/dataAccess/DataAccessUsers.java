@@ -14,6 +14,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 
+
+import org.springframework.validation.BindingResult;
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.Permission;
 import fhwedel.medienprojekt.fussball.model.user.User;
@@ -119,16 +122,50 @@ public class DataAccessUsers extends AbstractDataAccess {
 			);
 	}
 	
+	/* -------------------- Login --------------------------------------- */
+	/**
+	 * Liest die Datenbankinformationen ausgehen von username und passwort aus der Datenbank aus.
+	 * @param 	username		String		Username
+	 * @param	password		String		password
+	 * @return	ArrayList<User>	Ergebnisse aus Datenbank
+	 */
+	public ArrayList<User> getUserData(String username, String password) {
+		final String SQL_GET_USERNAME_AND_PASSWORD = 
+				"SELECT * FROM users WHERE (username = :username) AND (password = :password)";
+		/* Name-Wert Paare für Abfrage festlegen */
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("username", username);
+		params.put("password", password);
+		
+		return (ArrayList<User>) this.namedParameterJdbcTemplate.query(SQL_GET_USERNAME_AND_PASSWORD, params, this.userMapper);
+	}
+	
 	/**
 	 * Überprüft die Login Daten auf Richtigkeit.
-	 * @param 	user	Userdaten
+	 * @param 	username		String		Username
+	 * @param	password		String		password
 	 * @return	boolean	true:	Logindaten stimmen
 	 * 					false:	Logindaten sind falsch
 	 */
-	public boolean checkLogin(User user) {
-		// final SQL_GET_USERNAME_AND_PASSWORD 
+	public boolean checkLogin(String username, String password) {
+		/* prüfen, ob ein User mit eingegebenem Usernamen und Passwort existiert 
+		 * -> es existiert ein User, wenn die Ergebnisliste nicht leer ist */
+		return !this.getUserData(username, password).isEmpty();
+	}
+	
+	/**
+	 * Liefert die Usergroup zu einem usernamen und dem zugehörigen Passwort.
+	 * @param 	username	String	Username
+	 * @param 	password	String	Passwort
+	 * @return	UserGroup
+	 */
+	public UserGroup getUserGroup(String username, String password) {
+		// TODO nur über Usernamen?
+		/* Userdaten auslesen, und sichergehen, dass nur ein Element gefunden */
+		ArrayList<User> userData = this.getUserData(username, password);
+		assert (userData.size()==1): "Mehrere User mit diesen Zugangsdaten vorhanden.";
 		
-		return true;
+		return userData.get(0).getUserGroup();
 	}
 
 }

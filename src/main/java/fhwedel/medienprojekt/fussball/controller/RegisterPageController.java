@@ -1,8 +1,6 @@
 package fhwedel.medienprojekt.fussball.controller;
 
 /** Externe Klassen */
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +21,8 @@ import fhwedel.medienprojekt.fussball.controller.Constants;
 /**
  * RegisterController
  * @author Ellen Schwartau Minf9888
+ *
+ *@CookieValue(value = "foo", defaultValue = "hello") String fooCookie
  *
  */
 @Controller

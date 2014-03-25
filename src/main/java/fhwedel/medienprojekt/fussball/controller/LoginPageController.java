@@ -1,6 +1,9 @@
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +23,24 @@ import fhwedel.medienprojekt.fussball.controller.Constants;
  */
 @Controller
 public class LoginPageController {
+	/* ----------------- Klassenvariablen ---------------------- */
 	/** Datenbankanbindung */
 	@Autowired
 	private DataAccessUsers dataAccessUsers;
+	
+	/* --------------- Methoden -------------------------------- */
+	/* --------------- Anzeige --------------------------------- */
+	/**
+	 * Hilfsfunktion
+	 * Bereitet das Anzeigen der Login Seite vor.
+	 * @param 	model	Model
+	 * @return	String	Viewname zum Mappen der JSP
+	 */
+	public String prepareLoginDisplay(Model model) {
+		// User-Objekt zum Mappen der Eingabedaten bereitstellen
+		model.addAttribute("loginUser", new User());
+		return Constants.viewNameLogin;
+	}
 	
 	/**
 	 * Lädt die Login Seite
@@ -30,15 +48,49 @@ public class LoginPageController {
 	 */
 	@RequestMapping(value=Constants.linkLogin, method=RequestMethod.GET)
 	public String displayLoginPage(Model model) {
-		model.addAttribute("loginUser", new User());
-		return Constants.viewNameLogin;
+		return this.prepareLoginDisplay(model);
 	}
 	
+	/* -------------- Login ------------------------------------ */
+	/**
+	 * Setzt den Logged in Cookie des Users.
+	 * @param 	user		User
+	 * @param 	response	HttpServletResponse
+	 */
+	public void setLoggedInCookie(User user, HttpServletResponse response) {
+		user.setUserGroup(this.dataAccessUsers.getUserGroup(user.getUsername(), user.getPassword()));
+		/* Cookie setzen */
+		// TODO verschlüsseln
+		Cookie userCookie = new Cookie(Constants.cookieUser, user.getUsername());
+		Cookie userStateCookie = new Cookie(Constants.cookieUserState, user.getUserGroupString());
+		/* Expire Time auf eine Stunde */
+		userCookie.setMaxAge(3600);
+		userStateCookie.setMaxAge(3600);
+		/* Cookie setzen */
+		response.addCookie(userCookie);
+		response.addCookie(userStateCookie);
+	}
+	
+	/**
+	 * Behandelt den Login-Request.
+	 * @param 	user			User	User mit eingegebenen Login-Daten
+	 * @param 	bindingResult	BindingResult
+	 * @param 	model			Model
+	 * @return	String			Viewname zum Mappen der JSP
+	 */
 	@RequestMapping(value=Constants.linkLogin, method=RequestMethod.POST)
-	public String login(User user, BindingResult bindingResult) {
-		if(bindingResult.hasErrors() || !this.dataAccessUsers.checkLogin(user)) {
-			return Constants.viewNameLogin;
+	public String login(User user, BindingResult bindingResult, Model model, HttpServletResponse response) {
+		String username = user.getUsername();
+		String password = user.getPassword();
+		
+		/* Prüfen, ob Username und Passwort stimmen */
+		if(bindingResult.hasErrors() 
+		|| !this.dataAccessUsers.checkLogin(username, password)) {
+			return this.prepareLoginDisplay(model);
 		}
+		
+		/* Cookie bei erfolgreichem Login setzen und auf Landing Page weiterleiten */
+		this.setLoggedInCookie(user, response);
 		
 		return Constants.redirectHome;
 	}

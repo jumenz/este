@@ -1,6 +1,18 @@
 <%@include file="./taglibs_variables.jspf" %>
 <!-- footer -->
-		<ul class="footer">
+	<ul class="footer">
+	<% 	Cookie cookies[] = request.getCookies();
+		Cookie cookie = null;
+		boolean loggedIn = false;
+		if( cookies != null ){
+	      for (int i = 0; i < cookies.length; i++){
+	         cookie = cookies[i];
+	         if((cookie.getName( )).compareTo("user") == 0 ){
+	        	 loggedIn = true;
+	         }
+	      }
+		}
+		if(!loggedIn) { %>
 	<li> <!-- Login, bzw. Registrierung -->
 		<form method="post" name="footer-login-register-form" action="${linkLogin}">
 			<input class="buttom-invisible footer-space-bottom" type="submit" value="Login"><br>
@@ -11,6 +23,13 @@
 			<input class="buttom-invisible" type="submit" value="Registrieren"/>
 		</form>
 	</li>
+	<% } else { %>
+	<li>
+		<form method="get" action="${linkLogout}">
+			<input class="buttom-invisible" type="submit" value="Logout"/>
+		</form>
+	</li>
+	<% } %>
 	<li> <!-- Addresse -->
 		<span class="footer-heading footer-space-bottom">Kontakt</span>
 		<span class="footer-info">SV Este 06/70 e.V.</span>

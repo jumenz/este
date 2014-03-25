@@ -37,6 +37,7 @@
 <!-- Login und Registrierung -->
 <c:set var="linkRegister" value="${requestContextPath}/registrieren/"></c:set>
 <c:set var="linkLogin" value="${requestContextPath}/login/"></c:set>
+<c:set var="linkLogout" value="${requestContextPath}/logout/"></c:set>
 <!-- Impressum -->
 <c:set var="linkImpressum" value="${requestContextPath}/impressum/"></c:set>
 <!-- wichtige weiterführende Links -->
