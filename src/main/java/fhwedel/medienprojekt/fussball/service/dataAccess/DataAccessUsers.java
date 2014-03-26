@@ -28,7 +28,7 @@ import fhwedel.medienprojekt.fussball.model.user.UserGroup;
  * Ermöglich beispielsweise das Updaten bestehender, einfügen neuer
  * oder auslesen von Informationen über bestehende User.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
 public class DataAccessUsers extends AbstractDataAccess {
@@ -45,7 +45,7 @@ public class DataAccessUsers extends AbstractDataAccess {
 				 * @return	UserGroup	entsprechende Gruppe
 				 */
 				public UserGroup getUserGroupFromString(String groupName) {
-					if(groupName == "USER_GROUP_ADMIN") {
+					if(groupName.compareTo("USER_GROUP_ADMIN")==0) {
 						return UserGroup.USER_GROUP_ADMIN;
 					}
 					return UserGroup.USER_GROUP_NO_ADMIN;
@@ -91,12 +91,13 @@ public class DataAccessUsers extends AbstractDataAccess {
 	public void save(User newUser) {
 		/* SQL Befehl*/
 		final String SQL_INSERT_NEW_USER = 
-				"INSERT INTO users (username, email, password, user_group) "
-				+ "VALUES (:username, :email, :password, :user_group)";
+				"INSERT INTO users (id, username, email, password, user_group) "
+				+ "VALUES (:id, :username, :email, :password, :user_group)";
 		
 		// TODO Verschlüsselung
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("id", newUser.getId());
 		params.put("username", newUser.getUsername());
 		params.put("email", newUser.getEmail());
 		params.put("password", newUser.getPassword());
@@ -153,6 +154,7 @@ public class DataAccessUsers extends AbstractDataAccess {
 		return !this.getUserData(username, password).isEmpty();
 	}
 	
+	/* ---------------- User Group ----------------------------------------- */
 	/**
 	 * Liefert die Usergroup zu einem usernamen und dem zugehörigen Passwort.
 	 * @param 	username	String	Username
@@ -167,5 +169,45 @@ public class DataAccessUsers extends AbstractDataAccess {
 		
 		return userData.get(0).getUserGroup();
 	}
-
+	
+	/**
+	 * Liefert einen User ausgehend von einer id.
+	 * @param 	id		ID
+	 * @return	User	
+	 */
+	private User getUserById(int id) {
+		final String SQL_SELECT_USER_BY_ID = "SELECT * FROM " + Constants.dbUsers + " WHERE (id = :id)";
+		/* Name-Wert Paare für Abfrage festlegen */
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("id", id);
+		
+		ArrayList<User> res = (ArrayList<User>) this.namedParameterJdbcTemplate.query(SQL_SELECT_USER_BY_ID, params, this.userMapper);
+		assert (!res.isEmpty()) : "Über die angegebene id konnte kein User gefunden werden";
+		assert (res.size() == 1) : "Über die angegebene id konnte kein eindeutiger User gefunden werden.";
+		
+		return res.get(0);
+	}
+	
+	/**
+	 * Ändert den Admin-Status eines Users.
+	 * @param 	id	int	ID des Users, dessen Status geändert werden soll.
+	 */
+	public void changeUserStatus(int id) {
+		final String SQL_UPDATE_USER_STATUS = "UPDATE " + Constants.dbUsers + " SET user_group = :user_group WHERE (id = :id)";
+		
+		/* Neue User Group bestimmen */
+		User user = getUserById(id);
+		UserGroup newUserGroup = (user.getUserGroup() == UserGroup.USER_GROUP_ADMIN) 
+								  ? UserGroup.USER_GROUP_NO_ADMIN 
+								  : UserGroup.USER_GROUP_ADMIN;
+		user.setUserGroup(newUserGroup);
+		
+		/* Name-Wert Paare für Abfrage festlegen */
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("id", id);
+		params.put("user_group", user.getUserGroupString());
+		
+		/* Datensatz updaten und Nummer an betroffenen Reihen auf 1 überprüfen */
+		this.namedParameterJdbcTemplate.update(SQL_UPDATE_USER_STATUS, params);
+	}
 }

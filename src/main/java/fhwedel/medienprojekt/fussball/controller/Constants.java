@@ -20,6 +20,7 @@ public class Constants {
 	static final String linkRegisterSaveUser = "/registrieren/user-speichern/";
 	static final String linkRegisterNewPermission = "/registrieren/email-zulassen/";
 	static final String linkRegisterRemovePermission = "/registrieren/loeschen-";
+	static final String linkRegisterChangeUserStatus = "/registrieren/status-";
 	static final String linkLogin = "/login/";
 	static final String linkLogout = "/logout/";
 	static final String linkImpressum = "/impressum/";

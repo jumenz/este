@@ -99,10 +99,14 @@
 									<sf:form style="display: inline-block" action="${linkRegister}loeschen-${permission.id}/">
 										<button name="commit" type="submit">Löschen</button>
 									</sf:form>
-									<sf:form style="display: inline-block" action="${linkRegister}status-${permission.id}/">
+									<sf:form style="display: inline-block" action="${linkRegister}status-${permission.id}/" method="get">
 										<button name="commit" type="submit">Status ändern</button>
 									</sf:form>
-									${permission.email} Status: <br>
+									${permission.email}     
+									Status: 
+									<c:if test="${permission.adminStatus}"> Admin</c:if>
+									<c:if test="${!permission.adminStatus}"> kein Admin</c:if>
+									<br>
 								</c:forEach>
                              </div>
                          </div>
