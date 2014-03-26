@@ -103,16 +103,6 @@ public class Report extends Post {
 		this.homeMatch = home;
 	}
 	
-	/**
-	 * Setzt die Id des Foren-Eintrags ausgehend von der Id in der Datenbank.
-	 */
-	public void setId() {
-		/* Service holen */
-		//DataAccessForum dataAccessService = new DataAccessForum();
-		/* Id auslesen und speichern */
-		//this.id = dataAccessService.getId(this);
-	}
-	
 	/* ------------- Punktestand ------------------- */
 	/**
 	 * Setzt den Puntkestand der Heimmannschaft zur Halbzeit.

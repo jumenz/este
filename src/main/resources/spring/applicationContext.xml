@@ -68,6 +68,9 @@
 	<bean id="DataAccessPermissions" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessPermissions">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
+	<bean id="DataAccessComments" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessComments">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
 	
 	<!-- Fehlerbehandlungen -->
 	<bean id="DataErrorsUsers" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers"/>

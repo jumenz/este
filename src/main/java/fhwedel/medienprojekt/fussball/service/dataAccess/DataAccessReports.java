@@ -64,58 +64,93 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	/* ------------------- Datenbankarbeit ----------------------------- */
 	/* ------------------- Speichern ----------------------------------- */
 	/**
+	 * Ordnet die Werte eines Reports eine Parameterliste zu.
+	 * @param report	Report
+	 * @param params	Map<String,Object>
+	 */
+	private void mapParams(Report report, Map<String,Object> params, boolean updateDate) {
+		// Name-Wert-Paare zuordnen
+		Date date = (updateDate) ? new Date() : report.getDate();
+		params.put("date", date);
+		params.put("author", report.getAuthor());
+		params.put("topic", report.getTopic());
+		params.put("text", report.getText());
+		params.put("opponent", report.getOpponent());
+		params.put("first_half_home", report.getScoreFirstHalfHome());
+		params.put("first_half_guest", report.getScoreFirstHalfGuest());
+		params.put("second_half_home", report.getScoreSecondHalfHome());
+		params.put("second_half_guest", report.getScoreSecondHalfGuest());
+	}
+	
+	/**
 	 * Speichert einen neuen Spielbericht.
 	 * @param newReport	Bericht
 	 */
 	public void save(Report newReport) {
 		/* SQL Befehl*/
 		final String SQL_INSERT_FORUM_ENTRY = 
-				"INSERT INTO report (date, author, topic, text, opponent, "
+				"INSERT INTO " + Constants.dbReports + " (date, author, topic, text, opponent, "
 				+ "first_half_home, first_half_guest, second_half_home, second_half_guest) "
 				+ "VALUES (:date, :author, :topic, :text, :opponent, "
 				+ ":first_half_home, :first_half_guest, :second_half_home, :second_half_guest)";
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("date", new Date());
-		params.put("author", newReport.getAuthor());
-		params.put("topic", newReport.getTopic());
-		params.put("text", newReport.getText());
-		params.put("opponent", newReport.getOpponent());
-		params.put("first_half_home", newReport.getScoreFirstHalfHome());
-		params.put("first_half_guest", newReport.getScoreFirstHalfGuest());
-		params.put("second_half_home", newReport.getScoreSecondHalfHome());
-		params.put("second_half_guest", newReport.getScoreSecondHalfGuest());
+		this.mapParams(newReport, params, true);
 		
 		/* Speichern */
 		this.namedParameterJdbcTemplate.update(SQL_INSERT_FORUM_ENTRY, params);
 	}
 	
-	/* ----------------------- Auslesen --------------------------------- */
+	/* ------------------ Bearbeiten ------------------------- */
+	
 	/**
-	 * Liefert die id eines Spielberichts.
-	 * @param entry	Spielbericht, zu dem die id gesucht wird
-	 * @return	int
+	 * Updated einen bearbeiteten Spielbericht ausgehend von seiner ID.
+	 * @param id		int		ID des Spielberichts
+	 * @param report	Report	berarbeiteter Spielbericht
 	 */
-	public int getId(Report entry) {
-		/* SQL Abfrage für Id, ausgehend von Date_Time und Author */
-		final String SQL_QUERY_GET_ID =
-				"SELECT id FROM report WHERE (date = :date) AND (author = :author)";
-		/* Name-Wert Paare für Abfrage festlegen */
+	public void update(int id, Report report) {
+		/* SQL Befehl*/
+		final String SQL_UPDATE_REPORT = 
+				"UPDATE " + Constants.dbReports
+				+ " SET author = :author, topic = :topic, text=:text, opponent=:opponent, "
+				+ "first_half_home=:first_half_home, first_half_guest=:first_half_guest, "
+				+ "second_half_home=:second_half_home, second_half_guest=:second_half_guest "
+				+ "WHERE id=:id";
+		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("author", entry.getAuthor());
-		params.put("date", entry.getDate());
-		/* id auslesen */
-		return this.namedParameterJdbcTemplate.queryForInt(SQL_QUERY_GET_ID, params);
+		this.mapParams(report, params, false);
+		// zusätzlich auch id setzen
+		params.put("id", id);
+		
+		/* Speichern */
+		this.namedParameterJdbcTemplate.update(SQL_UPDATE_REPORT, params);
 	}
 	
+	/**
+	 * Löscht einen Spielbericht ausgehend von seiner id.
+	 * @param 	id	int		ID des Spielberichts
+	 */
+	public void deleteById(int id) {
+		final String SQL_DELETE_REPORT_BY_ID = 
+				"DELETE FROM " + Constants.dbReports + " WHERE id=:id";
+		
+		// ID setzen
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("id", id);
+		// löschen
+		this.namedParameterJdbcTemplate.update(SQL_DELETE_REPORT_BY_ID, params);
+	}
+	
+	/* ----------------------- Auslesen --------------------------------- */
 	/**
 	 * Liefert einen ForenEintrag ausgehend von seiner id.
 	 * @param  id	id des gesuchten Eintrags
 	 * @return ForumEntry
 	 */
 	public Report getById(int id) {
-		// SQL
-		final String SQL_SELECT_REPORT_BY_ID = "SELECT * FROM report WHERE (id = :id)";
+		final String SQL_SELECT_REPORT_BY_ID = 
+				"SELECT * FROM " + Constants.dbReports + " WHERE (id = :id)";
+		
 		// Parameter zuweisen
 		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(id));
 		// SQL Abfrage ausführen und Ergebnis auf einen Foren-Eintrag mappen
@@ -133,10 +168,14 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	 * @return ArrayList<Report>
 	 */
 	public ArrayList<Report> getAll() {
-		final String SQL_SELECT_ALL_REPORTS = "SELECT * FROM report";
+		final String SQL_SELECT_ALL_REPORTS = 
+				"SELECT * FROM " + Constants.dbReports + " ORDER BY date DESC";
+		
+		// Alle Einträge auslesen
 		return (ArrayList<Report>) namedParameterJdbcTemplate.query(
 				SQL_SELECT_ALL_REPORTS,
 				this.reportRowMapper
 			);
 	}
+	
 }

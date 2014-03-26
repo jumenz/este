@@ -31,7 +31,7 @@
 														id="topic"
 														rows="1"
 														cols="120"
-														value="${forumEntry.topic}"
+														placeholder="Titel"
 										/><br>
 										<!-- Fehlermeldung für den Titel -->
 										<sf:errors path="topic" cssClass="error"/><br>
@@ -40,14 +40,14 @@
 														id="description"
 														rows="5"
 														cols="120"
-														value="${forumEntry.description}"
+														placeholder="Kurzbeschreibung"
 										/><br>
 										<!-- Fehlermeldung für die Kurzbeschreibung -->
 										<sf:errors path="description" cssClass="error"/><br>
 										<!-- Text -->
 										<sf:textarea 	path="text" 
 														id="text" 
-														value="${forumEntry.text}"
+														placeholder="Tippe hier deinen Text"
 														rows="20"
 														cols="120"
 										/><br>

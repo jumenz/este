@@ -54,7 +54,7 @@ public class ReportsController {
 	 * Liefert Spielberichte, die mit bestimmtem String beginnen.
 	 * 
 	 */
-	@RequestMapping(value=Constants.linkReports + "{sub}", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkReportsStaringWith, method=RequestMethod.GET)
 	public String getForumEntriesStartingWith(@PathVariable String sub, Model model) {
 		PostView<Report> view = new PostView<Report>();
 		
@@ -74,7 +74,7 @@ public class ReportsController {
 	 * Liefert Foreneinträge, die mit bestimmtem String beginnen.
 	 * 
 	 */
-	@RequestMapping(value=Constants.linkReports + "~{sub}", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkReportsContaining, method=RequestMethod.GET)
 	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
 		PostView<Report> view = new PostView<Report>();
 		
@@ -121,6 +121,54 @@ public class ReportsController {
 		this.dataAccess.save(newReport);
 		
 		// jsp zum Erstellen eines neuen Berichts laden
+		return Constants.redirectReports;
+	}
+	
+	/* ----------------- Bearbeiten -------------------------- */
+	/**
+	 * Lädt die Seite zum bearbeiten eines bestehenden Spielberichts.
+	 * @param 	id		int		ID des Spielberichts 
+	 * @param 	model	Model
+	 * @return	String	Viewname zum mappen der JSP
+	 */
+	@RequestMapping(value=Constants.linkReportsEdit, method=RequestMethod.GET)
+	public String loadEditForm(@PathVariable int id, Model model) {
+		// Report auslesen
+		model.addAttribute("report", this.dataAccess.getById(id));
+		return Constants.viewNameReportsEdit;
+	}
+	
+	/**
+	 * Speichert einen editierten Spielbericht mit entsprechender ID.
+	 * @param id			int		ID des Spielberichts
+	 * @param report		Report	Spielbericht
+	 * @param bindingResult	BindingResult
+	 * @return	String	Redirect auf die Spielberichteseite
+	 */
+	@RequestMapping(value=Constants.linkReportsEdit, method=RequestMethod.POST)
+	public String edit(@PathVariable int id, Report report, BindingResult bindingResult) {
+		// Bei Fehlern erneut Formular aufrufen
+		if(bindingResult.hasErrors()) {
+			return Constants.viewNameReports;
+		}
+		
+		// Speichern und Spielberichte laden
+		this.dataAccess.update(id, report);
+		
+		// jsp zum Erstellen eines neuen Berichts laden
+		return Constants.redirectReports;
+	}
+	
+	/* ----------------- Löschen ----------------------------- */
+	/**
+	 * Löscht einen Spielbereicht mit entsprechender ID.
+	 * @param 	id		int	ID
+	 * @return	String	Redirect auf Spielberichtseite
+	 */
+	@RequestMapping(value=Constants.linkReportsDelete, method=RequestMethod.POST) 
+	public String delete(@PathVariable int id) {
+		// TODO nicht über PathVariable
+		this.dataAccess.deleteById(id);
 		return Constants.redirectReports;
 	}
 }

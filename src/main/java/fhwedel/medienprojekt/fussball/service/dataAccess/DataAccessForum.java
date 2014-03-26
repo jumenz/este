@@ -17,6 +17,9 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 
 
+
+
+
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
@@ -52,26 +55,6 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 					return entry;
 				}
 			};
-			
-	/**
-	 * Comment Mapper
-	 */
-	private ParameterizedRowMapper<Comment> commentMapper = 
-			// RowMapper, der den Spalten des Ergebnisses Variablen des ForenEntry zuweist
-			new ParameterizedRowMapper<Comment>() {
-				public Comment mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-					// Objekt erzeugen
-					Comment comment = new Comment();
-					// Spalten des Ergebnisses zuweisen
-					comment.setId(resultSet.getInt(1));
-					comment.setDate(resultSet.getDate(2));
-					comment.setAuthor(resultSet.getString(3));
-					comment.setText(resultSet.getString(4));
-					comment.setRef(resultSet.getInt(5));
-					
-					return comment;
-				}
-			};
 	
 	/* ------------------ Konstruktorfunktionen -----------------------------------*/
 	/**
@@ -88,6 +71,24 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	}
 	
 	/* ---------------------------- Datenbankarbeit ----------------------------------- */
+	/**
+	 * Hilfsfunktion.
+	 * Ordnet die Werte des Foreneintrags als Name-Wert-Paare.
+	 * @param forumEntry	ForumEntry	Foreneintraf
+	 * @param params		Map			Name-Wert-Paare
+	 * @param updateDate	boolean		true: neues Datum wird gemappt
+	 * 									false: altes Datum wird übernommen
+	 */
+	private void mapParams(ForumEntry forumEntry, Map<String,Object> params, boolean updateDate) {
+		Date date = (updateDate) ? new Date() : forumEntry.getDate();
+		params.put("date", date);
+		params.put("author", forumEntry.getAuthor());
+		params.put("topic", forumEntry.getTopic());
+		params.put("text", forumEntry.getText());
+		params.put("description", forumEntry.getDescription());
+		params.put("has_comments", !forumEntry.getComments().isEmpty());
+	}
+	
 	/* ---------------------------- Speichern ----------------------------------------- */
 	/**
 	 * Speichert einen neuen ForenEintrag.
@@ -96,19 +97,50 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	public void save(ForumEntry newForumEntry) {
 		/* SQL Befehl */
 		final String SQL_INSERT_FORUM_ENTRY = 
-				"INSERT INTO forum (date, author, topic, description, text, has_comments) "
+				"INSERT INTO " + Constants.dbForum + " (date, author, topic, description, text, has_comments) "
 				+ "VALUES (:date, :author, :topic, :description, :text, :has_comments)";
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("date", new Date());
-		params.put("author", newForumEntry.getAuthor());
-		params.put("topic", newForumEntry.getTopic());
-		params.put("text", newForumEntry.getText());
-		params.put("description", newForumEntry.getDescription());
-		params.put("has_comments", !newForumEntry.getComments().isEmpty());
+		mapParams(newForumEntry, params, true);
 		
 		/* Speichern */
 		this.namedParameterJdbcTemplate.update(SQL_INSERT_FORUM_ENTRY, params);
+	}
+	
+	/* ------------------------- Bearbeiten ----------------------------------- */
+	/**
+	 * Aktualisiert einen bearbeiteten Foreneintrag.
+	 * @param id		 	int			ID des bearbeiteten Foreneintrags
+	 * @param forumEntry	ForumEntry	neue Daten des Foreneintrags
+	 */
+	public void update(int id, ForumEntry forumEntry) {
+		/* SQL Befehl*/
+		final String SQL_UPDATE_FORUM_ENTRY = 
+				"UPDATE " + Constants.dbForum
+				+ " SET author = :author, topic = :topic, description = :description, text=:text "
+				+ "WHERE id=:id";
+		/* Werte Namen zuweisen */
+		Map<String,Object> params = new HashMap<String,Object>();
+		this.mapParams(forumEntry, params, false);
+		// zusätzlich auch id setzen
+		params.put("id", id);
+		
+		/* Speichern */
+		this.namedParameterJdbcTemplate.update(SQL_UPDATE_FORUM_ENTRY, params);
+	}
+	
+	/* ------------------------ Löschen -------------------------------------- */
+	/**
+	 * Löscht einen Foreneintrag ausgehend von seiner id.
+	 * @param 	id	int		ID des Spielberichts
+	 */
+	public void deleteById(int id) {
+		final String SQL_DELETE_FORUM_ENTRY_BY_ID = "DELETE FROM " + Constants.dbForum + " WHERE id=:id";
+		// ID setzen
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("id", id);
+		// löschen
+		this.namedParameterJdbcTemplate.update(SQL_DELETE_FORUM_ENTRY_BY_ID, params);
 	}
 	
 	/* ------------------------- Auslesen ------------------------------------- */
@@ -119,48 +151,14 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 */
 	public ArrayList<ForumEntry> getAll() {
 		// Alle Foren-Einträge nach Datum sortiert auslesen (neueste zuerst)
-		final String SQL_ALL_FORUM_ENTRIES = "SELECT * FROM forum ORDER BY date DESC";
+		final String SQL_ALL_FORUM_ENTRIES = "SELECT * FROM " + Constants.dbForum + " ORDER BY date DESC";
 		// Foreneinträge laden
 		ArrayList<ForumEntry> list = 
 				(ArrayList<ForumEntry>) namedParameterJdbcTemplate.query(
 					SQL_ALL_FORUM_ENTRIES,
 					this.forumEntryMapper
 				);
-		// Kommentare laden
-		this.getAllComments(list);
 		return list;
-	}
-	
-	/**
-	 * Liest zu einer Liste von Foreneinträgen die Kommentare aus 
-	 * und fügt die den Foreneinträgen an.
-	 * @param 	list	Liste an Foreneinträgen
-	 */
-	public void getAllComments(ArrayList<ForumEntry> list) {
-		// Kommentarliste laden
-		for (int j=0; j<list.size(); j++) {
-			Integer id = list.get(j).getId();
-			ArrayList<Comment> comments = this.getComments(id);
-			list.get(j).setComments(comments);
-		}
-	}
-	
-	/**
-	 * Liefert die Kommentarliste zu einem Foreneintrag.
-	 * @param 	Integer				id des Foreneintrags
-	 * @return	ArrayList<Comment>	Liste an Kommentaren
-	 */
-	public ArrayList<Comment> getComments(Integer id) {
-		final String SQL_SELECT_COMMENTS_OF_FORUM_ENTRY = "SELECT * FROM comments WHERE (ref = :ref) ORDER BY date ASC";
-		// Parameter zuweisen
-		SqlParameterSource namedParameters = new MapSqlParameterSource("ref", Integer.valueOf(id));
-		// SQL Abfrage ausführen und Ergebnis auf einen Foren-Eintrag mappen
-		return (ArrayList<Comment>) namedParameterJdbcTemplate.query(
-								// SQL Abfrage
-								SQL_SELECT_COMMENTS_OF_FORUM_ENTRY,
-								namedParameters,
-								this.commentMapper
-							);
 	}
 	
 	/**
@@ -171,7 +169,7 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	public int getId(ForumEntry entry) {
 		/* SQL Abfrage für Id, ausgehend von Date_Time und Author */
 		final String SQL_QUERY_GET_ID =
-				"SELECT id FROM forum WHERE (date = :date) AND (author = :author)";
+				"SELECT id FROM " + Constants.dbForum + " WHERE (date = :date) AND (author = :author)";
 		/* Name-Wert Paare für Abfrage festlegen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("author", entry.getAuthor());
@@ -187,9 +185,11 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 */
 	public ForumEntry getById(int id) {
 		// SQL
-		final String SQL_SELECT_FORUM_ENTRY_BY_ID = "SELECT * FROM forum WHERE (id = :id)";
+		final String SQL_SELECT_FORUM_ENTRY_BY_ID = 
+				"SELECT * FROM " + Constants.dbForum + " WHERE (id = :id)";
 		// Parameter zuweisen
-		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(id));
+		SqlParameterSource namedParameters = 
+				new MapSqlParameterSource("id", Integer.valueOf(id));
 		// SQL Abfrage ausführen und Ergebnis auf einen Foren-Eintrag mappen
 		return (ForumEntry) namedParameterJdbcTemplate.queryForObject(
 								// SQL Abfrage
@@ -200,24 +200,4 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 							);
 	}
 	
-	/* ------------------- Kommentare ---------------------------------- */
-	/* ------------------- speichern ----------------------------------- */
-	/**
-	 * Speichert einen neuen Kommentar mit referenz auf den entsprechenden Foreneintrag.
-	 * @param newComment	neuer Kommentar
-	 * @param idForumEntry	Referenz auf Foreneintrag
-	 */
-	public void saveComment(Comment newComment, int idForumEntry) {
-		final String SQL_SAVE_COMMENT = "INSERT INTO comments (date, author, text, ref) "
-				+ "VALUES (:date, :author, :text, :ref)";
-		/* Werte Namen zuweisen */
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("date", new Date());
-		params.put("author", newComment.getAuthor());
-		params.put("text", newComment.getText());
-		params.put("ref", idForumEntry);
-		
-		/* Kommentar speichern */
-		this.namedParameterJdbcTemplate.update(SQL_SAVE_COMMENT, params);
-	}
 }

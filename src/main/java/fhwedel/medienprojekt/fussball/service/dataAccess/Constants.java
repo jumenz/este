@@ -7,7 +7,7 @@ package fhwedel.medienprojekt.fussball.service.dataAccess;
  *
  */
 public class Constants {
-	static final String dbReports = "reports";
+	static final String dbReports = "report";
 	static final String dbForum = "forum";
 	static final String dbComments = "comments";
 	static final String dbPermissions = "permissions";
