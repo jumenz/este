@@ -79,6 +79,13 @@
 									</div>
 									<div class="box-body">
 										<p>${entry.text}</p>
+										<!-- TODO nur wenn Admin -->
+										<sf:form style="display: inline-block" action="${linkReportsEdit}${entry.id}/" method="get">
+											<button type="submit">Bearbeiten</button>
+										</sf:form>
+										<sf:form style="display: inline-block" action="${linkReportsDelete}${entry.id}/" method="post">
+											<button type="submit">Löschen</button>
+										</sf:form>
 									</div>
 								</div>
 							</div>

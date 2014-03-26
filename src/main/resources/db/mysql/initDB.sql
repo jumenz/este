@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS report  (
   date		 		DATE NOT NULL,
   author 			VARCHAR(30),
   topic 			VARCHAR(30),
-  text				VARCHAR(500),
+  text				VARCHAR(1500),
   opponent 			VARCHAR(30),
   first_half_home	INT NOT NULL,
   first_half_guest	INT NOT NULL,

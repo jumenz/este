@@ -13,9 +13,13 @@ public class Constants {
 	static final String linkAdresses = "/adressbuch/";
 	static final String linkAboutUs = "/ueber-uns/";
 	static final String linkReports = "/berichte/";
+	static final String linkReportsStaringWith ="/berichte/{sub}";
+	static final String linkReportsContaining ="/berichte/~{sub}";
 	static final String linkReportsNext = "/berichte/weitere/";
 	static final String linkReportsPrev = "/berichte/vorherige/";
 	static final String linkReportsNew = "/berichte/verfassen/";
+	static final String linkReportsEdit = "/berichte/bearbeiten/{id}/";
+	static final String linkReportsDelete = "/berichte/loeschen/{id}/";
 	static final String linkRegister = "/registrieren/";
 	static final String linkRegisterSaveUser = "/registrieren/user-speichern/";
 	static final String linkRegisterNewPermission = "/registrieren/email-zulassen/";
@@ -31,7 +35,10 @@ public class Constants {
 	static final String linkForumNext = "/forum/weiteres/";
 	static final String linkForumPrev = "/forum/vorheriges/";
 	static final String linkForumNewEntry = "/forum/neuer-eintrag/";
-	static final String linkForumNewComment = "/forum/neuer-kommentar/";
+	static final String linkForumEntryEdit = "/forum/bearbeiten/{id}/";
+	static final String linkForumEntryDelete = "/forum/loeschen/{id}/";
+	static final String linkForumNewComment = "/forum/neuer-kommentar/{id}/";
+	static final String linkForumDeleteComment = "/forum/kommentar-entfernen/{id}/";
 
 	/** Redirects */
 	static final String redirectHome = "redirect:/home/";
@@ -59,8 +66,10 @@ public class Constants {
 	static final String viewNameAdresses = "adresses";
 	static final String viewNameForum = "forum";
 	static final String viewNameForumNewEntry = "forumNewEntry";
+	static final String viewNameForumEdit = "forumEntryEdit";
 	static final String viewNameReports = "reports";
-	static final String viewNameReportsNew = "reportsNewEntry";
+	static final String viewNameReportsNew = "reportNew";
+	static final String viewNameReportsEdit = "reportEdit";
 	static final String viewNameRegister = "register";
 	static final String viewNameAboutUs = "aboutUs";
 	static final String viewNameLogin = "login";

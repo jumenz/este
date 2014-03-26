@@ -46,6 +46,13 @@
 									</div>
 									<div class="box-body">
 										<p>${entry.text}</p>
+										<!-- TODO nur wenn Admin -->
+										<sf:form style="display: inline-block" action="${linkForumEntryEdit}${entry.id}/" method="get">
+											<button type="submit">Bearbeiten</button>
+										</sf:form>
+										<sf:form style="display: inline-block" action="${linkForumEntryDelete}${entry.id}/" method="post">
+											<button type="submit">Löschen</button>
+										</sf:form>
 									</div>
 									<!-- Contentbox Comments -->
 									<div>
@@ -63,7 +70,9 @@
 															<div class="comment">
 																<p class="comment-name">${comment.author}AUTHOR</p>
 																<p class="comment-content">${comment.text}</p>
-																<div class="button-delete online-only"></div>
+																<form method="get" action="${linkForumDeleteComment}${comment.id}/">
+																	<button class="button-delete"></button>
+																</form>
 															</div>
 														</c:forEach>
 														<!-- Formular für neuen Kommentar -->
@@ -71,7 +80,7 @@
 															<p class="comment-name">Neuen Kommentar verfassen</p>
 															<p class="comment-content">
 																<c:set var="newComment" value="${newComment}"/>
-																<sf:form action="./neuer-kommentar/${entry.id}" method="POST" modelAttribute="newComment">
+																<sf:form action="./neuer-kommentar/${entry.id}/" method="POST" modelAttribute="newComment">
 																	<!-- Neuer Kommentar -->
 																	<sf:textarea 	path="text"
 																					id="text"

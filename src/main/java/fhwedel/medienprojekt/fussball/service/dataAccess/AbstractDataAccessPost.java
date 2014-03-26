@@ -39,7 +39,8 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 		
 		// Alle finden, die mit gesuchtem String beginnen
 		for(int i=0; i < all.size(); i++) {
-			if(all.get(i).getTopic().toLowerCase().startsWith(sub, 0)) {
+			String topic = all.get(i).getTopic();
+			if(topic.toLowerCase().startsWith(sub.toLowerCase(), 0)) {
 				res.add(all.get(i));
 			}
 		}
@@ -55,7 +56,11 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 	 * @return	boolean
 	 */
 	private boolean stringContainsSub(String string, String sub) {
-		return string.toLowerCase().indexOf(sub.toLowerCase()) != -1;
+		// Kopie, damit Original nicht verändert wird
+		String lowerCaseString = string.toLowerCase();
+		String lowerCaseSub = sub.toLowerCase();
+		// Vergleichen
+		return lowerCaseString.indexOf(lowerCaseSub) != -1;
 	}
 	
 	/**

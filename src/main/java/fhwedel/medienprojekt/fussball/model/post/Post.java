@@ -14,7 +14,7 @@ import java.util.Date;
 public class Post {
 	/* ---------- Variablen ------------------ */
 	/** id des Eintrags */
-	protected int id;
+	private int id;
 	/** Thema des Beitrags */
 	//@Pattern(regexp=".*", message="Bitte gib einen Titel ein.")
 	private String topic;
