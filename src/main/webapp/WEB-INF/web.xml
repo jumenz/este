@@ -66,4 +66,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+	
+	<!--  
+		DelegatingFilterProxy: delegiert weiter an javax.servlet.Filter (als bean im application context),
+								wird automatisch unter angegebenem Filter-Namen erzeugt
+	-->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+			<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	
+
 </web-app>
