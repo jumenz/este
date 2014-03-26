@@ -71,7 +71,7 @@ public class DataAccessPermissions extends AbstractDataAccess {
 		/* SQL Befehl*/
 		final String SQL_INSERT_NEW_PERMISSION = "INSERT INTO " + this.tablePermissions 
 												 + " (email, admin_state) "
-												 + "VALUES (:email, :admin_state)";
+												 + "VALUES (AES_ENCRYPT(:email), AES_ENCRYPT(:admin_state)))";
 
 		// TODO Verschlüsselung
 		/* Werte Namen zuweisen */
