@@ -54,7 +54,7 @@ public class DataErrorsUsers {
 	public boolean validUsername(User newUser, BindingResult bindingResult) {
 		boolean errorState = false;
 		// Der Username darf nicht leer sein
-		if(newUser.getUsername() == "") {
+		if((newUser.getUsername().compareTo("") == 0) || (newUser.getUsername().compareTo("Username") == 0)) {
 			bindingResult.rejectValue("username", this.ERROR_EMPTY_USERNAME);
 			errorState = true;
 		}
@@ -72,13 +72,13 @@ public class DataErrorsUsers {
 		boolean errorState = false;
 		// Beide Passwortfelder müssen ausgefüllt, gleich 
 		// und zwischen 5 und 50 Zeichen lang sein
-		if((newUser.getPassword() == "") || (newUser.getPasswordCompare() == "")) {
+		if((newUser.getPassword().compareTo("") == 0) || (newUser.getPasswordCompare().compareTo("") == 0)) {
 			bindingResult.rejectValue("password", this.ERROR_EMPTY_PASSWORD);
 			errorState = true;
 		} else if(!newUser.getPassword().equals(newUser.getPasswordCompare())) {
 			bindingResult.rejectValue("password", this.ERROR_PASSWORD_MISSMATCH);
 			errorState = true;
-		} else if (newUser.getPassword().length()<=5 || newUser.getPassword().length()>50) {
+		} else if (newUser.getPassword().length()<5 || newUser.getPassword().length()>50) {
 			bindingResult.rejectValue("password", this.ERROR_PASSWORD_LENGTH);
 			errorState = true;
 		}

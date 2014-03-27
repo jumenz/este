@@ -170,23 +170,32 @@ public class DataAccessUsers extends AbstractDataAccess {
 		return userData.get(0).getUserGroup();
 	}
 	
-	/**
-	 * Liefert einen User ausgehend von einer id.
-	 * @param 	id		ID
-	 * @return	User	
-	 */
-	private User getUserById(int id) {
-		final String SQL_SELECT_USER_BY_ID = "SELECT * FROM " + Constants.dbUsers + " WHERE (id = :id)";
-		/* Name-Wert Paare für Abfrage festlegen */
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		
-		ArrayList<User> res = (ArrayList<User>) this.namedParameterJdbcTemplate.query(SQL_SELECT_USER_BY_ID, params, this.userMapper);
-		assert (!res.isEmpty()) : "Über die angegebene id konnte kein User gefunden werden";
-		assert (res.size() == 1) : "Über die angegebene id konnte kein eindeutiger User gefunden werden.";
-		
-		return res.get(0);
-	}
+/**
+ * Liefert einen User ausgehend von einer id.
+ * @param 	id		int		ID des Users
+ * @return	User			ausgelesener User
+ */
+private User getUserById(int id) {
+	final String SQL_SELECT_USER_BY_ID 
+		= "SELECT * FROM " + Constants.dbUsers + " WHERE (id = :id)";
+	/* Name-Wert Paare für Abfrage festlegen */
+	Map<String,Object> params = new HashMap<String,Object>();
+	params.put("id", id);
+	/* User auslesen */
+	ArrayList<User> res 
+		= (ArrayList<User>) this.namedParameterJdbcTemplate.query(
+								SQL_SELECT_USER_BY_ID, 
+								params, 
+								this.userMapper
+							);
+	/* Sichergehen, dass genau ein User gefunden wurde */
+	assert (!res.isEmpty()) 
+		: "Über die angegebene id konnte kein User gefunden werden";
+	assert (res.size() == 1) 
+		: "Über die angegebene id konnte kein eindeutiger User gefunden werden.";
+	
+	return res.get(0);
+}
 	
 	/**
 	 * Ändert den Admin-Status eines Users.

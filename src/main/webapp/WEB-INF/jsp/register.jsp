@@ -33,6 +33,7 @@
 										/><br>
 										<!-- Fehlermeldung für den Username -->
 										<sf:errors path="username" cssClass="error"/><br>
+										<c:out value="${bindingResult.fieldErrors}"></c:out>
 										<!-- E-Mail Adresse -->
 										<sf:input 	path="email"
 													data-default="E-Mail Adresse"

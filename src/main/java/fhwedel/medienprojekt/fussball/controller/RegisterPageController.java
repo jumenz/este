@@ -5,11 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
 
 /** Eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
@@ -79,12 +78,20 @@ public class RegisterPageController {
 	 * @return
 	 */
 	@RequestMapping(value=Constants.linkRegisterSaveUser, method=RequestMethod.POST)
-	public String register(User newUser, BindingResult bindingResult, Model model) {
+	public String register(User newUser, BindingResult bindingResult, Model model, Errors errors) {
 		// Bei Fehlern wieder auf Formular redirecten
-		if(bindingResult.hasErrors() || this.dataErrors.hasErrors(newUser, bindingResult)) {
-			return this.prepareRegisterDisplay(model);
+		boolean hasErrors = this.dataErrors.hasErrors(newUser, bindingResult);
+		if(bindingResult.hasErrors() || hasErrors) {
+			model.addAttribute("newUser", newUser);
+			// TODO nur wenn Admin
+			model.addAttribute("newPermission", new Permission());
+			// TODO nur wenn Admin
+			model.addAttribute("allPermissions", this.dataAccessPermissions.getAll());
+			
+			model.addAttribute("bindingResult", bindingResult);
+			return Constants.viewNameRegister;
 		}
-		
+
 		// User speichern, wenn dieser zur Registrierung zugelassen wurde
 		if(this.dataAccessPermissions.hasPermission(newUser)) {
 			// Adminstatus aus Permission auslesen und speichern

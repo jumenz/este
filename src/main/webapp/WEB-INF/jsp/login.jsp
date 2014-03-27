@@ -1,7 +1,7 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Registrieren"/>
+		<jsp:param name="title" value="Login"/>
 		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
 	</jsp:include>
 		
