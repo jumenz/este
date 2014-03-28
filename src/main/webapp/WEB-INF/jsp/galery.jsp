@@ -11,17 +11,17 @@
 		<div class="galery-outer-wrapper">
 			<div class="galery-inner-wrapper">
 				<c:forEach var="imgPath" items="${firstImageCol}" varStatus="status">
-					<img src="${imgPath}" class="galery-img--complete"/>
+					<a href="${imgPath}"><img src="${imgPath}" class="galery-img--complete"/></a>
 				</c:forEach>
 			</div>
 			<div class="galery-inner-wrapper">
 	       		<c:forEach var="imgPath" items="${secondImageCol}" varStatus="status">
-					<img src="${imgPath}" class="galery-img--complete"/>
+					<a href="${imgPath}"><img src="${imgPath}" class="galery-img--complete"/></a>
 				</c:forEach>
 			</div>
 			<div class="galery-inner-wrapper">
 	       		<c:forEach var="imgPath" items="${thirdImageCol}" varStatus="status">
-					<img src="${imgPath}" class="galery-img--complete"/>
+					<a href="${imgPath}"><img src="${imgPath}" class="galery-img--complete"/></a>
 				</c:forEach>
 			</div>
 		</div>

@@ -71,8 +71,8 @@ public class ImageService {
 		}
 		
 		if(imageNames != null) {
-			//for(int i=0; i < imageNames.length; i++){
-			for(int i=0; i < 9; i++){
+			for(int i=0; i < imageNames.length; i++){
+			//for(int i=0; i < 9; i++){
 				imgPaths.add(galeryUrl + imageNames[i]);
 			}
 		}
