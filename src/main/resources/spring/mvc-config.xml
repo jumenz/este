@@ -60,6 +60,8 @@
 		Multipart Resolver 
 		Extrahiert MultipartData aus Post Request, damit der Dispatcher Servlet diese an die Controller weitergeben kann.
 	-->
-	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"  p:maxUploadSize="500000"/> -->
-
+	<bean 	id="multipartResolver"
+			class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+			p:maxUploadSize="500000"
+	/>
 </beans>

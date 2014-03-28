@@ -30,7 +30,8 @@ public class Constants {
 	static final String linkImpressum = "/impressum/";
 	static final String linkLinks = "/links/";
 	static final String linkGalerie = "/galerie/";
-	static final String linkGalerieUpload = "/galerie/upload/";
+	static final String linkGalerieUploadForm = "/galerie/upload/";
+	static final String linkGalerieUpload = "/galerie/load/";
 	static final String linkForum = "/forum/";
 	static final String linkForumNext = "/forum/weiteres/";
 	static final String linkForumPrev = "/forum/vorheriges/";

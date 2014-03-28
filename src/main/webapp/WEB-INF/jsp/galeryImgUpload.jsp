@@ -28,14 +28,13 @@
                              		 ectype mutipart/form-data:	Jedes Feld wird als einzelner Teil des POST Request behandelt,
                              		 							nicht nur als Name-Wert-Paar
                              	-->
-								<sf:form 	method="POST"
-											modelAttribute="img"
-											enctype="multipart/form-data">
-									<table>
-										<tr><label for="imageUpload">Bild hochladen: </label></tr>
-										<tr><input name="imageUpload" type="file"/></tr>
-									</table>
-								</sf:form>
+								<form 	action="${linkGaleryUpload}"
+										method="POST"
+										enctype="multipart/form-data">
+									Bild hochladen:
+									<input name="image" type="file"/><br>
+									<input type="submit" value="Hochladen"/>
+								</form>
 								<!-- Ende Formular -->
                              </div>
                          </div>

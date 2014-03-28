@@ -47,7 +47,9 @@
 <c:set var="linkLinks" value="${requestContextPath}/links/"></c:set>
 <!-- Galerie -->
 <c:set var="linkGalery" value="${requestContextPath}/galerie/"></c:set>
-<c:set var="linkGaleryUpload" value="${requestContextPath}/galerie/upload/"></c:set>
+<c:set var="linkGaleryUploadForm" value="${requestContextPath}/galerie/upload/"></c:set>
+<c:set var="linkGaleryUpload" value="${requestContextPath}/galerie/load/"></c:set>
+<c:set var="linkGaleryRessources" value="${requestContextPath}/resources/data/galery/"></c:set>
 <!-- Forum -->
 <c:set var="linkForum" value="${requestContextPath}/forum/"></c:set>
 <c:set var="linkForumNext" value="${requestContextPath}/forum/weiteres/"></c:set>

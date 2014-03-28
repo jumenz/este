@@ -3,13 +3,16 @@ package fhwedel.medienprojekt.fussball.service.image;
 /** externe Klassen */
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
-import org.junit.runner.Request;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
-
-import com.github.dandelion.datatables.core.util.FileUtils;
+import org.apache.commons.io.FileUtils;
 
 /** eigene Klassen */
+
+import org.apache.commons.io.FilenameUtils;
 
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
 
@@ -17,9 +20,9 @@ import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
  * ImageService
  * Dient dem Validieren und Speichern von Images.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  */
-public class ImageService {
+public class ImageService {	
 	/**
 	 * Prüft ein Image auf das richtige Format.
 	 * @param image
@@ -42,12 +45,38 @@ public class ImageService {
 	public void saveImage(String filename, MultipartFile image) throws ImageUploadException{
 		try {
 			File file = new File("C:/Users/Ellen/workspace/medienprojekt/este/fussball/src/main/webapp/resources/data/galery/" + filename);
-			// FileUtils.writeByteArrayToFile(file, image.getBytes());
-		} //catch(IOException e){
-			//throw new ImageUploadException("Unabletosaveimage",e);
-		//}
-		finally {}
+			FileUtils.writeByteArrayToFile(file, image.getBytes());
+		} catch(IOException e){
+			throw new ImageUploadException("Unabletosaveimage",e);
+		}		
+	}
+	
+	private boolean isImage(File f, String s) {
+		return new File(f,s).isFile() && (s.toLowerCase().endsWith(".jpg") || (s.toLowerCase().endsWith(".jpg")));
+	}
+	
+	public ArrayList<String> getImagPaths(HttpServletRequest request) throws IOException {
+		ArrayList<String> imgPaths = new ArrayList<String>();
+		String galeryPath = "C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/galery/";
+		String galeryUrl = request.getContextPath() + "/resources/data/galery/";
+		File dir = new File(galeryPath);
+		String imageNames[] = null;
 		
-		// TODO FileUtils von Apache Common IO einbinden
+		if(dir.isDirectory()) {
+			if(!dir.canRead()) {
+				dir.setReadable(true);
+				
+			}
+			imageNames = dir.list();
+		}
+		
+		if(imageNames != null) {
+			//for(int i=0; i < imageNames.length; i++){
+			for(int i=0; i < 9; i++){
+				imgPaths.add(galeryUrl + imageNames[i]);
+			}
+		}
+		
+		return imgPaths;
 	}
 }
