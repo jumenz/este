@@ -54,7 +54,7 @@
 		</li>
 		<!-- for smaller displays -->
 		<li class="nav-reduced">
-			<img src="../../data/icons/icon-menue.png"/>
+			<img src="${dataPath}/icons/icon-menue.png"/>
 			<ul class="submenue">
 				<li><a href="${linkAboutUs}">Über uns</a></li>
 				<li><a href="${linkReports}">Spielberichte</a></li>

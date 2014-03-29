@@ -11,7 +11,7 @@
 	position: fixed;
 	left: 0px;
 	top: 35%;
-	background-image: url("../data/buttons/button-previous-wb.png");
+	background-image: url("../data/buttons/button-home-galery.png");
 	background-size: 100%;
 	background-repeat: no-repeat;
 	height: 100%;
@@ -31,6 +31,27 @@
     -khtml-border-radius: 2%;
     -webkit-border-radius: 2%;
 		
+}
+
+@media (max-width: 1350px) {
+	.galery-close {
+		width: 4%;
+	}
+}
+
+@media (max-width: 700px) {
+	.galery-close {
+		width: 5%;
+	}
+}
+
+@media (max-width: 500px) {
+	.galery-close {
+		width: 100%;
+		height: 30px;
+		top: 0;
+		background-image: url("../data/buttons/button-home.galery-h.png");
+	}
 }
 
 /* ------------- Buttons und navigation ----------------------------- */
