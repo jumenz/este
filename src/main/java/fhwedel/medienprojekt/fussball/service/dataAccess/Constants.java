@@ -12,4 +12,5 @@ public class Constants {
 	static final String dbComments = "comments";
 	static final String dbPermissions = "permissions";
 	static final String dbUsers = "users";
+	static final String dbAddresses = "addresses";
 }
