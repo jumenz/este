@@ -132,36 +132,21 @@ public class DataAccessUsers extends AbstractDataAccess {
 	
 	/* -------------------- Login --------------------------------------- */
 	/**
-	 * Liest die Datenbankinformationen ausgehen von username und passwort aus der Datenbank aus.
+	 * Liest die Datenbankinformationen ausgehen vom username aus der Datenbank aus.
 	 * @param 	username		String		Username
 	 * @param	password		String		password
 	 * @return	ArrayList<User>	Ergebnisse aus Datenbank
 	 */
-	public ArrayList<User> getUserData(String username, String password) {
-		final String SQL_GET_USERNAME_AND_PASSWORD = 
+	public ArrayList<User> getUserData(String username) {
+		final String SQL_GET_USER_BY_USERNAME = 
 				"SELECT * FROM " + Constants.dbUsers 
 				+ " WHERE ("
-				+ Constants.dbUsersUsername + " = :username) AND ("
-				+ Constants.dbUsersPassword + " = :password)";
+				+ Constants.dbUsersUsername + " = :username)";
 		/* Name-Wert Paare für Abfrage festlegen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("username", username);
-		params.put("password", password);
 		
-		return (ArrayList<User>) this.namedParameterJdbcTemplate.query(SQL_GET_USERNAME_AND_PASSWORD, params, this.userMapper);
-	}
-	
-	/**
-	 * Überprüft die Login Daten auf Richtigkeit.
-	 * @param 	username		String		Username
-	 * @param	password		String		password
-	 * @return	boolean	true:	Logindaten stimmen
-	 * 					false:	Logindaten sind falsch
-	 */
-	public boolean checkLogin(String username, String password) {
-		/* prüfen, ob ein User mit eingegebenem Usernamen und Passwort existiert 
-		 * -> es existiert ein User, wenn die Ergebnisliste nicht leer ist */
-		return !this.getUserData(username, password).isEmpty();
+		return (ArrayList<User>) this.namedParameterJdbcTemplate.query(SQL_GET_USER_BY_USERNAME, params, this.userMapper);
 	}
 	
 	/* ---------------- User Group ----------------------------------------- */
@@ -174,7 +159,7 @@ public class DataAccessUsers extends AbstractDataAccess {
 	public UserGroup getUserGroup(String username, String password) {
 		// TODO nur über Usernamen?
 		/* Userdaten auslesen, und sichergehen, dass nur ein Element gefunden */
-		ArrayList<User> userData = this.getUserData(username, password);
+		ArrayList<User> userData = this.getUserData(username);
 		assert (userData.size()==1): "Mehrere User mit diesen Zugangsdaten vorhanden.";
 		
 		return userData.get(0).getUserGroup();

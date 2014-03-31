@@ -47,7 +47,7 @@ public class DataErrorsPermissions extends AbstractDataErrors {
 			bindingResult.rejectValue("email", "error.permission.empty");
 		} else if (!this.isEmail(email)) {
 			bindingResult.rejectValue("email", "error.permission.invalid");
-		} else if (this.alreadyInUse(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
+		} else if (this.inDb(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
 			bindingResult.rejectValue("email", "error.permission.duplicate");
 		} else {
 			errorState=true;

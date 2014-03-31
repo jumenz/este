@@ -43,6 +43,7 @@
 													value="Username"
 													class="full-width"
 										/><br>
+										<sf:errors path="username" cssClass="error"/><br>
 										<!-- Passwort -->
 										<sf:input	path="password" 
 													type="password"
@@ -51,7 +52,7 @@
 													class="full-width"
 										/><br>
 										<!-- Fehlermeldung für den Login -->
-										<sf:errors path="*" cssClass="error"/><br>
+										<sf:errors path="password" cssClass="error"/><br>
 										<!-- Buttons -->
 										<button name="commit" type="submit">Anmelden</button>
 										<button name="reset" type="reset">Abbrechen</button>

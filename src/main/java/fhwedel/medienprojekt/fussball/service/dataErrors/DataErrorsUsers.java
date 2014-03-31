@@ -11,7 +11,7 @@ import fhwedel.medienprojekt.fussball.model.user.User;
  * Service
  * Übernimmt die Fehlerbehandlung für Users.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
 public class DataErrorsUsers extends AbstractDataErrors {
@@ -55,7 +55,7 @@ public class DataErrorsUsers extends AbstractDataErrors {
 		// Der Username darf nicht leer oder schon vergeben sein
 		if(this.isEmpty(username, this.placeholderUsername)) {
 			bindingResult.rejectValue("username", "error.username.empty");
-		} else if (this.alreadyInUse(Constants.dbUsers, Constants.dbUsersUsername, username)) {
+		} else if (this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
 			bindingResult.rejectValue("username", "error.username.duplicate");
 		} else {
 			isValid = true;
@@ -103,9 +103,9 @@ public class DataErrorsUsers extends AbstractDataErrors {
 			bindingResult.rejectValue("email", "error.email.empty");
 		} else if (!this.isEmail(email)) {
 			bindingResult.rejectValue("email", "error.email.invalid");
-		} else if (this.alreadyInUse(Constants.dbUsers, Constants.dbUsersEmail, email)) {
+		} else if (this.inDb(Constants.dbUsers, Constants.dbUsersEmail, email)) {
 			bindingResult.rejectValue("email", "error.email.duplicate");
-		} else if (!this.alreadyInUse(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
+		} else if (!this.inDb(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
 			bindingResult.rejectValue("email", "error.email.permission");
 		} else {
 			isValid=true;

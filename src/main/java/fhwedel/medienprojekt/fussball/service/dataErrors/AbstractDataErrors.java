@@ -138,7 +138,7 @@ public abstract class AbstractDataErrors {
 	 * @return	boolean	true:	Wert ist bereits enthalten
 	 * 					false:	Wert ist noch nicht enthalten
 	 */
-	public boolean alreadyInUse(String table, String col, String value) {
+	public boolean inDb(String table, String col, String value) {
 		final String SQL_SELECT_STRING =
 				"SELECT * FROM " + table + " WHERE " + col + " = :value";
 		// Parameter zuweisen
