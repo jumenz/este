@@ -14,22 +14,21 @@ import fhwedel.medienprojekt.fussball.model.user.User;
  * @author Ellen
  *
  */
-public class DataErrorsUsers {
-	/* ----------------------- Klassenvariablen --------------------------------- */
-	/** Error Messages */
-	final String ERROR_EMPTY_USERNAME 		= "Username darf nicht leer sein.";
-	final String ERROR_EMPTY_EMAIL 			= "Die Email darf nicht leer sein.";
-	final String ERROR_EMPTY_PASSWORD 		= "Fülle bitte beide Passwortfelder aus.";
-	final String ERROR_PASSWORD_MISSMATCH 	= "Die Passwortfelder passen nicht zusammen.";
-	final String ERROR_PASSWORD_LENGTH 		= "Das Passwort muss zwischen 5 und 50 Zeichen lang sein.";
-			
-	/* ------------------ Konstruktorfunktionen -----------------------------------*/
+public class DataErrorsUsers extends AbstractDataErrors {
+	/* ------------------ Konstanten -------------------------------------------- */
+	final String placeholderUsername = "Username";
+	final String placeholderEmail = "E-Mail Adresse";
+	final String placeholderPassword = "passwort";
+	
+	/* ------------------ Konstruktorfunktionen --------------------------------- */
 	/**
 	 * Default-Konstruktor.
 	 */
 	public DataErrorsUsers() {}
 	
 	/* ---------------------------- Fehlerbehandlung ----------------------------------- */
+
+	
 	/**
 	 * Prüft ob ein User Objekt Fehler aufweist.
 	 * @param newUser		User neuer User
@@ -54,10 +53,10 @@ public class DataErrorsUsers {
 	public boolean validUsername(User newUser, BindingResult bindingResult) {
 		boolean errorState = false;
 		// Der Username darf nicht leer sein
-		if((newUser.getUsername().compareTo("") == 0) || (newUser.getUsername().compareTo("Username") == 0)) {
-			bindingResult.rejectValue("username", this.ERROR_EMPTY_USERNAME);
+		if(this.isEmpty(newUser.getUsername(), this.placeholderUsername)) {
+			bindingResult.rejectValue("username", "error.username.empty");
 			errorState = true;
-		}
+		} // else if (this.alreadyInUse(, col, value))
 		return errorState;
 	}
 	
@@ -70,16 +69,18 @@ public class DataErrorsUsers {
 	 */
 	public boolean validPassword(User newUser, BindingResult bindingResult) {
 		boolean errorState = false;
-		// Beide Passwortfelder müssen ausgefüllt, gleich 
-		// und zwischen 5 und 50 Zeichen lang sein
-		if((newUser.getPassword().compareTo("") == 0) || (newUser.getPasswordCompare().compareTo("") == 0)) {
-			bindingResult.rejectValue("password", this.ERROR_EMPTY_PASSWORD);
+		if(this.isEmpty(newUser.getPassword(), this.placeholderPassword) 
+			|| this.isEmpty(newUser.getPasswordCompare(), this.placeholderPassword)) {
+			// Eines der Passwortfelder ist leer oder enthält den Placeholder
+			bindingResult.rejectValue("password", "error.password.empty");
 			errorState = true;
-		} else if(!newUser.getPassword().equals(newUser.getPasswordCompare())) {
-			bindingResult.rejectValue("password", this.ERROR_PASSWORD_MISSMATCH);
+		} else if(!this.areSame(newUser.getPassword(), newUser.getPasswordCompare())) {
+			// Passwörter passen nicht zusammen
+			bindingResult.rejectValue("password", "error.password.missmatch");
 			errorState = true;
-		} else if (newUser.getPassword().length()<5 || newUser.getPassword().length()>50) {
-			bindingResult.rejectValue("password", this.ERROR_PASSWORD_LENGTH);
+		} else if (this.checkLength(newUser.getPassword(), 5, 50)) {
+			// Passwort ist zu kurz oder zu lang
+			bindingResult.rejectValue("password", "error.password.length");
 			errorState = true;
 		}
 		return errorState;
