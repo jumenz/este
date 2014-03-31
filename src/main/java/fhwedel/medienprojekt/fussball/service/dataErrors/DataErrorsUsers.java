@@ -18,7 +18,7 @@ public class DataErrorsUsers extends AbstractDataErrors {
 	/* ------------------ Konstanten -------------------------------------------- */
 	final String placeholderUsername = "Username";
 	final String placeholderEmail = "E-Mail Adresse";
-	final String placeholderPassword = "passwort";
+	final String placeholderPassword = "Passwort";
 	
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
 	/**
@@ -28,7 +28,6 @@ public class DataErrorsUsers extends AbstractDataErrors {
 	
 	/* ---------------------------- Fehlerbehandlung ----------------------------------- */
 
-	
 	/**
 	 * Prüft ob ein User Objekt Fehler aufweist.
 	 * @param newUser		User neuer User
@@ -38,52 +37,80 @@ public class DataErrorsUsers extends AbstractDataErrors {
 	 */
 	public boolean hasErrors(User newUser, BindingResult bindingResult) {
 		// Username, Passwort und Email-Adresse auf Fehler prüfen
-		// Verkürzte Auswertung durch ||
-		return this.validUsername(newUser, bindingResult) 
-				|| this.validPassword(newUser, bindingResult);
+		// Verkürzte Auswertung durch ||, allerdings alle Fehler anzeigen über &&
+		return !this.validUsername(newUser.getUsername(), bindingResult) 
+				|| !this.validEmail(newUser.getEmail(), bindingResult)
+				|| !this.validPassword(newUser.getPassword(), newUser.getPasswordCompare(), bindingResult);
 	}
 	
 	/**
 	 * Prüft den Username auf Fehler.
-	 * @param newUser		User neuer User
-	 * @param bindingResult	BindingResult
-	 * @return	boolean		true: Fehler vorhanden
-	 * 						false: keine Fehler vorhanden
+	 * @param newUser		User 			neuer User
+	 * @param bindingResult	BindingResult	zum anfügen von Fehlern
+	 * @return	boolean		true: 			keine Fehler vorhanden
+	 * 						false: 			Fehler vorhanden
 	 */
-	public boolean validUsername(User newUser, BindingResult bindingResult) {
-		boolean errorState = false;
-		// Der Username darf nicht leer sein
-		if(this.isEmpty(newUser.getUsername(), this.placeholderUsername)) {
+	public boolean validUsername(String username, BindingResult bindingResult) {
+		boolean isValid = false;
+		// Der Username darf nicht leer oder schon vergeben sein
+		if(this.isEmpty(username, this.placeholderUsername)) {
 			bindingResult.rejectValue("username", "error.username.empty");
-			errorState = true;
-		} // else if (this.alreadyInUse(, col, value))
-		return errorState;
+		} else if (this.alreadyInUse(Constants.dbUsers, Constants.dbUsersUsername, username)) {
+			bindingResult.rejectValue("username", "error.username.duplicate");
+		} else {
+			isValid = true;
+		}
+		return isValid;
 	}
 	
 	/**
 	 * Prüft das Passwort auf Fehler.
-	 * @param newUser		User neuer User
-	 * @param bindingResult	BindingResult
-	 * @return	boolean		true: Fehler vorhanden
-	 * 						false: keine Fehler vorhanden
+	 * @param 	pwd				String			Passwort
+	 * @param 	pwdCompare		String			Vergleichspasswort
+	 * @param 	bindingResult	BindingResult	zum anfügen von Fehlern
+	 * @return	boolean			true:			keine Fehler vorhanden
+	 * 							false: 			Fehler vorhanden
 	 */
-	public boolean validPassword(User newUser, BindingResult bindingResult) {
-		boolean errorState = false;
-		if(this.isEmpty(newUser.getPassword(), this.placeholderPassword) 
-			|| this.isEmpty(newUser.getPasswordCompare(), this.placeholderPassword)) {
-			// Eines der Passwortfelder ist leer oder enthält den Placeholder
+	public boolean validPassword(String pwd, String pwdCompare, BindingResult bindingResult) {
+		boolean isValid = false;
+		// Die Passwörter müssen zusammenpassen, dürfen nicht leer sein
+		// und müssen eine bestimmte Länge haben
+		if(this.isEmpty(pwd, this.placeholderPassword) || this.isEmpty(pwdCompare, this.placeholderPassword)) {
 			bindingResult.rejectValue("password", "error.password.empty");
-			errorState = true;
-		} else if(!this.areSame(newUser.getPassword(), newUser.getPasswordCompare())) {
-			// Passwörter passen nicht zusammen
+		} else if(!this.areSame(pwd, pwdCompare)) {
 			bindingResult.rejectValue("password", "error.password.missmatch");
-			errorState = true;
-		} else if (this.checkLength(newUser.getPassword(), 5, 50)) {
-			// Passwort ist zu kurz oder zu lang
+		} else if (!this.checkLength(pwd, 5, 50)) {
 			bindingResult.rejectValue("password", "error.password.length");
-			errorState = true;
+		} else {
+			isValid = true;
 		}
-		return errorState;
+		
+		return isValid;
 	}
 	
+	/**
+	 * Validiert die Email-Adresse eines neuen Users.
+	 * @param 	email			String	  		Email-Adresse
+	 * @param 	bindingResult	BindingResult	zum anfügen von Fehlern
+	 * @return	boolean			true:			Email ist valide
+	 * 							false:			Email ist nicht valide
+	 */
+	public boolean validEmail(String email, BindingResult bindingResult) {
+		boolean isValid = false;
+		// Die Emailadresse muss die Form einer EMail erfüllen 
+		// und darf nicht bereits registriert sein
+		if (this.isEmpty(email, this.placeholderEmail)) {
+			bindingResult.rejectValue("email", "error.email.empty");
+		} else if (!this.isEmail(email)) {
+			bindingResult.rejectValue("email", "error.email.invalid");
+		} else if (this.alreadyInUse(Constants.dbUsers, Constants.dbUsersEmail, email)) {
+			bindingResult.rejectValue("email", "error.email.duplicate");
+		} else if (!this.alreadyInUse(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
+			bindingResult.rejectValue("email", "error.email.permission");
+		} else {
+			isValid=true;
+		}
+		
+		return isValid;
+	}
 }

@@ -49,6 +49,7 @@ public class Constants {
 	static final String dbPermissions = "permissions";
 	static final String dbPermissionsId = dbColId;
 	static final String dbPermissionsEmail = dbColEmail;
+	static final String dbPermissionsAdminState = "admin_state";
 	
 	// Users
 	static final String dbUsers = "users";

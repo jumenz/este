@@ -39,6 +39,8 @@
 <c:set var="linkReportsEdit" value="${requestContextPath}/berichte/bearbeiten/"></c:set>
 <!-- Login und Registrierung -->
 <c:set var="linkRegister" value="${requestContextPath}/registrieren/"></c:set>
+<c:set var="linkRegisterNewPermission" value="${linkRegister}email-zulassen/"></c:set>
+<c:set var="linkRegisterUser" value="${linkRegister}user-speichern/"></c:set>
 <c:set var="linkLogin" value="${requestContextPath}/login/"></c:set>
 <c:set var="linkLogout" value="${requestContextPath}/logout/"></c:set>
 <!-- Impressum -->

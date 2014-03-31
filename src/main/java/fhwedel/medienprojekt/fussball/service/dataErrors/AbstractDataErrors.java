@@ -140,7 +140,7 @@ public abstract class AbstractDataErrors {
 	 */
 	public boolean alreadyInUse(String table, String col, String value) {
 		final String SQL_SELECT_STRING =
-				"SELECT col FROM " + table + "WHERE col = :value";
+				"SELECT * FROM " + table + " WHERE " + col + " = :value";
 		// Parameter zuweisen
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("value", value);

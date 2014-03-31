@@ -25,8 +25,6 @@ import fhwedel.medienprojekt.fussball.model.user.User;
  */
 public class DataAccessPermissions extends AbstractDataAccess {
 	/* ----------------------- Klassenvariablen --------------------------------- */
-	/** Name der Datenbank tabelle */
-	private final String tablePermissions = "permissions";
 	/**
 	 * Permission Mapper
 	 */
@@ -69,9 +67,12 @@ public class DataAccessPermissions extends AbstractDataAccess {
 	 */
 	public void save(Permission permission) {
 		/* SQL Befehl*/
-		final String SQL_INSERT_NEW_PERMISSION = "INSERT INTO " + this.tablePermissions 
-												 + " (email, admin_state) "
-												 + "VALUES (:email, :admin_state)";
+		final String SQL_INSERT_NEW_PERMISSION = 
+				"INSERT INTO " + Constants.dbPermissions 
+				+ " ("
+				+ Constants.dbPermissionsEmail + ", "
+				+ Constants.dbPermissionsAdminState
+				+ ") VALUES (:email, :admin_state)";
 
 		// TODO Verschlüsselung
 		/* Werte Namen zuweisen */
@@ -92,7 +93,11 @@ public class DataAccessPermissions extends AbstractDataAccess {
 	 */
 	private ArrayList<Permission> getPermissionData(User user) {
 		// Die Email-Adresse des Users muss in der Permission-Tabelle eingetragen sein
-		final String SQL_GET_PERMISSION = "SELECT * FROM " + this.tablePermissions + " WHERE (email = :email)";
+		final String SQL_GET_PERMISSION = 
+				"SELECT * FROM " + Constants.dbPermissions 
+				+ " WHERE ("
+				+ Constants.dbPermissionsEmail
+				+ " = :email)";
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("email", user.getEmail());
@@ -147,17 +152,19 @@ public class DataAccessPermissions extends AbstractDataAccess {
 	 * @return	Permission
 	 */
 	public Permission getPermissionById(int id) {
-		final String SQL_SELECT_PERMISSION_BY_ID = "SELECT * FROM " + Constants.dbPermissions +  " WHERE (id = :id)";
+		final String SQL_SELECT_PERMISSION_BY_ID = 
+				"SELECT * FROM " + Constants.dbPermissions 
+				+  " WHERE ("
+				+ Constants.dbPermissionsId
+				+ "= :id)";
 		/* Name-Wert Paare für Abfrage festlegen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("id", id);
 		
 		/* Auslesen und prüfen, dass genau ein Ergebnis vorliegt */
 		ArrayList<Permission> res = (ArrayList<Permission>) this.namedParameterJdbcTemplate.query(SQL_SELECT_PERMISSION_BY_ID, params, this.permissionMapper);
-		assert (!res.isEmpty()) : "Über die angegebene id konnte keine Permission gefunden werden";
-		assert (res.size() == 1) : "Über die angegebene id konnte keine eindeutige Permission gefunden werden.";
 		
-		return res.get(0);
+		return (res.isEmpty()) ? null : res.get(0);
 	}
 	
 	/**
@@ -165,8 +172,9 @@ public class DataAccessPermissions extends AbstractDataAccess {
 	 * @return ArrayList<Permission>	Liste aller Permissions
 	 */
 	public ArrayList<Permission> getAll() {
-		// Alle Foren-Einträge aus Datenbank auslesen
-		final String SQL_SELECT_ALL_PERMISSIONS = "SELECT * FROM " + this.tablePermissions;
+		// Alle Permissions aus Datenbank auslesen
+		final String SQL_SELECT_ALL_PERMISSIONS = 
+				"SELECT * FROM " + Constants.dbPermissions;
 		
 		return (ArrayList<Permission>) namedParameterJdbcTemplate.query(
 				SQL_SELECT_ALL_PERMISSIONS,
@@ -182,17 +190,22 @@ public class DataAccessPermissions extends AbstractDataAccess {
 	public void changeUserStatus(int id) {
 		final String SQL_UPDATE_USER_STATUS = 
 				"UPDATE " + Constants.dbPermissions 
-				+ " SET admin_state = :admin_state WHERE (id = :id)";
+				+ " SET "
+				+ Constants.dbPermissionsAdminState
+				+ " = :admin_state WHERE ("
+				+ Constants.dbPermissionsId
+				+ " = :id)";
 		
 		Permission res = this.getPermissionById(id);
-		
-		/* Name-Wert Paare für Abfrage festlegen */
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		params.put("admin_state", !res.getAdminStatus());
-		
-		/* Datensatz updaten und Nummer an betroffenen Reihen auf 1 überprüfen */
-		this.namedParameterJdbcTemplate.update(SQL_UPDATE_USER_STATUS, params);
+		if (res != null) {
+			/* Name-Wert Paare für Abfrage festlegen */
+			Map<String,Object> params = new HashMap<String,Object>();
+			params.put("id", id);
+			params.put("admin_state", !res.getAdminStatus());
+			
+			/* Datensatz updaten und Nummer an betroffenen Reihen auf 1 überprüfen */
+			this.namedParameterJdbcTemplate.update(SQL_UPDATE_USER_STATUS, params);
+		}
 	}
 
 	/* ----------------- Löschen -------------------------- */
@@ -201,7 +214,11 @@ public class DataAccessPermissions extends AbstractDataAccess {
 	 * @param 	id	id der Erlaubnis, die gelöscht werden soll
 	 */
 	public void remove(int id) {
-		final String SQL_DELETE_PERMISSION = "DELETE FROM " + this.tablePermissions + " WHERE (id = :id)";
+		final String SQL_DELETE_PERMISSION = 
+				"DELETE FROM " + Constants.dbPermissions 
+				+ " WHERE ("
+				+ Constants.dbPermissionsId
+				+ " = :id)";
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("id", id);

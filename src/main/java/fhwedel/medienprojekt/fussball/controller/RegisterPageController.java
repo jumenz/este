@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import fhwedel.medienprojekt.fussball.model.user.User;
 import fhwedel.medienprojekt.fussball.model.user.UserGroup;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessPermissions;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
+import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsPermissions;
 import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers;
 import fhwedel.medienprojekt.fussball.model.user.Permission;
 import fhwedel.medienprojekt.fussball.controller.Constants;
@@ -37,9 +39,13 @@ public class RegisterPageController {
 	@Autowired
 	private DataAccessPermissions dataAccessPermissions;
 	
-	/** Service zum prüfen von Errors */
+	/** Service zum Prüfen von Errors neuer User */
 	@Autowired
-	private DataErrorsUsers dataErrors;
+	private DataErrorsUsers dataErrorsUsers;
+	
+	/** Service zum Prüfen von Fehlern beim Anlegen neuer Permissions */
+	@Autowired
+	private DataErrorsPermissions dataErrorsPermissions;
 	
 	/* ------------- Anzeige ------------------------------ */
 	/**
@@ -72,23 +78,21 @@ public class RegisterPageController {
 	/**
 	 * Registriert einen neuen User mit der Vorraussetzund, dass dessen 
 	 * eMail-Adresse zugelassen wurde.
-	 * @param newUser
-	 * @param bindingResult
-	 * @param model
-	 * @return
+	 * @param 	newUser			User			neuer User
+	 * @param 	bindingResult	BindingResult
+	 * @param 	model			Model
+	 * @return	String			Viewname der JSP oder Redirect auf Homeseite
 	 */
 	@RequestMapping(value=Constants.linkRegisterSaveUser, method=RequestMethod.POST)
-	public String register(User newUser, BindingResult bindingResult, Model model, Errors errors) {
+	public String register(@ModelAttribute("newUser") User newUser, BindingResult bindingResult, Model model, Errors errors) {
 		// Bei Fehlern wieder auf Formular redirecten
-		boolean hasErrors = this.dataErrors.hasErrors(newUser, bindingResult);
+		boolean hasErrors = this.dataErrorsUsers.hasErrors(newUser, bindingResult);
 		if(bindingResult.hasErrors() || hasErrors) {
-			model.addAttribute("newUser", newUser);
 			// TODO nur wenn Admin
 			model.addAttribute("newPermission", new Permission());
 			// TODO nur wenn Admin
 			model.addAttribute("allPermissions", this.dataAccessPermissions.getAll());
 			
-			model.addAttribute("bindingResult", bindingResult);
 			return Constants.viewNameRegister;
 		}
 
@@ -111,15 +115,22 @@ public class RegisterPageController {
 	 * Speichert eine EMail in der Permission Tabelle, um die EMail-Adresse 
 	 * zur Registrierung zuzulassen.
 	 * @param 	newPermission		Permission		Neue Registrierungszulassung
+	 * 				@ModelAttribute sorgt dafür, dass bei Fehlern die alte Permission
+	 * 				bereitgestellt wird
 	 * @param 	bindingResult		BindingResult
 	 * @param 	model				Model
 	 * @return	String				Redirect auf Registrierungsseite
 	 */
 	@RequestMapping(value=Constants.linkRegisterNewPermission, method=RequestMethod.POST)
-	public String addPermission(Permission newPermission, BindingResult bindingResult, Model model) {
+	public String addPermission(@ModelAttribute("newPermission") Permission newPermission, BindingResult bindingResult, Model model) {
 		// Bei Fehlern wieder auf Formular redirecten
-		if(bindingResult.hasErrors()) {
-			return this.prepareRegisterDisplay(model);
+		if(bindingResult.hasErrors() || this.dataErrorsPermissions.hasErrors(newPermission, bindingResult)) {
+			// Andere Bestandteile bereitstellen, die keine Fehler enthalten
+			// neues User Objekt zugreifbar machen
+			model.addAttribute("newUser", new User());
+			// TODO nur wenn Admin
+			model.addAttribute("allPermissions", this.dataAccessPermissions.getAll());
+			return Constants.viewNameRegister;
 		}
 		
 		// User speichern, wenn dieser zur Registrierung zugelassen wurde
@@ -137,7 +148,7 @@ public class RegisterPageController {
 	@RequestMapping(value=Constants.linkRegisterChangeUserStatus + "{id}/", method=RequestMethod.GET)
 	public String changeUserState(@PathVariable int id) {
 		// User und Permission updaten
-		this.dataAccessUsers.changeUserStatus(id);
+		this.dataAccessUsers.changeUserStatus(id);	
 		this.dataAccessPermissions.changeUserStatus(id);
 		
 		return Constants.redirectRegister;

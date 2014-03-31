@@ -23,7 +23,7 @@
                          <div class="main-content-box box-borders bg clearfix">
                              <h2 class="box-title">Registrieren</h2>
                              <div class="box-body">
-								<sf:form action="${linkRegister}user-speichern/" method="POST" modelAttribute="newUser">
+								<sf:form action="${linkRegisterUser}" method="POST" modelAttribute="newUser">
 									<fieldset>
 										<!-- Username -->
 										<sf:input 	path="username"
@@ -33,7 +33,6 @@
 										/><br>
 										<!-- Fehlermeldung für den Username -->
 										<sf:errors path="username" cssClass="error"/><br>
-										<c:out value="${bindingResult.fieldErrors}"></c:out>
 										<!-- E-Mail Adresse -->
 										<sf:input 	path="email"
 													data-default="E-Mail Adresse"
@@ -70,7 +69,7 @@
                          <div class="main-content-box box-borders bg clearfix">
                              <h2 class="box-title">Neue Email zulassen</h2>
                              <div class="box-body">
-								<sf:form action="email-zulassen/" method="POST" modelAttribute="newPermission">
+								<sf:form action="${linkRegisterNewPermission}" method="POST" modelAttribute="newPermission">
 									<fieldset>
 										<!-- E-Mail Adresse -->
 										<sf:input 	path="email"

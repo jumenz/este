@@ -72,9 +72,10 @@ public class DataAccessComments extends AbstractDataAccess {
 	public void mapParams(Comment comment, int ref, Map<String,Object> params, boolean updateDate) {
 		/* Werte Namen zuweisen */
 		Date date = (updateDate) ? new Date() : comment.getDate();
-		params.put("author", comment.getAuthor());
-		params.put("text", comment.getText());
-		params.put("ref", ref);
+		params.put(Constants.dbCommentsDate, date);
+		params.put(Constants.dbCommentsAuthor, comment.getAuthor());
+		params.put(Constants.dbCommentsText, comment.getText());
+		params.put(Constants.dbCommentsRef, ref);
 	}
 	
 	/* ----------------------- Speichern -------------------------------------- */
@@ -86,8 +87,12 @@ public class DataAccessComments extends AbstractDataAccess {
 	public void saveComment(Comment newComment, int idForumEntry) {
 		final String SQL_SAVE_COMMENT = 
 				"INSERT INTO " + Constants.dbComments 
-				+ " (date, author, text, ref) "
-				+ "VALUES (:date, :author, :text, :ref)";
+				+ " ("
+				+ Constants.dbCommentsDate 		+ ","
+				+ Constants.dbCommentsAuthor 	+ ","
+				+ Constants.dbCommentsText		+ ","
+				+ Constants.dbCommentsRef
+				+ ") VALUES (:date, :author, :text, :ref)";
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		mapParams(newComment, idForumEntry, params, true);
@@ -103,7 +108,9 @@ public class DataAccessComments extends AbstractDataAccess {
 	 */
 	public void deleteComment(int id) {
 		final String SQL_DELETE_REPORT_BY_ID = 
-				"DELETE FROM " + Constants.dbComments + " WHERE id=:id";
+				"DELETE FROM " + Constants.dbComments 
+				+ " WHERE " 
+				+ Constants.dbCommentsId + "=:id";
 		
 		// ID setzen
 		Map<String,Object> params = new HashMap<String,Object>();
@@ -134,7 +141,9 @@ public class DataAccessComments extends AbstractDataAccess {
 	 */
 	public ArrayList<Comment> getComments(Integer id) {
 		final String SQL_SELECT_COMMENTS_OF_FORUM_ENTRY = 
-				"SELECT * FROM " + Constants.dbComments + " WHERE (ref = :ref) ORDER BY date ASC";
+				"SELECT * FROM " + Constants.dbComments + " WHERE ("
+				+ Constants.dbCommentsRef
+				+ "= :ref) ORDER BY date ASC";
 		// Parameter zuweisen
 		SqlParameterSource namedParameters = new MapSqlParameterSource("ref", Integer.valueOf(id));
 		// SQL Abfrage ausführen und Ergebnis auf einen Foren-Eintrag mappen
