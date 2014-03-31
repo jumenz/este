@@ -132,7 +132,7 @@
 	                        		String str = "" + (char) c;
 	                        	%>
 	                                <li>
-	                                    <a href=<%= str %> id=<%= "item-" + str %> class="timer-link">
+	                                    <a href=<%= "#" + str %> id=<%= "item-" + str %> class="timer-link">
 	                                        <div class="list-item bg">
 	                                            <span><%= str %></span>
 	                                        </div>

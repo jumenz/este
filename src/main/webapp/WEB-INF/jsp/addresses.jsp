@@ -1,4 +1,6 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
+<c:set var="isAdmin" value="true"/>
+<c:set var="userMail" value="ellen@example.com"/>
 <html>
 <jsp:include page="./includes/head.jsp">
 	<jsp:param name="title" value="Adressbuch"/>
@@ -44,176 +46,177 @@
                         <div class="main-content-box box-borders-top bg clearfix">
                             <h2 class="box-title link" >Alle</h2>
                             <a class="right box-link"
-                               href="mailto:${user.email}"> <!-- TODO an alle mailto:ABSENDER?bcc=EMAIL,%20EMAIL&amp;subject=Este%2006/70%20-%20Frauen -->
+                               href="mailto:${userMail}"> <!-- ?bcc=EMAIL,%20EMAIL&amp;subject=Este%2006/70%20-%20Frauen"> -->
                             	<span>E-Mail</span>
                             </a>
 							<div id="submit-${status.index}" class="box-link forward-raquo menu-link right toggle"></div>
                         </div>
                     </li>
-					<!-- Edit address form -->
-					<c:set var="updateAddress" value="${updateAddress}"/>
-					<sf:form action="${linkAddressesEdit}${address.id}/" method="POST" modelAttribute="updateAddress">
-					<!-- all entries -->
-						<c:forEach var="address" items="${addressModel.entries}" varStatus="status">
-							<li class="one-col">
+					<c:choose>
+						<c:when test="${addressModel.entries.isEmpty()}"><c:set var="abc" value="${addressModel.entries.get(0).name.charAt(0)}"/></c:when>
+						<c:otherwise><c:set var="abc" value=""/></c:otherwise>
+					</c:choose>
+					<c:forEach var="address" items="${addressModel.entries}" varStatus="status">
+						<c:set var="firstLetter" value="${address.name.charAt(0)}"/>
+                        <c:choose>
+							<c:when test="${status.index} != 0 && ${abc} == ${firstLetter}"><c:set var="anchor" value=""/></c:when>
+							<c:otherwise><c:set var="anchor" value="${firstLetter}"/></c:otherwise>
+						</c:choose>
+						<!-- Edit address form for each address-->
+						<c:set var="updateAddressModel" value="${updateAddressModel}"/>
+						<sf:form action="${linkAddressesEdit}${address.id}/" method="POST" modelAttribute="updateAddressModel">				
+							<li class="one-col" id="${anchor}">
 								<div  class="main-content-box box-borders-top bg clearfix toggle-item">
 									<h2 class="box-title link toggle" id="full-name-${address.id}" >${address.name}, ${address.prename}</h2>
 									<a class="right box-link" href="mailto:MAIL"><!-- TOD0 MAIL -->
 	                                    <span>E-Mail</span>
 	                                </a>
 									<div id="submit-${status.index}" class="box-link forward-raquo menu-link right toggle"></div>
+									<!-- TOD0 if admin or id==id -->
+									<div class="toggle-content box-borders-bottom box-body" style="display: none">
+									    <ul>
+									        <li class="first two-col">
+									            <fieldset class="first">
+									                <div class="form-item">
+									                    <p class="input">
+															<sf:input 	path="prename"
+																		data-default="Vorname *"
+																		id="prename"
+																		value="${address.prename}"
+																		class="input input-text required-entry"
+															/><br>
+															<sf:errors path="prename" cssClass="error"/>
+									                    </p>
+									                </div>
+									                <div class="form-item">
+									                    <p class="input">
+															<sf:input 	path="name"
+																		id="name"
+																		data-default="Name *"
+																		value="${address.name}"
+																		class="input input-text required-entry"
+															/><br>
+															<sf:errors path="name" cssClass="error"/>
+									                    </p>
+									                </div>
+									                <div class="form-item">
+									                    <p class="input">
+															<sf:input 	path="street"
+																		id="street"
+																		data-default="Straße"
+																		value="${address.street}"
+																		class="input input-text"
+															/><br>
+															<sf:errors path="street" cssClass="error"/>
+															<sf:input 	path="nr"
+																		id="nr"
+																		data-default="Nr."
+																		value="${address.nr}"
+																		class="input input-text"
+															/><br>
+															<sf:errors path="nr" cssClass="error"/>
+									                    </p>
+									                </div>
+									                <div class="form-item">
+									                    <p class="input">
+															<sf:input 	path="zipcode"
+																		id="zipcode"
+																		data-default="PLZ"
+																		value="${address.zipcode}"
+																		class="input input-text"
+															/><br>
+															<sf:errors path="zipcode" cssClass="error"/>
+															<sf:input 	path="city"
+																		id="city"
+																		data-default="Ort"
+																		value="${address.city}"
+																		class="input input-text"
+															/><br>
+															<sf:errors path="city" cssClass="error"/>
+									                    </p>
+									                </div>
+									            </fieldset>
+									        </li>
+									        <li class="last two-col">
+									            <fieldset class="last clearfix">
+									                <div class="form-item">
+									                    <p class="input">
+															<sf:input 	path="phone"
+																		id="phone"
+																		data-default="Festnetznummer (040-123456)"
+																		value="${address.phone}"
+																		class="input input-text"
+															/><br>
+															<sf:errors path="phone" cssClass="error"/>
+									                    </p>
+									                </div>
+									                <div class="form-item">
+									                     <p class="input">
+															<sf:input 	path="mobile"
+																		id="mobile"
+																		data-default="Handynummer (0160-123456)"
+																		value="${address.mobile}"
+																		class="input input-text"
+															/><br>
+															<sf:errors path="mobile" cssClass="error"/>
+									                    </p>
+									                </div>
+									                <div class="form-item">
+									                     <p class="input">
+															<sf:input 	path="birthday"
+																		id="birthday"
+																		data-default="Geburtsdatum"
+																		value="${address.birthday}"
+																		class="input input-text"
+															/><br>
+															<sf:errors path="birthday" cssClass="error"/>
+									                    </p>
+									                </div>
+									            </fieldset>
+									        </li>
+									    </ul>
+									    <hr />
+									    <fieldset id="buttons">
+									        <div class="form-submit">
+									            <p id="required">* Pflichtfelder</p>
+									            <p>
+									                <sf:input 	path="id"
+																id="id"
+																value="${address.id}"
+																class="input input-text hidden"
+																cssStyle="display:none"
+													/>
+								                    <button class="dark-bg" type="reset" name="reset" value="reset"><div class="forward-raquo menu-link right"></div>Zurücksetzen</button>
+								                    <button class="dark-bg" type="submit" name="commit" value="delete"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
+								                    <button class="dark-bg" type="submit" name="commit" value="update"><div class="forward-raquo menu-link right"></div>Aktualisieren</button>
+								                </p>
+								            </div>
+								        </fieldset>
+									</div>
+									<!-- TOD0 else 
+									<div class="box-body toggle-content box-borders-bottom" style="display: none;">
+										<p>
+										    ${address.prename}&nbsp;${address.name}<br />
+										    ${address.street}&nbsp;<c:if test="${address.nr}!=0">${address.nr}</c:if><br />
+										    <c:if test="${address.zipcode}!=0">${address.zipcode}&nbsp;</c:if>${address.city}<br />
+										    <a href="mailto:${user.email}">${user.email}</a><br />
+										    ${address.mobile}<br />
+										    ${address.phone}<br /><br />
+										    ${address.birthday}
+									    </p>
+									</div>
+									-->
+									<!-- TOD0 endif -->
 								</div>
-								<!-- TOD0 if admin or id==id -->
-								<div class="toggle-content box-borders-bottom box-body" style="display: none">
-								    <ul>
-								        <li class="first two-col">
-								            <fieldset class="first">
-								                <div class="form-item">
-								                    <p class="input">
-														<sf:input 	path="prename"
-																	data-default="Vorname *"
-																	id="prename"
-																	value="${address.prename}"
-																	class="input input-text required-entry"
-														/><br>
-														<sf:errors path="prename" cssClass="error"/>
-								                    </p>
-								                </div>
-								                <div class="form-item">
-								                    <p class="input">
-														<sf:input 	path="name"
-																	id="name"
-																	data-default="Name *"
-																	value="${address.name}"
-																	class="input input-text required-entry"
-														/><br>
-														<sf:errors path="name" cssClass="error"/>
-								                    </p>
-								                </div>
-								                <div class="form-item">
-								                    <p class="input">
-														<sf:input 	path="street"
-																	id="street"
-																	data-default="Straße"
-																	value="${address.street}"
-																	class="input input-text"
-														/><br>
-														<sf:errors path="street" cssClass="error"/>
-														<sf:input 	path="nr"
-																	id="nr"
-																	data-default="Nr."
-																	value="${address.nr}"
-																	class="input input-text"
-														/><br>
-														<sf:errors path="nr" cssClass="error"/>
-								                    </p>
-								                </div>
-								                <div class="form-item">
-								                    <p class="input">
-														<sf:input 	path="zipcode"
-																	id="zipcode"
-																	data-default="PLZ"
-																	value="${address.zipcode}"
-																	class="input input-text"
-														/><br>
-														<sf:errors path="zipcode" cssClass="error"/>
-														<sf:input 	path="city"
-																	id="city"
-																	data-default="Ort"
-																	value="${address.city}"
-																	class="input input-text"
-														/><br>
-														<sf:errors path="city" cssClass="error"/>
-								                    </p>
-								                </div>
-								            </fieldset>
-								        </li>
-								        <li class="last two-col">
-								            <fieldset class="last clearfix">
-								                <div class="form-item required">
-								                    <p class="input">
-														<sf:input 	path="email"
-																	id="email"
-																	data-default="E-Mail *"
-																	value="${address.email}"
-																	class="input input-text required-entry"
-														/><br>
-														<sf:errors path="email" cssClass="error"/>
-								                    </p>
-								                </div>
-								                <div class="form-item">
-								                    <p class="input">
-														<sf:input 	path="phone"
-																	id="phone"
-																	data-default="Festnetznummer (040-123456)"
-																	value="${address.phone}"
-																	class="input input-text"
-														/><br>
-														<sf:errors path="phone" cssClass="error"/>
-								                    </p>
-								                </div>
-								                <div class="form-item">
-								                     <p class="input">
-														<sf:input 	path="mobile"
-																	id="mobile"
-																	data-default="Handynummer (0160-123456)"
-																	value="${address.mobile}"
-																	class="input input-text"
-														/><br>
-														<sf:errors path="mobile" cssClass="error"/>
-								                    </p>
-								                </div>
-								                <div class="form-item">
-								                     <p class="input">
-														<sf:input 	path="birthday"
-																	id="birthday"
-																	data-default="Geburtsdatum"
-																	value="${address.birthday}"
-																	class="input input-text"
-														/><br>
-														<sf:errors path="birthday" cssClass="error"/>
-								                    </p>
-								                </div>
-								            </fieldset>
-								        </li>
-								    </ul>
-								    <hr />
-								    <fieldset id="buttons">
-								        <div class="form-submit">
-								            <p id="required">* Pflichtfelder</p>
-								            <p>
-								                <sf:input 	path="id"
-															id="id"
-															value="${address.id}"
-															class="input input-text hidden"
-															cssStyle="display:none"
-												/>
-							                    <button class="dark-bg" type="reset" name="reset" value="reset"><div class="forward-raquo menu-link right"></div>Zurücksetzen</button>
-							                    <button class="dark-bg" type="submit" name="commit" value="delete"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
-							                    <button class="dark-bg" type="submit" name="commit" value="update"><div class="forward-raquo menu-link right"></div>Aktualisieren</button>
-							                </p>
-							            </div>
-							        </fieldset>
-								</div>
-								<!-- TOD0 else 
-								<div class="box-body toggle-content box-borders-bottom" style="display: none;">
-									<p>
-									    ${address.prename}&nbsp;${address.name}<br />
-									    ${address.street}&nbsp;<c:if test="${address.nr}!=0">${address.nr}</c:if><br />
-									    <c:if test="${address.zipcode}!=0">${address.zipcode}&nbsp;</c:if>${address.city}<br />
-									    <a href="mailto:${user.email}">${user.email}</a><br />
-									    ${address.mobile}<br />
-									    ${address.phone}<br /><br />
-									    ${address.birthday}
-								    </p>
-								</div>
-								-->
-								<!-- TOD0 endif -->
 							</li>
-						</c:forEach>
-						<!-- end all entries -->
-				    </sf:form>
-					<!-- end edit address form -->
+					    </sf:form>
+						<!-- end edit address form -->
+						<c:choose>
+							<c:when test="${abc} != ${firstLetter}"><c:set var="abc" value="${firstLetter}"/></c:when>
+							<c:otherwise><c:set var="abc" value="${abc}"/></c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<!-- end all entries -->
 				</ul>
                 <!-- end Contentbox One-Col Dropdown -->
             </div>

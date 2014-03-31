@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
 import fhwedel.medienprojekt.fussball.model.user.addresses.Address;
@@ -62,6 +63,16 @@ public class AddressesController {
 		return this.prepareAddressesDisplay(model);
 	}
 
+	/**
+	 * Liefert Foreneinträge, die mit bestimmtem String beginnen.
+	 * @param	letter		String		gesuchter Anfangsstring
+	 * @param	model	Model
+	 */
+	@RequestMapping(value=Constants.linkAddresses + "{letter}", method=RequestMethod.GET)
+	public String getForumEntriesStartingWith(@PathVariable String letter, Model model) {
+		// Umleiten
+		return Constants.viewNameAddresses + "#" + letter + "/";
+	}
 	
 	/* --------------- neue Adresse eintragen ----------- */	
 	/**
