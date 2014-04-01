@@ -18,6 +18,7 @@ import fhwedel.medienprojekt.fussball.model.user.User;
  */
 public class DataErrorsPermissions extends AbstractDataErrors {
 	/* ------------------ Konstanten -------------------------------------------- */
+	/** placeholder in der jsp für das Email-Feld */
 	final String placeholderEmail = "E-Mail Adresse";
 	
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
@@ -27,20 +28,26 @@ public class DataErrorsPermissions extends AbstractDataErrors {
 	public DataErrorsPermissions() {}
 	
 	/* ---------------------------- Fehlerbehandlung ----------------------------------- */
-
+	/**
+	 * Überprüft, ob bei einer neuen Permisson Fehler
+	 * vorliegen, also die Email valide ist.
+	 * @param 	newPermission	Permission		neue Registrierungserlaubnis
+	 * @param 	bindingResult	BindingResult	zum anhängen der Fehler
+	 * @return	boolean			true:			es liegen Fehler vor
+	 * 							false:			es liegen keine Fehler vor
+	 */
 	public boolean hasErrors(Permission newPermission, BindingResult bindingResult) {
 		return !validEmail(newPermission.getEmail(), bindingResult);
 	}
 	
 	/**
 	 * Prüft eine Email Adresse auf Korrektheit.
-	 * @param	email		String			Email-Adresse
+	 * @param	email			String			Email-Adresse
 	 * @param 	bindingResult	BindingResult	zum anfügen von Fehlern
-	 * @return	boolean		true: 			Fehler vorhanden
-	 * 						false: 			keine Fehler vorhanden
+	 * @return	boolean			true: 			Fehler vorhanden
+	 * 							false: 			keine Fehler vorhanden
 	 */
 	public boolean validEmail(String email, BindingResult bindingResult) {
-		boolean errorState = false;
 		// Die Emailadresse muss die Form einer EMail erfüllen 
 		// und darf nicht bereits registriert sein
 		if (this.isEmpty(email, this.placeholderEmail)) {
@@ -49,10 +56,8 @@ public class DataErrorsPermissions extends AbstractDataErrors {
 			bindingResult.rejectValue("email", "error.permission.invalid");
 		} else if (this.inDb(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
 			bindingResult.rejectValue("email", "error.permission.duplicate");
-		} else {
-			errorState=true;
 		}
 		
-		return errorState;
+		return bindingResult.hasErrors();
 	}
 }

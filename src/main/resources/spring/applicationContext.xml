@@ -82,5 +82,11 @@
 	<bean id="DataErrorsLogin" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsLogin">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
+	<bean id="DataErrorsReports" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsReports">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsForum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsForum">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
     
 </beans>

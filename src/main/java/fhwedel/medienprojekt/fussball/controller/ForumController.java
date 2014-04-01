@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+
+
 
 
 
@@ -21,6 +24,7 @@ import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessComments;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessForum;
+import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsForum;
 import fhwedel.medienprojekt.fussball.controller.Constants;
 
 /**
@@ -31,12 +35,16 @@ import fhwedel.medienprojekt.fussball.controller.Constants;
 @Controller
 public class ForumController {
 	/* ------------------ Klassenvariablen ------------------- */
-	/** Service für die Datenbankarbeit */
+	/** Services für die Datenbankarbeit */
 	@Autowired
 	private DataAccessForum dataAccessForum;
 	
 	@Autowired 
 	private DataAccessComments dataAccessComments;
+	
+	/** Service für die Fehlerbehandlung */
+	@Autowired
+	private DataErrorsForum dataErrorsForum;
 	
 	/* ------------------ Methoden --------------------------- */
 	/* ------------------ Anzeige ---------------------------- */
@@ -130,9 +138,9 @@ public class ForumController {
 	 * @param	bindingResult	BindingResult
 	 */
 	@RequestMapping(value=Constants.linkForumNewEntry, method=RequestMethod.POST)
-	public String saveNewForumEntry(ForumEntry newEntry, BindingResult bindingResult) {
+	public String saveNewForumEntry(@ModelAttribute("forumEntry") ForumEntry newEntry, BindingResult bindingResult) {
 		// Bei Fehlern wieder auf Formular redirecten
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors() || this.dataErrorsForum.hasErrors(newEntry, bindingResult)) {
 			return Constants.viewNameForumNewEntry;
 		}
 		
@@ -164,9 +172,9 @@ public class ForumController {
 	 * @return
 	 */
 	@RequestMapping(value=Constants.linkForumEntryEdit, method=RequestMethod.POST)
-	public String edit(@PathVariable int id, ForumEntry forumEntry, BindingResult bindingResult) {
+	public String edit(@PathVariable int id, @ModelAttribute("forumEntry") ForumEntry forumEntry, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors() || this.dataErrorsForum.hasErrors(forumEntry, bindingResult)) {
 			return Constants.viewNameForum;
 		}
 		
