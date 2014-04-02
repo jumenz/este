@@ -37,17 +37,16 @@ public class DataErrorsPermissions extends AbstractDataErrors {
 	 * 							false:			es liegen keine Fehler vor
 	 */
 	public boolean hasErrors(Permission newPermission, BindingResult bindingResult) {
-		return !validEmail(newPermission.getEmail(), bindingResult);
+		validateEmail(newPermission.getEmail(), bindingResult);
+		return bindingResult.hasErrors();
 	}
 	
 	/**
 	 * Prüft eine Email Adresse auf Korrektheit.
 	 * @param	email			String			Email-Adresse
-	 * @param 	bindingResult	BindingResult	zum anfügen von Fehlern
-	 * @return	boolean			true: 			Fehler vorhanden
-	 * 							false: 			keine Fehler vorhanden
+	 * @param 	bindingResult	BindingResult	zum Anfügen von Fehlern
 	 */
-	public boolean validEmail(String email, BindingResult bindingResult) {
+	public void validateEmail(String email, BindingResult bindingResult) {
 		// Die Emailadresse muss die Form einer EMail erfüllen 
 		// und darf nicht bereits registriert sein
 		if (this.isEmpty(email, this.placeholderEmail)) {
@@ -57,7 +56,5 @@ public class DataErrorsPermissions extends AbstractDataErrors {
 		} else if (this.inDb(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
 			bindingResult.rejectValue("email", "error.permission.duplicate");
 		}
-		
-		return bindingResult.hasErrors();
 	}
 }

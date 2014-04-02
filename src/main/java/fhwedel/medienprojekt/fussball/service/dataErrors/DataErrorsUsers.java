@@ -38,29 +38,24 @@ public class DataErrorsUsers extends AbstractDataErrors {
 	public boolean hasErrors(User newUser, BindingResult bindingResult) {
 		// Username, Passwort und Email-Adresse auf Fehler prüfen
 		// Verkürzte Auswertung durch ||, allerdings alle Fehler anzeigen über &&
-		return !this.validUsername(newUser.getUsername(), bindingResult) 
-				|| !this.validEmail(newUser.getEmail(), bindingResult)
-				|| !this.validPassword(newUser.getPassword(), newUser.getPasswordCompare(), bindingResult);
+		this.validateUsername(newUser.getUsername(), bindingResult); 
+		this.validateEmail(newUser.getEmail(), bindingResult);
+		this.validatePassword(newUser.getPassword(), newUser.getPasswordCompare(), bindingResult);
+		return bindingResult.hasErrors();
 	}
 	
 	/**
 	 * Prüft den Username auf Fehler.
 	 * @param newUser		User 			neuer User
 	 * @param bindingResult	BindingResult	zum anfügen von Fehlern
-	 * @return	boolean		true: 			keine Fehler vorhanden
-	 * 						false: 			Fehler vorhanden
 	 */
-	public boolean validUsername(String username, BindingResult bindingResult) {
-		boolean isValid = false;
+	public void validateUsername(String username, BindingResult bindingResult) {
 		// Der Username darf nicht leer oder schon vergeben sein
 		if(this.isEmpty(username, this.placeholderUsername)) {
 			bindingResult.rejectValue("username", "error.username.empty");
 		} else if (this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
 			bindingResult.rejectValue("username", "error.username.duplicate");
-		} else {
-			isValid = true;
 		}
-		return isValid;
 	}
 	
 	/**
@@ -68,11 +63,8 @@ public class DataErrorsUsers extends AbstractDataErrors {
 	 * @param 	pwd				String			Passwort
 	 * @param 	pwdCompare		String			Vergleichspasswort
 	 * @param 	bindingResult	BindingResult	zum anfügen von Fehlern
-	 * @return	boolean			true:			keine Fehler vorhanden
-	 * 							false: 			Fehler vorhanden
 	 */
-	public boolean validPassword(String pwd, String pwdCompare, BindingResult bindingResult) {
-		boolean isValid = false;
+	public void validatePassword(String pwd, String pwdCompare, BindingResult bindingResult) {
 		// Die Passwörter müssen zusammenpassen, dürfen nicht leer sein
 		// und müssen eine bestimmte Länge haben
 		if(this.isEmpty(pwd, this.placeholderPassword) || this.isEmpty(pwdCompare, this.placeholderPassword)) {
@@ -81,22 +73,15 @@ public class DataErrorsUsers extends AbstractDataErrors {
 			bindingResult.rejectValue("password", "error.password.missmatch");
 		} else if (!this.checkLength(pwd, 5, 50)) {
 			bindingResult.rejectValue("password", "error.password.length");
-		} else {
-			isValid = true;
 		}
-		
-		return isValid;
 	}
 	
 	/**
 	 * Validiert die Email-Adresse eines neuen Users.
 	 * @param 	email			String	  		Email-Adresse
 	 * @param 	bindingResult	BindingResult	zum anfügen von Fehlern
-	 * @return	boolean			true:			Email ist valide
-	 * 							false:			Email ist nicht valide
 	 */
-	public boolean validEmail(String email, BindingResult bindingResult) {
-		boolean isValid = false;
+	public void validateEmail(String email, BindingResult bindingResult) {
 		// Die Emailadresse muss die Form einer EMail erfüllen 
 		// und darf nicht bereits registriert sein
 		if (this.isEmpty(email, this.placeholderEmail)) {
@@ -107,10 +92,6 @@ public class DataErrorsUsers extends AbstractDataErrors {
 			bindingResult.rejectValue("email", "error.email.duplicate");
 		} else if (!this.inDb(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
 			bindingResult.rejectValue("email", "error.email.permission");
-		} else {
-			isValid=true;
 		}
-		
-		return isValid;
 	}
 }

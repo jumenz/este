@@ -43,40 +43,35 @@ public class DataErrorsLogin extends AbstractDataErrors {
 	 * 						false: keine Fehler vorhanden
 	 */
 	public boolean hasErrors(User newUser, BindingResult bindingResult) {
-		return !this.validUsername(newUser.getUsername(), bindingResult)
-				|| !this.validPassword(newUser, bindingResult);
+		this.validateUsername(newUser.getUsername(), bindingResult);
+		this.validatePassword(newUser, bindingResult);
+		return bindingResult.hasErrors();
 	}
 	
 	/**
 	 * Prüft den Username auf Fehler.
 	 * @param newUser		User 			neuer User
-	 * @param bindingResult	BindingResult	zum anfügen von Fehlern
-	 * @return	boolean		true: Fehler vorhanden
-	 * 						false: keine Fehler vorhanden
+	 * @param bindingResult	BindingResult	zum Anfügen von Fehlern
 	 */
-	private boolean validUsername(String username, BindingResult bindingResult) {
+	private void validateUsername(String username, BindingResult bindingResult) {
 		// Der Username darf nicht leer oder schon vergeben sein
 		if (!this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
 			bindingResult.rejectValue("username", "error.login.username");
 		}
-		return !bindingResult.hasErrors();
 	}
 	
 	/**
 	 * Prüft das Passwort auf Fehler.
 	 * @param 	pwd				String			Passwort
 	 * @param 	pwdCompare		String			Vergleichspasswort
-	 * @param 	bindingResult	BindingResult	zum anfügen von Fehlern
-	 * @return	boolean		true: Fehler vorhanden
-	 * 						false: keine Fehler vorhanden
+	 * @param 	bindingResult	BindingResult	zum Anfügen von Fehlern
 	 */
-	private boolean validPassword(User user, BindingResult bindingResult) {
+	private void validatePassword(User user, BindingResult bindingResult) {
 		// Das Passwort muss dem der Datenbank entsprechen
 		ArrayList<User> dbUser = this.dataAccessUsers.getUserData(user.getUsername());
 		assert (dbUser.size() == 1);
 		if(!areSame(dbUser.get(0).getPassword(), user.getPassword())) {
 			bindingResult.rejectValue("password", "error.login.password");
 		}
-		return !bindingResult.hasErrors();
 	}
 }
