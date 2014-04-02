@@ -27,16 +27,16 @@
 									<fieldset>
 										<!-- Username -->
 										<sf:input 	path="username"
-													data-default="Username"
-													value="Username"
+													value="${newUser.username}"
+													placeholder="Username"
 													class="full-width"
 										/><br>
 										<!-- Fehlermeldung für den Username -->
 										<sf:errors path="username" cssClass="error"/><br>
 										<!-- E-Mail Adresse -->
 										<sf:input 	path="email"
-													data-default="E-Mail Adresse"
-													value="E-Mail Adresse"
+													value="${newUser.email}"
+													placeholder="E-Mail Adresse"
 													class="full-width"
 										/><br>
 										<!-- Fehlermeldung für die E-Mail Adresse -->
@@ -44,14 +44,14 @@
 										<!-- Passwort -->
 										<sf:input	path="password" 
 													type="password"
-													data-default="Passwort"
-													value="Passwort"
+													value="${newUser.password}"
+													placeholder="Passwort"
 													class="full-width"
 										/><br><br>
 										<sf:input	path="passwordCompare"
 													type="password"
-													data-default="Passwort"
-													value="Passwort"
+													value="${newUser.passwordCompare}"
+													placeholder="Passwort"
 													class="full-width"
 										/><br>
 										<!-- Fehlermeldung für das Passwort -->
@@ -73,7 +73,7 @@
 									<fieldset>
 										<!-- E-Mail Adresse -->
 										<sf:input 	path="email"
-													data-default="E-Mail Adresse"
+													placeholder="E-Mail Adresse"
 													value="E-Mail Adresse"
 													class="full-width"
 										/><br>

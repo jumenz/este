@@ -39,16 +39,16 @@
 									<fieldset>
 										<!-- Username -->
 										<sf:input 	path="username"
-													data-default="Username"
-													value="Username"
+													placeholder="Username"
+													value="${loginUser.username}"
 													class="full-width"
 										/><br>
 										<sf:errors path="username" cssClass="error"/><br>
 										<!-- Passwort -->
 										<sf:input	path="password" 
 													type="password"
-													data-default="Passwort"
-													value="Passwort"
+													placeholder="Passwort"
+													value="${loginUser.password}"
 													class="full-width"
 										/><br>
 										<!-- Fehlermeldung für den Login -->

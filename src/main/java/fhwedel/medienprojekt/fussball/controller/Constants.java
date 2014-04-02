@@ -66,10 +66,8 @@ public class Constants {
 	static final String viewNameWelcome = "welcome";
 	static final String viewNameAdresses = "adresses";
 	static final String viewNameForum = "forum";
-	static final String viewNameForumNewEntry = "forumNewEntry";
 	static final String viewNameForumEdit = "forumEntryEdit";
 	static final String viewNameReports = "reports";
-	static final String viewNameReportsNew = "reportNew";
 	static final String viewNameReportsEdit = "reportEdit";
 	static final String viewNameRegister = "register";
 	static final String viewNameAboutUs = "aboutUs";

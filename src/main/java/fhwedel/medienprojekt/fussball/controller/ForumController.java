@@ -129,7 +129,7 @@ public class ForumController {
 		// Neues ForumEntry Objekt in jsp zugreifbar machen
 		model.addAttribute(new ForumEntry());
 		// Formular laden
-		return Constants.viewNameForumNewEntry;
+		return Constants.viewNameForumEdit;
 	}
 	
 	/**
@@ -141,7 +141,7 @@ public class ForumController {
 	public String saveNewForumEntry(@ModelAttribute("forumEntry") ForumEntry newEntry, BindingResult bindingResult) {
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors() || this.dataErrorsForum.hasErrors(newEntry, bindingResult)) {
-			return Constants.viewNameForumNewEntry;
+			return Constants.viewNameForumEdit;
 		}
 		
 		// sonst speichern und Forum laden

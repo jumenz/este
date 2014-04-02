@@ -107,7 +107,7 @@ public class ReportsController {
 		// neues Report Objekt in jsp zugreifbar machen
 		model.addAttribute(new Report());
 		// jsp zum Erstellen eines neuen Berichts laden
-		return Constants.viewNameReportsNew;
+		return Constants.viewNameReportsEdit;
 	}
 	
 	/**
@@ -120,7 +120,7 @@ public class ReportsController {
 	public String save(@ModelAttribute("report") Report newReport, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
 		if(bindingResult.hasErrors()  || this.dataErrorsReports.hasErrors(newReport, bindingResult)) {
-			return Constants.viewNameReportsNew;
+			return Constants.viewNameReportsEdit;
 		}
 		
 		// Speichern und Spielberichte laden

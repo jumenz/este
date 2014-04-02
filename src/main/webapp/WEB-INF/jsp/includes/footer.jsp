@@ -16,8 +16,11 @@
 	<li> <!-- Login, bzw. Registrierung -->
 		<form method="post" name="footer-login-register-form" action="${linkLogin}">
 			<input class="buttom-invisible footer-space-bottom" type="submit" value="Login"><br>
-			<span class="footer-info"><input class="input-with-default" type="text" name="login-name" data-default="Name" value="Name"></span><br>
-			<span class="footer-info footer-space-bottom"><input type="password" name="login-name" data-default="Passwort" value="Passwort"></span><br>
+			<span class="footer-info">
+				<input type="text" name="login-name" placeholder="Username">
+			</span><br>
+			<span class="footer-info footer-space-bottom">
+				<input type="password" name="login-name" placeholder="Passwort"></span><br>
 		</form>
 		<form method="get" action="${linkRegister}">
 			<input class="buttom-invisible" type="submit" value="Registrieren"/>
