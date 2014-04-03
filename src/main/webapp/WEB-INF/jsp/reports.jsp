@@ -16,31 +16,42 @@
         <div class="main">
         <div class="main-inner">
         	<!-- Sidebar -->
-        	<jsp:include page="./includes/sidebar.jsp">
-				<jsp:param name="sidebarTitle" value="Spielberichte"/>
-				<jsp:param name="abc" value="include" />
-				<jsp:param name="timer" value="include"/>
-				<jsp:param name="nav" value="Weitere"/>
-				<jsp:param name="ref" value="${linkReportsNext}" />
-				<jsp:param name="nav" value="Vorherige"/>
-				<jsp:param name="ref" value="${linkReportsPrev}" />
-				<jsp:param name="nav" value="Bericht verfassen"/>
-				<jsp:param name="ref" value="${linkReportsNew}" />
-			</jsp:include>
+        	<security:authorize access="hasRole('USER_GROUP_ADMIN')">
+	        	<jsp:include page="./includes/sidebar.jsp">
+					<jsp:param name="sidebarTitle" value="Spielberichte"/>
+					<jsp:param name="abc" value="include" />
+					<jsp:param name="search" value="include" />
+					<jsp:param name="nav" value="Startseite"/>
+					<jsp:param name="ref" value="${linkWelcome}"/>
+					<jsp:param name="nav" value="Bericht verfassen"/>
+					<jsp:param name="ref" value="${linkReportsNew}" />
+				</jsp:include>
+			</security:authorize>
+			<security:authorize access="hasRole('USER_GROUP_NO_ADMIN')">
+	        	<jsp:include page="./includes/sidebar.jsp">
+					<jsp:param name="sidebarTitle" value="Spielberichte"/>
+					<jsp:param name="abc" value="include" />
+					<jsp:param name="search" value="include" />
+					<jsp:param name="nav" value="Startseite"/>
+					<jsp:param name="ref" value="${linkWelcome}"/>
+				</jsp:include>
+			</security:authorize>
        
 			<div id="main-content-small" class="content-layout-cell main-content main-content-small">
 			<div class="outer">
 			<div class="inner">				
 			<div class="content-list">
 				<ul>
+					<!-- Spielberichte -->
 					<c:forEach var="entry" items="${reportModel.entries}" varStatus="status">
 						<li class="one-col">
-							<!-- reports -->
+							<!-- einzelner Bericht -->
 							<div  class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle" id="address-name" >${entry.topic}</h2>
 								<div id="submit-${status.index}" class="box-link down-raquo toggle-link right toggle">
 								</div>
 								<div class="toggle-content" style="display: none">
+									<!-- Kurzangeben -->
 									<div class="box-info clearfix light-bg">
 										<div class="left half-width">
 											<table class="first">
@@ -78,14 +89,19 @@
 										</div>
 									</div>
 									<div class="box-body">
+										<!-- Text -->
 										<p>${entry.text}</p>
-										<!-- TODO nur wenn Admin -->
-										<sf:form style="display: inline-block" action="${linkReportsEdit}${entry.id}/" method="get">
-											<button type="submit">Bearbeiten</button>
-										</sf:form>
-										<sf:form style="display: inline-block" action="${linkReportsDelete}${entry.id}/" method="post">
-											<button type="submit">Löschen</button>
-										</sf:form>
+										
+										<!-- Bearbeiten und löschen, wenn ein Admin angemeldet ist -->
+										<security:authorize access="hasRole('USER_GROUP_IS_ADMIN')">
+											<sf:form style="display: inline-block" action="${linkReportsEdit}${entry.id}/" method="get">
+												<button type="submit">Bearbeiten</button>
+											</sf:form>
+											<sf:form style="display: inline-block" action="${linkReportsDelete}${entry.id}/" method="post">
+												<button type="submit">Löschen</button>
+											</sf:form>
+										</security:authorize>
+										
 									</div>
 								</div>
 							</div>

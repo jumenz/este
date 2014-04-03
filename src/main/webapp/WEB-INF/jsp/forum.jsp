@@ -16,18 +16,28 @@
         <div class="main">
         <div class="main-inner">
         	<!-- sidebar -->
+        	<security:authorize access="hasRole('USER_GROUP_ADMIN')">
+				<jsp:include page="./includes/sidebar.jsp">
+					<jsp:param name="sidebarTitle" value="Forum"/>
+					<jsp:param name="abc" value="include"/>
+					<jsp:param name="search" value="include" />
+					<jsp:param name="nav" value="Startseite"/>
+					<jsp:param name="ref" value="${linkWelcome}"/>
+					<jsp:param name="nav" value="Eintrag verfassen"/>
+					<jsp:param name="ref" value="${linkForumNewEntry}"/>
+				</jsp:include>
+			</security:authorize>
+			<security:authorize access="hasRole('USER_GROUP_NO_ADMIN')">
 			<jsp:include page="./includes/sidebar.jsp">
 				<jsp:param name="sidebarTitle" value="Forum"/>
-				<jsp:param name="timer" value="include"/>
+				<jsp:param name="nav" value="Startseite"/>
+				<jsp:param name="ref" value="${linkWelcome}"/>
 				<jsp:param name="abc" value="include"/>
-				<jsp:param name="nav" value="Weitere Einträge"/>
-				<jsp:param name="ref" value="${linkForumNext}"/>
-				<jsp:param name="nav" value="vorherige Einträge"/>
-				<jsp:param name="ref" value="${linkForumPrev}"/>
-				<jsp:param name="nav" value="Eintrag verfassen"/>
-				<jsp:param name="ref" value="${linkForumNewEntry}"/>
+				<jsp:param name="search" value="include" />
 			</jsp:include>
-
+			</security:authorize>
+			
+			
 			<div id="main-content-small" class="content-layout-cell main-content main-content-small">
 			<div class="outer">
 			<div class="inner">				
@@ -46,17 +56,21 @@
 									</div>
 									<div class="box-body">
 										<p>${entry.text}</p>
-										<!-- TODO nur wenn Admin -->
-										<sf:form style="display: inline-block" action="${linkForumEntryEdit}${entry.id}/" method="get">
-											<button type="submit">Bearbeiten</button>
-										</sf:form>
-										<sf:form style="display: inline-block" action="${linkForumEntryDelete}${entry.id}/" method="post">
-											<button type="submit">Löschen</button>
-										</sf:form>
+										
+										<!-- Bearbeiten und löschen, wenn ein Admin angemeldet ist -->
+										<security:authorize access="hasRole('USER_GROUP_IS_ADMIN')">
+											<sf:form style="display: inline-block" action="${linkForumEntryEdit}${entry.id}/" method="get">
+												<button type="submit">Bearbeiten</button>
+											</sf:form>
+											<sf:form style="display: inline-block" action="${linkForumEntryDelete}${entry.id}/" method="post">
+												<button type="submit">Löschen</button>
+											</sf:form>
+										</security:authorize>
 									</div>
 									<!-- Contentbox Comments -->
 									<div>
 										<!-- Kommentare für den Foreneintrag laden -->
+										<security:authentication property="principal.username" var="author" scope="request"/>
 										<c:set var="comments" value="${entry.comments}"/>
 										<div  class="comment-content-box box-borders-top bg clearfix further-toggle-item">
 											<!-- Liste auslesen -->
@@ -68,11 +82,15 @@
 														<!-- bisherige Kommentare zum Foreneintrag -->
 														<c:forEach var="comment" items="${comments}" varStatus="status">
 															<div class="comment">
-																<p class="comment-name">${comment.author}AUTHOR</p>
+																<p class="comment-name">${comment.author}</p>
 																<p class="comment-content">${comment.text}</p>
-																<form method="get" action="${linkForumDeleteComment}${comment.id}/">
-																	<button class="button-delete"></button>
-																</form>
+																
+																<!-- Bei eigenen Kommentaren löschen Button anzeigen -->
+																<c:if test="${author == comment.author}">
+																	<form method="get" action="${linkForumDeleteComment}${comment.id}/">
+																		<button class="button-delete"></button>
+																	</form>
+																</c:if>
 															</div>
 														</c:forEach>
 														<!-- Formular für neuen Kommentar -->
@@ -80,7 +98,7 @@
 															<p class="comment-name">Neuen Kommentar verfassen</p>
 															<p class="comment-content">
 																<c:set var="newComment" value="${newComment}"/>
-																<sf:form action="./neuer-kommentar/${entry.id}/" method="POST" modelAttribute="newComment">
+																<sf:form action="./neuer-kommentar/${entry.id}/${author}/" method="POST" modelAttribute="newComment">
 																	<!-- Neuer Kommentar -->
 																	<sf:textarea 	path="text"
 																					id="text"
@@ -95,7 +113,6 @@
 																	<input name="reset" type="reset" value="Zurücksetzen"/>
 																</sf:form>
 															</p>
-															<div class="button-delete online-only"></div>
 														</div>
 													</div>
 												</div>

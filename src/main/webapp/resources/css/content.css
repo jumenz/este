@@ -470,6 +470,7 @@ aside, .main {
     display: inline-block;
     margin: 40px 0 0 0;
     padding: 12px 12px 0 12px;
+    width: 88%;
 }
 .menublock-sidebar .timer-menu li.center {
     text-align: center;

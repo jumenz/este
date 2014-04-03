@@ -39,7 +39,7 @@ public class Constants {
 	static final String linkForumNewEntry = "/forum/neuer-eintrag/";
 	static final String linkForumEntryEdit = "/forum/bearbeiten/{id}/";
 	static final String linkForumEntryDelete = "/forum/loeschen/{id}/";
-	static final String linkForumNewComment = "/forum/neuer-kommentar/{id}/";
+	static final String linkForumNewComment = "/forum/neuer-kommentar/{id}/{author}/";
 	static final String linkForumDeleteComment = "/forum/kommentar-entfernen/{id}/";
 
 	/** Redirects */

@@ -113,13 +113,16 @@
 				</c:if>
 				<c:remove var="timerSetting"/>
 				
-				<!-- Search Field 
+				<c:set var="searchSetting" scope="request" value="${param.search}"/>
+				<c:if test="${searchSetting == 'include'}">
+				<!--  Search Field  -->
 				<div class="menublock-sidebar">
 					<form method="GET">
-						<input size="25" name="search" data-default="Suchen ..."/>
+						<input size="25" name="search" placeholder="Suchen ..."/>
 						<button type="submit" style="display: none"></button>
 					</form>
-				</div> -->
+				</div>
+				</c:if>
 				
 				<!-- include ABC if abc is set true -->
 				<c:set var="abcSetting" scope="request" value="${param.abc}"/>

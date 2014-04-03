@@ -9,21 +9,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import java.util.ArrayList;
-
-
-
-
-
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
-import fhwedel.medienprojekt.fussball.model.post.report.Report;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessComments;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessForum;
+import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsComments;
 import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsForum;
 import fhwedel.medienprojekt.fussball.controller.Constants;
 
@@ -45,6 +39,9 @@ public class ForumController {
 	/** Service für die Fehlerbehandlung */
 	@Autowired
 	private DataErrorsForum dataErrorsForum;
+	
+	@Autowired
+	private DataErrorsComments dataErrorsComments;
 	
 	/* ------------------ Methoden --------------------------- */
 	/* ------------------ Anzeige ---------------------------- */
@@ -206,9 +203,10 @@ public class ForumController {
 	 * @param 	bindingResult	BindingResult
 	 */
 	@RequestMapping(value=Constants.linkForumNewComment, method=RequestMethod.POST)
-	public String saveNewForumComment(@PathVariable int id, Comment newComment, BindingResult bindingResult) {
+	public String saveNewForumComment(@PathVariable("id") int id, @PathVariable("author") String author, Comment newComment, BindingResult bindingResult) {
+		newComment.setAuthor(author);
 		// Bei Fehlern wieder auf Formular redirecten
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors() || this.dataErrorsComments.hasErrors(newComment, bindingResult)) {
 			return Constants.viewNameForum;
 		}
 		
