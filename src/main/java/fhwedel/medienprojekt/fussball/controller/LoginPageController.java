@@ -83,11 +83,10 @@ public class LoginPageController {
 	 * Behandelt den Login-Request.
 	 * @param 	user			User	User mit eingegebenen Login-Daten
 	 * @param 	bindingResult	BindingResult
-	 * @param 	model			Model
 	 * @return	String			Viewname zum Mappen der JSP
 	 */
 	@RequestMapping(value=Constants.linkLogin, method=RequestMethod.POST)
-	public String login(@ModelAttribute("loginUser") User user, BindingResult bindingResult, Model model, HttpServletResponse response) {
+	public String login(@ModelAttribute("loginUser") User user, BindingResult bindingResult) {
 		/* Prüfen, ob Username und Passwort stimmen */
 		if(bindingResult.hasErrors() 
 		|| this.dataErrosLogin.hasErrors(user, bindingResult)) {
@@ -95,7 +94,7 @@ public class LoginPageController {
 		}
 		
 		/* Cookie bei erfolgreichem Login setzen und auf Landing Page weiterleiten */
-		this.setLoggedInCookie(user, response);
+		//this.setLoggedInCookie(user, response);
 		// TODO anders machen
 		return Constants.redirectHome;
 	}
