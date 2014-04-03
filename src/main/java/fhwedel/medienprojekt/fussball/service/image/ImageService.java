@@ -28,9 +28,9 @@ public class ImageService {
 	 * @param image
 	 */
 	public void validateImage(MultipartFile image){
-		/* Als valides Bildformat vorerst nur jpeg erlaubt, damit keine
+		/* Als valides Bildformat vorerst nur jpeg und png erlaubt, damit keine
 		 * zips, exe-Dateien oder Ähnliches hochgeladen werden können. */
-		if(!image.getContentType().equals("image/jpeg")){
+		if(!image.getContentType().equals("image/jpeg") || !image.getContentType().equals("image/png")){
 			// Bei anderem Format Exception werden
 			throw new ImageUploadException("OnlyJPGimagesaccepted");
 		}

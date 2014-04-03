@@ -89,9 +89,12 @@ public class GaleryController {
 	
 	/**
 	 * Speichert ein neues Bild in der Bildergalerie.
+	 * @param	MultipartFile 	imageFile		Datei mit Multipart-Daten
+	 * @param	bindingResult	BindingResult
 	 */
 	@RequestMapping(value=Constants.linkGaleryUpload, method=RequestMethod.POST)
-	public String uploadImage(Image image, @RequestParam(value="image", required=true) MultipartFile imageFile, BindingResult bindingResult) {
+	public String uploadImage(	@RequestParam(value="image", required=true) MultipartFile imageFile, 
+								BindingResult bindingResult) {
 		try {
 			if(!imageFile.isEmpty()){
 				imageService.validateImage(imageFile);
