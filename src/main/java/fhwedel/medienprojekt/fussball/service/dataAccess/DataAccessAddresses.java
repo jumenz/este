@@ -69,34 +69,7 @@ public class DataAccessAddresses extends AbstractDataAccess {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 	
-	/* ---------------------------- Datenbankarbeit ----------------------------------- */
-	
-	/* ---------------------------- Speichern ----------------------------------------- */
-	/**
-	 * Speichert eine neue Adresse.
-	 * @param newAddress Adresse
-	 
-	public void save(Address newAddress) {
-		final String SQL_INSERT_NEW_ADDRESS = 
-				"INSERT INTO " + Constants.dbAddresses + " (id, name, prename, birthday, mobile, phone, street, nr, zipcode, city) "
-				+ "VALUES (:id, :name, :prename, :birthday, :mobile, :phone, :street, :nr, :zipcode, :city)";
-
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", newAddress.getId());
-		params.put("name", newAddress.getName());
-		params.put("prename", newAddress.getPrename());
-		params.put("birthday", newAddress.getBirthday());
-		params.put("mobile", newAddress.getMobile());
-		params.put("phone", newAddress.getPhone());
-		params.put("street", newAddress.getStreet());
-		params.put("nr", newAddress.getNr());
-		params.put("zipcode", newAddress.getZipcode());
-		params.put("city", newAddress.getCity());
-		
-		// alternativ: BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(newAddress);
-		this.namedParameterJdbcTemplate.update(SQL_INSERT_NEW_ADDRESS, params);
-	}*/
-	
+	/* ------------------------- Datenbankarbeit ----------------------------------- */
 	/* ------------------------- Auslesen ------------------------------------- */
 	/**
 	 * Liest alle Addressen aus der Datenbank aus.

@@ -359,9 +359,9 @@ aside, .main {
     text-align: right;
     top: -30px;
 }
-.box-link span {
+.box-link span:first-child {
 	line-height: 24px;
-    margin-right: 30px;
+    margin-right: 12px;
     vertical-align: middle;
 }
 .box-head {

@@ -30,6 +30,14 @@ public class Address {
 	/** Geburtsdatum */
 	@Column(name = "birthday")
 	private Date birthday;
+	/** Handynummer */
+    @Column(name = "mobile")
+    @Digits(fraction = 0, integer = 15)
+	private String mobile;
+	/** Festnetznummer */
+    @Column(name = "phone")
+    @Digits(fraction = 0, integer = 15)
+	private String phone;
 	/** Straße */
 	@Column(name = "street")
 	private String street;
@@ -43,14 +51,6 @@ public class Address {
 	/** Ort */
 	@Column(name = "city")
 	private String city;
-	/** Handynummer */
-    @Column(name = "mobile")
-    @Digits(fraction = 0, integer = 15)
-	private String mobile;
-	/** Festnetznummer */
-    @Column(name = "phone")
-    @Digits(fraction = 0, integer = 15)
-	private String phone;
 	
 	/* --------------- Konstruktorfunktionen ------------ */
 	/**
@@ -63,6 +63,7 @@ public class Address {
 	/**
 	 * Konstruktorfunktion
 	 * 
+	 * @param id
 	 * @param name
 	 * @param prename
 	 * @param birthday

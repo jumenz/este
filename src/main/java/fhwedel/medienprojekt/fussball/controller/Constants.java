@@ -11,8 +11,7 @@ public class Constants {
 	static final String linkHome = "/home/";
 	static final String linkWelcome = "/willkommen/";
 	static final String linkAddresses = "/adressbuch/";
-	static final String linkAddressesNew = "/adressbuch/speichern/";
-	static final String linkAddressesEdit = "/adressbuch/bearbeiten/{id}/";
+	static final String linkAddressesEdit = "/adressbuch/{addressId}";
 	static final String linkAddressesDelete = "/adressbuch/loeschen/{id}/";
 	static final String linkAboutUs = "/ueber-uns/";
 	static final String linkReports = "/berichte/";
@@ -68,9 +67,6 @@ public class Constants {
 	static final String viewNameHome = "home";
 	static final String viewNameWelcome = "welcome";
 	static final String viewNameAddresses = "addresses";
-	static final String viewNameAddressesNew = "addressesNew";
-	static final String viewNameAddressesEdit = "addressesEdit";
-	static final String viewNameAddressesDelete = "addressesDelete";
 	static final String viewNameForum = "forum";
 	static final String viewNameForumNewEntry = "forumNewEntry";
 	static final String viewNameForumEdit = "forumEntryEdit";
