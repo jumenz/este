@@ -19,8 +19,6 @@ public class User {
 	private String password;
 	/** Zweite Passworteingabe bei Registrierung */
 	private String passwordCompare;
-	/** Adresse */
-	// TODO Adressobjekt einfügen
 	/** Gruppe des Users */
 	// TODO Permission setzen
 	private UserGroup userGroup;
@@ -47,6 +45,7 @@ public class User {
 		this.email = email;
 		this.userGroup = userGroup;
 	}
+	
 	
 	/* --------------- Setter / Getter ------------------ */
 	/**
@@ -106,7 +105,7 @@ public class User {
 		this.passwordCompare = passwordCompare;
 	}
 	/**
-	 * Setzt die Email-Adresse der Users.
+	 * Setzt die Email-Adresse des Users.
 	 * @param email	String	Email-Adresse
 	 */
 	public void setEmail(String email) {

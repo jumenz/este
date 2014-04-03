@@ -364,9 +364,9 @@ aside, .main {
     text-align: right;
     top: -30px;
 }
-.box-link span {
+.box-link span:first-child {
 	line-height: 24px;
-    margin-right: 15px;
+    margin-right: 12px;
     vertical-align: middle;
 }
 .box-head {
@@ -691,7 +691,7 @@ a.show-link {
 }
 
 @media (max-width: 500px) {
-	/* Profile im Über uns anpassen */
+	/* Profile im ï¿½ber uns anpassen */
 	.about-us-img-logo {
 		width: 100%;
 		margin-right: 0px;

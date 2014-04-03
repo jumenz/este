@@ -58,4 +58,5 @@ public class Constants {
 	static final String dbUsersUsername = "username";
 	static final String dbUsersPassword = "password";
 	static final String dbUsersUserGroup = "user_group";
+	static final String dbAddresses = "addresses";
 }
