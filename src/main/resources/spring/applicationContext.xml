@@ -89,5 +89,8 @@
 	<bean id="DataErrorsForum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsForum">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
+	
+	<!-- Login / Registrierung -->
+	<bean id="AuthenticationService" class="fhwedel.medienprojekt.fussball.service.AuthenticationService"/>
     
 </beans>

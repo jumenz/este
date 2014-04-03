@@ -8,6 +8,7 @@ package fhwedel.medienprojekt.fussball.controller;
  */
 public class Constants {
 	/** Links */
+	static final String linkClassPath = "/";
 	static final String linkHome = "/home/";
 	static final String linkWelcome = "/willkommen/";
 	static final String linkAdresses = "/adressbuch/";

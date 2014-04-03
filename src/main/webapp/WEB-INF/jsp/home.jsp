@@ -15,9 +15,7 @@
         <div class="main">
         <div class="main-inner">      
 			<div id="..." class="content-list">
-				
-				Hello <security:authentication property="principal.username"/>!
-				
+					
 				<!-- three col view -->
 				<ul>
 					<li class="three-col ">

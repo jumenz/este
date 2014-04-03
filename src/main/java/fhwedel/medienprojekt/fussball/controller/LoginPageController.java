@@ -2,11 +2,6 @@ package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
+import fhwedel.medienprojekt.fussball.service.AuthenticationService;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
 import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsLogin;
 import fhwedel.medienprojekt.fussball.controller.Constants;
@@ -38,7 +34,7 @@ public class LoginPageController {
 	
 	/** Manager für die Authentifizierung von Usern */
 	@Autowired
-	private AuthenticationManager authenticationManager;
+	private AuthenticationService authenticationService;
 	
 	/* --------------- Methoden -------------------------------- */
 	/* --------------- Anzeige --------------------------------- */
@@ -76,32 +72,13 @@ public class LoginPageController {
 		 * Wenn Angaben stimmen, User authentifizieren */
 		if(bindingResult.hasErrors() 
 		|| this.dataErrosLogin.hasErrors(user, bindingResult)
-		|| !this.authenticate(user.getUsername(), user.getPassword())) {
+		|| !this.authenticationService.authenticate(user.getUsername(), user.getPassword())) {
 			// Falls Fehler vorliegen oder Authentifizierung nicht geklappt hat
 			// Loginformular erneut anzeigen
 			return Constants.viewNameLogin;
 		}
 		// Ansonsten auf die Home Seite redirecten
-		return Constants.redirectGalery;
+		return Constants.redirectHome;
 	}
-	
-	/**
-	 * Authentifiziert einen User.
-	 * @param 	username	String	Username
-	 * @param 	password	String	Passwort
-	 * @return	boolean		true	Authentifizierung war erfolgreich
-	 * 						false	Authentifizierung ist fehlgeschlagen
-	 */
-	private boolean authenticate(String username, String password) {
-	    try {
-	        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-	        if (authenticate.isAuthenticated()) {
-	            SecurityContextHolder.getContext().setAuthentication(authenticate);             
-	            return true;
-	        }
-	    }
-	    catch (AuthenticationException e) {         
-	    }
-	    return false;
-	}
+
 }

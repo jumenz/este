@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 /** Eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
 import fhwedel.medienprojekt.fussball.model.user.UserGroup;
+import fhwedel.medienprojekt.fussball.service.AuthenticationService;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessPermissions;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
 import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsPermissions;
@@ -47,6 +49,10 @@ public class RegisterPageController {
 	@Autowired
 	private DataErrorsPermissions dataErrorsPermissions;
 	
+	/** Manager für die Authentifizierung von Usern */
+	@Autowired
+	private AuthenticationService authenticationService;
+	
 	/* ------------- Anzeige ------------------------------ */
 	/**
 	 * Bereitet das Anzeigen der Registerseite vor.
@@ -56,9 +62,7 @@ public class RegisterPageController {
 	private String prepareRegisterDisplay(Model model) {
 		// neues User Objekt zugreifbar machen
 		model.addAttribute("newUser", new User());
-		// TODO nur wenn Admin
 		model.addAttribute("newPermission", new Permission());
-		// TODO nur wenn Admin
 		model.addAttribute("allPermissions", this.dataAccessPermissions.getAll());
 		
 		return Constants.viewNameRegister;
@@ -88,11 +92,8 @@ public class RegisterPageController {
 		// Bei Fehlern wieder auf Formular redirecten
 		boolean hasErrors = this.dataErrorsUsers.hasErrors(newUser, bindingResult);
 		if(bindingResult.hasErrors() || hasErrors) {
-			// TODO nur wenn Admin
 			model.addAttribute("newPermission", new Permission());
-			// TODO nur wenn Admin
 			model.addAttribute("allPermissions", this.dataAccessPermissions.getAll());
-			
 			return Constants.viewNameRegister;
 		}
 
@@ -106,11 +107,19 @@ public class RegisterPageController {
 			// ID auf Permission übernehmen
 			newUser.setId(this.dataAccessPermissions.getPermissionId(newUser));
 			this.dataAccessUsers.save(newUser);
+			
+			// Neuen User Anmelden
+			if(this.authenticationService.authenticate(newUser.getUsername(), newUser.getPassword())) {
+				return Constants.redirectHome;
+			} else {
+				// Falls einloggen nicht klappen sollte, auf die Login-Seite weiterleiten
+				return Constants.redirectLogin;
+			}
 		}
-		// TODO einloggen
-		return Constants.redirectHome;
+		// Falls bei der Registrierung andere Fehler autreten, erneut Registerseite anzeigen
+		return Constants.redirectRegister;
 	}
-	
+		
 	/**
 	 * Speichert eine EMail in der Permission Tabelle, um die EMail-Adresse 
 	 * zur Registrierung zuzulassen.
@@ -128,7 +137,6 @@ public class RegisterPageController {
 			// Andere Bestandteile bereitstellen, die keine Fehler enthalten
 			// neues User Objekt zugreifbar machen
 			model.addAttribute("newUser", new User());
-			// TODO nur wenn Admin
 			model.addAttribute("allPermissions", this.dataAccessPermissions.getAll());
 			return Constants.viewNameRegister;
 		}

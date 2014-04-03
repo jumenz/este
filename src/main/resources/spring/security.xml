@@ -26,6 +26,7 @@
 		<intercept-url pattern="/home/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/logout/**" access="isAuthenticated()"/>
 		
+		<!-- Erst wenn Seite online -->
 		<!-- http 
 		<intercept-url pattern="/home/**" requires-channel="http"/>
 		<intercept-url pattern="/willkommen/**" requires-channel="http"/>
