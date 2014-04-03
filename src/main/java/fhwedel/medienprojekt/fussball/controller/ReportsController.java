@@ -38,7 +38,7 @@ public class ReportsController {
 	/**
 	 * Lädt die Spielberichte Seite
 	 * @param	model	Model
-	 * @return	String	Name des JSP
+	 * @return	String	Name der JSP
 	 */
 	@RequestMapping(value=Constants.linkReports, method=RequestMethod.GET)
 	public String displayReports(Model model) {
@@ -58,9 +58,10 @@ public class ReportsController {
 	
 	/**
 	 * Liefert Spielberichte, die mit bestimmtem String beginnen.
-	 * 
+	 * @param	sub		String	String, der am Anfang stehen soll
+	 * @param	model	Model
 	 */
-	@RequestMapping(value=Constants.linkReportsStaringWith, method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkReportsStartingWith, method=RequestMethod.GET)
 	public String getForumEntriesStartingWith(@PathVariable String sub, Model model) {
 		PostView<Report> view = new PostView<Report>();
 		
@@ -77,8 +78,9 @@ public class ReportsController {
 	}
 	
 	/**
-	 * Liefert Foreneinträge, die mit bestimmtem String beginnen.
-	 * 
+	 * Liefert Spielberichte, die mit bestimmtem String beginnen.
+	 * @param	sub		String		String der enthalten sein soll
+	 * @param	model	Model
 	 */
 	@RequestMapping(value=Constants.linkReportsContaining, method=RequestMethod.GET)
 	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
@@ -100,7 +102,7 @@ public class ReportsController {
 	/**
 	 * Lädt die Seite um einen neuen Spielbericht zu verfassen.
 	 * @param	model	Model
-	 * @return	String	Name des JSP
+	 * @return	String	Name der JSP
 	 */
 	@RequestMapping(value=Constants.linkReportsNew, method=RequestMethod.GET)
 	public String displayNewReportForm(Model model) {
@@ -114,7 +116,7 @@ public class ReportsController {
 	 * Lädt die Seite um einen neuen Spielbericht zu verfassen.
 	 * @param	newReport		Report	Spielbericht, der gespeichert werden soll
 	 * @param	bindingResult	BindingResult
-	 * @return	String	Name der JSP
+	 * @return	String			Name der JSP
 	 */
 	@RequestMapping(value=Constants.linkReportsNew, method=RequestMethod.POST)
 	public String save(@ModelAttribute("report") Report newReport, BindingResult bindingResult) {

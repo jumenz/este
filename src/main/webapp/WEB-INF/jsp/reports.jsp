@@ -27,7 +27,7 @@
 					<jsp:param name="ref" value="${linkReportsNew}" />
 				</jsp:include>
 			</security:authorize>
-			<security:authorize access="hasRole('USER_GROUP_NO_ADMIN')">
+			<security:authorize access="hasRole('USER_GROUP_NO_ADMIN') or not isAuthenticated()">
 	        	<jsp:include page="./includes/sidebar.jsp">
 					<jsp:param name="sidebarTitle" value="Spielberichte"/>
 					<jsp:param name="abc" value="include" />

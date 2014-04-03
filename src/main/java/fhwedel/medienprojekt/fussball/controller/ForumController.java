@@ -86,7 +86,7 @@ public class ForumController {
 	 * @param	sub		String		gesuchter Anfangsstring
 	 * @param	model	Model
 	 */
-	@RequestMapping(value=Constants.linkForum + "{sub}", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkForumStartingWith, method=RequestMethod.GET)
 	public String getForumEntriesStartingWith(@PathVariable String sub, Model model) {
 		// Einträge aus der Datenbank auslesen, die mit Substring beginnen
 		return this.prepareForumView(this.dataAccessForum.getAllStartingWith(sub), model);
@@ -97,7 +97,7 @@ public class ForumController {
 	 * @param	sub		String		gesuchter Substring
 	 * @param	model	Model
 	 */
-	@RequestMapping(value=Constants.linkForum + "~{sub}", method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkForumContaining, method=RequestMethod.GET)
 	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
 		return this.prepareForumView(this.dataAccessForum.getAllIncluding(sub), model);
 	}
