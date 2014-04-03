@@ -64,7 +64,6 @@ public class DataErrorsLogin extends AbstractDataErrors {
 	private void validatePassword(User user, BindingResult bindingResult) {
 		// Das Passwort muss dem der Datenbank entsprechen
 		ArrayList<User> dbUser = this.dataAccessUsers.getUserData(user.getUsername());
-		assert (dbUser.size() == 1);
 		if(this.isEmpty(user.getPassword()) ||!areSame(dbUser.get(0).getPassword(), user.getPassword())) {
 			bindingResult.rejectValue("password", "error.login.password");
 		}
