@@ -29,7 +29,7 @@ import fhwedel.medienprojekt.fussball.controller.Constants;
 
 /**
  * Controller zur Anzeige des Forums.
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
 @Controller
@@ -175,7 +175,7 @@ public class ForumController {
 	public String edit(@PathVariable int id, @ModelAttribute("forumEntry") ForumEntry forumEntry, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
 		if(bindingResult.hasErrors() || this.dataErrorsForum.hasErrors(forumEntry, bindingResult)) {
-			return Constants.viewNameForum;
+			return Constants.viewNameForumEdit;
 		}
 		
 		// Speichern und Spielberichte laden

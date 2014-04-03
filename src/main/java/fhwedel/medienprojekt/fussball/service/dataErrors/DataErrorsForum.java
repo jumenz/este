@@ -17,11 +17,9 @@ import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
  * @author Ellen Schwartau Minf9888
  *
  */
-public class DataErrorsForum extends AbstractDataErrors {
+public class DataErrorsForum extends AbstractDataErrorsPost<ForumEntry> {
 	/* ------------------ Konstanten -------------------------------------------- */
-	final String placeholderTopic = "Titel";
 	final String placeholderDescription = "Beschreibung";
-	final String placeholderText = "Tippe hier deinen Text";
 	
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
 	/**
@@ -46,35 +44,13 @@ public class DataErrorsForum extends AbstractDataErrors {
 	}
 	
 	/**
-	 * Prüft, ob der Titel des Foreneintrags nicht leer ist.
-	 * @param title			String			Titel
-	 * @param bindingResult	BindingResult
-	 */
-	private void validateTopic(String title, BindingResult bindingResult) {
-		if(this.isEmpty(title, this.placeholderTopic)) {
-			bindingResult.rejectValue("topic", "error.forum.topic");
-		}
-	}
-	
-	/**
 	 * Prüft, ob eine Kurzbeschreibung des Forneintrags angegeben ist.
 	 * @param description	String			Kurzbeschreibung
 	 * @param bindingResult	BindingResult
 	 */
 	private void validateDescription(String description, BindingResult bindingResult) {
-		if(this.isEmpty(description, this.placeholderDescription)) {
+		if(this.isEmpty(description)) {
 			bindingResult.rejectValue("description", "error.forum.description");
-		}
-	}
-
-	/**
-	 * Prüft, ob ein Text zum Foreneintrag angegeben ist.
-	 * @param text			String			Text
-	 * @param bindingResult	BindingResult	
-	 */
-	private void validateText(String text, BindingResult bindingResult) {
-		if(this.isEmpty(text, this.placeholderText)) {
-			bindingResult.rejectValue("text", "error.forum.text");
 		}
 	}
 	

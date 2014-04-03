@@ -3,10 +3,8 @@ package fhwedel.medienprojekt.fussball.service.dataErrors;
 /** externe Klassen */
 import org.springframework.validation.BindingResult;
 
-
-import fhwedel.medienprojekt.fussball.model.user.Permission;
 /** eigene Klassen */
-import fhwedel.medienprojekt.fussball.model.user.User;
+import fhwedel.medienprojekt.fussball.model.user.Permission;
 
 
 /**
@@ -49,7 +47,7 @@ public class DataErrorsPermissions extends AbstractDataErrors {
 	public void validateEmail(String email, BindingResult bindingResult) {
 		// Die Emailadresse muss die Form einer EMail erfüllen 
 		// und darf nicht bereits registriert sein
-		if (this.isEmpty(email, this.placeholderEmail)) {
+		if (this.isEmpty(email)) {
 			bindingResult.rejectValue("email", "error.permission.empty");
 		} else if (!this.isEmail(email)) {
 			bindingResult.rejectValue("email", "error.permission.invalid");

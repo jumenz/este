@@ -6,7 +6,6 @@ import java.util.Map;
 /** externe Klassen */
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import fhwedel.medienprojekt.fussball.service.dataAccess.Constants;
 
 /**
  * Abstralte Service Klasse
@@ -43,17 +42,14 @@ public abstract class AbstractDataErrors {
 	/**
 	 * Prüft, ob ein Eingabewert leer ist.
 	 * @param 	value		Eingabewert
-	 * @param 	placeholder	Placeholder des Eingabefeldes
 	 * @return	boolean		true:	Feld ist leer
 	 * 						false:	Feld ist gefüllt
 	 */
-	public boolean isEmpty(String value, String placeholder) {
+	public boolean isEmpty(String value) {
 		assert(value != null);
-		assert(placeholder != null);
 		// Das Eingabefeld ist leer, wenn entweder der leere String,
 		// oder der Placeholder im Feld enthalten ist.
-		return (value.compareTo("")==0) 
-				|| (value.compareTo(placeholder)==0);
+		return (value.compareTo("")==0);
 	}
 	
 	/**

@@ -1,14 +1,9 @@
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /** externe Klassen */
-import java.io.IOException;
 import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-
-
-
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
@@ -55,7 +50,7 @@ public class DataErrorsLogin extends AbstractDataErrors {
 	 */
 	private void validateUsername(String username, BindingResult bindingResult) {
 		// Der Username darf nicht leer oder schon vergeben sein
-		if (!this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
+		if (this.isEmpty(username) || !this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
 			bindingResult.rejectValue("username", "error.login.username");
 		}
 	}
@@ -70,7 +65,7 @@ public class DataErrorsLogin extends AbstractDataErrors {
 		// Das Passwort muss dem der Datenbank entsprechen
 		ArrayList<User> dbUser = this.dataAccessUsers.getUserData(user.getUsername());
 		assert (dbUser.size() == 1);
-		if(!areSame(dbUser.get(0).getPassword(), user.getPassword())) {
+		if(this.isEmpty(user.getPassword()) ||!areSame(dbUser.get(0).getPassword(), user.getPassword())) {
 			bindingResult.rejectValue("password", "error.login.password");
 		}
 	}

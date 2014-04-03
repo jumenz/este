@@ -15,11 +15,6 @@ import fhwedel.medienprojekt.fussball.model.user.User;
  *
  */
 public class DataErrorsUsers extends AbstractDataErrors {
-	/* ------------------ Konstanten -------------------------------------------- */
-	final String placeholderUsername = "Username";
-	final String placeholderEmail = "E-Mail Adresse";
-	final String placeholderPassword = "Passwort";
-	
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
 	/**
 	 * Default-Konstruktor.
@@ -51,7 +46,7 @@ public class DataErrorsUsers extends AbstractDataErrors {
 	 */
 	public void validateUsername(String username, BindingResult bindingResult) {
 		// Der Username darf nicht leer oder schon vergeben sein
-		if(this.isEmpty(username, this.placeholderUsername)) {
+		if(this.isEmpty(username)) {
 			bindingResult.rejectValue("username", "error.username.empty");
 		} else if (this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
 			bindingResult.rejectValue("username", "error.username.duplicate");
@@ -67,7 +62,7 @@ public class DataErrorsUsers extends AbstractDataErrors {
 	public void validatePassword(String pwd, String pwdCompare, BindingResult bindingResult) {
 		// Die Passwörter müssen zusammenpassen, dürfen nicht leer sein
 		// und müssen eine bestimmte Länge haben
-		if(this.isEmpty(pwd, this.placeholderPassword) || this.isEmpty(pwdCompare, this.placeholderPassword)) {
+		if(this.isEmpty(pwd) || this.isEmpty(pwdCompare)) {
 			bindingResult.rejectValue("password", "error.password.empty");
 		} else if(!this.areSame(pwd, pwdCompare)) {
 			bindingResult.rejectValue("password", "error.password.missmatch");
@@ -84,7 +79,7 @@ public class DataErrorsUsers extends AbstractDataErrors {
 	public void validateEmail(String email, BindingResult bindingResult) {
 		// Die Emailadresse muss die Form einer EMail erfüllen 
 		// und darf nicht bereits registriert sein
-		if (this.isEmpty(email, this.placeholderEmail)) {
+		if (this.isEmpty(email)) {
 			bindingResult.rejectValue("email", "error.email.empty");
 		} else if (!this.isEmail(email)) {
 			bindingResult.rejectValue("email", "error.email.invalid");
