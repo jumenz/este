@@ -18,18 +18,6 @@
 			<div id="..." class="content-list">
 				<ul>
 					<!--Contentbox One-Col -->
-					<% 	Cookie cookies[] = request.getCookies();
-					Cookie cookie = null;
-					boolean loggedIn = false;
-					if( cookies != null ){
-				      for (int i = 0; i < cookies.length; i++){
-				         cookie = cookies[i];
-				         if((cookie.getName( )).compareTo("user") == 0 ){
-				        	 loggedIn = true;
-				         }
-				      }
-					}
-					if(!loggedIn) { %>
 					<!-- Formular zum Registrieren -->	
                      <li class="one-col">
                          <div class="main-content-box box-borders bg clearfix">
@@ -54,6 +42,7 @@
 										<!-- Fehlermeldung für den Login -->
 										<sf:errors path="password" cssClass="error"/><br>
 										<!-- Buttons -->
+										<input id="rememberMe" name="rememberMe" type="checkbox"/> Eingeloggt bleiben
 										<button name="commit" type="submit">Anmelden</button>
 										<button name="reset" type="reset">Abbrechen</button>
 									</fieldset>
@@ -61,10 +50,7 @@
                              </div>
                          </div>
                      </li>
-                 	<!-- end Contentbox One-Col -->
-                 	<% } else { %>
-                 	<li>Sie sind bereits eingeloggt.</li>
-                 	<% } %>
+
 				</ul>
 			</div>
 		</div>

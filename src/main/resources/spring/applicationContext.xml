@@ -53,6 +53,7 @@
  	
  	<import resource="data-access-config.xml"/>
  	<import resource="mvc-config.xml"/>
+ 	<import resource="security.xml"/>
  	<context:component-scan base-package="fhwedel.medienprojekt.fussball"/> 
  	
 	<!-- Datenbankanbindungen -->

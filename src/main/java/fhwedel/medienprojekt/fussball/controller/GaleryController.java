@@ -36,7 +36,7 @@ public class GaleryController {
 	 * Lädt die Galerie
 	 * @return string page name
 	 */
-	@RequestMapping(value=Constants.linkGalerie, method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkGalery, method=RequestMethod.GET)
 	public String displayGalery(HttpServletRequest request, Model model) {
 		ArrayList<String> imgPaths = new ArrayList<String>();
 		try {
@@ -50,7 +50,7 @@ public class GaleryController {
 		model.addAttribute("firstImageCol", colwiseImgPaths.get(0));
 		model.addAttribute("secondImageCol", colwiseImgPaths.get(1));
 		model.addAttribute("thirdImageCol", colwiseImgPaths.get(2));
-		return Constants.viewNameGalerie;
+		return Constants.viewNameGalery;
 	}
 	
 	/**
@@ -81,16 +81,16 @@ public class GaleryController {
 	 * Lädt das Formular zum hinzufügen neuer Bilder in die Bildergalerie.
 	 * @return string jsp
 	 */
-	@RequestMapping(value=Constants.linkGalerieUploadForm, method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkGaleryUploadForm, method=RequestMethod.GET)
 	public String displayGaleryImgUploadForm(Model model) {
 		model.addAttribute("img", new Image());
-		return Constants.viewNameGalerieUpload;
+		return Constants.viewNameGaleryUpload;
 	}
 	
 	/**
 	 * Speichert ein neues Bild in der Bildergalerie.
 	 */
-	@RequestMapping(value=Constants.linkGalerieUpload, method=RequestMethod.POST)
+	@RequestMapping(value=Constants.linkGaleryUpload, method=RequestMethod.POST)
 	public String uploadImage(Image image, @RequestParam(value="image", required=true) MultipartFile imageFile, BindingResult bindingResult) {
 		try {
 			if(!imageFile.isEmpty()){
@@ -101,7 +101,7 @@ public class GaleryController {
 			bindingResult.reject(e.getMessage());
 			return"spitters/edit";
 		}
-		return Constants.viewNameGalerie;
+		return Constants.redirectGalery;
 	}
 	
 }

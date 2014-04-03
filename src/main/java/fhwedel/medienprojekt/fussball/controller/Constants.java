@@ -29,9 +29,9 @@ public class Constants {
 	static final String linkLogout = "/logout/";
 	static final String linkImpressum = "/impressum/";
 	static final String linkLinks = "/links/";
-	static final String linkGalerie = "/galerie/";
-	static final String linkGalerieUploadForm = "/galerie/upload/";
-	static final String linkGalerieUpload = "/galerie/load/";
+	static final String linkGalery = "/galerie/";
+	static final String linkGaleryUploadForm = "/galerie/upload/";
+	static final String linkGaleryUpload = "/galerie/load/";
 	static final String linkForum = "/forum/";
 	static final String linkForumNext = "/forum/weiteres/";
 	static final String linkForumPrev = "/forum/vorheriges/";
@@ -54,8 +54,8 @@ public class Constants {
 	static final String redirectLogin = "redirect:/login/";
 	static final String redirectImpressum = "redirect:/impressum/";
 	static final String redirectLinks = "redirect:/links/";
-	static final String redirectGalerie = "redirect:/galerie/";
-	static final String redirectGalerieUpload = "redirect:/galerie/upload/";
+	static final String redirectGalery = "redirect:/galerie/";
+	static final String redirectGaleryUpload = "redirect:/galerie/upload/";
 	static final String redirectForum = "redirect:/forum/";
 	static final String redirectForumNext = "redirect:/forum/weiteres/";
 	static final String redirectForumPrev = "redirect:/forum/vorheriges/";
@@ -74,8 +74,8 @@ public class Constants {
 	static final String viewNameLogin = "login";
 	static final String viewNameImpressum = "impressum";
 	static final String viewNameLinks = "links";
-	static final String viewNameGalerie = "galery";
-	static final String viewNameGalerieUpload = "galeryImgUpload";
+	static final String viewNameGalery = "galery";
+	static final String viewNameGaleryUpload = "galeryImgUpload";
 	
 	/** Cookienames */
 	static final String cookieUser = "user";

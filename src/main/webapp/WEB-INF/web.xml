@@ -29,19 +29,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		- Location der XML Datei, die den root application context definiert.
 		- Wird von ContextLoaderListener angewandt.
 	-->
-	<!--  
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/empty.xml</param-value>
+        <param-value>classpath:spring/applicationContext.xml</param-value>
     </context-param>
-    -->
 
-	<!-- Listener f�r Web Application Context -->
-	<!--  
+	<!-- Listener für Web Application Context -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    -->
 
 	<!-- DispatcherServlet dient als Front Controller, der eingehende Reqeuests
 		an andere Komponenten (z.B.MVC Controller) weiterleitet -->
@@ -66,7 +62,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-	
 	<!--  
 		DelegatingFilterProxy: delegiert weiter an javax.servlet.Filter (als bean im application context),
 								wird automatisch unter angegebenem Filter-Namen erzeugt
@@ -75,7 +70,9 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<filter-name>springSecurityFilterChain</filter-name>
 			<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
-	
-	
-
+    <filter-mapping>
+      <filter-name>springSecurityFilterChain</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
 </web-app>

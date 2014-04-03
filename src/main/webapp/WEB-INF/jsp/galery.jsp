@@ -7,7 +7,6 @@
 	<link rel="stylesheet" type="text/css" href="${cssPath}/galery.css"/>
 	
 	<body>
-		
 		<div class="galery-outer-wrapper">
 			<div class="galery-inner-wrapper">
 				<c:forEach var="imgPath" items="${firstImageCol}" varStatus="status">
@@ -27,7 +26,5 @@
 		</div>
 		
 		<a href="${linkHome}" class="galery-close"></a>
-		
-	</body>
 </html>
 

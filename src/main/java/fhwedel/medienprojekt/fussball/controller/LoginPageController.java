@@ -1,18 +1,18 @@
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
@@ -35,6 +35,10 @@ public class LoginPageController {
 	/** Fehlerbehandlung */
 	@Autowired
 	private DataErrorsLogin dataErrosLogin;
+	
+	/** Manager für die Authentifizierung von Usern */
+	@Autowired
+	private AuthenticationManager authenticationManager;
 	
 	/* --------------- Methoden -------------------------------- */
 	/* --------------- Anzeige --------------------------------- */
@@ -61,25 +65,6 @@ public class LoginPageController {
 	
 	/* -------------- Login ------------------------------------ */
 	/**
-	 * Setzt den Logged in Cookie des Users.
-	 * @param 	user		User
-	 * @param 	response	HttpServletResponse
-	 */
-	public void setLoggedInCookie(User user, HttpServletResponse response) {
-		user.setUserGroup(this.dataAccessUsers.getUserGroup(user.getUsername(), user.getPassword()));
-		/* Cookie setzen */
-		// TODO verschlüsseln
-		Cookie userCookie = new Cookie(Constants.cookieUser, user.getUsername());
-		Cookie userStateCookie = new Cookie(Constants.cookieUserState, user.getUserGroupString());
-		/* Expire Time auf eine Stunde */
-		userCookie.setMaxAge(3600);
-		userStateCookie.setMaxAge(3600);
-		/* Cookie setzen */
-		response.addCookie(userCookie);
-		response.addCookie(userStateCookie);
-	}
-	
-	/**
 	 * Behandelt den Login-Request.
 	 * @param 	user			User	User mit eingegebenen Login-Daten
 	 * @param 	bindingResult	BindingResult
@@ -87,15 +72,36 @@ public class LoginPageController {
 	 */
 	@RequestMapping(value=Constants.linkLogin, method=RequestMethod.POST)
 	public String login(@ModelAttribute("loginUser") User user, BindingResult bindingResult) {
-		/* Prüfen, ob Username und Passwort stimmen */
+		/* Prüfen, ob Username und Passwort stimmen 
+		 * Wenn Angaben stimmen, User authentifizieren */
 		if(bindingResult.hasErrors() 
-		|| this.dataErrosLogin.hasErrors(user, bindingResult)) {
+		|| this.dataErrosLogin.hasErrors(user, bindingResult)
+		|| !this.authenticate(user.getUsername(), user.getPassword())) {
+			// Falls Fehler vorliegen oder Authentifizierung nicht geklappt hat
+			// Loginformular erneut anzeigen
 			return Constants.viewNameLogin;
 		}
-		
-		/* Cookie bei erfolgreichem Login setzen und auf Landing Page weiterleiten */
-		//this.setLoggedInCookie(user, response);
-		// TODO anders machen
-		return Constants.redirectHome;
+		// Ansonsten auf die Home Seite redirecten
+		return Constants.redirectGalery;
+	}
+	
+	/**
+	 * Authentifiziert einen User.
+	 * @param 	username	String	Username
+	 * @param 	password	String	Passwort
+	 * @return	boolean		true	Authentifizierung war erfolgreich
+	 * 						false	Authentifizierung ist fehlgeschlagen
+	 */
+	private boolean authenticate(String username, String password) {
+	    try {
+	        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+	        if (authenticate.isAuthenticated()) {
+	            SecurityContextHolder.getContext().setAuthentication(authenticate);             
+	            return true;
+	        }
+	    }
+	    catch (AuthenticationException e) {         
+	    }
+	    return false;
 	}
 }
