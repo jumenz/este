@@ -8,6 +8,21 @@
 
 	<!-- Security Konfigurationen mit "security" als default prefix -->
 	
+	<!-- User Service, um Authentifikation der User auf Grundlage einer Datenbank durchzuführen  -->
+	<jdbc-user-service	id="userService" 
+						data-source-ref="dataSource"
+						users-by-username-query="select username, password, true from users where username=?"
+						authorities-by-username-query="select username, user_group from users where username=?"
+						></jdbc-user-service>
+
+	<authentication-manager alias="authenticationManager">
+    	<authentication-provider user-service-ref="userService" />
+	</authentication-manager>
+	
+	<!-- Secutiry für Methoden, über @Security-Annotation -->
+	<!-- <global-method-security secured-annotations="enabled"/> -->
+	
+	
 	<!-- 
 		auto-config: 		Autokonfirgurationen für Login/Logout,  
 		use-expressions:	Ermöglicht das einsetzen von SpEL (z.B. für access="hasRole(ROLE_ADMIN" oder "isAuthenticated()"
@@ -41,21 +56,7 @@
 		<intercept-url pattern="/galerie/upload/" requires-channel="https"/> -->
 		
 		<!-- rememberMe Funktionalität für 4 Wochen mit key "esteKey" zum verschlüsseln (MD5) -->
-		<!-- <remember-me key="esteKey"	token-validity-seconds="2419200"/>  -->
+		<remember-me key="esteKey"	user-service-ref="userService" token-validity-seconds="2419200"/>
 	</http>
-	
-	<!-- User Service, um Authentifikation der User auf Grundlage einer Datenbank durchzuführen  -->
-	<jdbc-user-service	id="userService" 
-						data-source-ref="dataSource"
-						users-by-username-query="select username, password, true from users where username=?"
-						authorities-by-username-query="select username, user_group from users where username=?"
-						></jdbc-user-service>
-
-	<authentication-manager alias="authenticationManager">
-    	<authentication-provider user-service-ref="userService" />
-	</authentication-manager>
-	
-	<!-- Secutiry für Methoden, über @Security-Annotation -->
-	<!--  <global-method-security secured-annotations="enabled"/> -->
 
 </beans:beans>
