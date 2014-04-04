@@ -9,7 +9,7 @@
 	<!-- Security Konfigurationen mit "security" als default prefix -->
 	
 	<!-- 
-		auto-config: Autokonfirgurationen für Login/Logout,  
+		auto-config: 		Autokonfirgurationen für Login/Logout,  
 		use-expressions:	Ermöglicht das einsetzen von SpEL (z.B. für access="hasRole(ROLE_ADMIN" oder "isAuthenticated()"
 	-->
 	<http auto-config="true" use-expressions="true">
