@@ -16,39 +16,56 @@
         <div class="main">
         <div class="main-inner">
         	<!-- Sidebar -->
-        	<jsp:include page="./includes/sidebar.jsp">
-				<jsp:param name="sidebarTitle" value="Spielberichte"/>
-				<jsp:param name="abc" value="include" />
-				<jsp:param name="timer" value="include"/>
-				<jsp:param name="nav" value="linkname1"/>
-				<jsp:param name="ref" value="#" />
-				<jsp:param name="nav" value="linkname2"/>
-				<jsp:param name="ref" value="#" />
-				<jsp:param name="nav" value="linkname3"/>
-				<jsp:param name="ref" value="#" />
-			</jsp:include>
-        
-			<div id="..." class="content-list">
+        	<security:authorize access="hasRole('USER_GROUP_ADMIN')">
+	        	<jsp:include page="./includes/sidebar.jsp">
+					<jsp:param name="sidebarTitle" value="Spielberichte"/>
+					<jsp:param name="abc" value="include" />
+					<jsp:param name="search" value="include" />
+					<jsp:param name="nav" value="Startseite"/>
+					<jsp:param name="ref" value="${linkWelcome}"/>
+					<jsp:param name="nav" value="Bericht verfassen"/>
+					<jsp:param name="ref" value="${linkReportsNew}" />
+				</jsp:include>
+			</security:authorize>
+			<security:authorize access="hasRole('USER_GROUP_NO_ADMIN') or not isAuthenticated()">
+	        	<jsp:include page="./includes/sidebar.jsp">
+					<jsp:param name="sidebarTitle" value="Spielberichte"/>
+					<jsp:param name="abc" value="include" />
+					<jsp:param name="search" value="include" />
+					<jsp:param name="nav" value="Startseite"/>
+					<jsp:param name="ref" value="${linkWelcome}"/>
+				</jsp:include>
+			</security:authorize>
+       
+			<div id="main-content-small" class="content-layout-cell main-content main-content-small">
+			<div class="outer">
+			<div class="inner">				
+			<div class="content-list">
 				<ul>
+					<!-- Spielberichte -->
 					<c:forEach var="entry" items="${reportModel.entries}" varStatus="status">
 						<li class="one-col">
-							<!-- reports -->
+							<!-- einzelner Bericht -->
 							<div  class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle" id="address-name" >${entry.topic}</h2>
 								<div id="submit-${status.index}" class="box-link down-raquo toggle-link right toggle">
 								</div>
 								<div class="toggle-content" style="display: none">
+									<!-- Kurzangeben -->
 									<div class="box-info clearfix light-bg">
 										<div class="left half-width">
 											<table class="first">
 												<tbody>
 												<tr class="first">
-													<th class="first">Erster Schlüßel:</th>
-													<td class="last">Wert</td>
+													<th class="first">Name des Gegners:</th>
+													<td class="last"><c:out value="${entry.opponent}"></c:out></td>
 												</tr>
 												<tr>
-													<th class="first">Zweiter Schlüßel:</th>
-													<td class="last">Wert</td>
+													<th class="first">Halbzeit:</th>
+													<td class="last">
+														<c:out value="${entry.scoreFirstHalfHome}"></c:out>:
+														<c:out value="${entry.scoreFirstHalfGuest}"></c:out>
+													</td>
 												</tr>
 												</tbody>
 											</table>
@@ -57,19 +74,34 @@
 											<table class="last">
 												<tbody>
 												<tr>
-													<th class="first">Erster Schlüßel:</th>
-													<td class="last">Wert</td>
+													<th class="first">Datum:</th>
+													<td class="last">${entry.date}</td>
 												</tr>
 												<tr>
-													<th class="first">Zweiter Schlüßel:</th>
-													<td class="last">Wert</td>
+													<th class="first">Endstand:</th>
+													<td class="last">
+														<c:out value="${entry.scoreSecondHalfHome}"></c:out>:
+														<c:out value="${entry.scoreSecondHalfGuest}"></c:out>
+													</td>
 												</tr>
 												</tbody>
 											</table>
 										</div>
 									</div>
 									<div class="box-body">
+										<!-- Text -->
 										<p>${entry.text}</p>
+										
+										<!-- Bearbeiten und löschen, wenn ein Admin angemeldet ist -->
+										<security:authorize access="hasRole('USER_GROUP_IS_ADMIN')">
+											<sf:form style="display: inline-block" action="${linkReportsEdit}${entry.id}/" method="get">
+												<button type="submit">Bearbeiten</button>
+											</sf:form>
+											<sf:form style="display: inline-block" action="${linkReportsDelete}${entry.id}/" method="post">
+												<button type="submit">Löschen</button>
+											</sf:form>
+										</security:authorize>
+										
 									</div>
 								</div>
 							</div>
@@ -77,8 +109,10 @@
 						</li>
 					</c:forEach>
 				</ul>
-				
 				<!-- end Contentbox One-Col -->
+			</div>
+			</div>
+			</div>
 			</div>
 		</div>
 		</div>
@@ -87,6 +121,7 @@
 		
 		<!-- footer -->
 		<jsp:include page="./includes/footer.jsp"/>
+		<!-- javascript, das nach Laden ausgeführt werden soll -->
+		<script type="text/javascript" src="${jsPath}/onLoad.js"></script>
 	</body>
 </html>
-

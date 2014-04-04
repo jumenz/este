@@ -76,6 +76,10 @@ button {
 button .forward-raquo {
     margin-left: 13px;
 }
+
+.full-width {
+	width: 100%;
+}
 /* ---------------------------------------------------------------------
  * ---------------- own classes ----------------------------------------
  * ---------------------------------------------------------------------
@@ -94,6 +98,15 @@ aside, .main {
 
 .color-font {
     color: deeppink !important;
+}
+
+.button-auto-width {
+	width: auto;
+}
+
+/* ------------------- errors --------------------------------------- */
+.error {
+	color: red;
 }
 
 /* ------------------- common display ------------------------------- */
@@ -351,9 +364,9 @@ aside, .main {
     text-align: right;
     top: -30px;
 }
-.box-link span {
+.box-link span:first-child {
 	line-height: 24px;
-    margin-right: 15px;
+    margin-right: 12px;
     vertical-align: middle;
 }
 .box-head {
@@ -457,6 +470,7 @@ aside, .main {
     display: inline-block;
     margin: 40px 0 0 0;
     padding: 12px 12px 0 12px;
+    width: 88%;
 }
 .menublock-sidebar .timer-menu li.center {
     text-align: center;
@@ -678,7 +692,7 @@ a.show-link {
 }
 
 @media (max-width: 500px) {
-	/* Profile im Über uns anpassen */
+	/* Profile im ï¿½ber uns anpassen */
 	.about-us-img-logo {
 		width: 100%;
 		margin-right: 0px;

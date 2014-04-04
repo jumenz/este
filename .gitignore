@@ -2,3 +2,4 @@
 /bin
 .*
 !.gitignore
+/src/main/resources/spring/data-access.properties

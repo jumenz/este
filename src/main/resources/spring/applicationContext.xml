@@ -35,21 +35,67 @@
     </aop:config>
     _________________________________________________________________________________________________________________________
 -->
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+<beans 	xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p" 
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx" 
+		xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/data/jpa 
+			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context.xsd">
  	
  	<import resource="data-access-config.xml"/>
  	<import resource="mvc-config.xml"/>
- 	<context:component-scan base-package="fhwedel.medienprojekt.fussball"/>
-
-	<!-- Test der Datenbankanbindung -->
-	<!--  <bean id="dataAccessTestClass" class="fhwedel.medienprojekt.fussball.service.dataAccessTest">
-		<property name="jdbcTemplate" ref="jdbcTemplate"/>
-	</bean> -->
+ 	<import resource="security.xml"/>
+ 	<context:component-scan base-package="fhwedel.medienprojekt.fussball"/> 
+ 	
+	<!-- Datenbankanbindungen -->
+	<bean id="DataAccessForum" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessForum">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataAccessReports" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessReports">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataAccessUsers" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataAccessAddresses" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessAddresses">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataAccessPermissions" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessPermissions">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataAccessComments" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessComments">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<!-- Fehlerbehandlungen -->
+	<bean id="DataErrorsUsers" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsPermissions" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsPermissions">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsLogin" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsLogin">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsReports" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsReports">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsForum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsForum">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsComments" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsComments">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	
+	<!-- Login / Registrierung -->
+	<bean id="AuthenticationService" class="fhwedel.medienprojekt.fussball.service.AuthenticationService"/>
     
 </beans>

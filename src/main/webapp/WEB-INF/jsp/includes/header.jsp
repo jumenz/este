@@ -13,11 +13,6 @@
 			<a href="${linkReports}">
 				Spielberichte
 			</a>
-			<ul class="submenue">
-				<li class="online-only">
-					<a href="#">verfassen</a> 
-				</li>
-			</ul>
 		</li>
 		<li class="nav-wide">
 			<a href="${linkGalery}">
@@ -34,44 +29,53 @@
 				<li><a target="_blank" href="http://ergebnisdienst.fussball.de/begegnungen/fbzl-staffel-west/bezirksebene-hamburg/frauen-bezirksliga/frauen/spieljahr1314/hamburg/-/staffel/01HHUTJVTS000000VV0AG812VU0P4H9C-G/mandant/03">Begegnungen</a></li>
 			</ul>
 		</li>
-		<li class="offline-only nav-wide">
-			<a href="${linkLogin}">
-				<span class="nav-wide">Login</span>
-				<img class="nav-reduced icon" src="../../data/icons/icon-login.png"/>
-			</a>
-		</li>
-		<li class="online-only nav-wide">
-			<a href="${linkHome}">
-				Home
-			</a>
-            <ul class="submenue">
-                <!--<li><form name="add_list" action="../Controller/AddressesController.php" method="get" ><button class="submenu-link" type="submit" name="action" value="list">Adressbuch</button></form></li>-->
-                <li><a href="">Adressbuch</a></li>
-                <li><a href="#">Termine</a></li>
-                <li><a href="${linkForum}">Forum</a></li>
-                <li><a>Logout</a></li>
-            </ul>
-		</li>
+		<security:authorize access="not isAuthenticated()">
+			<li class="nav-wide">
+				<a href="${linkLogin}">
+					<span class="nav-wide">Login</span>
+				</a>
+			</li>
+		</security:authorize>
+		<security:authorize access="isAuthenticated()">
+			<li class="nav-wide">
+				<a href="${linkHome}">
+					Home
+				</a>
+	            <ul class="submenue">
+	                <!--<li><form name="add_list" action="../Controller/AddressesController.php" method="get" ><button class="submenu-link" type="submit" name="action" value="list">Adressbuch</button></form></li>-->
+	                <li><a href="${linkAddresses}">Adressbuch</a></li>
+	                <li><a href="#">Termine</a></li>
+	                <li><a href="${linkForum}">Forum</a></li>
+	                <li><a href="${linkLogout}">Logout</a></li>
+	            </ul>
+			</li>
+		</security:authorize>
 		<!-- for smaller displays -->
 		<li class="nav-reduced">
-			<img src="../../data/icons/icon-menue.png"/>
+			<img src="${dataPath}/icons/icon-menue.png"/>
 			<ul class="submenue">
 				<li><a href="${linkAboutUs}">Über uns</a></li>
 				<li><a href="${linkReports}">Spielberichte</a></li>
 				<li><a href="${linkGalery}">Galerie</a></li>
 				<li><a href="${linkLinks}">Links</a></li>
-				<li class="online-only"><a href="${linkHome}">Home</a></li>
-				<li class="online-only"><a href="#">Logout</a></li>
-				<li class="offline-only"><a href="${linkLogin}">Login</a></li>
+				<security:authorize access="isAuthenticated()">
+					<li><a href="${linkHome}">Home</a></li>
+					<li><a href="${linkLogout}">Logout</a></li>
+				</security:authorize>
+				<security:authorize access="not isAuthenticated()">
+					<li><a href="${linkLogin}">Login</a></li>
+				</security:authorize>
 			</ul>
 		</li>
 	</ul>
 	
 	<!----------- Breadcrub ----------------->
 	<div class="breadcrumb">
-		<span class="breadcrumb--step"><a>Pfad1</a> - </span>
+		<!-- <span class="breadcrumb--step"><a>Pfad1</a> - </span>
 		<span class="breadcrumb--step"><a>Pfad2</a> - </span>
-		<span class="breadcrumb--current">Hier</span>
+		<span class="breadcrumb--current">Hier</span>  -->
+		<!-- Begrüßung für eingeloggte User -->
+		<security:authorize access="isAuthenticated()">Hallo <security:authentication property="principal.username"/>!</security:authorize>
 	</div>
 </div>
 

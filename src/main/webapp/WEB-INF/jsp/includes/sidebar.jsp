@@ -58,7 +58,7 @@
 					});
 				</script>
 				<!-- end Sidebar Menu -->
-
+				
 				<!-- include Timer if timer is set true -->
 				<c:set var="timerSetting" scope="request" value="${param.timer}"/>
 				<c:if test="${timerSetting == 'include'}">
@@ -113,6 +113,17 @@
 				</c:if>
 				<c:remove var="timerSetting"/>
 				
+				<c:set var="searchSetting" scope="request" value="${param.search}"/>
+				<c:if test="${searchSetting == 'include'}">
+				<!--  Search Field  -->
+				<div class="menublock-sidebar">
+					<form method="GET">
+						<input size="25" name="search" placeholder="Suchen ..."/>
+						<button type="submit" style="display: none"></button>
+					</form>
+				</div>
+				</c:if>
+				
 				<!-- include ABC if abc is set true -->
 				<c:set var="abcSetting" scope="request" value="${param.abc}"/>
 				<c:if test="${abcSetting == 'include'}">
@@ -124,7 +135,7 @@
 	                        		String str = "" + (char) c;
 	                        	%>
 	                                <li>
-	                                    <a href=<%= str %> id=<%= "item-" + str %> class="timer-link">
+	                                    <a href=<%= "#" + str %> id=<%= "item-" + str %> class="timer-link">
 	                                        <div class="list-item bg">
 	                                            <span><%= str %></span>
 	                                        </div>

@@ -14,20 +14,111 @@
         <!-- Content -->
         <div class="container">
         <div class="main">
-        <div class="main-inner">
-        	<!-- sidebar -->
-			<jsp:include page="./includes/sidebar.jsp">
-				<jsp:param name="sidebarTitle" value="Registrieren"/>
-				<jsp:param name="timer" value="include"/>
-				<jsp:param name="abc" value="include"/>
-				<jsp:param name="nav" value="linkname1"/>
-				<jsp:param name="ref" value="#"/>
-				<jsp:param name="nav" value="linkname2"/>
-				<jsp:param name="ref" value="#"/>
-			</jsp:include>
-        
+        <div class="main-inner">     
 			<div id="..." class="content-list">
-				
+				<ul>
+					<!--Contentbox One-Col -->
+					<!-- Formular zum Registrieren -->	
+                     <security:authorize access="not isAuthenticated()">
+	                     <li class="one-col">
+	                         <div class="main-content-box box-borders bg clearfix">
+	                             <h2 class="box-title">Registrieren</h2>
+	                             <div class="box-body">
+									<sf:form action="${linkRegisterUser}" method="POST" modelAttribute="newUser">
+										<fieldset>
+											<!-- Username -->
+											<sf:input 	path="username"
+														value="${newUser.username}"
+														placeholder="Username"
+														class="full-width"
+											/><br>
+											<!-- Fehlermeldung für den Username -->
+											<sf:errors path="username" cssClass="error"/><br>
+											<!-- E-Mail Adresse -->
+											<sf:input 	path="email"
+														value="${newUser.email}"
+														placeholder="E-Mail Adresse"
+														class="full-width"
+											/><br>
+											<!-- Fehlermeldung für die E-Mail Adresse -->
+											<sf:errors path="email" cssClass="error"/><br>
+											<!-- Passwort -->
+											<sf:input	path="password" 
+														type="password"
+														value="${newUser.password}"
+														placeholder="Passwort"
+														class="full-width"
+											/><br><br>
+											<sf:input	path="passwordCompare"
+														type="password"
+														value="${newUser.passwordCompare}"
+														placeholder="Passwort"
+														class="full-width"
+											/><br>
+											<!-- Fehlermeldung für das Passwort -->
+											<sf:errors path="password" cssClass="error"/><br>
+											<!-- Buttons -->
+											<button name="commit" type="submit">Registrieren</button>
+											<button name="reset" type="reset">Abbrechen</button>
+										</fieldset>
+									</sf:form>
+	                             </div>
+	                         </div>
+	                     </li>
+                     </security:authorize>
+                     <security:authorize access="isAuthenticated()"><p>Du bist bereits registriert.</p></security:authorize>
+                     <security:authorize access="hasRole('USER_GROUP_ADMIN')">
+	                     <!-- Forumular zum hinzufügen von zugelassenen EMail Adressen -->
+	                     <li class="one-col">
+	                         <div class="main-content-box box-borders bg clearfix">
+	                             <h2 class="box-title">Neue Email zulassen</h2>
+	                             <div class="box-body">
+									<sf:form action="${linkRegisterNewPermission}" method="POST" modelAttribute="newPermission">
+										<fieldset>
+											<!-- E-Mail Adresse -->
+											<sf:input 	path="email"
+														placeholder="E-Mail Adresse"
+														value="E-Mail Adresse"
+														class="full-width"
+											/><br>
+											<!-- Admin Status -->
+											<sf:checkbox path="adminStatus"/>User soll Admin Status erhalten<br>
+											<!-- Fehlermeldung für die E-Mail Adresse -->
+											<sf:errors path="email" cssClass="error"/><br>
+											<!-- Buttons -->
+											<button name="commit" type="submit">Zulassen</button>
+											<button name="reset" type="reset">Abbrechen</button>
+										</fieldset>
+									</sf:form>
+	                             </div>
+	                         </div>
+	                     </li>
+	                 
+                     
+	                     <!-- Forumular zum Bearbeiten bestehender Zulassungen -->
+	                     <li class="one-col">
+	                         <div class="main-content-box box-borders bg clearfix">
+	                             <h2 class="box-title">Bisher zugelassene EMails</h2>
+	                             <div class="box-body">
+									<c:forEach var="permission" items="${allPermissions}" varStatus="status">
+										<sf:form style="display: inline-block" action="${linkRegister}loeschen-${permission.id}/">
+											<button name="commit" type="submit">Löschen</button>
+										</sf:form>
+										<sf:form style="display: inline-block" action="${linkRegister}status-${permission.id}/" method="get">
+											<button name="commit" type="submit">Status ändern</button>
+										</sf:form>
+										${permission.email}     
+										Status: 
+										<c:if test="${permission.adminStatus}"> Admin</c:if>
+										<c:if test="${!permission.adminStatus}"> kein Admin</c:if>
+										<br>
+									</c:forEach>
+	                             </div>
+	                         </div>
+	                     </li>
+	                 </security:authorize>
+                 	<!-- end Contentbox One-Col -->
+				</ul>
 			</div>
 		</div>
 		</div>

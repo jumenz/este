@@ -4,11 +4,13 @@ package fhwedel.medienprojekt.fussball.model.post.forum;
 import fhwedel.medienprojekt.fussball.model.post.Post;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 
+import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessForum;
 
 /** externe Klassen  */
 import java.util.ArrayList;
 import java.util.List;
-import org.joda.time.DateTime;
+import java.util.Date;
+
 
 /**
  * Klasse zur Implementierung von Forenbeiträgen.
@@ -21,19 +23,31 @@ public class ForumEntry extends Post {
 	/** Kommentarliste */
 	private List<Comment> comments = new ArrayList<Comment>();
 	
+	/** Kurzbeschreibung */
+	//@Pattern(regexp=".*", message="Bitte gib eine Kurzbeschreibung ein.")
+	private String description;
+	
 	/* ---------- Funktionen ----------------- */
 	/* --------- Konstruktor ----------------- */
+	/**
+	 * Default Konstruktor.
+	 */
+	public ForumEntry() {
+		this("", "", "", new Date());
+	}
+	
 	/**
 	 * Konstruktorfunktion.
 	 * @param topic		String		Thema
 	 * @param text		String		Inhalt
 	 * @param author	String		Author
-	 * @param dateTime	DateTime	Erstellungszeitpunkt
+	 * @param dateTime	Date		Erstellungszeitpunkt
 	 * @param comments	List		Kommentarliste
 	 */
-	public ForumEntry(String topic, String text, String author, DateTime dateTime, List<Comment> comments) {
-		super(topic, text, author, dateTime);
+	public ForumEntry(String topic, String text, String author, Date date, String description, List<Comment> comments) {
+		super(topic, text, author, date);
 		this.comments = comments;
+		this.description = description;
 	}
 	
 	/**
@@ -41,10 +55,10 @@ public class ForumEntry extends Post {
 	 * @param topic		String		Thema
 	 * @param text		String		Inhalt
 	 * @param author	String		Author
-	 * @param dateTime	DateTime	Erstellungszeitpunkt
+	 * @param date		Date		Erstellungszeitpunkt
 	 */
-	public ForumEntry(String topic, String text, String author, DateTime dateTime) {
-		this(topic, text, author, dateTime, new ArrayList<Comment>());
+	public ForumEntry(String topic, String text, String author, Date date) {
+		this(topic, text, author, date, "", new ArrayList<Comment>());
 	}
 	
 	/* --------- getter / setter ------------- */
@@ -52,15 +66,29 @@ public class ForumEntry extends Post {
 	 * Setzt die Kommentarliste des Forenbeitrags.
 	 * @param comments
 	 */
-	public void setCommentList(List<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
 	/**
 	 * Liefert die Kommentarliste des Forenbeitrags.
 	 * @return
 	 */
-	public List<Comment> getCommentList() {
+	public List<Comment> getComments() {
 		return this.comments;
+	}
+	
+	/**
+	 * Setzt die Kurzbeschreibung des Foreneintrags.
+	 * @param description	Kurzbeschreibung
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	/**
+	 * Liefert die Kurzbeschreibung des Foreneintrags.
+	 * @return	String
+	 */
+	public String getDescription() {
+		return this.description;
 	}
 }

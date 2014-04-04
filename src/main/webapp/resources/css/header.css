@@ -68,14 +68,13 @@ button.submenu-link:hover {
 	display: none !important;
 	width: 100%;
 	text-align: right;
-	margin: -2px;     /* BUG */
+	margin: -2px;
 }
 .nav li.nav-reduced img {
-	max-height: 100%;
-	max-width: 100%;
-	height: auto;
+	height: 100%;
 	width: auto;
 	padding-right: 3%;
+	margin-top: -3px;
 }
 /* ----------------Drop down Menu ----------------------------------- */
 .nav { 

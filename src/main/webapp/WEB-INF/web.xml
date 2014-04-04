@@ -5,25 +5,10 @@
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
-	<!-- Einstellungen für Web-Anwednungen mit Spring -->
+	<!-- Einstellungen fÃ¼r Web-Anwednungen mit Spring -->
 
     <display-name>Fussball</display-name>
     <description>Fussball</description>
-
-   <!-- Default profile is "jpa" (see business-config.xml for more details). 
-   When using Spring JDBC, uncomment the following: -->
-   <!--  <context-param>
-        <param-name>spring.profiles.active</param-name>
-        <param-value>jdbc</param-value>
-    </context-param>  -->
-
-   <!--  When using Spring Data JPA, uncomment the following: -->
-   <!--
-   	<context-param>
-        <param-name>spring.profiles.active</param-name>
-		<param-value>spring-data-jpa</param-value>
-    </context-param>
-	-->
 
     <!--
 		- Location der XML Datei, die den root application context definiert.
@@ -31,10 +16,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/empty.xml</param-value>
+        <param-value>classpath:spring/applicationContext.xml</param-value>
     </context-param>
 
-	<!-- Listener für Web Application Context -->
+	<!-- Listener fÃ¼r Web Application Context -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -52,14 +37,27 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     </servlet>
 
 	<!-- 
-		Angabe auf welche URLs der Dispatcher hören soll (hier alle, um URLs einfach zu halten) 
-		Alternativ wäre z.B. /app/ möglich, damit für statische Seiten kein Dispatcher 
+		Angabe auf welche URLs der Dispatcher hï¿½ren soll (hier alle, um URLs einfach zu halten) 
+		Alternativ wÃ¤re z.B. /app/ mÃ¶glich, damit fÃ¼r statische Seiten kein Dispatcher 
 		verwendet wird
-		Um statische Seiten nicht über Dispatcher zu laden: <mvc:ressources> verwenden)
+		Um statische Seiten nicht ï¿½ber Dispatcher zu laden: <mvc:ressources> verwenden)
 	-->
     <servlet-mapping>
         <servlet-name>fussball</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+	<!--  
+		DelegatingFilterProxy: delegiert weiter an javax.servlet.Filter (als bean im application context),
+								wird automatisch unter angegebenem Filter-Namen erzeugt
+	-->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+			<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+    <filter-mapping>
+      <filter-name>springSecurityFilterChain</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
 </web-app>

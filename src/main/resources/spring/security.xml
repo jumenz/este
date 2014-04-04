@@ -1,0 +1,62 @@
+<beans:beans 	xmlns:beans="http://www.springframework.org/schema/beans"
+				xmlns="http://www.springframework.org/schema/security"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://www.springframework.org/schema/beans
+									http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+									http://www.springframework.org/schema/security
+									http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<!-- Security Konfigurationen mit "security" als default prefix -->
+	
+	<!-- User Service, um Authentifikation der User auf Grundlage einer Datenbank durchzuführen  -->
+	<jdbc-user-service	id="userService" 
+						data-source-ref="dataSource"
+						users-by-username-query="select username, password, true from users where username=?"
+						authorities-by-username-query="select username, user_group from users where username=?"
+						></jdbc-user-service>
+
+	<authentication-manager alias="authenticationManager">
+    	<authentication-provider user-service-ref="userService" />
+	</authentication-manager>
+	
+	<!-- Secutiry für Methoden, über @Security-Annotation -->
+	<!-- <global-method-security secured-annotations="enabled"/> -->
+	
+	
+	<!-- 
+		auto-config: 		Autokonfirgurationen für Login/Logout,  
+		use-expressions:	Ermöglicht das einsetzen von SpEL (z.B. für access="hasRole(ROLE_ADMIN" oder "isAuthenticated()"
+	-->
+	<http auto-config="true" use-expressions="true">
+		<form-login login-page="/login/"/>
+		<http-basic/>
+		<logout logout-url="/logout/"/>
+		<!-- 
+			bestimmte URLs nur eingeloggten Usern anzeigen
+			Achtung: spezifische zuerst, dann allgemeinere
+		 -->
+		<intercept-url pattern="/forum/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/galerie/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/addressbuch/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/home/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/logout/**" access="isAuthenticated()"/>
+		
+		<!-- Erst wenn Seite online -->
+		<!-- http 
+		<intercept-url pattern="/home/**" requires-channel="http"/>
+		<intercept-url pattern="/willkommen/**" requires-channel="http"/>
+		<intercept-url pattern="/ueber-uns/**" requires-channel="http"/>
+		<intercept-url pattern="/impressum/" requires-channel="http"/>
+		<intercept-url pattern="/galerie/" requires-channel="http"/> -->
+		<!-- https 
+		<intercept-url pattern="/login/**" requires-channel="https"/>
+		<intercept-url pattern="/adressbuch/**" requires-channel="https"/>
+		<intercept-url pattern="/forum/**" requires-channel="https"/>
+		<intercept-url pattern="/registrieren/**" requires-channel="https"/>
+		<intercept-url pattern="/galerie/upload/" requires-channel="https"/> -->
+		
+		<!-- rememberMe Funktionalität für 4 Wochen mit key "esteKey" zum verschlüsseln (MD5) -->
+		<remember-me key="esteKey"	user-service-ref="userService" token-validity-seconds="2419200"/>
+	</http>
+
+</beans:beans>

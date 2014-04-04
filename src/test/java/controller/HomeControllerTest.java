@@ -21,7 +21,7 @@ public class HomeControllerTest {
 	public void testDisplayHome() {
 		HomeController controller = new HomeController();
 		String viewName = controller.displayHome();
-		assertEquals("home", viewName);
+		assertEquals(Constants.viewNameHome, viewName);
 	}
 
 }

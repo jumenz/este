@@ -1,6 +1,8 @@
 package fhwedel.medienprojekt.fussball.model.post;
 
-import org.joda.time.DateTime;
+/** externe Klassen */
+import java.util.Date;
+
 
 /**
  * Klasse für allgemeine Posts.
@@ -11,16 +13,22 @@ import org.joda.time.DateTime;
  */
 public class Post {
 	/* ---------- Variablen ------------------ */
+	/** id des Eintrags */
+	private int id;
 	/** Thema des Beitrags */
+	//@Pattern(regexp=".*", message="Bitte gib einen Titel ein.")
 	private String topic;
 	
 	/** Inhalt des Beitrags */
+	//@Pattern(regexp=".*", message="Bitte gib einen Text ein.")
 	private String text;
 	
 	/** Zeit und Datum der Erstellung */
-	private DateTime dateTime;
+	//@Pattern(regexp=".*", message="Bitte gib Datum und Uhrzeit an.")
+	private Date date;
 	
 	/** Autor des Beitrags */
+	//@Pattern(regexp=".*", message="Der Author darf nicht leer sein.")
 	private String author;
 	
 	/* ---------- Funktionen ----------------- */
@@ -29,13 +37,13 @@ public class Post {
 	 * Konstruiert die Klasse Post.
 	 * @param topic		String		Thema des Beitrags
 	 * @param text		String		Inhalt des Beitrags
-	 * @param dateTime	DateTime	Erstellungszeitpunkt
+	 * @param date		Date		Erstellungszeitpunkt
 	 * @param author	String		Author
 	 */
-	public Post(String topic, String text, String author, DateTime dateTime) {
+	public Post(String topic, String text, String author, Date date) {
 		this.topic = topic;
 		this.text = text;
-		this.dateTime = dateTime;
+		this.date = date;
 		this.author = author;
 	}
 	
@@ -89,18 +97,33 @@ public class Post {
 	}
 	
 	/**
-	 * Setzt Datum und Zeit des Beitrags.
-	 * @param dateTime
+	 * Setzt den Zeitpunkt des Beitrags.
+	 * @param date
 	 */
-	public void setDateTime(DateTime dateTime) {
-		this.dateTime = dateTime;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	/**
-	 * Liefert Datum und Zeit des Beitrags.
+	 * Liefert den Zeitpunkt des Beitrags.
 	 * @return DateTime
 	 */
-	public DateTime getDateTime() {
-		return this.dateTime;
+	public Date getDate() {
+		return this.date;
+	}
+	
+	/**
+	 * Liefert die Id.
+	 * return int
+	 */
+	public int getId() {
+		return this.id;
+	}
+	/**
+	 * Setzt die id.
+	 * @param id	Wert der id
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 }
