@@ -131,6 +131,7 @@ button.submenu-link:hover {
 .breadcrumb {
 	text-align: left;
 	font-size: smaller;
+	color: white;
 	background-color: #666666;
 	padding-left: 8%;
 	position: absolute;

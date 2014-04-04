@@ -67,6 +67,13 @@ CREATE TABLE IF NOT EXISTS addresses (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS aboutus (
-  id 		INT 			NOT NULL PRIMARY KEY,
-  text		VARCHAR(600)	NOT NULL
+  company			VARCHAR(1600)	NOT NULL,
+  team				VARCHAR(1600)	NOT NULL,
+  trainer_first		VARCHAR(1600)	NOT NULL,
+  trainer_second	VARCHAR(1600)	NOT NULL,
+  training			VARCHAR(1600)	NOT NULL,
+  approach_nfd		VARCHAR(600)	NOT NULL,
+  approach_c		VARCHAR(600)	NOT NULL,
+  approach_pt		VARCHAR(600)	NOT NULL,
+  contact			VARCHAR(600)	NOT NULL
 ) ENGINE=InnoDB;

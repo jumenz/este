@@ -42,11 +42,12 @@ public class AboutUsContent {
 	 * @param approachPublicTransportText		String
 	 * @param contactText						String
 	 */
-	public AboutUsContent (	String companyText, String teamText, String trainerFirstPartText, String trainerSecondPartText, 
+	public AboutUsContent (	String companyText, String teamText, String trainingText, String trainerFirstPartText, String trainerSecondPartText, 
 							String approachPlayingFieldTrainingText, String approachPlayingFieldMatchText, 
 							String approachPublicTransportText, String contactText) {
 		this.companyText = companyText;
 		this.teamText = teamText;
+		this.trainingText = trainingText;
 		this.trainerFirstPartText = trainerFirstPartText;
 		this.trainerSecondPartText = trainerSecondPartText;
 		this.approachPlayingFieldMatchText = approachPlayingFieldMatchText;

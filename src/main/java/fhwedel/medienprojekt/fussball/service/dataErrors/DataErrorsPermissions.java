@@ -15,10 +15,6 @@ import fhwedel.medienprojekt.fussball.model.user.Permission;
  *
  */
 public class DataErrorsPermissions extends AbstractDataErrors {
-	/* ------------------ Konstanten -------------------------------------------- */
-	/** placeholder in der jsp für das Email-Feld */
-	final String placeholderEmail = "E-Mail Adresse";
-	
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
 	/**
 	 * Default-Konstruktor.
