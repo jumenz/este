@@ -41,7 +41,7 @@
 		<intercept-url pattern="/galerie/upload/" requires-channel="https"/> -->
 		
 		<!-- rememberMe Funktionalität für 4 Wochen mit key "esteKey" zum verschlüsseln (MD5) -->
-		<remember-me key="esteKey"	token-validity-seconds="2419200"/>
+		<!-- <remember-me key="esteKey"	token-validity-seconds="2419200"/>  -->
 	</http>
 	
 	<!-- User Service, um Authentifikation der User auf Grundlage einer Datenbank durchzuführen  -->

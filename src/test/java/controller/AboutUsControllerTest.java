@@ -1,12 +1,10 @@
 package controller;
-/** import Java classes */
+
+/** externe Klassen */
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
+/** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.AboutUsController;
-/** import own classes */
-import fhwedel.medienprojekt.fussball.controller.HomeController;
 
 /**
  * AboutUsControllerTest

@@ -42,7 +42,7 @@
 										<!-- Fehlermeldung für den Login -->
 										<sf:errors path="password" cssClass="error"/><br>
 										<!-- Buttons -->
-										<input id="rememberMe" name="rememberMe" type="checkbox"/> Eingeloggt bleiben<br>
+										<!-- <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/> Eingeloggt bleiben<br>  -->
 										<button name="commit" type="submit">Anmelden</button>
 										<button name="reset" type="reset">Abbrechen</button>
 									</fieldset>
