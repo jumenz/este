@@ -23,9 +23,10 @@
 	<!-- Nur für eingeloggte User -->
 	<security:authorize access="isAuthenticated()">
 		<li>
-			<form method="get" action="${linkLogout}">
+			<!--  <form method="get" action="${linkLogout}">
 				<input class="buttom-invisible" type="submit" value="Logout"/>
-			</form>
+			</form>  -->
+ 			<img class="footer-logo" src="${dataPath}/images/logo-este.png">
 		</li>
 	</security:authorize>
 	

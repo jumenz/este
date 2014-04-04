@@ -59,6 +59,10 @@
 	cursor: pointer;
 }
 
+.footer img.footer-logo {
+	
+}
+
 /* ------------------ media specific adaption ------------------------ */
 
 @media (max-width: 1000px) {

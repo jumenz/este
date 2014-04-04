@@ -253,6 +253,7 @@ aside, .main {
     padding: 0;
     text-align: left;
     width: 100%;
+    min-height: 500px;
 }
 
 .main-inner {

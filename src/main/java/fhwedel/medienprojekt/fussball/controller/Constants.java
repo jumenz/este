@@ -15,6 +15,7 @@ public class Constants {
 	static final String linkAddressesEdit = "/adressbuch/{addressId}";
 	static final String linkAddressesDelete = "/adressbuch/loeschen/{id}/";
 	static final String linkAboutUs = "/ueber-uns/";
+	static final String linkAboutUsEdit = "/ueber-uns/bearbeiten/";
 	static final String linkReports = "/berichte/";
 	static final String linkReportsStartingWith ="/berichte/#{sub}";
 	static final String linkReportsContaining ="/berichte/~{sub}";
@@ -76,6 +77,7 @@ public class Constants {
 	static final String viewNameReportsEdit = "reportEdit";
 	static final String viewNameRegister = "register";
 	static final String viewNameAboutUs = "aboutUs";
+	static final String viewNameAboutUsEdit = "aboutUsEdit";
 	static final String viewNameLogin = "login";
 	static final String viewNameImpressum = "impressum";
 	static final String viewNameLinks = "links";

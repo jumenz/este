@@ -66,3 +66,4 @@
 <c:set var="linkAddressesEdit" value="${requestContextPath}/adressbuch/"></c:set>
 <!-- Über uns -->
 <c:set var="linkAboutUs" value="${requestContextPath}/ueber-uns/"></c:set>
+<c:set var="linkAboutUsEdit" value="${requestContextPath}/ueber-uns/bearbeiten/"></c:set>

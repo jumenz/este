@@ -53,10 +53,9 @@
 	                             </div>
 	                         </div>
 	                     </li>
-	
-					</ul>
 				</security:authorize>
-				
+				</ul>
+							
 				<!-- Sollte User eingeloggt sein, folgende Meldung anzeigen -->
 				<security:authorize access="isAuthenticated()">
 					<p>Du bist bereits angemeldet.</p>

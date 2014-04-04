@@ -57,8 +57,8 @@
 										<!-- Fehlermeldung für den Text -->
 										<sf:errors path="text" cssClass="error"/><br>
 										<!-- Buttons -->
-										<button name="commit" type="submit">Speichern</button>
-										<button name="reset" type="reset">Zurücksetzen</button>
+										<button class="dark-bg" name="commit" type="submit"><div class="forward-raquo menu-link right"></div>Speichern</button>
+										<button class="dark-bg" name="reset" type="reset"><div class="forward-raquo menu-link right"></div>Zurücksetzen</button>
 									</fieldset>
 								</sf:form>
                              </div>

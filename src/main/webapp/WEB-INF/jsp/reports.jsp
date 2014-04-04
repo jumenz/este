@@ -93,12 +93,12 @@
 										<p>${entry.text}</p>
 										
 										<!-- Bearbeiten und löschen, wenn ein Admin angemeldet ist -->
-										<security:authorize access="hasRole('USER_GROUP_IS_ADMIN')">
+										<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 											<sf:form style="display: inline-block" action="${linkReportsEdit}${entry.id}/" method="get">
-												<button type="submit">Bearbeiten</button>
+												<button class="dark-bg" type="submit"><div class="forward-raquo menu-link right"></div>Bearbeiten</button>
 											</sf:form>
 											<sf:form style="display: inline-block" action="${linkReportsDelete}${entry.id}/" method="post">
-												<button type="submit">Löschen</button>
+												<button class="dark-bg"><div class="forward-raquo menu-link right"></div>Löschen</button>
 											</sf:form>
 										</security:authorize>
 										
