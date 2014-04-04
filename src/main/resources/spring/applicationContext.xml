@@ -75,6 +75,22 @@
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
 	<!-- Fehlerbehandlungen -->
-	<bean id="DataErrorsUsers" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers"/>
-    
+	<bean id="DataErrorsUsers" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsPermissions" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsPermissions">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsLogin" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsLogin">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsReports" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsReports">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsForum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsForum">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsAddresses" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAddresses">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
 </beans>

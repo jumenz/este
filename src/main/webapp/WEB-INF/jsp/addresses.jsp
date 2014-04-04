@@ -198,6 +198,14 @@
 										    ${address.mobile}<br />
 										    ${address.phone}<br /><br />
 										    ${address.birthday}
+										    <c:if test="${isAdmin == 1 || address.id == userId}">
+												<form action="${linkAddressesDelete}${address.id}/" method="GET">
+													<button class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
+												</form>
+												<form action="${linkAddressEdit}${address.id}/" method="GET">
+													<button class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Bearbeiten</button>
+												</form>
+											</c:if>
 									    </p>
 									</div>
 								</c:otherwise>
