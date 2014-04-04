@@ -21,7 +21,7 @@ public class ImpressumControllerTest {
 	public void testDisplayImpressum() {
 		ImpressumController controller = new ImpressumController();
 		String viewName = controller.displayImpressum();
-		assertEquals("impressum", viewName);
+		assertEquals(Constants.viewNameImpressum, viewName);
 	}
 
 }

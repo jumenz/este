@@ -1,27 +1,26 @@
 package controller;
-/** import Java classes */
+
 import static org.junit.Assert.*;
 import org.junit.Test;
-/** import own classes */
-import fhwedel.medienprojekt.fussball.controller.HomeController;
+
+import fhwedel.medienprojekt.fussball.controller.LinksController;
 
 /**
- * HomeControllerTest
+ * LinksControllerTest
  * Tests the functionality of the Home Controller.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  */
 public class LinksControllerTest {
 	
 	/**
-	 * The HomeController should return "home" as viewName, when displayHome
-	 * is executed. 
+	 * LinksController sollte den Viewname der Links zurückgeben. 
 	 */
 	@Test
-	public void testDisplayHome() {
-		HomeController controller = new HomeController();
-		String viewName = controller.displayHome();
-		assertEquals("home", viewName);
+	public void testDisplayLinks() {
+		LinksController controller = new LinksController();
+		String viewName = controller.displayLinks();
+		assertEquals(Constants.viewNameLinks, viewName);
 	}
 
 }
