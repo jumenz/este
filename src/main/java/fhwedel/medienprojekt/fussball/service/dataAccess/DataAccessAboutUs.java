@@ -41,13 +41,15 @@ public class DataAccessAboutUs extends AbstractDataAccess {
 					// Spalten des Ergebnisses zuweisen
 					content.setCompanyText(resultSet.getString(1));
 					content.setTeamText(resultSet.getString(2));
-					content.setTrainerFirstPartText(resultSet.getString(3));
-					content.setTrainerSecondtPartText(resultSet.getString(4));
-					content.setTrainingText(resultSet.getString(5));
-					content.setApproachPlayingFieldTrainingText(resultSet.getString(6));
-					content.setApproachPlayingFieldMatchText(resultSet.getString(7));
-					content.setApproachPublicTransportText(resultSet.getString(8));
-					content.setContactText(resultSet.getString(9));
+					content.setTrainerFirstText(resultSet.getString(3));
+					content.setTrainerFirstName(resultSet.getString(4));
+					content.setTrainerSecondText(resultSet.getString(5));
+					content.setTrainerSecondName(resultSet.getString(6));
+					content.setTrainingText(resultSet.getString(7));
+					content.setApproachPlayingFieldTrainingText(resultSet.getString(8));
+					content.setApproachPlayingFieldMatchText(resultSet.getString(9));
+					content.setApproachPublicTransportText(resultSet.getString(10));
+					content.setContactText(resultSet.getString(11));
 					return content;
 				}
 			};
@@ -80,22 +82,26 @@ public class DataAccessAboutUs extends AbstractDataAccess {
 				+ " ("
 				+ Constants.dbAboutUsCompany + ", "
 				+ Constants.dbAboutUsTeam + ", "
-				+ Constants.dbAboutUsTrainerFirst + ", "
-				+ Constants.dbAboutUsTrainerSecond + ", "
+				+ Constants.dbAboutUsTrainerFirstText + ", "
+				+ Constants.dbAboutUsTrainerFirstName + ", "
+				+ Constants.dbAboutUsTrainerSecondText + ", "
+				+ Constants.dbAboutUsTrainerSecondName + ", "
 				+ Constants.dbAboutUsTraining + ", "
 				+ Constants.dbAboutUsApproachNfd + ", "
 				+ Constants.dbAboutUsApproachC + ", "
 				+ Constants.dbAboutUsApproachPt + ", "
 				+ Constants.dbAboutUsContact
-				+ ") VALUES (:company, :team, :trainerFirst, :trainerSecond, :training, :approachNfd, :approachC, :approachPt, :contact)";
+				+ ") VALUES (:company, :team, :trainerFirstText, :trainerFirstName, :trainerSecondText, :trainerSecondName, :training, :approachNfd, :approachC, :approachPt, :contact)";
 
 		// TODO Verschlüsselung
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("company", content.getCompanyText());
 		params.put("team", content.getTeamText());
-		params.put("trainerFirst", content.getTrainerFirstPartText());
-		params.put("trainerSecond", content.getTrainerSecondPartText());
+		params.put("trainerFirstText", content.getTrainerFirstText());
+		params.put("trainerFirstName", content.getTrainerFirstName());
+		params.put("trainerSecondText", content.getTrainerSecondText());
+		params.put("trainerSecondName", content.getTrainerSecondName());
 		params.put("training", content.getTrainingText());
 		params.put("approachNfd", content.getApproachPlayingFieldTrainingText());
 		params.put("approachC", content.getApproachPlayingFieldMatchText());

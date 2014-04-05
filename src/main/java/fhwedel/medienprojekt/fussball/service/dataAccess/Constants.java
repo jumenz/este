@@ -64,8 +64,10 @@ public class Constants {
 	static final String dbAboutUs = "aboutus";
 	static final String dbAboutUsCompany = "company";
 	static final String dbAboutUsTeam = "team";
-	static final String dbAboutUsTrainerFirst = "trainer_first";
-	static final String dbAboutUsTrainerSecond = "trainer_second";
+	static final String dbAboutUsTrainerFirstName = "trainer_first_name";
+	static final String dbAboutUsTrainerFirstText = "trainer_first_text";
+	static final String dbAboutUsTrainerSecondName = "trainer_second_name";
+	static final String dbAboutUsTrainerSecondText = "trainer_second_text";
 	static final String dbAboutUsTraining = "training";
 	static final String dbAboutUsApproachNfd = "approach_nfd";
 	static final String dbAboutUsApproachC = "approach_c";

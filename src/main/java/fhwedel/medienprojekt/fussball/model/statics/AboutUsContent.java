@@ -16,8 +16,10 @@ public class AboutUsContent {
 	/** Text über das Training */
 	private String trainingText;
 	/** Texte über die Trainer */
-	private String trainerFirstPartText;
-	private String trainerSecondPartText;
+	private String trainerFirstName;
+	private String trainerSecondName;
+	private String trainerFirstText;
+	private String trainerSecondText;
 	/** Texte zur Anfahrt */
 	private String approachPlayingFieldTrainingText;
 	private String approachPlayingFieldMatchText;
@@ -42,14 +44,17 @@ public class AboutUsContent {
 	 * @param approachPublicTransportText		String
 	 * @param contactText						String
 	 */
-	public AboutUsContent (	String companyText, String teamText, String trainingText, String trainerFirstPartText, String trainerSecondPartText, 
+	public AboutUsContent (	String companyText, String teamText, String trainingText, String trainerFirstPartText, 
+							String trainerSecondPartText, String trainerFirstName, String trainerSecondName,
 							String approachPlayingFieldTrainingText, String approachPlayingFieldMatchText, 
 							String approachPublicTransportText, String contactText) {
 		this.companyText = companyText;
 		this.teamText = teamText;
 		this.trainingText = trainingText;
-		this.trainerFirstPartText = trainerFirstPartText;
-		this.trainerSecondPartText = trainerSecondPartText;
+		this.trainerFirstText = trainerFirstPartText;
+		this.trainerSecondText = trainerSecondPartText;
+		this.trainerFirstName = trainerFirstName;
+		this.trainerSecondName = trainerSecondName;
 		this.approachPlayingFieldMatchText = approachPlayingFieldMatchText;
 		this.approachPlayingFieldTrainingText = approachPlayingFieldTrainingText;
 		this.approachPublicTransportText = approachPublicTransportText;
@@ -57,6 +62,7 @@ public class AboutUsContent {
 	}
 	
 	/* ------------------ Setter / Getter ------------------- */
+	/* ------------------ Vereinstext ----------------------- */
 	/**
 	 * Liefert den Text über den Verein.
 	 * @return	String
@@ -71,6 +77,8 @@ public class AboutUsContent {
 	public void setCompanyText(String text) {
 		this.companyText = text;
 	}
+	
+	/* --------------- Manschaftstext -------------- */
 	/**
 	 * Liefert den Text über das Team
 	 * @return	String
@@ -85,6 +93,8 @@ public class AboutUsContent {
 	public void setTeamText(String text) {
 		this.teamText = text;
 	}
+	
+	/* --------------- Trainingstext --------------- */
 	/**
 	 * Liefert den Text über das Training
 	 * @return	String
@@ -99,34 +109,69 @@ public class AboutUsContent {
 	public void setTrainingText(String text) {
 		this.trainingText = text;
 	}
+	
+	/* ---------------- Traintertexte ------------------ */
 	/**
 	 * Liefert den Text über den ersten Part der Trainer
 	 * @return	String
 	 */
-	public String getTrainerFirstPartText() {
-		return this.trainerFirstPartText;
+	public String getTrainerFirstText() {
+		return this.trainerFirstText;
 	}
 	/**
 	 * Setzt den Text über den ersten Part der Trainer.
 	 * @param text	String
 	 */
-	public void setTrainerFirstPartText(String text) {
-		this.trainerFirstPartText = text;
+	public void setTrainerFirstText(String text) {
+		this.trainerFirstText = text;
 	}
+	
 	/**
 	 * Liefert den Text über den zweiten Part der Trainer
 	 * @return	String
 	 */
-	public String getTrainerSecondPartText() {
-		return this.trainerSecondPartText;
+	public String getTrainerSecondText() {
+		return this.trainerSecondText;
 	}
 	/**
 	 * Setzt den Text über den zweiten Part der Trainer.
 	 * @param text	String
 	 */
-	public void setTrainerSecondtPartText(String text) {
-		this.trainerSecondPartText = text;
+	public void setTrainerSecondText(String text) {
+		this.trainerSecondText = text;
 	}
+	
+	/**
+	 * Liefert den Text über den ersten Part der Trainer
+	 * @return	String
+	 */
+	public String getTrainerFirstName() {
+		return this.trainerFirstName;
+	}
+	/**
+	 * Setzt den Text über den ersten Part der Trainer.
+	 * @param text	String
+	 */
+	public void setTrainerFirstName(String name) {
+		this.trainerFirstName = name;
+	}
+	
+	/**
+	 * Liefert den Text über den zweiten Part der Trainer
+	 * @return	String
+	 */
+	public String getTrainerSecondName() {
+		return this.trainerSecondName;
+	}
+	/**
+	 * Setzt den Text über den zweiten Part der Trainer.
+	 * @param text	String
+	 */
+	public void setTrainerSecondName(String name) {
+		this.trainerSecondName = name;
+	}
+	
+	/* --------------------- Anfahrt ------------------------ */
 	/**
 	 * Liefert den Text über die Anfart zum Traingingssportplatz
 	 * @return	String
@@ -141,6 +186,7 @@ public class AboutUsContent {
 	public void setApproachPlayingFieldTrainingText(String text) {
 		this.approachPlayingFieldTrainingText = text;
 	}
+	
 	/**
 	 * Liefert den Text über die Anfart zum Sportplatz für Spiele
 	 * @return	String
@@ -155,6 +201,7 @@ public class AboutUsContent {
 	public void setApproachPlayingFieldMatchText(String text) {
 		this.approachPlayingFieldMatchText = text;
 	}
+	
 	/**
 	 * Liefert den Text über die Anfart über öffentliche Verkehrsmittel
 	 * @return	String
@@ -169,6 +216,8 @@ public class AboutUsContent {
 	public void setApproachPublicTransportText(String text) {
 		this.approachPublicTransportText = text;
 	}
+	
+	/* -------------------- Kontakt --------------------------- */
 	/**
 	 * Liefert den Kontakt-Text
 	 * @return	String
