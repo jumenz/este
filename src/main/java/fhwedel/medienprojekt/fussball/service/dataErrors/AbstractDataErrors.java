@@ -1,9 +1,9 @@
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /** externe Klassen */
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
@@ -94,6 +94,17 @@ public abstract class AbstractDataErrors {
 	public boolean isEmail(String value) {
 		assert(value != null);
 		return value.matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+	}
+	
+	/**
+	 * Prüft, ob der Eingabewert einer Telefonnummer (Vorwahl-Nummer) entspricht.
+	 * @param 	value	String	Eingabewert
+	 * @return	boolean	true:	String entspricht einer Telefonnummer
+	 * 					false:	String entspricht nicht einer Telefonnummer
+	 */
+	public boolean isPhoneNumber(String value) {
+		assert(value != null);
+		return value.matches("[0-9]+-[0-9]+");
 	}
 	
 	/**
