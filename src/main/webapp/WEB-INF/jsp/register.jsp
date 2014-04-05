@@ -66,7 +66,13 @@
 	                         </div>
 	                     </li>
                      </security:authorize>
-                     <security:authorize access="isAuthenticated()"><p>Du bist bereits registriert.</p></security:authorize>
+                     
+                     <security:authorize access="isAuthenticated()">
+                     	<p>
+                     		Du bist bereits registriert.
+                     	</p>
+                     </security:authorize>
+                     
                      <security:authorize access="hasRole('USER_GROUP_ADMIN')">
 	                     <!-- Forumular zum hinzufügen von zugelassenen EMail Adressen -->
 	                     <li class="one-col">

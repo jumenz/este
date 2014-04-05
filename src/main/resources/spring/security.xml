@@ -36,12 +36,12 @@
 			Achtung: spezifische zuerst, dann allgemeinere
 		 -->
 		<intercept-url pattern="/forum/**" access="isAuthenticated()"/>
-		<intercept-url pattern="/galerie/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/addressbuch/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/home/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/logout/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/ueber-uns/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		<intercept-url pattern="/impressum/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
+		<intercept-url pattern="/berichte/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		
 		<!-- Erst wenn Seite online -->
 		<!-- http 
