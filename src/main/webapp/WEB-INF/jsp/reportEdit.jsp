@@ -30,6 +30,7 @@
 															id="topic"
 															rows="1"
 															cols="120"
+															placeholder="Titel"
 															value="${report.topic}"
 															class="full-width"
 											/><br>
@@ -40,34 +41,36 @@
 															id="opponent"
 															rows="1"
 															cols="120"
+															placeholder="Name des Gegners"
 															value="${report.opponent}"
 															class="full-width"
 											/><br>
 											<!-- Fehlermeldung für den Titel -->
-											<sf:errors path="topic" cssClass="error"/>
-											<!-- Datumsangabe 
-												<sf:textarea 	path="date"
-																id="date"
-																rows="1" 
-																cols="30"
-																placeholder="Datum der Form: Sat Mar 22 19:53:56 CET 2014"
-																class="full-width"
-																/><br>
-												<sf:errors path="date" cssClass="error"/>
-											-->
+											<sf:errors path="topic" cssClass="error"/><br>
 											<!-- Punktestände -->
 											Halbzeit (Heim:Gast)
-											<sf:input path="scoreFirstHalfHome" size="2" id="scoreHalftime" value="${report.scoreFirstHalfHome}"/> :
-											<sf:input path="scoreFirstHalfGuest" size="2" id="scoreHalftimeGuest" value="${report.scoreFirstHalfGuest}"/><br>
+											<sf:input 	path="scoreFirstHalfHome" 
+														size="2" 
+														id="scoreHalftime"
+														placeholder="0" 
+														value="${report.scoreFirstHalfHome}"/> :
+											<sf:input 	path="scoreFirstHalfGuest" 
+														size="2" id="scoreHalftimeGuest"
+														placeholder="0"
+														value="${report.scoreFirstHalfGuest}"/><br>
+											<br>Endstand (Heim:Gast)
+											<sf:input 	path="scoreSecondHalfHome" 
+														size="2" 
+														id="finalScore" 
+														placholder="0"
+														value="${report.scoreSecondHalfHome}"/> :
+											<sf:input 	path="scoreSecondHalfGuest" 
+														size="2" 
+														id="scoreHalftimeGuest"
+														placeholder="0" 
+														value="${report.scoreSecondHalfGuest}"/><br>
 											<!-- Fehlermeldung -->
-											<sf:errors path="scoreFirstHalfHome" cssClass="error"/><br>
-											<sf:errors path="scoreFirstHalfGuest" cssClass="error"/>
-											Endstand (Heim:Gast)
-											<sf:input path="scoreSecondHalfHome" size="2" id="finalScore" value="${report.scoreSecondHalfHome}"/> :
-											<sf:input path="scoreSecondHalfGuest" size="2" id="scoreHalftimeGuest" value="${report.scoreSecondHalfGuest}"/><br>
-											<!-- Fehlermeldung -->
-											<sf:errors path="scoreSecondHalfHome" cssClass="error"/><br>
-											<sf:errors path="scoreSecondHalfGuest" cssClass="error"/>
+											<sf:errors path="score*" cssClass="error"/><br>
 											<!-- Heimspielangabe -->
 											<c:if test="${report.homeMatch}">
 												<sf:checkbox path="homeMatch" label="Heimspiel" checked="checked"/><br>
@@ -76,17 +79,18 @@
 												<sf:checkbox path="homeMatch" label="Heimspiel"/><br>
 											</c:if>
 											<!-- Fehlermeldung -->
-											<sf:errors path="homeMatch" cssClass="error"/>
+											<sf:errors path="homeMatch" cssClass="error"/><br>
 											<!-- Text -->
 											<sf:textarea 	path="text" 
 															id="text" 
+															placeholder="Tippe hier deinen Text ..."
 															value="report.text"
 															rows="20"
 															cols="120"
 															class="full-width"
 											/><br>
 											<!-- Fehlermeldung für den Text -->
-											<sf:errors path="text" cssClass="error"/>
+											<sf:errors path="text" cssClass="error"/><br>
 											<!-- Buttons -->
 											<button name="commit" type="submit">Speichern</button>
 											<button name="reset" type="reset">Zurücksetzen</button>

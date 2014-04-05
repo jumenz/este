@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service.dataAccess;
+package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /**
  * Enthält Konstanten für die Datenbankarbeit.
@@ -58,17 +58,4 @@ public class Constants {
 	static final String dbUsersUsername = "username";
 	static final String dbUsersPassword = "password";
 	static final String dbUsersUserGroup = "user_group";
-	
-	// Adressen
-	static final String dbAddresses = "addresses";
-	static final String dbAddressesId = dbColId;
-	static final String dbAddressesName = "name";
-	static final String dbAddressesPrename = "prename";
-	static final String dbAddressesBirthday = "birthday";
-	static final String dbAddressesMobile = "mobile";
-	static final String dbAddressesPhone = "phone";
-	static final String dbAddressesStreet = "street";
-	static final String dbAddressesNr = "nr";
-	static final String dbAddressesZipcode = "zipcode";
-	static final String dbAddressesCity = "city";
 }

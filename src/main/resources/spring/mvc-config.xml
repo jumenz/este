@@ -56,6 +56,14 @@
         <!-- notwendig, da Exceptions nirgendwo geloggt werden -->
     </bean>
 
+	<!--
+		- Lädt das Properties-File für die Error Messages
+        - Message source for this context, loaded from localized "messages_xx" files.
+        - Files are stored inside src/main/resources
+    -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
+          p:basename="messages/messages"/>
+
 	<!-- 
 		Multipart Resolver 
 		Extrahiert MultipartData aus Post Request, damit der Dispatcher Servlet diese an die Controller weitergeben kann.

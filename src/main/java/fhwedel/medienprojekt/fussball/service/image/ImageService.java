@@ -44,7 +44,7 @@ public class ImageService {
 	 */
 	public void saveImage(String filename, MultipartFile image) throws ImageUploadException{
 		try {
-			File file = new File("C:/Users/Ellen/workspace/medienprojekt/este/fussball/src/main/webapp/resources/data/galery/" + filename);
+			File file = new File("C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/galery/" + filename);
 			FileUtils.writeByteArrayToFile(file, image.getBytes());
 		} catch(IOException e){
 			throw new ImageUploadException("Unabletosaveimage",e);
@@ -72,7 +72,6 @@ public class ImageService {
 		
 		if(imageNames != null) {
 			for(int i=0; i < imageNames.length; i++){
-			//for(int i=0; i < 9; i++){
 				imgPaths.add(galeryUrl + imageNames[i]);
 			}
 		}

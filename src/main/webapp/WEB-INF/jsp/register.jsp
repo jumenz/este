@@ -23,21 +23,20 @@
                          <div class="main-content-box box-borders bg clearfix">
                              <h2 class="box-title">Registrieren</h2>
                              <div class="box-body">
-								<sf:form action="${linkRegister}user-speichern/" method="POST" modelAttribute="newUser">
+								<sf:form action="${linkRegisterUser}" method="POST" modelAttribute="newUser">
 									<fieldset>
 										<!-- Username -->
 										<sf:input 	path="username"
-													data-default="Username"
-													value="Username"
+													value="${newUser.username}"
+													placeholder="Username"
 													class="full-width"
 										/><br>
 										<!-- Fehlermeldung für den Username -->
 										<sf:errors path="username" cssClass="error"/><br>
-										<c:out value="${bindingResult.fieldErrors}"></c:out>
 										<!-- E-Mail Adresse -->
 										<sf:input 	path="email"
-													data-default="E-Mail Adresse"
-													value="E-Mail Adresse"
+													value="${newUser.email}"
+													placeholder="E-Mail Adresse"
 													class="full-width"
 										/><br>
 										<!-- Fehlermeldung für die E-Mail Adresse -->
@@ -45,14 +44,14 @@
 										<!-- Passwort -->
 										<sf:input	path="password" 
 													type="password"
-													data-default="Passwort"
-													value="Passwort"
+													value="${newUser.password}"
+													placeholder="Passwort"
 													class="full-width"
 										/><br><br>
 										<sf:input	path="passwordCompare"
 													type="password"
-													data-default="Passwort"
-													value="Passwort"
+													value="${newUser.passwordCompare}"
+													placeholder="Passwort"
 													class="full-width"
 										/><br>
 										<!-- Fehlermeldung für das Passwort -->
@@ -70,11 +69,11 @@
                          <div class="main-content-box box-borders bg clearfix">
                              <h2 class="box-title">Neue Email zulassen</h2>
                              <div class="box-body">
-								<sf:form action="email-zulassen/" method="POST" modelAttribute="newPermission">
+								<sf:form action="${linkRegisterNewPermission}" method="POST" modelAttribute="newPermission">
 									<fieldset>
 										<!-- E-Mail Adresse -->
 										<sf:input 	path="email"
-													data-default="E-Mail Adresse"
+													placeholder="E-Mail Adresse"
 													value="E-Mail Adresse"
 													class="full-width"
 										/><br>

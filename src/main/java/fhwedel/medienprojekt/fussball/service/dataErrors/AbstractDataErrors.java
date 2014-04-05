@@ -1,18 +1,19 @@
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
+
 /** externe Klassen */
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
-/** eigene Klassen */
-
 /**
  * Abstralte Service Klasse
  * Implementiert gemeinsame Methoden für die erbenden Klassen
+ * zur Behandlung von Datenerrors, die z.B. bei der Verarbeitung
+ * von Formulardaten auftreten können.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
 public abstract class AbstractDataErrors {

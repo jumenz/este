@@ -21,7 +21,7 @@
 					<!--Contentbox One-Col -->
                      <li class="one-col">
                          <div class="main-content-box box-borders bg clearfix">
-                             <h2 class="box-title">Neuen Foreneintrag anlegen</h2>
+                             <h2 class="box-title">Foreneintrag</h2>
                              <div class="box-body">
                              	<!-- Formular zum anlegen eines neuen Spielberichts -->	
 								<sf:form method="POST" modelAttribute="forumEntry">
@@ -31,6 +31,7 @@
 														id="topic"
 														rows="1"
 														cols="120"
+														value="${forumEntry.topic}"
 														placeholder="Titel"
 										/><br>
 										<!-- Fehlermeldung für den Titel -->
@@ -40,13 +41,15 @@
 														id="description"
 														rows="5"
 														cols="120"
+														value="${forumEntry.description}"
 														placeholder="Kurzbeschreibung"
 										/><br>
 										<!-- Fehlermeldung für die Kurzbeschreibung -->
 										<sf:errors path="description" cssClass="error"/><br>
 										<!-- Text -->
 										<sf:textarea 	path="text" 
-														id="text" 
+														id="text"
+														value="${forumEntry.text}"
 														placeholder="Tippe hier deinen Text"
 														rows="20"
 														cols="120"

@@ -15,7 +15,7 @@
 			</a>
 			<ul class="submenue">
 				<li class="online-only">
-					<a href="#">verfassen</a> 
+					<a href="${linkReportsEdit}">verfassen</a> 
 				</li>
 			</ul>
 		</li>
@@ -37,7 +37,6 @@
 		<li class="offline-only nav-wide">
 			<a href="${linkLogin}">
 				<span class="nav-wide">Login</span>
-				<img class="nav-reduced icon" src="../../data/icons/icon-login.png"/>
 			</a>
 		</li>
 		<li class="online-only nav-wide">
@@ -54,7 +53,7 @@
 		</li>
 		<!-- for smaller displays -->
 		<li class="nav-reduced">
-			<img src="../../data/icons/icon-menue.png"/>
+			<img src="${dataPath}/icons/icon-menue.png"/>
 			<ul class="submenue">
 				<li><a href="${linkAboutUs}">Über uns</a></li>
 				<li><a href="${linkReports}">Spielberichte</a></li>

@@ -89,9 +89,18 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	public void save(Report newReport) {
 		/* SQL Befehl*/
 		final String SQL_INSERT_FORUM_ENTRY = 
-				"INSERT INTO " + Constants.dbReports + " (date, author, topic, text, opponent, "
-				+ "first_half_home, first_half_guest, second_half_home, second_half_guest) "
-				+ "VALUES (:date, :author, :topic, :text, :opponent, "
+				"INSERT INTO " + Constants.dbReports 
+				+ " ("
+				+ Constants.dbReportsDate + ", "
+				+ Constants.dbReportsAuthor + ", "
+				+ Constants.dbReportsTopic + ", "
+				+ Constants.dbReportsText + ", "
+				+ Constants.dbReportsOpponent + ", "
+				+ Constants.dbReportsScoreFirstHalfHome + ", "
+				+ Constants.dbReportsScoreFirstHalfGuest + ", "
+				+ Constants.dbReportsScoreSecondHalfHome + ", "
+				+ Constants.dbReportsScoreSecondHalfGuest
+				+ ") VALUES (:date, :author, :topic, :text, :opponent, "
 				+ ":first_half_home, :first_half_guest, :second_half_home, :second_half_guest)";
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
@@ -112,10 +121,16 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 		/* SQL Befehl*/
 		final String SQL_UPDATE_REPORT = 
 				"UPDATE " + Constants.dbReports
-				+ " SET author = :author, topic = :topic, text=:text, opponent=:opponent, "
-				+ "first_half_home=:first_half_home, first_half_guest=:first_half_guest, "
-				+ "second_half_home=:second_half_home, second_half_guest=:second_half_guest "
-				+ "WHERE id=:id";
+				+ " SET "
+				+ Constants.dbReportsAuthor + " = :author, "
+				+ Constants.dbReportsTopic + " = :topic, "
+				+ Constants.dbReportsText + " = :text, "
+				+ Constants.dbReportsOpponent + " = :opponent, "
+				+ Constants.dbReportsScoreFirstHalfHome + " = :first_half_home, "
+				+ Constants.dbReportsScoreFirstHalfGuest + " = :first_half_guest, "
+				+ Constants.dbReportsScoreSecondHalfHome + " = :second_half_home, "
+				+ Constants.dbReportsScoreSecondHalfGuest + " = :second_half_guest "
+				+ "WHERE " + Constants.dbReportsId + " = :id";
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		this.mapParams(report, params, false);
@@ -132,7 +147,7 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	 */
 	public void deleteById(int id) {
 		final String SQL_DELETE_REPORT_BY_ID = 
-				"DELETE FROM " + Constants.dbReports + " WHERE id=:id";
+				"DELETE FROM " + Constants.dbReports + " WHERE " + Constants.dbReportsId + " = :id";
 		
 		// ID setzen
 		Map<String,Object> params = new HashMap<String,Object>();
@@ -149,7 +164,7 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	 */
 	public Report getById(int id) {
 		final String SQL_SELECT_REPORT_BY_ID = 
-				"SELECT * FROM " + Constants.dbReports + " WHERE (id = :id)";
+				"SELECT * FROM " + Constants.dbReports + " WHERE " + Constants.dbReportsId + " = :id";
 		
 		// Parameter zuweisen
 		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(id));

@@ -91,8 +91,14 @@ public class DataAccessUsers extends AbstractDataAccess {
 	public void save(User newUser) {
 		/* SQL Befehl*/
 		final String SQL_INSERT_NEW_USER = 
-				"INSERT INTO users (id, username, email, password, user_group) "
-				+ "VALUES (:id, :username, :email, :password, :user_group)";
+				"INSERT INTO " + Constants.dbUsers 
+				+ " ("
+				+ Constants.dbUsersId 		 + ", "
+				+ Constants.dbUsersUsername  + ", "
+				+ Constants.dbUsersEmail	 + ", "
+				+ Constants.dbUsersPassword	 + ", "
+				+ Constants.dbUsersUserGroup
+				+ ") VALUES (:id, :username, :email, :password, :user_group)";
 		
 		// TODO Verschlüsselung
 		/* Werte Namen zuweisen */
@@ -115,7 +121,8 @@ public class DataAccessUsers extends AbstractDataAccess {
 	 */
 	public ArrayList<User> getAll() {
 		// Alle Foren-Einträge nach Datum sortiert auslesen (neueste zuerst)
-		final String SQL_SELECT_ALL_USERS = "SELECT * FROM users ORDER BY username DESC";
+		final String SQL_SELECT_ALL_USERS = 
+				"SELECT * FROM " + Constants.dbUsers + " ORDER BY username DESC";
 
 		return (ArrayList<User>) namedParameterJdbcTemplate.query(
 				SQL_SELECT_ALL_USERS,
@@ -125,33 +132,21 @@ public class DataAccessUsers extends AbstractDataAccess {
 	
 	/* -------------------- Login --------------------------------------- */
 	/**
-	 * Liest die Datenbankinformationen ausgehen von username und passwort aus der Datenbank aus.
+	 * Liest die Datenbankinformationen ausgehen vom username aus der Datenbank aus.
 	 * @param 	username		String		Username
 	 * @param	password		String		password
 	 * @return	ArrayList<User>	Ergebnisse aus Datenbank
 	 */
-	public ArrayList<User> getUserData(String username, String password) {
-		final String SQL_GET_USERNAME_AND_PASSWORD = 
-				"SELECT * FROM users WHERE (username = :username) AND (password = :password)";
+	public ArrayList<User> getUserData(String username) {
+		final String SQL_GET_USER_BY_USERNAME = 
+				"SELECT * FROM " + Constants.dbUsers 
+				+ " WHERE ("
+				+ Constants.dbUsersUsername + " = :username)";
 		/* Name-Wert Paare für Abfrage festlegen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("username", username);
-		params.put("password", password);
 		
-		return (ArrayList<User>) this.namedParameterJdbcTemplate.query(SQL_GET_USERNAME_AND_PASSWORD, params, this.userMapper);
-	}
-	
-	/**
-	 * Überprüft die Login Daten auf Richtigkeit.
-	 * @param 	username		String		Username
-	 * @param	password		String		password
-	 * @return	boolean	true:	Logindaten stimmen
-	 * 					false:	Logindaten sind falsch
-	 */
-	public boolean checkLogin(String username, String password) {
-		/* prüfen, ob ein User mit eingegebenem Usernamen und Passwort existiert 
-		 * -> es existiert ein User, wenn die Ergebnisliste nicht leer ist */
-		return !this.getUserData(username, password).isEmpty();
+		return (ArrayList<User>) this.namedParameterJdbcTemplate.query(SQL_GET_USER_BY_USERNAME, params, this.userMapper);
 	}
 	
 	/* ---------------- User Group ----------------------------------------- */
@@ -164,7 +159,7 @@ public class DataAccessUsers extends AbstractDataAccess {
 	public UserGroup getUserGroup(String username, String password) {
 		// TODO nur über Usernamen?
 		/* Userdaten auslesen, und sichergehen, dass nur ein Element gefunden */
-		ArrayList<User> userData = this.getUserData(username, password);
+		ArrayList<User> userData = this.getUserData(username);
 		assert (userData.size()==1): "Mehrere User mit diesen Zugangsdaten vorhanden.";
 		
 		return userData.get(0).getUserGroup();
@@ -176,8 +171,10 @@ public class DataAccessUsers extends AbstractDataAccess {
  * @return	User			ausgelesener User
  */
 private User getUserById(int id) {
-	final String SQL_SELECT_USER_BY_ID 
-		= "SELECT * FROM " + Constants.dbUsers + " WHERE (id = :id)";
+	final String SQL_SELECT_USER_BY_ID = 
+			"SELECT * FROM " + Constants.dbUsers 
+			+ " WHERE ("
+			+ Constants.dbUsersId + " = :id)";
 	/* Name-Wert Paare für Abfrage festlegen */
 	Map<String,Object> params = new HashMap<String,Object>();
 	params.put("id", id);
@@ -188,13 +185,7 @@ private User getUserById(int id) {
 								params, 
 								this.userMapper
 							);
-	/* Sichergehen, dass genau ein User gefunden wurde */
-	assert (!res.isEmpty()) 
-		: "Über die angegebene id konnte kein User gefunden werden";
-	assert (res.size() == 1) 
-		: "Über die angegebene id konnte kein eindeutiger User gefunden werden.";
-	
-	return res.get(0);
+	return (res.isEmpty()) ? null : res.get(0);
 }
 	
 	/**
@@ -202,21 +193,29 @@ private User getUserById(int id) {
 	 * @param 	id	int	ID des Users, dessen Status geändert werden soll.
 	 */
 	public void changeUserStatus(int id) {
-		final String SQL_UPDATE_USER_STATUS = "UPDATE " + Constants.dbUsers + " SET user_group = :user_group WHERE (id = :id)";
+		final String SQL_UPDATE_USER_STATUS = 
+				"UPDATE " + Constants.dbUsers 
+				+ " SET "
+				+ Constants.dbUsersUserGroup + " = :user_group "
+				+ "WHERE ("
+				+ Constants.dbUsersId + " = :id)";
 		
 		/* Neue User Group bestimmen */
 		User user = getUserById(id);
-		UserGroup newUserGroup = (user.getUserGroup() == UserGroup.USER_GROUP_ADMIN) 
-								  ? UserGroup.USER_GROUP_NO_ADMIN 
-								  : UserGroup.USER_GROUP_ADMIN;
-		user.setUserGroup(newUserGroup);
-		
-		/* Name-Wert Paare für Abfrage festlegen */
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		params.put("user_group", user.getUserGroupString());
-		
-		/* Datensatz updaten und Nummer an betroffenen Reihen auf 1 überprüfen */
-		this.namedParameterJdbcTemplate.update(SQL_UPDATE_USER_STATUS, params);
+		/* Wenn User vorhanden ist */
+		if (user != null) {
+			UserGroup newUserGroup = (user.getUserGroup() == UserGroup.USER_GROUP_ADMIN) 
+									  ? UserGroup.USER_GROUP_NO_ADMIN 
+									  : UserGroup.USER_GROUP_ADMIN;
+			user.setUserGroup(newUserGroup);
+			
+			/* Name-Wert Paare für Abfrage festlegen */
+			Map<String,Object> params = new HashMap<String,Object>();
+			params.put("id", id);
+			params.put("user_group", user.getUserGroupString());
+			
+			/* Datensatz updaten und Nummer an betroffenen Reihen auf 1 überprüfen */
+			this.namedParameterJdbcTemplate.update(SQL_UPDATE_USER_STATUS, params);
+		}
 	}
 }

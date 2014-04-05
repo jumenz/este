@@ -53,7 +53,7 @@
  	
  	<import resource="data-access-config.xml"/>
  	<import resource="mvc-config.xml"/>
- 	<context:component-scan base-package="fhwedel.medienprojekt.fussball"/>
+ 	<context:component-scan base-package="fhwedel.medienprojekt.fussball"/> 
  	
 	<!-- Datenbankanbindungen -->
 	<bean id="DataAccessForum" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessForum">

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessReports;
+import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsReports;
 import fhwedel.medienprojekt.fussball.controller.Constants;
 
 /**
  * Controller für die Spielberichte.
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
 @Controller
@@ -27,6 +29,10 @@ public class ReportsController {
 	/** Service für die Datenbankarbeit */
 	@Autowired
 	private DataAccessReports dataAccess;
+	
+	/** Service für die Fehlerbehandlung */
+	@Autowired
+	private DataErrorsReports dataErrorsReports;
 	
 	/* --------------------- Anzeige -------------------------------- */
 	/**
@@ -101,7 +107,7 @@ public class ReportsController {
 		// neues Report Objekt in jsp zugreifbar machen
 		model.addAttribute(new Report());
 		// jsp zum Erstellen eines neuen Berichts laden
-		return Constants.viewNameReportsNew;
+		return Constants.viewNameReportsEdit;
 	}
 	
 	/**
@@ -111,10 +117,10 @@ public class ReportsController {
 	 * @return	String	Name der JSP
 	 */
 	@RequestMapping(value=Constants.linkReportsNew, method=RequestMethod.POST)
-	public String save(Report newReport, BindingResult bindingResult) {
+	public String save(@ModelAttribute("report") Report newReport, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
-		if(bindingResult.hasErrors()) {
-			return Constants.viewNameReportsNew;
+		if(bindingResult.hasErrors()  || this.dataErrorsReports.hasErrors(newReport, bindingResult)) {
+			return Constants.viewNameReportsEdit;
 		}
 		
 		// Speichern und Spielberichte laden
@@ -146,9 +152,9 @@ public class ReportsController {
 	 * @return	String	Redirect auf die Spielberichteseite
 	 */
 	@RequestMapping(value=Constants.linkReportsEdit, method=RequestMethod.POST)
-	public String edit(@PathVariable int id, Report report, BindingResult bindingResult) {
+	public String edit(@PathVariable int id, @ModelAttribute("report") Report report, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors() || this.dataErrorsReports.hasErrors(report, bindingResult)) {
 			return Constants.viewNameReports;
 		}
 		

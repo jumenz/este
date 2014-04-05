@@ -104,6 +104,11 @@ aside, .main {
 	width: auto;
 }
 
+/* ------------------- errors --------------------------------------- */
+.error {
+	color: red;
+}
+
 /* ------------------- common display ------------------------------- */
 .offline-only {
 	display: none !important;

@@ -97,8 +97,14 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	public void save(ForumEntry newForumEntry) {
 		/* SQL Befehl */
 		final String SQL_INSERT_FORUM_ENTRY = 
-				"INSERT INTO " + Constants.dbForum + " (date, author, topic, description, text, has_comments) "
-				+ "VALUES (:date, :author, :topic, :description, :text, :has_comments)";
+				"INSERT INTO " + Constants.dbForum 
+				+ " ("
+				+ Constants.dbForumDate + ", "
+				+ Constants.dbForumAuthor + ", "
+				+ Constants.dbForumTopic + ", "
+				+ Constants.dbForumDescription + ", "
+				+ Constants.dbForumText
+				+ ") VALUES (:date, :author, :topic, :description, :text)";
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		mapParams(newForumEntry, params, true);
