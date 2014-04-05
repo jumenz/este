@@ -58,12 +58,12 @@
 										<p>${entry.text}</p>
 										
 										<!-- Bearbeiten und löschen, wenn ein Admin angemeldet ist -->
-										<security:authorize access="hasRole('USER_GROUP_IS_ADMIN')">
+										<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 											<sf:form style="display: inline-block" action="${linkForumEntryEdit}${entry.id}/" method="get">
-												<button type="submit">Bearbeiten</button>
+												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Bearbeiten</button>
 											</sf:form>
 											<sf:form style="display: inline-block" action="${linkForumEntryDelete}${entry.id}/" method="post">
-												<button type="submit">Löschen</button>
+												<button type="submit"  class="dark-bg"><div class="forward-raquo menu-link right"></div>Löschen</button>
 											</sf:form>
 										</security:authorize>
 									</div>
@@ -109,8 +109,8 @@
 																	<!-- Fehlermeldung für den neuen Kommentar -->
 																	<sf:errors path="text" cssClass="error"/><br>
 																	<!-- Buttons -->
-																	<input name="commit" type="submit" value="Speichern" />
-																	<input name="reset" type="reset" value="Zurücksetzen"/>
+																	<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Speichern</button>
+																	<button name="commit" type="reset" class="dark-bg"><div class="forward-raquo menu-link right"></div>Abbrechen</button>
 																</sf:form>
 															</p>
 														</div>

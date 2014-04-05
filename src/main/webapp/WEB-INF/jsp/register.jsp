@@ -58,8 +58,8 @@
 											<!-- Fehlermeldung für das Passwort -->
 											<sf:errors path="password" cssClass="error"/><br>
 											<!-- Buttons -->
-											<button name="commit" type="submit">Registrieren</button>
-											<button name="reset" type="reset">Abbrechen</button>
+											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Registrieren</button>
+											<button name="reset" type="reset" class="dark-bg"><div class="forward-raquo menu-link right"></div>Abbrechen</button>
 										</fieldset>
 									</sf:form>
 	                             </div>
@@ -86,8 +86,8 @@
 											<!-- Fehlermeldung für die E-Mail Adresse -->
 											<sf:errors path="email" cssClass="error"/><br>
 											<!-- Buttons -->
-											<button name="commit" type="submit">Zulassen</button>
-											<button name="reset" type="reset">Abbrechen</button>
+											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Zulassen</button>
+											<button name="reset" type="reset" class="dark-bg"><div class="forward-raquo menu-link right"></div>Abbrechen</button>
 										</fieldset>
 									</sf:form>
 	                             </div>
@@ -102,10 +102,10 @@
 	                             <div class="box-body">
 									<c:forEach var="permission" items="${allPermissions}" varStatus="status">
 										<sf:form style="display: inline-block" action="${linkRegister}loeschen-${permission.id}/">
-											<button name="commit" type="submit">Löschen</button>
+											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Löschen</button>
 										</sf:form>
 										<sf:form style="display: inline-block" action="${linkRegister}status-${permission.id}/" method="get">
-											<button name="commit" type="submit">Status ändern</button>
+											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Status ändern</button>
 										</sf:form>
 										${permission.email}     
 										Status: 
