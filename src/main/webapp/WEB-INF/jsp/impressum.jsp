@@ -6,17 +6,17 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">       
 			<div id="..." class="content-list">
-				<!--Contentbox One-Col -->
+				<%--Contentbox One-Col --%>
                  <ul>
                      <li class="one-col">
                          <div class="main-content-box box-borders bg clearfix">
@@ -48,18 +48,25 @@
 									<b>Rechtliche Hinweise:</b><br><br>
 									Der SV Este 06/70 e.V. prüft und aktualisiert die Informationen der Webseiten ständig. Trotz aller Sorgfalt können sich die Daten inzwischen verändert haben. Eine Haftung oder Garantie für die Aktualität, Richtigkeit und Vollständigkeit der zur Verfügung gestellten Informationen kann daher nicht übernommen werden.
 								</p>
+								<%-- Button zum bearbeiten --%>
+	                             <security:authorize access="hasRole('USER_GROUP_ADMIN')">
+				                     <form action="${linkImpressumEdit}" method="GET">
+				                     	<button class="dark-bg" type="submit"><div class="forward-raquo menu-link right"></div>Bearbeiten</button>
+				                     </form>
+			                     </security:authorize>
                              </div>
                          </div>
                      </li>
+                     
                  </ul>
-                 <!-- end Contentbox One-Col -->
+                 <%-- end Contentbox One-Col --%>
 			</div>
 		</div>
 		</div>
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
 	</body>
 </html>

@@ -79,3 +79,7 @@ CREATE TABLE IF NOT EXISTS aboutus (
   approach_pt			TEXT(5000)	NOT NULL,
   contact				TEXT(5000)	NOT NULL
 ) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS impressum (
+  text				TEXT(5000)	NOT NULL
+) ENGINE=InnoDB;

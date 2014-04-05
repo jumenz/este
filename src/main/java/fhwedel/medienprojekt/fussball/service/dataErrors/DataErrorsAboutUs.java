@@ -3,16 +3,13 @@ package fhwedel.medienprojekt.fussball.service.dataErrors;
 /** externe Klassen */
 import org.springframework.validation.BindingResult;
 
-
-import com.sun.syndication.feed.atom.Content;
-
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.statics.AboutUsContent;
 
 
 /**
  * Service
- * Übernimmt die Fehlerbehandlung für Permissions.
+ * Übernimmt die Fehlerbehandlung für die Über Uns Seite.
  * 
  * @author Ellen Schwartau Minf9888
  *

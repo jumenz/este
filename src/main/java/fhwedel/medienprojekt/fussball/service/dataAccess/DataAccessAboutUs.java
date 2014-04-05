@@ -6,15 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-
-import fhwedel.medienprojekt.fussball.model.statics.AboutUsContent;
 /** eigene Klassen */
-import fhwedel.medienprojekt.fussball.model.user.Permission;
-import fhwedel.medienprojekt.fussball.model.user.User;
+import fhwedel.medienprojekt.fussball.model.statics.AboutUsContent;
+
 
 /**
  * Service
