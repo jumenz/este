@@ -62,8 +62,8 @@
 <c:set var="linkForumDeleteComment" value="${requestContextPath}/forum/kommentar-entfernen/"></c:set>
 <!-- Adressbuch -->
 <c:set var="linkAddresses" value="${requestContextPath}/adressbuch/"></c:set>
-<c:set var="linkAddressesDelete" value="${requestContextPath}/adressbuch/loeschen/"></c:set>
-<c:set var="linkAddressesEdit" value="${requestContextPath}/adressbuch/"></c:set>
+<c:set var="linkAddressDelete" value="${requestContextPath}/adressbuch/loeschen/"></c:set>
+<c:set var="linkAddressEdit" value="${requestContextPath}/adressbuch/bearbeiten/"></c:set>
 <!-- Über uns -->
 <c:set var="linkAboutUs" value="${requestContextPath}/ueber-uns/"></c:set>
 <c:set var="linkAboutUsEdit" value="${requestContextPath}/ueber-uns/bearbeiten/"></c:set>

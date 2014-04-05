@@ -58,8 +58,7 @@ public class Constants {
 	static final String dbUsersUsername = "username";
 	static final String dbUsersPassword = "password";
 	static final String dbUsersUserGroup = "user_group";
-	static final String dbAddresses = "addresses";
-	
+
 	// Über Uns
 	static final String dbAboutUs = "aboutus";
 	static final String dbAboutUsCompany = "company";
@@ -73,4 +72,17 @@ public class Constants {
 	static final String dbAboutUsApproachC = "approach_c";
 	static final String dbAboutUsApproachPt = "approach_pt";
 	static final String dbAboutUsContact = "contact";
+	
+	// Adressen
+	static final String dbAddresses = "addresses";
+	static final String dbAddressesId = dbColId;
+	static final String dbAddressesName = "name";
+	static final String dbAddressesPrename = "prename";
+	static final String dbAddressesBirthday = "birthday";
+	static final String dbAddressesMobile = "mobile";
+	static final String dbAddressesPhone = "phone";
+	static final String dbAddressesStreet = "street";
+	static final String dbAddressesNr = "nr";
+	static final String dbAddressesZipcode = "zipcode";
+	static final String dbAddressesCity = "city";
 }
