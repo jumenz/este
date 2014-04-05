@@ -11,7 +11,7 @@ public class Constants {
 	static final String linkHome = "/home/";
 	static final String linkWelcome = "/willkommen/";
 	static final String linkAddresses = "/adressbuch/";
-	static final String linkAddressEdit = "/adressbuch/bearbeiten/{addressId}";
+	static final String linkAddressEdit = "/adressbuch/bearbeiten/{id}";
 	static final String linkAddressDelete = "/adressbuch/loeschen/{id}/";
 	static final String linkAboutUs = "/ueber-uns/";
 	static final String linkReports = "/berichte/";

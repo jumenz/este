@@ -1,11 +1,12 @@
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /** externe Klassen */
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 /** eigene Klassen */
-import fhwedel.medienprojekt.fussball.model.post.Post;
 
 /**
  * Abstralte Service Klasse

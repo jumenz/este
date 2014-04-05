@@ -61,6 +61,6 @@
 <!-- Adressbuch -->
 <c:set var="linkAddresses" value="${requestContextPath}/adressbuch/"></c:set>
 <c:set var="linkAddressDelete" value="${requestContextPath}/adressbuch/loeschen/"></c:set>
-<c:set var="linkAddressEdit" value="${requestContextPath}/adressbuch/bearbeiten"></c:set>
+<c:set var="linkAddressEdit" value="${requestContextPath}/adressbuch/bearbeiten/"></c:set>
 <!-- Über uns -->
 <c:set var="linkAboutUs" value="${requestContextPath}/ueber-uns/"></c:set>

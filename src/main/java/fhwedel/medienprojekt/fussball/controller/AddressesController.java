@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
 import fhwedel.medienprojekt.fussball.model.user.addresses.Address;
 import fhwedel.medienprojekt.fussball.model.user.addresses.AddressView;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessAddresses;
+import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAddresses;
 
 
 /**
@@ -31,6 +35,10 @@ public class AddressesController {
 	/** Service für die Datenbankarbeit */
 	@Autowired
 	private DataAccessAddresses dataAccessAddresses;
+	
+	/** Service zum prüfen von Errors */
+	@Autowired
+	private DataErrorsAddresses dataErrors;
 	
 	/* --------------------- Anzeige -------------------------------- */
 	/**
@@ -88,8 +96,7 @@ public class AddressesController {
 	@RequestMapping(value=Constants.linkAddressEdit, method=RequestMethod.POST)
 	public String edit(@PathVariable int id, @ModelAttribute("addressEditModel") Address address, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
-		if(bindingResult.hasErrors()) {
-		//if(bindingResult.hasErrors() || this.dataErrorsAddresses.hasErrors(addressEditModel, bindingResult)) {
+		if(bindingResult.hasErrors()|| this.dataErrors.hasErrors(address, bindingResult)) {
 			return Constants.viewNameAddressEdit;
 		}
 		
@@ -102,13 +109,12 @@ public class AddressesController {
 	
 	/* -------------------- Adresse löschen --------------------------- */
 	/**
-	 * Löscht eine Adresse.
+	 * Löscht eine Adresse aufgehend von ihrer ID.
 	 * @param	id		PathVariable	id der Adresse, die gelöscht werden soll
 	 * @return	String	Redirect auf die Adressbuchseite
 	 */
-	@RequestMapping(value=Constants.linkAddressDelete, method=RequestMethod.GET)
+	@RequestMapping(value=Constants.linkAddressDelete, method=RequestMethod.POST) 
 	public String delete(@PathVariable int id) {
-		// User speichern, wenn dieser zur Registrierung zugelassen wurde
 		this.dataAccessAddresses.delete(id);
 		return Constants.redirectAddresses;
 	}

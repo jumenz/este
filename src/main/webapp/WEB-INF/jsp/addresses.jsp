@@ -66,150 +66,26 @@
                                     <span>E-Mail</span>
                                     <span id="submit-${status.index}" class="forward-raquo menu-link right"></span>
                                 </a>
-								<!-- TOD0 if admin or id==id for each address -->
-								<c:choose>
-								<c:when test="${isAdmin == 1 || address.id == userId}">
-									<div class="toggle-content box-borders-bottom box-body" style="display: none">
-										<form action="${linkAddressesDelete}${address.id}/" method="GET">
-											<button class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
-										</form>
-										<!-- Edit address form-->
-										<c:set var="updateAddressModel" value="${updateAddressModel}"/>
-										<sf:form action="${linkAddresses}${address.id}" method="POST" modelAttribute="updateAddressModel">
-									    	<ul>
-										        <li class="first two-col">
-										            <fieldset class="first">
-										                <div class="form-item">
-										                    <p class="input">
-																<sf:input 	path="prename"
-																			placeholder="Vorname *"
-																			id="prename"
-																			value="${address.prename}"
-																			class="input input-text required-entry"
-																/><br>
-																<sf:errors path="prename" cssClass="error"/>
-										                    </p>
-										                </div>
-										                <div class="form-item">
-										                    <p class="input">
-																<sf:input 	path="name"
-																			id="name"
-																			placeholder="Name *"
-																			value="${address.name}"
-																			class="input input-text required-entry"
-																/><br>
-																<sf:errors path="name" cssClass="error"/>
-										                    </p>
-										                </div>
-										                <div class="form-item">
-										                    <p class="input">
-																<sf:input 	path="street"
-																			id="street"
-																			placeholder="Straße"
-																			value="${address.street}"
-																			class="input input-text"
-																/><br>
-																<sf:errors path="street" cssClass="error"/>
-																<sf:input 	path="nr"
-																			id="nr"
-																			placeholder="Nr."
-																			value="${address.nr}"
-																			class="input input-text"
-																/><br>
-																<sf:errors path="nr" cssClass="error"/>
-										                    </p>
-										                </div>
-										                <div class="form-item">
-										                    <p class="input">
-																<sf:input 	path="zipcode"
-																			id="zipcode"
-																			placeholder="PLZ"
-																			value="${address.zipcode}"
-																			class="input input-text"
-																/><br>
-																<sf:errors path="zipcode" cssClass="error"/>
-																<sf:input 	path="city"
-																			id="city"
-																			placeholder="Ort"
-																			value="${address.city}"
-																			class="input input-text"
-																/><br>
-																<sf:errors path="city" cssClass="error"/>
-										                    </p>
-										                </div>
-										            </fieldset>
-										        </li>
-										        <li class="last two-col">
-										            <fieldset class="last clearfix">
-										                <div class="form-item">
-										                    <p class="input">
-																<sf:input 	path="phone"
-																			id="phone"
-																			placeholder="Festnetznummer (040-123456)"
-																			value="${address.phone}"
-																			class="input input-text"
-																/><br>
-																<sf:errors path="phone" cssClass="error"/>
-										                    </p>
-										                </div>
-										                <div class="form-item">
-										                     <p class="input">
-																<sf:input 	path="mobile"
-																			id="mobile"
-																			placeholder="Handynummer (0160-123456)"
-																			value="${address.mobile}"
-																			class="input input-text"
-																/><br>
-																<sf:errors path="mobile" cssClass="error"/>
-										                    </p>
-										                </div>
-										                <div class="form-item">
-										                     <p class="input">
-																<sf:input 	path="birthday"
-																			id="birthday"
-																			placeholder="Geburtsdatum"
-																			value="${address.birthday}"
-																			class="input input-text"
-																/><br>
-																<sf:errors path="birthday" cssClass="error"/>
-										                    </p>
-										                </div>
-										            </fieldset>
-										        </li>
-										    </ul>
-										    <p id="required">* Pflichtfelder</p>
-											<sf:input 	path="id"
-														value="${address.id}"
-														class="hidden"
-											/><br>
-										    <button class="dark-bg" type="submit" name="commit" value="update"><div class="forward-raquo menu-link right"></div>Aktualisieren</button>
-									        <button class="dark-bg" type="reset" name="reset" value="reset"><div class="forward-raquo menu-link right"></div>Zurücksetzen</button>
-										</sf:form>
-									</div>
-								<!-- end edit address form -->
-								</c:when>
-								<c:otherwise>
-									<div class="box-body toggle-content box-borders-bottom" style="display: none;">
-										<p>
-										    ${address.prename}&nbsp;${address.name}<br />
-										    ${address.street}&nbsp;<c:if test="${address.nr != 0}">${address.nr}</c:if><br />
-										    <c:if test="${address.zipcode != 0}">${address.zipcode}&nbsp;</c:if>${address.city}<br />
-										    <a href="mailto:${user.email}">${user.email}</a><br />
-										    ${address.mobile}<br />
-										    ${address.phone}<br /><br />
-										    ${address.birthday}
-										    <c:if test="${isAdmin == 1 || address.id == userId}">
-												<form action="${linkAddressesDelete}${address.id}/" method="GET">
-													<button class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
-												</form>
-												<form action="${linkAddressEdit}${address.id}/" method="GET">
-													<button class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Bearbeiten</button>
-												</form>
-											</c:if>
-									    </p>
-									</div>
-								</c:otherwise>
-								</c:choose>
+								<div class="box-body toggle-content box-borders-bottom" style="display: none;">
+									<p>
+									    ${address.prename}&nbsp;${address.name}<br />
+									    ${address.street}&nbsp;<c:if test="${address.nr != 0}">${address.nr}</c:if><br />
+									    <c:if test="${address.zipcode != 0}">${address.zipcode}&nbsp;</c:if>${address.city}<br />
+									    <a href="mailto:${user.email}">${user.email}</a><br />
+									    ${address.mobile}<br />
+									    ${address.phone}<br /><br />
+									    ${address.birthday}
+										<!-- TOD0 if admin or id==id for each address -->
+									    <c:if test="${isAdmin == 1 || address.id == userId}">
+										    <sf:form action="${linkAddressEdit}${address.id}/" method="GET" style="display: inline-block">
+												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Bearbeiten</button>
+											</sf:form>
+											<sf:form action="${linkAddressesDelete}${address.id}/" method="POST" style="display: inline-block">
+												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
+											</sf:form>
+										</c:if>
+								    </p>
+								</div>
 							</div>
 						</li>
 						<c:choose>
