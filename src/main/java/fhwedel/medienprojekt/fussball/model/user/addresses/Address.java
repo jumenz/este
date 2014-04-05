@@ -1,6 +1,6 @@
 package fhwedel.medienprojekt.fussball.model.user.addresses;
 
-import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -29,7 +29,7 @@ public class Address {
 	private String prename;
 	/** Geburtsdatum */
 	@Column(name = "birthday")
-	private Date birthday;
+	private String birthday;
 	/** Handynummer */
     @Column(name = "mobile")
     @Digits(fraction = 0, integer = 15)
@@ -57,7 +57,7 @@ public class Address {
 	 * Default-Konstruktor.
 	 */
 	public Address() {
-		this(0,"","",new Date(),"","","","","","");
+		this(0,"","","","","","","","","");
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class Address {
 	 * @param zipcode
 	 * @param city
 	 */
-	public Address(int id, String name, String prename, Date birthday, String mobile, String phone, String street, String nr, String zipcode, String city) {
+	public Address(int id, String name, String prename, String birthday, String mobile, String phone, String street, String nr, String zipcode, String city) {
 		this.id = id;
 		this.name = name;
 		this.prename = prename;
@@ -132,16 +132,16 @@ public class Address {
 	}
 	/**
 	 * Liefert den Geburtstag.
-	 * @return	Date	Geburtstag
+	 * @return	String	Geburtstag
 	 */
-	public Date getBirthday() {
+	public String getBirthday() {
 		return this.birthday;
 	}
 	/**
 	 * Setzt den Geburtstag.
-	 * @param Date Geburtstag
+	 * @param String Geburtstag
 	 */
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	/**

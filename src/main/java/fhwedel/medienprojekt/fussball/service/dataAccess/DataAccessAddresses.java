@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -43,14 +41,13 @@ public class DataAccessAddresses extends AbstractDataAccess {
 					entry.setId(resultSet.getInt(1));
 					entry.setName(resultSet.getString(2));
 					entry.setPrename(resultSet.getString(3));
-					entry.setBirthday(resultSet.getDate(4));
+					entry.setBirthday(resultSet.getString(4));
 					entry.setPhone(resultSet.getString(5));
 					entry.setMobile(resultSet.getString(6));
 					entry.setStreet(resultSet.getString(7));
 					entry.setNr(resultSet.getString(8));
 					entry.setZipcode(resultSet.getString(9));
 					entry.setCity(resultSet.getString(10));
-					
 					return entry;
 				}
 			};
@@ -70,6 +67,28 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	}
 	
 	/* ------------------------- Datenbankarbeit ----------------------------------- */
+	
+	/**
+	 * Hilfsfunktion.
+	 * Ordnet die Werte des Adresseintrags als Name-Wert-Paare.
+	 * @param address		Address		Adresse
+	 * @param params		Map			Name-Wert-Paare
+	 * @param updateDate	boolean		true: neues Datum wird gemappt
+	 * 									false: altes Datum wird übernommen
+	 */
+	private void mapParams(Address address, Map<String,Object> params, boolean updateDate) {
+		params.put("id", address);
+		params.put("name", address.getName());
+		params.put("prename", address.getPrename());
+		params.put("birthday", address.getBirthday());
+		params.put("mobile", address.getMobile());
+		params.put("phone", address.getPhone());
+		params.put("street", address.getStreet());
+		params.put("nr", address.getNr());
+		params.put("zipcode", address.getZipcode());
+		params.put("city", address.getCity());
+	}
+	
 	/* ------------------------- Auslesen ------------------------------------- */
 	/**
 	 * Liest alle Addressen aus der Datenbank aus.
@@ -91,7 +110,8 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	 */
 	public Address getById(int id) {
 		final String SQL_SELECT_BY_ID = 
-				"SELECT * FROM " + Constants.dbAddresses + " WHERE (id = :id)";
+				"SELECT * FROM " + Constants.dbAddresses + " WHERE ("
+				+ Constants.dbAddressesId + "=:id)";
 		
 		// Parameter zuweisen
 		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(id));
@@ -106,12 +126,30 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	 * Ändert eine Adresse.
 	 * @param 	address Adresse.
 	 */
-	public void update(int id, Address address) {
-		final String SQL_UPDATE_ADDRESSES = "UPDATE " + Constants.dbAddresses
-				+ " SET name=:name, prename=:preame, birthday:=birthday, mobile=:mobile, "
-				+ "phone=:phone, street=:street, nr=:nr, zipcode=:zipcode, city=:city, WHERE id=:" + id;
+	public void update(int updateId, Address address) {
+		final String SQL_UPDATE_ADDRESSES = "UPDATE " + Constants.dbAddresses + " SET "
+				+ "id:=id, name=:name, prename=:prename, birthday:=birthday, mobile=:mobile, "
+				+ "phone=:phone, street=:street, nr=:nr, zipcode=:zipcode, city=:city WHERE id=:" + updateId;
+		/*final String SQL_UPDATE_ADDRESSES = 
+		"UPDATE " + Constants.dbAddresses + " SET ("
+		+ Constants.dbAddressesId + ", "
+		+ Constants.dbAddressesName + ", "
+		+ Constants.dbAddressesPrename + ", "
+		+ Constants.dbAddressesBirthday + ", "
+		+ Constants.dbAddressesMobile + ", "
+		+ Constants.dbAddressesPhone + ", "
+		+ Constants.dbAddressesStreet + ", "
+		+ Constants.dbAddressesNr + ", "
+		+ Constants.dbAddressesZipcode + ", "
+		+ Constants.dbAddressesCity
+		+ ") VALUES (:id, :name, :prename, :birthday, :mobile, :phone, :street, :nr, :zipcode, :city)";*/
 		
-		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(address);		
+		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(address);	
+
+		/* Werte Namen zuweisen */
+		Map<String,Object> params = new HashMap<String,Object>();
+		this.mapParams(address, params, false);
+		
 		/* Datensatz updaten */
 		this.namedParameterJdbcTemplate.update(SQL_UPDATE_ADDRESSES, params);
 	}
@@ -124,7 +162,8 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	 */
 	public void delete(int id) {
 		final String SQL_DELETE_ADDRESS = 
-				"DELETE FROM " + Constants.dbAddresses + " WHERE id=:id";
+				"DELETE FROM " + Constants.dbAddresses + " WHERE "
+				+ Constants.dbAddressesId + "=:id";
 		
 		// ID setzen
 		Map<String,Object> params = new HashMap<String,Object>();

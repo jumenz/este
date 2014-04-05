@@ -80,9 +80,9 @@
 										    <sf:form action="${linkAddressEdit}${address.id}/" method="GET" style="display: inline-block">
 												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Bearbeiten</button>
 											</sf:form>
-											<sf:form action="${linkAddressesDelete}${address.id}/" method="POST" style="display: inline-block">
+											<form action="${linkAddressDelete}${address.id}/" method="GET" style="display: inline-block">
 												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
-											</sf:form>
+											</form>
 										</c:if>
 								    </p>
 								</div>

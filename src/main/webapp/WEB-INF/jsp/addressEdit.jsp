@@ -127,6 +127,11 @@
 														<sf:errors path="birthday" cssClass="error"/>
 								                    </p>
 								                </div>
+								                <sf:input 	path="id"
+															id="id"
+															value="${addressEditModel.id}"
+															class="hidden"
+												/><br>
 								            </fieldset>
 								        </li>
 								    </ul>

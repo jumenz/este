@@ -1,7 +1,6 @@
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /** externe Klassen */
-import java.sql.Date;
 import org.springframework.validation.BindingResult;
 
 /** eigene Klassen */
@@ -38,7 +37,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 		/* Die Eingabefelder dürfen nicht leer oder ungültig sein */
 		this.validateName(address.getName(), bindingResult);
 		this.validatePrename(address.getPrename(), bindingResult);
-		this.validateBirthday((Date) address.getBirthday(), bindingResult);
+		this.validateBirthday(address.getBirthday(), bindingResult);
 		this.validateMobile(address.getMobile(), bindingResult);
 		this.validatePhone(address.getPhone(), bindingResult);
 		this.validateStreet(address.getStreet(), bindingResult);
@@ -72,11 +71,11 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	
 	/**
 	 * Prüft, ob ein Geburtsdatum eingegeben wurde.
-	 * @param birthday	Date		Geburtsdatum
+	 * @param birthday	String		Geburtsdatum
 	 * @param bindingResult			BindingResult
 	 */
-	private void validateBirthday(Date birthday, BindingResult bindingResult) {
-		if(this.isEmpty(birthday.toString())) {
+	private void validateBirthday(String birthday, BindingResult bindingResult) {
+		if(this.isEmpty(birthday) || !isDate(birthday)) {
 			bindingResult.rejectValue("birthday", "error.address.birthday");
 		}
 	}

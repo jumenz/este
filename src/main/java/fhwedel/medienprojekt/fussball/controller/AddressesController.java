@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
 import fhwedel.medienprojekt.fussball.model.user.addresses.Address;
@@ -77,7 +78,7 @@ public class AddressesController {
 	 * Lädt das Formular zum editieren einer Adresse.
 	 * @param 	id		int		ID der Adresse, die bearbeitet werden soll
 	 * @param 	model	Model	
-	 * @return	String	Viewname des Formulars
+	 * @return	String	Viewname des Bearbeitungsformulars
 	 */
 	@RequestMapping(value=Constants.linkAddressEdit, method=RequestMethod.GET)
 	public String loadEditForm(@PathVariable int id, Model model) {
@@ -90,22 +91,40 @@ public class AddressesController {
 	 * Speichert eine editierte Adresse mit entsprechender ID.
 	 * @param 	id				int				Id der bearbeiteten Adresse
 	 * @param	address			Address			bearbeitete Adresse
-	 * @param 	bindingResult	BindingResult	
 	 * @return
 	 */
+	@RequestMapping(value=Constants.linkAddressEdit, method=RequestMethod.POST)
+	public String edit(@ModelAttribute("addressEditModel") Address address, BindingResult bindingResult) {
+		// Bei Fehlern erneut Formular aufrufen
+		if(bindingResult.hasErrors()|| this.dataErrors.hasErrors(address, bindingResult)) {
+			return Constants.viewNameAddressEdit;
+		}
+		// Speichern und Adressbuch laden
+		this.dataAccessAddresses.update(address.getId(), address);
+		
+		// jsp zum Adressbuch
+		return Constants.redirectAddresses;
+	}
+	
+	/**
+	 * Speichert eine editierte Adresse mit entsprechender ID.
+	 * @param 	id				int				Id der bearbeiteten Adresse
+	 * @param	address			Address			bearbeitete Adresse
+	 * @param 	bindingResult	BindingResult	
+	 * @return
+	 
 	@RequestMapping(value=Constants.linkAddressEdit, method=RequestMethod.POST)
 	public String edit(@PathVariable int id, @ModelAttribute("addressEditModel") Address address, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
 		if(bindingResult.hasErrors()|| this.dataErrors.hasErrors(address, bindingResult)) {
 			return Constants.viewNameAddressEdit;
 		}
-		
 		// Speichern und Adressbuch laden
 		this.dataAccessAddresses.update(id, address);
 		
 		// jsp zum Adressbuch
 		return Constants.redirectAddresses;
-	}
+	}*/
 	
 	/* -------------------- Adresse löschen --------------------------- */
 	/**
@@ -113,7 +132,7 @@ public class AddressesController {
 	 * @param	id		PathVariable	id der Adresse, die gelöscht werden soll
 	 * @return	String	Redirect auf die Adressbuchseite
 	 */
-	@RequestMapping(value=Constants.linkAddressDelete, method=RequestMethod.POST) 
+	@RequestMapping(value=Constants.linkAddressDelete, method=RequestMethod.GET) 
 	public String delete(@PathVariable int id) {
 		this.dataAccessAddresses.delete(id);
 		return Constants.redirectAddresses;
