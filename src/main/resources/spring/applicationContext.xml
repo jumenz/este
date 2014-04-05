@@ -107,8 +107,10 @@
 	<bean id="DataErrorsImpressum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsImpressum">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
+	<bean id="DataErrorsAddresses" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAddresses">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
 	
 	<!-- Login / Registrierung -->
 	<bean id="AuthenticationService" class="fhwedel.medienprojekt.fussball.service.AuthenticationService"/>
-    
 </beans>
