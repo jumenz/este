@@ -66,7 +66,7 @@ public class AboutUsController {
 	 * @return 	String 			Redirect auf die Über uns Seite
 	 */
 	@RequestMapping(value=Constants.linkAboutUsEdit, method=RequestMethod.POST)
-	public String save(@ModelAttribute("content") AboutUsContent aboutUsContent, BindingResult bindingResult, Model model) {
+	public String save(@ModelAttribute("aboutUsContent") AboutUsContent aboutUsContent, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors() || this.dataErrors.hasErrors(aboutUsContent, bindingResult)) {
 			return Constants.viewNameAboutUsEdit;
 		}
