@@ -129,7 +129,7 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	public void update(int updateId, Address address) {
 		final String SQL_UPDATE_ADDRESSES = "UPDATE " + Constants.dbAddresses + " SET "
 				+ "id:=id, name=:name, prename=:prename, birthday:=birthday, mobile=:mobile, "
-				+ "phone=:phone, street=:street, nr=:nr, zipcode=:zipcode, city=:city WHERE id=:" + updateId;
+				+ "phone=:phone, street=:street, nr=:nr, zipcode=:zipcode, city=:city WHERE id=:updateId";
 		/*final String SQL_UPDATE_ADDRESSES = 
 		"UPDATE " + Constants.dbAddresses + " SET ("
 		+ Constants.dbAddressesId + ", "
@@ -149,6 +149,7 @@ public class DataAccessAddresses extends AbstractDataAccess {
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		this.mapParams(address, params, false);
+		params.put("updateId", updateId);
 		
 		/* Datensatz updaten */
 		this.namedParameterJdbcTemplate.update(SQL_UPDATE_ADDRESSES, params);

@@ -28,7 +28,7 @@
 								<p>Adressen aller Spielerinnen und Trainer.</p>
 								<p>Finde hier die Übersicht über alle Kontaktdaten.</p>
 							</div>
-							<a href="${linkAdresses}">
+							<a href="${linkAddresses}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
