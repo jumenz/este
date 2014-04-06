@@ -22,13 +22,21 @@
                          <div class="main-content-box box-borders bg clearfix">
                              <h2 class="box-title">Impressum</h2>
                              <div class="box-body">	
-								<p>${impressumContent.text}</p>
-								<%-- Button zum bearbeiten --%>
-	                             <security:authorize access="hasRole('USER_GROUP_ADMIN')">
-				                     <form action="${linkImpressumEdit}" method="GET">
-				                     	<button class="dark-bg" type="submit"><div class="forward-raquo menu-link right"></div>Bearbeiten</button>
-				                     </form>
-			                     </security:authorize>
+								<p>
+									<%-- Formular zum bearbeiten des Impressums --%>
+									<sf:form method="POST" modelAttribute="impressumContent">
+										<sf:textarea 	path="text"
+														id="text"
+														rows="30"
+														cols="120"
+														placeholder="Impressum ..."
+														value="${impressumContent.text}"
+														class="full-width"
+										/><br>
+										<sf:errors path="text" cssClass="error"/><br>
+										<button class="dark-bg" type="submit"><div class="forward-raquo menu-link right"></div>Speichern</button>
+									</sf:form>
+								</p>
                              </div>
                          </div>
                      </li>

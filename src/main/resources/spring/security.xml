@@ -41,6 +41,7 @@
 		<intercept-url pattern="/home/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/logout/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/ueber-uns/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
+		<intercept-url pattern="/impressum/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		
 		<!-- Erst wenn Seite online -->
 		<!-- http 

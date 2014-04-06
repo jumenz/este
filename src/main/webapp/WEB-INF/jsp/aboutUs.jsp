@@ -1,7 +1,7 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Home"/>
+		<jsp:param name="title" value="Über uns"/>
 		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
 	</jsp:include>
 		
@@ -48,7 +48,8 @@
 							<div class="toggle-content" style="display: none">
 								<div class="box-body">
 									<p>
-									${content.companyText}
+									<img class="about-us-img-logo" src="${dataPath}/images/logo-este.png">
+									${aboutUsContent.companyText}
 									</p>
 								</div>
 							</div>
@@ -62,7 +63,7 @@
 							</div>
 							<div class="toggle-content" style="display: none">
 								<div class="box-body">
-									<p>${content.teamText}</p>
+									<p>${aboutUsContent.teamText}</p>
 									<img class="about-us-img-team" src="${dataPath}/galery/K640_picture24.JPG">
 								</div>
 							</div>
@@ -77,17 +78,17 @@
 							<div class="toggle-content" style="display: none">
 								<div class="box-body">
 									<div class="profile">
-										<h3>Mathias Schwarzer</h3><br>
+										<h3>${aboutUsContent.trainerFirstName}</h3><br>
 										<div class="profile-description">
 											<img class="about-us-img-trainer" src="${dataPath}/images/K640_trainer-m.JPG" />
-											<p>${content.trainerFirstPartText}</p>
+											<p>${aboutUsContent.trainerFirstText}</p>
 										</div>
 									</div>
 									<div class="profile">
-										<h3>Simon Elmers</h3><br>
+										<h3>${aboutUsContent.trainerSecondName}</h3><br>
 										<div class="profile-description">
 											<img class="about-us-img-trainer" src="${dataPath}/images/K640_trainer-s.JPG" />
-											<p>${content.trainerSecondPartText}</p>
+											<p>${aboutUsContent.trainerSecondText}</p>
 										</div>
 									</div>
 								</div>
@@ -102,7 +103,7 @@
 								</div>
 								<div class="toggle-content" style="display: none">
 									<div class="box-body">
-									<p>${content.trainingText}</p>
+									<p>${aboutUsContent.trainingText}</p>
 								</div>
 								</div>
 							</div>
@@ -116,19 +117,19 @@
 								<div class="toggle-content" style="display: none">
 									<div class="box-body">
 									<p>
-									${content.approachPlayingFieldTrainingText}
+									${aboutUsContent.approachPlayingFieldTrainingText}
 									<div class="google-maps-wrapper">
 										<iframe class="google-maps-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?f=d&amp;source=s_d&amp;saddr=A7&amp;daddr=Arp-Schnitger-Stieg&amp;hl=de&amp;geocode=FbsXMQMdzxOXAA%3BFTGaMAMdmrWVAA&amp;aq=&amp;sll=53.523982,9.861946&amp;sspn=0.185119,0.445976&amp;mra=dme&amp;mrsp=0&amp;sz=12&amp;ie=UTF8&amp;ll=53.523982,9.861946&amp;spn=0.185119,0.445976&amp;t=m&amp;output=embed"></iframe>
 										<a class="show-link" href="https://maps.google.de/maps?f=d&amp;source=embed&amp;saddr=A7&amp;daddr=Arp-Schnitger-Stieg&amp;hl=de&amp;geocode=FbsXMQMdzxOXAA%3BFTGaMAMdmrWVAA&amp;aq=&amp;sll=53.523982,9.861946&amp;sspn=0.185119,0.445976&amp;mra=dme&amp;mrsp=0&amp;sz=12&amp;ie=UTF8&amp;ll=53.523982,9.861946&amp;spn=0.185119,0.445976&amp;t=m">Kartenansicht</a><br>
 									</div>
 									<br>
-									${content.approachPlayingFieldMatchText}
+									${aboutUsContent.approachPlayingFieldMatchText}
 									<div class="google-maps-wrapper">
 										<iframe class="google-maps-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?f=d&amp;source=s_d&amp;saddr=A7&amp;daddr=Cranz+Estebogen&amp;hl=de&amp;geocode=FbsXMQMdzxOXAA%3BFULLMAMdoh2VACnlBCA3PIOxRzHAlIur7Lu0YA&amp;aq=&amp;sll=53.539199,9.83673&amp;sspn=0.092526,0.222988&amp;mra=ltm&amp;ie=UTF8&amp;ll=53.539185,9.836712&amp;spn=0.038143,0.161628&amp;t=m&amp;output=embed"></iframe>
 										<a class="show-link" href="https://maps.google.de/maps?f=d&amp;source=embed&amp;saddr=A7&amp;daddr=Cranz+Estebogen&amp;hl=de&amp;geocode=FbsXMQMdzxOXAA%3BFULLMAMdoh2VACnlBCA3PIOxRzHAlIur7Lu0YA&amp;aq=&amp;sll=53.539199,9.83673&amp;sspn=0.092526,0.222988&amp;mra=ltm&amp;ie=UTF8&amp;ll=53.539185,9.836712&amp;spn=0.038143,0.161628&amp;t=m">Kartenansicht</a><br>
 									</div>
 									</p>
-									<p>${content.approachPublicTransportText}</p>
+									<p>${aboutUsContent.approachPublicTransportText}</p>
 									</div>
 								</div>
 							</div>
@@ -140,7 +141,7 @@
 								</div>
 								<div class="toggle-content" style="display: none">
 									<div class="box-body">
-										<p>${content.contactText}</p>
+										<p>${aboutUsContent.contactText}</p>
 									</div>
 								</div>
 							</div>

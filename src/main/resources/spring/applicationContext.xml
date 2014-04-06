@@ -78,6 +78,9 @@
 	<bean id="DataAccessAboutUs" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessAboutUs">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
+	<bean id="DataAccessImpressum" class="fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessImpressum">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
 	
 	<!-- Fehlerbehandlungen -->
 	<bean id="DataErrorsUsers" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers">
@@ -99,6 +102,9 @@
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
 	<bean id="DataErrorsAboutUs" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAboutUs">
+		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+	</bean>
+	<bean id="DataErrorsImpressum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsImpressum">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
 	<bean id="DataErrorsAddresses" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAddresses">

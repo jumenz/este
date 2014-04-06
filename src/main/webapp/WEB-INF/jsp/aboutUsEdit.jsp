@@ -1,7 +1,7 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Home"/>
+		<jsp:param name="title" value="Bearbeiten"/>
 		<jsp:param name="description" value="Startseite der Frauen des Este 06/70"/>
 	</jsp:include>
 		
@@ -17,7 +17,7 @@
         <div class="main-inner">
 			<div class="content-list">
 				<ul>
-					<sf:form method="POST" modelAttribute="content">
+					<sf:form method="POST" modelAttribute="aboutUsContent">
 					<!-- Der Verein -->
 					<li class="one-col">
 						<div id="verein" class="main-content-box box-borders-top bg clearfix toggle-item">
@@ -28,10 +28,10 @@
 								<div class="box-body">
 									<sf:textarea 	path="companyText"
 													id="companyText"
-													rows="1"
+													rows="10"
 													cols="120"
 													placeholder="Text über den Verein ..."
-													value="${content.companyText}"
+													value="${aboutUsContent.companyText}"
 													class="full-width"
 									/><br>
 									<sf:errors path="companyText" cssClass="error"/><br>
@@ -49,10 +49,10 @@
 								<div class="box-body">
 									<sf:textarea 	path="teamText"
 													id="teamText"
-													rows="1"
+													rows="10"
 													cols="120"
 													placeholder="Text über den Verein ..."
-													value="${content.teamText}"
+													value="${aboutUsContent.teamText}"
 													class="full-width"
 									/><br>
 									<sf:errors path="teamText" cssClass="error"/><br>
@@ -68,24 +68,42 @@
 							</div>
 							<div class="toggle-content">
 								<div class="box-body">
-									<sf:textarea 	path="trainerFirstPartText"
-													id="trainerFirstPartText"
+									<sf:textarea 	path="trainerFirstName"
+													id="trainerFirstName"
 													rows="1"
+													cols="120"
+													placeholder="Name Trainer ..."
+													value="${aboutUsContent.trainerFirstName}"
+													class="full-width"
+									/><br>
+									<sf:errors path="trainerFirstName" cssClass="error"/><br>
+									<sf:textarea 	path="trainerFirstText"
+													id="trainerFirstText"
+													rows="10"
 													cols="120"
 													placeholder="Text Matschi ..."
-													value="${content.trainerFirstPartText}"
+													value="${aboutUsContent.trainerFirstText}"
 													class="full-width"
 									/><br>
-									<sf:errors path="trainerFirstPartText" cssClass="error"/><br>
-									<sf:textarea 	path="trainerSecondPartText"
-													id="trainerSecondPartText"
+									<sf:errors path="trainerFirstText" cssClass="error"/><br>
+									<sf:textarea 	path="trainerSecondName"
+													id="trainerSecondName"
 													rows="1"
 													cols="120"
-													placeholder="Text Simon ..."
-													value="${content.trainerSecondPartText}"
+													placeholder="Name Trainer ..."
+													value="${aboutUsContent.trainerSecondName}"
 													class="full-width"
 									/><br>
-									<sf:errors path="trainerSecondPartText" cssClass="error"/><br>
+									<sf:errors path="trainerSecondName" cssClass="error"/><br>
+									<sf:textarea 	path="trainerSecondText"
+													id="trainerSecondText"
+													rows="10"
+													cols="120"
+													placeholder="Text Simon ..."
+													value="${aboutUsContent.trainerSecondText}"
+													class="full-width"
+									/><br>
+									<sf:errors path="trainerSecondText" cssClass="error"/><br>
 								</div>
 							</div>
 						</div>
@@ -100,10 +118,10 @@
 									<div class="box-body">
 										<sf:textarea 	path="trainingText"
 														id="trainingText"
-														rows="1"
+														rows="10"
 														cols="120"
 														placeholder="Text zum Training ..."
-														value="${content.trainingText}"
+														value="${aboutUsContent.trainingText}"
 														class="full-width"
 										/><br>
 										<sf:errors path="trainingText" cssClass="error"/><br>
@@ -122,29 +140,29 @@
 										<p>
 										<sf:textarea 	path="approachPlayingFieldTrainingText"
 														id="approachPlayingFieldTrainingText"
-														rows="1"
+														rows="10"
 														cols="120"
 														placeholder="Anfahrt zum Sportplatz Neuenfelde ..."
-														value="${content.approachPlayingFieldTrainingText}"
+														value="${aboutUsContent.approachPlayingFieldTrainingText}"
 														class="full-width"
 										/><br>
 										<sf:errors path="approachPlayingFieldTrainingText" cssClass="error"/><br>
 										<br>
 										<sf:textarea 	path="approachPlayingFieldMatchText"
 														id="approachPlayingFieldMatchText"
-														rows="1"
+														rows="10"
 														cols="120"
 														placeholder="Anfahrt zum Sportplatz in Cranz ..."
-														value="${content.approachPlayingFieldMatchText}"
+														value="${aboutUsContent.approachPlayingFieldMatchText}"
 														class="full-width"
 										/><br>
 										<sf:errors path="approachPlayingFieldMatchText" cssClass="error"/><br>
 										<sf:textarea 	path="approachPublicTransportText"
 														id="approachPublicTransportText"
-														rows="1"
+														rows="10"
 														cols="120"
 														placeholder="Anfahrt mit öffentlichen Verkehrsmitteln ..."
-														value="${content.approachPublicTransportText}"
+														value="${aboutUsContent.approachPublicTransportText}"
 														class="full-width"
 										/><br>
 										<sf:errors path="approachPublicTransportText" cssClass="error"/><br>
@@ -159,13 +177,12 @@
 								</div>
 								<div class="toggle-content">
 									<div class="box-body">
-										<p>${content.contactText}</p>
 										<sf:textarea 	path="contactText"
 														id="contactText"
-														rows="1"
+														rows="10"
 														cols="120"
 														placeholder="Text zum Kontakt ..."
-														value="${content.contactText}"
+														value="${aboutUsContent.contactText}"
 														class="full-width"
 										/><br>
 										<sf:errors path="contactText" cssClass="error"/><br>
@@ -173,12 +190,11 @@
 								</div>
 							</div>
 						</li>
+						
+						<button class="dark-bg" type="submit"><div class="forward-raquo menu-link right"></div>Speichern</button>
+						
 					</sf:form>
 				</ul>				
-				
-				<form action="${linkAboutUsEdit}" method="POST">
-					<button class="dark-bg" type="submit"><div class="forward-raquo menu-link right"></div>Speichern</button>
-				</form>
 
 			</div>
 		</div>

@@ -32,6 +32,7 @@ public class Constants {
 	static final String linkLogin = "/login/";
 	static final String linkLogout = "/logout/";
 	static final String linkImpressum = "/impressum/";
+	static final String linkImpressumEdit = "/impressum/bearbeiten/";
 	static final String linkLinks = "/links/";
 	static final String linkGalery = "/galerie/";
 	static final String linkGaleryUploadForm = "/galerie/upload/";
@@ -81,6 +82,7 @@ public class Constants {
 	static final String viewNameAboutUsEdit = "aboutUsEdit";
 	static final String viewNameLogin = "login";
 	static final String viewNameImpressum = "impressum";
+	static final String viewNameImpressumEdit = "impressumEdit";
 	static final String viewNameLinks = "links";
 	static final String viewNameGalery = "galery";
 	static final String viewNameGaleryUpload = "galeryImgUpload";

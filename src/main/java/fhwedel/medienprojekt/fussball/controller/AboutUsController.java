@@ -33,8 +33,7 @@ public class AboutUsController {
 	
 	/* ---------------------- Funktionen ------------------------------- */
 	private void prepareView(Model model) {
-		AboutUsContent content = this.dataAccess.getAboutUsContent();
-		model.addAttribute("content", content);
+		model.addAttribute("aboutUsContent", this.dataAccess.getAboutUsContent());
 	}
 	
 	/**
@@ -67,12 +66,12 @@ public class AboutUsController {
 	 * @return 	String 			Redirect auf die Über uns Seite
 	 */
 	@RequestMapping(value=Constants.linkAboutUsEdit, method=RequestMethod.POST)
-	public String save(@ModelAttribute("content") AboutUsContent content, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors() || this.dataErrors.hasErrors(content, bindingResult)) {
+	public String save(@ModelAttribute("aboutUsContent") AboutUsContent aboutUsContent, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors() || this.dataErrors.hasErrors(aboutUsContent, bindingResult)) {
 			return Constants.viewNameAboutUsEdit;
 		}
 		
-		this.dataAccess.save(content);
+		this.dataAccess.save(aboutUsContent);
 		
 		return Constants.redirectAboutUs;
 	}

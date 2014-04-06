@@ -45,6 +45,7 @@
 <c:set var="linkLogout" value="${requestContextPath}/logout/"></c:set>
 <!-- Impressum -->
 <c:set var="linkImpressum" value="${requestContextPath}/impressum/"></c:set>
+<c:set var="linkImpressumEdit" value="${requestContextPath}/impressum/bearbeiten/"></c:set>
 <!-- wichtige weiterführende Links -->
 <c:set var="linkLinks" value="${requestContextPath}/links/"></c:set>
 <!-- Galerie -->
