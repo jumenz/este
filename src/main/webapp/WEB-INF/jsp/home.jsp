@@ -22,7 +22,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Adressbuch</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-addresses.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Adressen aller Spielerinnen und Trainer.</p>
@@ -37,7 +37,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Terminplaner</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-calendar.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Terminplaner der Mannschaft.</p>
@@ -52,7 +52,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Forum</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-forum.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Hier geht es zum Forum.</p>
@@ -67,7 +67,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Dokumente</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-documents.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Download wichtiger Dateien.</p>
@@ -82,7 +82,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Spielberichte</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-reports.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Texte zu den vergangenen Spielen.</p>
@@ -97,7 +97,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Links</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-links.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Shortcuts zu den wichtigsten, für alle sichtbaren Seiten.</p>

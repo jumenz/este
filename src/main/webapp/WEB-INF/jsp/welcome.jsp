@@ -22,7 +22,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Über Uns</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-aboutus.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Erfahre mehr über Este 06/70.</p>
@@ -35,39 +35,9 @@
 					</li>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
-							<h2 class="box-title">Spielberichte</h2>
-							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
-							</div>
-							<div class="box-body">
-								<p>Texte zu den vergangenen Spielen.</p>
-								<p>Lies hier den Bericht zum letzten Spiel.</p>
-							</div>
-							<a href="#">
-								<div class="forward-raquo content-link right"></div>
-							</a>
-						</div>
-					</li>
-					<li class="three-col">
-						<div class="main-content-box box-borders bg clearfix">
-							<h2 class="box-title">Links</h2>
-							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
-							</div>
-							<div class="box-body">
-								<p>Weitere Informationen findest du hier!</p>
-								<p>Wirf einen Blick auf die aktuelle Tabelle oder den Staffelspielplan.</p>
-							</div>
-							<a href="${linkLinks}">
-								<div class="forward-raquo content-link right"></div>
-							</a>
-						</div>
-					</li>
-					<li class="three-col">
-						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Galerie</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-galery.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Weitere Impressionen.</p>
@@ -82,7 +52,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Kontakt</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-contact.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Du hast noch Fragen oder Anliegen?</p>
@@ -95,9 +65,39 @@
 					</li>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
+							<h2 class="box-title">Links</h2>
+							<div class="box-head">
+								<img src="${dataPath}/images/img-links.jpg" />
+							</div>
+							<div class="box-body">
+								<p>Weitere Informationen findest du hier!</p>
+								<p>Wirf einen Blick auf die aktuelle Tabelle oder den Staffelspielplan.</p>
+							</div>
+							<a href="${linkLinks}">
+								<div class="forward-raquo content-link right"></div>
+							</a>
+						</div>
+					</li>
+					<li class="three-col">
+						<div class="main-content-box box-borders bg clearfix">
+							<h2 class="box-title">Spielberichte</h2>
+							<div class="box-head">
+								<img src="${dataPath}/images/img-reports.jpg" />
+							</div>
+							<div class="box-body">
+								<p>Texte zu den vergangenen Spielen.</p>
+								<p>Lies hier den Bericht zum letzten Spiel.</p>
+							</div>
+							<a href="#">
+								<div class="forward-raquo content-link right"></div>
+							</a>
+						</div>
+					</li>
+					<li class="three-col">
+						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Registrierung</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-register.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Melde dich hier an.</p>
@@ -119,20 +119,6 @@
 		<!-- footer -->
 		<jsp:include page="./includes/footer.jsp"/>
 		
-		<script type="text/javascript">
-		$(function (){
-			$(window).scroll(function (){
-				var header = $('#header');
-				if ($(this).scrollTop() > $('#header').offset().top){
-					$('#header').css('marginTop','0');
-					window.alert("nicht sichtbar");
-				} else {
-					//window.alert("sichtbar");
-					//$('#header').css('marginTop','-130');
-				}
-			});
-		})(jQuery);
-		</script>
 	</body>
 </html>
 
