@@ -71,7 +71,7 @@ public abstract class AbstractDataErrors {
 	 */
 	public boolean onlyLetters(String value) {
 		assert(value != null);
-		return value.matches("[a-fA-F]+");
+		return value.matches("[a-zA-Z]+");
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public abstract class AbstractDataErrors {
 	 */
 	public boolean isAlphanumeric(String value) {
 		assert(value != null);
-		return value.matches("[0-9a-fA-F]+");
+		return value.matches("[0-9a-zA-Z]+");
 	}
 	
 	/**
@@ -105,6 +105,17 @@ public abstract class AbstractDataErrors {
 	public boolean isPhoneNumber(String value) {
 		assert(value != null);
 		return value.matches("[0-9]+-[0-9]+");
+	}
+	
+	/**
+	 * Prüft, ob der Eingabewert einem Datum (Tag.Monat.Jahr) entspricht.
+	 * @param 	value	String	Eingabewert
+	 * @return	boolean	true:	String entspricht einer Telefonnummer
+	 * 					false:	String entspricht nicht einer Telefonnummer
+	 */
+	public boolean isDate(String value) {
+		assert(value != null);
+		return value.matches("([0-9]{1,2}).([0-9]{1,2}).([0-9]{2,4})");
 	}
 	
 	/**
