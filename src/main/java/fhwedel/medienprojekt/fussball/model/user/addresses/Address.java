@@ -27,6 +27,9 @@ public class Address {
 	/** Vorname */
 	@Column(name = "prename")
 	private String prename;
+	/** E-Mail */
+	@Column(name = "email")
+	private String email;
 	/** Geburtsdatum */
 	@Column(name = "birthday")
 	private String birthday;
@@ -57,7 +60,7 @@ public class Address {
 	 * Default-Konstruktor.
 	 */
 	public Address() {
-		this(0,"","","","","","","","","");
+		this(0,"","","","","","","","","","");
 	}
 	
 	/**
@@ -67,6 +70,7 @@ public class Address {
 	 * @param name
 	 * @param prename
 	 * @param birthday
+	 * @param email
 	 * @param mobile
 	 * @param phone
 	 * @param street
@@ -74,11 +78,12 @@ public class Address {
 	 * @param zipcode
 	 * @param city
 	 */
-	public Address(int id, String name, String prename, String birthday, String mobile, String phone, String street, String nr, String zipcode, String city) {
+	public Address(int id, String name, String prename, String birthday, String email, String mobile, String phone, String street, String nr, String zipcode, String city) {
 		this.id = id;
 		this.name = name;
 		this.prename = prename;
 		this.birthday = birthday;
+		this.email = email;
 		this.mobile = mobile;
 		this.phone = phone;
 		this.street = street;
@@ -143,6 +148,20 @@ public class Address {
 	 */
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+	}
+	/**
+	 * Liefert die E-Mail.
+	 * @return	String	E-Mail
+	 */
+	public String getEmail() {
+		return this.email;
+	}
+	/**
+	 * Setzt die E-Mail.
+	 * @param String E-Mail
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	/**
 	 * Liefert die Straße.

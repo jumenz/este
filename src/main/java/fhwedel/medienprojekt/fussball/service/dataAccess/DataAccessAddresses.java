@@ -42,12 +42,14 @@ public class DataAccessAddresses extends AbstractDataAccess {
 					entry.setName(resultSet.getString(2));
 					entry.setPrename(resultSet.getString(3));
 					entry.setBirthday(resultSet.getString(4));
+					entry.setEmail(resultSet.getString(12));
 					entry.setPhone(resultSet.getString(5));
 					entry.setMobile(resultSet.getString(6));
 					entry.setStreet(resultSet.getString(7));
 					entry.setNr(resultSet.getString(8));
 					entry.setZipcode(resultSet.getString(9));
 					entry.setCity(resultSet.getString(10));
+					//entry.setUsername(resultSet.getString(11));
 					return entry;
 				}
 			};
@@ -70,7 +72,7 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	
 	/**
 	 * Hilfsfunktion.
-	 * Ordnet die Werte des Adresseintrags als Name-Wert-Paare.
+	 * Ordnet die Werte des Adresseintrags als Name-Wert-Paare für die Adress-Tabelle
 	 * @param address		Address		Adresse
 	 * @param params		Map			Name-Wert-Paare
 	 * @param updateDate	boolean		true: neues Datum wird gemappt
@@ -97,7 +99,8 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	 */
 	public ArrayList<Address> getAll() {
 		// Alle Adress-Einträge absteigend sortiert auslesen.
-		final String SQL_SELECT_ALL_ADDRESSES = "SELECT * FROM " + Constants.dbAddresses + " ORDER BY name ASC";
+		//final String SQL_SELECT_ALL_ADDRESSES = "SELECT * FROM " + Constants.dbAddresses + " ORDER BY name ASC";
+		final String SQL_SELECT_ALL_ADDRESSES = "SELECT * FROM " + Constants.dbAddresses + " NATURAL JOIN " + Constants.dbUsers + " ORDER BY name ASC";
 
 		return (ArrayList<Address>) namedParameterJdbcTemplate.query(
 				SQL_SELECT_ALL_ADDRESSES, this.addressRowMapper);
@@ -110,8 +113,8 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	 */
 	public Address getById(int id) {
 		final String SQL_SELECT_BY_ID = 
-				"SELECT * FROM " + Constants.dbAddresses + " WHERE ("
-				+ Constants.dbAddressesId + "=:id)";
+				//"SELECT * FROM " + Constants.dbAddresses + " WHERE (" + Constants.dbAddressesId + "=:id)";
+				"SELECT * FROM " + Constants.dbAddresses + " NATURAL JOIN " + Constants.dbUsers + "  WHERE (" + Constants.dbAddressesId + "=:id)";
 		
 		// Parameter zuweisen
 		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(id));
@@ -130,6 +133,8 @@ public class DataAccessAddresses extends AbstractDataAccess {
 		final String SQL_UPDATE_ADDRESSES = "UPDATE " + Constants.dbAddresses + " SET "
 				+ "id:=id, name=:name, prename=:prename, birthday:=birthday, mobile=:mobile, "
 				+ "phone=:phone, street=:street, nr=:nr, zipcode=:zipcode, city=:city WHERE id=:" + updateId;
+		final String SQL_UPDATE_EMAIL_USERS = "UPDATE " + Constants.dbUsers + " SET email:=email WHERE id=:" + updateId;
+		final String SQL_UPDATE_EMAIL_PERMISSIONS = "UPDATE " + Constants.dbPermissions + " SET email:=email WHERE id=:" + updateId;
 		/*final String SQL_UPDATE_ADDRESSES = 
 		"UPDATE " + Constants.dbAddresses + " SET ("
 		+ Constants.dbAddressesId + ", "
@@ -147,11 +152,17 @@ public class DataAccessAddresses extends AbstractDataAccess {
 		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(address);	
 
 		/* Werte Namen zuweisen */
-		Map<String,Object> params = new HashMap<String,Object>();
-		this.mapParams(address, params, false);
+		Map<String,Object> addressParams = new HashMap<String,Object>();
+		Map<String,Object> emailParams = new HashMap<String,Object>();
+		// Adresse setzen
+		this.mapParams(address, addressParams, false);
+		// E-Mail setzen
+		emailParams.put("id", updateId);
+		emailParams.put("email", address.getEmail());
 		
-		/* Datensatz updaten */
-		this.namedParameterJdbcTemplate.update(SQL_UPDATE_ADDRESSES, params);
+		/* Datensätze updaten */
+		this.namedParameterJdbcTemplate.update(SQL_UPDATE_ADDRESSES, addressParams);
+		this.namedParameterJdbcTemplate.update(SQL_UPDATE_EMAIL_PERMISSIONS, emailParams);
 	}
 	
 /* ------------------------- Löschen ------------------------------------- */

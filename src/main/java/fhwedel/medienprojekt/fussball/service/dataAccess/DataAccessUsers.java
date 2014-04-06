@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import org.springframework.validation.BindingResult;
 
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.Permission;
 import fhwedel.medienprojekt.fussball.model.user.User;
@@ -165,29 +166,29 @@ public class DataAccessUsers extends AbstractDataAccess {
 		return userData.get(0).getUserGroup();
 	}
 	
-/**
- * Liefert einen User ausgehend von einer id.
- * @param 	id		int		ID des Users
- * @return	User			ausgelesener User
- */
-private User getUserById(int id) {
-	final String SQL_SELECT_USER_BY_ID = 
-			"SELECT * FROM " + Constants.dbUsers 
-			+ " WHERE ("
-			+ Constants.dbUsersId + " = :id)";
-	/* Name-Wert Paare für Abfrage festlegen */
-	Map<String,Object> params = new HashMap<String,Object>();
-	params.put("id", id);
-	/* User auslesen */
-	ArrayList<User> res 
-		= (ArrayList<User>) this.namedParameterJdbcTemplate.query(
-								SQL_SELECT_USER_BY_ID, 
-								params, 
-								this.userMapper
-							);
-	return (res.isEmpty()) ? null : res.get(0);
-}
-	
+	/**
+	 * Liefert einen User ausgehend von einer id.
+	 * @param 	id		int		ID des Users
+	 * @return	User			ausgelesener User
+	 */
+	private User getUserById(int id) {
+		final String SQL_SELECT_USER_BY_ID = 
+				"SELECT * FROM " + Constants.dbUsers 
+				+ " WHERE ("
+				+ Constants.dbUsersId + " = :id)";
+		/* Name-Wert Paare für Abfrage festlegen */
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("id", id);
+		/* User auslesen */
+		ArrayList<User> res 
+			= (ArrayList<User>) this.namedParameterJdbcTemplate.query(
+									SQL_SELECT_USER_BY_ID, 
+									params, 
+									this.userMapper
+								);
+		return (res.isEmpty()) ? null : res.get(0);
+	}
+		
 	/**
 	 * Ändert den Admin-Status eines Users.
 	 * @param 	id	int	ID des Users, dessen Status geändert werden soll.
@@ -217,5 +218,22 @@ private User getUserById(int id) {
 			/* Datensatz updaten und Nummer an betroffenen Reihen auf 1 überprüfen */
 			this.namedParameterJdbcTemplate.update(SQL_UPDATE_USER_STATUS, params);
 		}
+	}
+	
+	/* ------------------------- Löschen ------------------------------------- */
+	/**
+	 * Löscht einen User ausgehend von seiner id.
+	 * @param 	id	int		ID des Users
+	 */
+	public void delete(int id) {
+		final String SQL_DELETE_USER = 
+				"DELETE FROM " + Constants.dbUsers + " WHERE "
+				+ Constants.dbUsersId + "=:id";
+		
+		// ID setzen
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("id", id);
+		// löschen
+		this.namedParameterJdbcTemplate.update(SQL_DELETE_USER, params);
 	}
 }

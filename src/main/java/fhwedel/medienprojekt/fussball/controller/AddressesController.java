@@ -17,10 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
+import fhwedel.medienprojekt.fussball.model.user.User;
 import fhwedel.medienprojekt.fussball.model.user.addresses.Address;
 import fhwedel.medienprojekt.fussball.model.user.addresses.AddressView;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessAddresses;
+import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessPermissions;
+import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
 import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAddresses;
+import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers;
 
 
 /**
@@ -37,9 +41,18 @@ public class AddressesController {
 	@Autowired
 	private DataAccessAddresses dataAccessAddresses;
 	
+	@Autowired
+	private DataAccessUsers dataAccessUsers;
+
+	@Autowired
+	private DataAccessPermissions dataAccessPermissions;
+	
 	/** Service zum prüfen von Errors */
 	@Autowired
-	private DataErrorsAddresses dataErrors;
+	private DataErrorsAddresses dataErrorsAddresses;
+
+	@Autowired
+	private DataErrorsUsers dataErrorsUsers;
 	
 	/* --------------------- Anzeige -------------------------------- */
 	/**
@@ -49,14 +62,17 @@ public class AddressesController {
 	 */
 	private String prepareAddressesDisplay(Model model) {
 		AddressView<Address> addresses = new AddressView<Address>();
-		// Einträge aus der Datenbank auslesen
+		// Adresseinträge aus der Datenbank auslesen
 		ArrayList<Address> list = this.dataAccessAddresses.getAll();
 		for(int i=0; i<list.size(); i++) {
 			addresses.addEntry(list.get(i));
 		}
 		
+		ArrayList<User> users = this.dataAccessUsers.getAll();
+		
 		// In jsp zugreifbar machen
 		model.addAttribute("addressModel", addresses);
+		model.addAttribute("userModel", users);
 		model.addAttribute("updateAddressModel", new Address());
 		
 		return Constants.viewNameAddresses;
@@ -96,7 +112,7 @@ public class AddressesController {
 	@RequestMapping(value=Constants.linkAddressEdit, method=RequestMethod.POST)
 	public String edit(@ModelAttribute("addressEditModel") Address address, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
-		if(bindingResult.hasErrors()|| this.dataErrors.hasErrors(address, bindingResult)) {
+		if(bindingResult.hasErrors()|| this.dataErrorsAddresses.hasErrors(address, bindingResult)) {
 			return Constants.viewNameAddressEdit;
 		}
 		// Speichern und Adressbuch laden
@@ -116,7 +132,7 @@ public class AddressesController {
 	@RequestMapping(value=Constants.linkAddressEdit, method=RequestMethod.POST)
 	public String edit(@PathVariable int id, @ModelAttribute("addressEditModel") Address address, BindingResult bindingResult) {
 		// Bei Fehlern erneut Formular aufrufen
-		if(bindingResult.hasErrors()|| this.dataErrors.hasErrors(address, bindingResult)) {
+		if(bindingResult.hasErrors()|| this.dataErrorsAddresses.hasErrors(address, bindingResult)) {
 			return Constants.viewNameAddressEdit;
 		}
 		// Speichern und Adressbuch laden
@@ -128,13 +144,15 @@ public class AddressesController {
 	
 	/* -------------------- Adresse löschen --------------------------- */
 	/**
-	 * Löscht eine Adresse aufgehend von ihrer ID.
-	 * @param	id		PathVariable	id der Adresse, die gelöscht werden soll
+	 * Löscht einen User und seine Adresse aufgehend von einer ID.
+	 * @param	id		PathVariable	id des zu löschenden Users und seiner der Adresse
 	 * @return	String	Redirect auf die Adressbuchseite
 	 */
 	@RequestMapping(value=Constants.linkAddressDelete, method=RequestMethod.GET) 
-	public String delete(@PathVariable int id) {
+	public String deleteAccount(@PathVariable int id) {
 		this.dataAccessAddresses.delete(id);
+		this.dataAccessUsers.delete(id);
+		this.dataAccessPermissions.remove(id);
 		return Constants.redirectAddresses;
 	}
 }
