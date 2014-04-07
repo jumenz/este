@@ -113,4 +113,7 @@
 	
 	<!-- Login / Registrierung -->
 	<bean id="AuthenticationService" class="fhwedel.medienprojekt.fussball.service.AuthenticationService"/>
+	
+	<!-- Image Service -->
+	<bean id="ImageService" class="fhwedel.medienprojekt.fussball.service.image.ImageService"/>
 </beans>
