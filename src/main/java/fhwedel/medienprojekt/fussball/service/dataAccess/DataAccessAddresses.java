@@ -158,7 +158,6 @@ public class DataAccessAddresses extends AbstractDataAccess {
 		Map<String,Object> emailParams = new HashMap<String,Object>();
 		emailParams.put("id", updateId);
 		emailParams.put("email", address.getEmail());
-		
 		/* Datensätze updaten */
 		this.namedParameterJdbcTemplate.update(SQL_UPDATE_ADDRESSES, addressParams);
 		this.namedParameterJdbcTemplate.update(SQL_UPDATE_EMAIL_USERS, emailParams);
