@@ -1,10 +1,10 @@
 package fhwedel.medienprojekt.fussball.controller;
 
+/** externe Klassen */
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,14 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
-
-
-
-
-
-
-
+/** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
 import fhwedel.medienprojekt.fussball.model.galery.Image;
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
@@ -29,7 +22,8 @@ import fhwedel.medienprojekt.fussball.service.image.ImageService;
 @Controller
 public class GaleryController {
 	
-	// TODO autowired
+	/** Image Service */
+	@Autowired
 	private ImageService imageService = new ImageService();
 	
 	/**
@@ -44,12 +38,20 @@ public class GaleryController {
 		} catch (IOException e) {
 			// TODO
 		}
+		
 		// Bildpfade in drei Listen für die drei divs aufteilen 
-		ArrayList<ArrayList<String>> colwiseImgPaths = this.getColwiseImagePaths(imgPaths, 3);
+		ArrayList<ArrayList<String>> threeColsImgPaths = this.getColwiseImagePaths(imgPaths, 3);
 		// und zur Verfügung stellen
-		model.addAttribute("firstImageCol", colwiseImgPaths.get(0));
-		model.addAttribute("secondImageCol", colwiseImgPaths.get(1));
-		model.addAttribute("thirdImageCol", colwiseImgPaths.get(2));
+		model.addAttribute("firstPartThreeCol", threeColsImgPaths.get(0));
+		model.addAttribute("secondPartThreeCol", threeColsImgPaths.get(1));
+		model.addAttribute("thirdPartThreeCol", threeColsImgPaths.get(2));
+		// zweispaltig
+		ArrayList<ArrayList<String>> twoColsImgPaths = this.getColwiseImagePaths(imgPaths, 2);
+		model.addAttribute("firstPartTwoCol", twoColsImgPaths.get(0));
+		model.addAttribute("secondPartTwoCol", twoColsImgPaths.get(1));
+		// einspaltig
+		model.addAttribute("oneCol", imgPaths);
+		
 		return Constants.viewNameGalerie;
 	}
 	

@@ -74,5 +74,8 @@
 	
 	<!-- Fehlerbehandlungen -->
 	<bean id="DataErrorsUsers" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers"/>
+	
+	<!-- Image Service -->
+	<bean id="ImageService" class="fhwedel.medienprojekt.fussball.service.image.ImageService"/>
     
 </beans>
