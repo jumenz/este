@@ -35,10 +35,10 @@
 								                <div class="form-item">
 								                    <p class="input">
 														<sf:input 	path="prename"
-																	placeholder="Vorname *"
+																	placeholder="Vorname"
 																	id="prename"
 																	value="${addressEditModel.prename}"
-																	class="input input-text required-entry"
+																	class="input input-text"
 														/><br>
 														<sf:errors path="prename" cssClass="error"/>
 								                    </p>
@@ -47,9 +47,9 @@
 								                    <p class="input">
 														<sf:input 	path="name"
 																	id="name"
-																	placeholder="Name *"
+																	placeholder="Name"
 																	value="${addressEditModel.name}"
-																	class="input input-text required-entry"
+																	class="input input-text"
 														/><br>
 														<sf:errors path="name" cssClass="error"/>
 								                    </p>
@@ -94,6 +94,17 @@
 								        </li>
 								        <li class="last two-col">
 								            <fieldset class="last clearfix">
+								            	<div class="form-item">
+								                    <p class="input">
+														<sf:input 	path="email"
+																	id="email"
+																	placeholder="E-Mail"
+																	value="${addressEditModel.email}"
+																	class="input input-text"
+														/><br>
+														<sf:errors path="email" cssClass="error"/>
+								                    </p>
+								                </div>
 								                <div class="form-item">
 								                    <p class="input">
 														<sf:input 	path="phone"
@@ -135,15 +146,22 @@
 								            </fieldset>
 								        </li>
 								    </ul>
-								    <p id="required">* Pflichtfelder</p>
-								    <button class="dark-bg" type="submit" name="commit">
-								    	<div class="forward-raquo menu-link right"></div>Aktualisieren
-								    </button>
-							        <button class="dark-bg" type="reset" name="reset">
-							        	<div class="forward-raquo menu-link right"></div>Zurücksetzen
-							        </button>
+								    <div>
+									    <p id="required">alle Felder sind Pflichtfelder</p>
+									    <button class="dark-bg" type="submit" name="commit">
+									    	<div class="forward-raquo menu-link right"></div>Aktualisieren
+									    </button>
+								        <button class="dark-bg" type="reset" name="reset">
+								        	<div class="forward-raquo menu-link right"></div>Zurücksetzen
+								        </button>
+							        </div>
 								</sf:form>
 								<!-- end edit address form -->
+								<div>
+									<form action="${linkAddressDelete}${addressEditModel.id}/" method="GET" style="display: inline-block">
+										<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Account Löschen</button>
+									</form>
+								</div>
 							</div>
 						</div>
 					</li>

@@ -71,7 +71,7 @@
 									    ${address.prename}&nbsp;${address.name}<br />
 									    ${address.street}&nbsp;<c:if test="${address.nr != 0}">${address.nr}</c:if><br />
 									    <c:if test="${address.zipcode != 0}">${address.zipcode}&nbsp;</c:if>${address.city}<br />
-									    <a href="mailto:${user.email}">${user.email}</a><br />
+									    <a href="mailto:${address.email}">${address.email}</a><br />
 									    ${address.mobile}<br />
 									    ${address.phone}<br /><br />
 									    ${address.birthday}
@@ -81,7 +81,7 @@
 												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Bearbeiten</button>
 											</sf:form>
 											<form action="${linkAddressDelete}${address.id}/" method="GET" style="display: inline-block">
-												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
+												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Account Löschen</button>
 											</form>
 										</c:if>
 								    </p>

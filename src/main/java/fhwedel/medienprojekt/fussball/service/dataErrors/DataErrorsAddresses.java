@@ -38,6 +38,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 		this.validateName(address.getName(), bindingResult);
 		this.validatePrename(address.getPrename(), bindingResult);
 		this.validateBirthday(address.getBirthday(), bindingResult);
+		this.validateEmail(address.getEmail(), bindingResult);
 		this.validateMobile(address.getMobile(), bindingResult);
 		this.validatePhone(address.getPhone(), bindingResult);
 		this.validateStreet(address.getStreet(), bindingResult);
@@ -75,8 +76,19 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult			BindingResult
 	 */
 	private void validateBirthday(String birthday, BindingResult bindingResult) {
-		if(this.isEmpty(birthday) || !isDate(birthday)) {
+		if(this.isEmpty(birthday) || !this.isDate(birthday)) {
 			bindingResult.rejectValue("birthday", "error.address.birthday");
+		}
+	}
+	
+	/**
+	 * Prüft, ob eine E-Mail eingegeben wurde.
+	 * @param email	String		E-Mail
+	 * @param bindingResult		BindingResult
+	 */
+	private void validateEmail(String email, BindingResult bindingResult) {
+		if(this.isEmpty(email) || !this.isEmail(email)) {
+			bindingResult.rejectValue("email", "error.email.invalid");
 		}
 	}
 	
