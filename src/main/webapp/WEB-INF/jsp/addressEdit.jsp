@@ -16,7 +16,7 @@
 	<div class="main">
         <div class="main-inner">
        
-			<div id="..." class="content-list">
+			<div id="edit-address" class="content-list">
 				<ul>
 					<!--Contentbox One-Col -->
                     <li class="one-col">
@@ -94,17 +94,6 @@
 								        </li>
 								        <li class="last two-col">
 								            <fieldset class="last clearfix">
-								            	<div class="form-item">
-								                    <p class="input">
-														<sf:input 	path="email"
-																	id="email"
-																	placeholder="E-Mail"
-																	value="${addressEditModel.email}"
-																	class="input input-text"
-														/><br>
-														<sf:errors path="email" cssClass="error"/>
-								                    </p>
-								                </div>
 								                <div class="form-item">
 								                    <p class="input">
 														<sf:input 	path="phone"
@@ -146,7 +135,7 @@
 								            </fieldset>
 								        </li>
 								    </ul>
-								    <div>
+								    <p>
 									    <p id="required">alle Felder sind Pflichtfelder</p>
 									    <button class="dark-bg" type="submit" name="commit">
 									    	<div class="forward-raquo menu-link right"></div>Aktualisieren
@@ -154,14 +143,14 @@
 								        <button class="dark-bg" type="reset" name="reset">
 								        	<div class="forward-raquo menu-link right"></div>Zurücksetzen
 								        </button>
-							        </div>
+									</p>
 								</sf:form>
 								<!-- end edit address form -->
-								<div>
+								<p>
 									<form action="${linkAddressDelete}${addressEditModel.id}/" method="GET" style="display: inline-block">
 										<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Account Löschen</button>
 									</form>
-								</div>
+								</p>
 							</div>
 						</div>
 					</li>

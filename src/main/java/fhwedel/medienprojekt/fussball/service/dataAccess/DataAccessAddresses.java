@@ -49,7 +49,6 @@ public class DataAccessAddresses extends AbstractDataAccess {
 					entry.setNr(resultSet.getString(8));
 					entry.setZipcode(resultSet.getString(9));
 					entry.setCity(resultSet.getString(10));
-					//entry.setUsername(resultSet.getString(11));
 					return entry;
 				}
 			};
@@ -136,7 +135,7 @@ public class DataAccessAddresses extends AbstractDataAccess {
 		final String SQL_UPDATE_ADDRESSES = "UPDATE " + Constants.dbAddresses + " SET "
 				+ Constants.dbAddressesName + "=:name, "
 				+ Constants.dbAddressesPrename + "=:prename, "
-				+ Constants.dbAddressesBirthday + ":=birthday, "
+				+ Constants.dbAddressesBirthday + "=:birthday, "
 				+ Constants.dbAddressesMobile + "=:mobile, "
 				+ Constants.dbAddressesPhone + "=:phone, "
 				+ Constants.dbAddressesStreet + "=:street, "
@@ -144,19 +143,12 @@ public class DataAccessAddresses extends AbstractDataAccess {
 				+ Constants.dbAddressesZipcode + "=:zipcode, "
 				+ Constants.dbAddressesCity + "=:city WHERE "
 				+ Constants.dbAddressesId + "=:id";
-//		final String SQL_UPDATE_EMAIL_USERS = "UPDATE " + Constants.dbUsers + " SET email=:email WHERE id=:id";
-//		final String SQL_UPDATE_EMAIL_PERMISSIONS = "UPDATE " + Constants.dbPermissions + " SET email=:email WHERE id=:id";
 		
 		// Adresse setzen
 		Map<String,Object> addressParams = new HashMap<String,Object>();
 		this.mapParams(address, addressParams, false);
-		// E-Mail setzen
-//		Map<String,Object> emailParams = new HashMap<String,Object>();
-//		emailParams.put("email", address.getEmail());
 		/* Datensätze updaten */
 		this.namedParameterJdbcTemplate.update(SQL_UPDATE_ADDRESSES, addressParams);
-//		this.namedParameterJdbcTemplate.update(SQL_UPDATE_EMAIL_USERS, emailParams);
-//		this.namedParameterJdbcTemplate.update(SQL_UPDATE_EMAIL_PERMISSIONS, emailParams);
 	}
 	
 /* ------------------------- Löschen ------------------------------------- */

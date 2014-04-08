@@ -38,7 +38,6 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 		this.validateName(address.getName(), bindingResult);
 		this.validatePrename(address.getPrename(), bindingResult);
 		this.validateBirthday(address.getBirthday(), bindingResult);
-		this.validateEmail(address.getEmail(), bindingResult);
 		this.validateMobile(address.getMobile(), bindingResult);
 		this.validatePhone(address.getPhone(), bindingResult);
 		this.validateStreet(address.getStreet(), bindingResult);
@@ -54,7 +53,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult		BindingResult
 	 */
 	private void validateName(String name, BindingResult bindingResult) {
-		if(this.isEmpty(name) || !this.onlyLetters(name)) {
+		if(this.isEmpty(name)) {
 			bindingResult.rejectValue("name", "error.address.name");
 		}
 	}
@@ -65,7 +64,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult		BindingResult
 	 */
 	private void validatePrename(String prename, BindingResult bindingResult) {
-		if(this.isEmpty(prename) || !this.onlyLetters(prename)) {
+		if(this.isEmpty(prename)) {
 			bindingResult.rejectValue("prename", "error.address.prename");
 		}
 	}
@@ -78,17 +77,6 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validateBirthday(String birthday, BindingResult bindingResult) {
 		if(this.isEmpty(birthday) || !this.isDate(birthday)) {
 			bindingResult.rejectValue("birthday", "error.address.birthday");
-		}
-	}
-	
-	/**
-	 * Prüft, ob eine E-Mail eingegeben wurde.
-	 * @param email	String		E-Mail
-	 * @param bindingResult		BindingResult
-	 */
-	private void validateEmail(String email, BindingResult bindingResult) {
-		if(this.isEmpty(email) || !this.isEmail(email)) {
-			bindingResult.rejectValue("email", "error.email.invalid");
 		}
 	}
 	
@@ -120,7 +108,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult			BindingResult
 	 */
 	private void validateStreet(String street, BindingResult bindingResult) {
-		if(this.isEmpty(street) || !this.onlyLetters(street)) {
+		if(this.isEmpty(street)) {
 			bindingResult.rejectValue("street", "error.address.street");
 		}
 	}
@@ -153,7 +141,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult		BindingResult
 	 */
 	private void validateCity(String city, BindingResult bindingResult) {
-		if(this.isEmpty(city) || !this.onlyLetters(city)) {
+		if(this.isEmpty(city)) {
 			bindingResult.rejectValue("city", "error.address.city");
 		}
 	}

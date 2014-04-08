@@ -112,28 +112,28 @@ public class Address {
 	 * @return String
 	 */
 	public String getName() {
-		return this.name;
+		return this.name.toUpperCase();
 	}
 	/**
 	 * Setzt den Namen.
 	 * @param String
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.toUpperCase();
 	}
 	/**
 	 * Liefert den Vorname.
 	 * @return String Vorname
 	 */
 	public String getPrename() {
-		return this.prename;
+		return this.prename.toUpperCase();
 	}
 	/**
 	 * Setzt den Vorname.
 	 * @param String Vorname
 	 */
 	public void setPrename(String prename) {
-		this.prename = prename;
+		this.prename = prename.toUpperCase();
 	}
 	/**
 	 * Liefert den Geburtstag.
