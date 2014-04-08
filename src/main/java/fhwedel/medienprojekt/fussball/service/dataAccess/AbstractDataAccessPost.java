@@ -2,8 +2,14 @@ package fhwedel.medienprojekt.fussball.service.dataAccess;
 
 /** externe Klassen */
 import java.util.ArrayList;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+
+import fhwedel.medienprojekt.fussball.model.pagination.Page;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.Post;
 
@@ -11,7 +17,7 @@ import fhwedel.medienprojekt.fussball.model.post.Post;
  * Abstralte Service Klasse
  * Implementiert gemeinsame Methoden für die erbenden Klassen
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
 public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDataAccess {
@@ -84,5 +90,45 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 		
 		return res;
 	}
+	
+	/**
+	 * Selektiert eine Seitenansicht aus Posts.
+	 * @param db			String		Name der Datenbank
+	 * @param pageNo		int			Nummer der anzuzeigenden Seite
+	 * @param pageSize		int			Anzahl an Elementen pro Seite
+	 * @param rowMapper		RowMapper	Mappt ein Result auf ein Objekt
+	 * @return	page		Page		Seite mit Einträgen
+	 */
+    public Page<E> fetchPage(final String db, final int pageNo, final int pageSize, final ParameterizedRowMapper<E> rowMapper) {
+    	// SQL Anweisungen
+    	final String SQL_COUNT_ROWS = "SELECT count(*) FROM " + db;
+    	final String SQL_FETCH_ROWS = "SELECT * FROM " + db + " LIMIT :start, :end";
+    	Map<String,Object> params = new HashMap<String, Object>();
+    	
+        // Anzahl der Einträge herausfinden
+        final int rowCount = namedParameterJdbcTemplate.queryForInt(SQL_COUNT_ROWS, params);
+
+        // Seitenzahlen berechnen
+        int pageCount = rowCount / pageSize;
+        if (rowCount > pageSize * pageCount) {
+            pageCount++;
+        }
+
+        // Page Object erstellen
+        final Page<E> page = new Page<E>();
+        page.setPageNumber(pageNo);
+        page.setPagesAvailable(pageCount);
+        // Start- und Endreihe berechnen
+        final int startRow = (pageNo - 1) * pageSize;
+        final int endRow = startRow + pageSize;
+        params.put("start", startRow);
+        params.put("end", endRow);
+        
+        // Liste auslesen und setzen
+        List<E> res = namedParameterJdbcTemplate.query(SQL_FETCH_ROWS, params, rowMapper);
+        page.setPageItems(res);
+        
+        return page;
+    }
 	
 }
