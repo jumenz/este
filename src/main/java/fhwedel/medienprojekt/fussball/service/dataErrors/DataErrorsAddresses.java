@@ -98,10 +98,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult			BindingResult
 	 */
 	private void validateMobile(String mobile, BindingResult bindingResult) {
-		if(this.isEmpty(mobile)) {
-			bindingResult.rejectValue("mobile", "error.address.mobile");
-		}
-		if(!this.isPhoneNumber(mobile)) {
+		if(this.isEmpty(mobile) || !this.isPhoneNumber(mobile)) {
 			bindingResult.rejectValue("mobile", "error.address.mobile.invalid");
 		}
 	}
@@ -112,10 +109,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult		BindingResult
 	 */
 	private void validatePhone(String phone, BindingResult bindingResult) {
-		if(this.isEmpty(phone)) {
-			bindingResult.rejectValue("phone", "error.address.phone");
-		}
-		if(!this.isPhoneNumber(phone)) {
+		if(this.isEmpty(phone) || !this.isPhoneNumber(phone)) {
 			bindingResult.rejectValue("phone", "error.address.phone.invalid");
 		}
 	}
@@ -148,10 +142,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult			BindingResult
 	 */
 	private void validateZipcode(String zipcode, BindingResult bindingResult) {
-		if(this.isEmpty(zipcode)) {
-			bindingResult.rejectValue("zipcode", "error.address.zipcode");
-		}
-		if(!this.isNumeric(zipcode)) {
+		if(this.isEmpty(zipcode) || !this.isNumeric(zipcode)) {
 			bindingResult.rejectValue("zipcode", "error.address.zipcode.invalid");
 		}
 	}

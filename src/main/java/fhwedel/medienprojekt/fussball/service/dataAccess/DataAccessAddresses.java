@@ -79,6 +79,7 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	 * 									false: altes Datum wird übernommen
 	 */
 	private void mapParams(Address address, Map<String,Object> params, boolean updateDate) {
+		params.put("id", address.getId());
 		params.put("name", address.getName());
 		params.put("prename", address.getPrename());
 		params.put("birthday", address.getBirthday());
@@ -112,8 +113,8 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	 */
 	public Address getById(int id) {
 		final String SQL_SELECT_BY_ID = 
-				//"SELECT * FROM " + Constants.dbAddresses + " WHERE (" + Constants.dbAddressesId + "=:id)";
-				"SELECT * FROM " + Constants.dbAddresses + " NATURAL JOIN " + Constants.dbUsers + "  WHERE (" + Constants.dbAddressesId + "=:id)";
+				"SELECT * FROM " + Constants.dbAddresses + " NATURAL JOIN " 
+						+ Constants.dbUsers + "  WHERE (" + Constants.dbAddressesId + "=:id)";
 		
 		// Parameter zuweisen
 		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(id));
@@ -128,40 +129,34 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	 * Ändert eine Adresse.
 	 * @param 	address Adresse.
 	 */
-	public void update(int updateId, Address address) {
+	public void update(Address address) {
+//		final String SQL_UPDATE_ADDRESSES = "UPDATE " + Constants.dbAddresses + " SET "
+//				+ "name=:name, prename=:prename, birthday:=birthday, mobile=:mobile, "
+//				+ "phone=:phone, street=:street, nr=:nr, zipcode=:zipcode, city=:city WHERE id=:updateId";
 		final String SQL_UPDATE_ADDRESSES = "UPDATE " + Constants.dbAddresses + " SET "
-				+ "name=:name, prename=:prename, birthday:=birthday, mobile=:mobile, "
-				+ "phone=:phone, street=:street, nr=:nr, zipcode=:zipcode, city=:city WHERE id=:updateId";
-		final String SQL_UPDATE_EMAIL_USERS = "UPDATE " + Constants.dbUsers + " SET email=:email WHERE id=:updateId";
-		final String SQL_UPDATE_EMAIL_PERMISSIONS = "UPDATE " + Constants.dbPermissions + " SET email=:email WHERE id=:updateId";
-		/*final String SQL_UPDATE_ADDRESSES = 
-		"UPDATE " + Constants.dbAddresses + " SET ("
-		+ Constants.dbAddressesId + ", "
-		+ Constants.dbAddressesName + ", "
-		+ Constants.dbAddressesPrename + ", "
-		+ Constants.dbAddressesBirthday + ", "
-		+ Constants.dbAddressesMobile + ", "
-		+ Constants.dbAddressesPhone + ", "
-		+ Constants.dbAddressesStreet + ", "
-		+ Constants.dbAddressesNr + ", "
-		+ Constants.dbAddressesZipcode + ", "
-		+ Constants.dbAddressesCity
-		+ ") VALUES (:id, :name, :prename, :birthday, :mobile, :phone, :street, :nr, :zipcode, :city)";*/
+				+ Constants.dbAddressesName + "=:name, "
+				+ Constants.dbAddressesPrename + "=:prename, "
+				+ Constants.dbAddressesBirthday + ":=birthday, "
+				+ Constants.dbAddressesMobile + "=:mobile, "
+				+ Constants.dbAddressesPhone + "=:phone, "
+				+ Constants.dbAddressesStreet + "=:street, "
+				+ Constants.dbAddressesNr + "=:nr, "
+				+ Constants.dbAddressesZipcode + "=:zipcode, "
+				+ Constants.dbAddressesCity + "=:city WHERE "
+				+ Constants.dbAddressesId + "=:id";
+//		final String SQL_UPDATE_EMAIL_USERS = "UPDATE " + Constants.dbUsers + " SET email=:email WHERE id=:id";
+//		final String SQL_UPDATE_EMAIL_PERMISSIONS = "UPDATE " + Constants.dbPermissions + " SET email=:email WHERE id=:id";
 		
-		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(address);	
-
 		// Adresse setzen
 		Map<String,Object> addressParams = new HashMap<String,Object>();
 		this.mapParams(address, addressParams, false);
-		addressParams.put("updateId", updateId);
 		// E-Mail setzen
-		Map<String,Object> emailParams = new HashMap<String,Object>();
-		emailParams.put("id", updateId);
-		emailParams.put("email", address.getEmail());
+//		Map<String,Object> emailParams = new HashMap<String,Object>();
+//		emailParams.put("email", address.getEmail());
 		/* Datensätze updaten */
 		this.namedParameterJdbcTemplate.update(SQL_UPDATE_ADDRESSES, addressParams);
-		this.namedParameterJdbcTemplate.update(SQL_UPDATE_EMAIL_USERS, emailParams);
-		this.namedParameterJdbcTemplate.update(SQL_UPDATE_EMAIL_PERMISSIONS, emailParams);
+//		this.namedParameterJdbcTemplate.update(SQL_UPDATE_EMAIL_USERS, emailParams);
+//		this.namedParameterJdbcTemplate.update(SQL_UPDATE_EMAIL_PERMISSIONS, emailParams);
 	}
 	
 /* ------------------------- Löschen ------------------------------------- */

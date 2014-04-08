@@ -116,7 +116,7 @@ public class AddressesController {
 			return Constants.viewNameAddressEdit;
 		}
 		// Speichern und Adressbuch laden
-		this.dataAccessAddresses.update(address.getId(), address);
+		this.dataAccessAddresses.update(address);
 		
 		// jsp zum Adressbuch
 		return Constants.redirectAddresses;
