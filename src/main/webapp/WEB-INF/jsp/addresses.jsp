@@ -39,8 +39,8 @@
                 	<li class="one-col">
                         <div class="main-content-box box-borders-top bg clearfix">
                             <h2 class="box-title link" >Alle</h2>
-                            <a class="right box-link"
-                               href="mailto:${userMail}"> <!-- ?bcc=EMAIL,%20EMAIL&amp;subject=Este%2006/70%20-%20Frauen"> -->
+                            <c:set var="emailCount" value="${addressModel.entries.size()}"/>
+                            <a class="right box-link" href="mailto:${userMail}?bcc=<c:forEach var="address" items="${addressModel.entries}" varStatus="status">${address.email},%20</c:forEach>&amp;subject=Este%2006/70%20-%20Frauen">
                             	<span>E-Mail</span>
                             	<span id="submit-all" class="forward-raquo menu-link right"></span>
                             </a>
@@ -62,26 +62,50 @@
 								<h2 class="box-title link toggle" id="full-name-${address.id}" >
 									${address.name}<c:if test="${address.name.compareTo('') != 0 && address.prename.compareTo('') != 0}">,&nbsp;</c:if>${address.prename}
 								</h2>
-								<a class="right box-link" href="mailto:MAIL"><!-- TOD0 MAIL -->
+								<a class="right box-link" href="mailto:${address.email}">
                                     <span>E-Mail</span>
                                     <span id="submit-${status.index}" class="forward-raquo menu-link right"></span>
                                 </a>
 								<div class="box-body toggle-content box-borders-bottom" style="display: none;">
+									<ul class="address-list">
+								        <li class="first two-col">
+								            <fieldset class="first">
+								                <div class="address">
+								                    ${address.prename}&nbsp;${address.name}
+								                </div>
+								                <div class="address">
+								                    ${address.street}&nbsp;<c:if test="${address.nr != 0}">${address.nr}</c:if>
+								                </div>
+								                <div class="address">
+								                    <c:if test="${address.zipcode != 0}">${address.zipcode}&nbsp;</c:if>${address.city}
+								                </div>
+								            </fieldset>
+								        </li>
+								        <li class="last two-col">
+								            <fieldset class="last clearfix">
+								            	<div class="address">
+								                    <a href="mailto:${address.email}">${address.email}</a>
+								                </div>
+								                <div class="address">
+								                    ${address.mobile}
+								                </div>
+								                <div class="address">
+								                     ${address.phone}
+								                </div>
+								                <div class="address">
+								                     ${address.birthday}
+								                </div>
+								            </fieldset>
+								        </li>
+								    </ul>
 									<p>
-									    ${address.prename}&nbsp;${address.name}<br />
-									    ${address.street}&nbsp;<c:if test="${address.nr != 0}">${address.nr}</c:if><br />
-									    <c:if test="${address.zipcode != 0}">${address.zipcode}&nbsp;</c:if>${address.city}<br />
-									    <a href="mailto:${user.email}">${user.email}</a><br />
-									    ${address.mobile}<br />
-									    ${address.phone}<br /><br />
-									    ${address.birthday}
 										<!-- TOD0 if admin or id==id for each address -->
 									    <c:if test="${isAdmin == 1 || address.id == userId}">
 										    <sf:form action="${linkAddressEdit}${address.id}/" method="GET" style="display: inline-block">
 												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Bearbeiten</button>
 											</sf:form>
 											<form action="${linkAddressDelete}${address.id}/" method="GET" style="display: inline-block">
-												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
+												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Account Löschen</button>
 											</form>
 										</c:if>
 								    </p>

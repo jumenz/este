@@ -207,6 +207,29 @@ public class DataAccessPermissions extends AbstractDataAccess {
 			this.namedParameterJdbcTemplate.update(SQL_UPDATE_USER_STATUS, params);
 		}
 	}
+	
+	/**
+	 * Ändert die E-Mail-Adresse eines Users in der Permissiontabelle.
+	 * @param 	id		int		ID des Users, dessen E-Mail-Adresse geändert werden soll.
+	 * @param 	email	String 	neue E-Mail-Adresse.
+	 */
+	public void updateEmail(int id, String email) {
+		final String SQL_UPDATE_USER_EMAIL = 
+				"UPDATE " + Constants.dbPermissions + " SET "
+				+ Constants.dbPermissionsEmail + " = :email WHERE ("
+				+ Constants.dbPermissionsId + " = :id)";
+		
+		Permission res = this.getPermissionById(id);
+		if (res != null) {
+			/* Name-Wert Paare für Abfrage festlegen */
+			Map<String,Object> params = new HashMap<String,Object>();
+			params.put("id", id);
+			params.put("email", email);
+			
+			/* Datensatz updaten  */
+			this.namedParameterJdbcTemplate.update(SQL_UPDATE_USER_EMAIL, params);
+		}
+	}
 
 	/* ----------------- Löschen -------------------------- */
 	/**
