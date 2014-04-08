@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import java.util.ArrayList;
 
+
+import fhwedel.medienprojekt.fussball.model.pagination.Page;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
@@ -56,14 +59,18 @@ public class ForumController {
 		PostView<ForumEntry> view = new PostView<ForumEntry>();
 		
 		// Kommentare laden
-		this.dataAccessComments.getAllComments(list);
+		//this.dataAccessComments.getAllComments(list);
 		
-		for(int i=0; i<list.size(); i++) {
+		//for(int i=0; i<list.size(); i++) {
 			// Einträge hinzufügen
-			view.addEntry(list.get(i));
-		}
+			//view.addEntry(list.get(i));
+		//}
 		// In jsp zugreifbar machen
-		model.addAttribute("forumModel", view);
+		//model.addAttribute("forumModel", view);
+		
+		Page<ForumEntry> page = this.dataAccessForum.getPage(1, 10);
+		//in jsp zugreifbar machen
+		model.addAttribute("pageForumEntry", page);
 		// Neuen Kommentar anfügen, um Speichern zu ermöglichen
 		model.addAttribute("newComment", new Comment());
 		

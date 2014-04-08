@@ -6,16 +6,16 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">
-        	<!-- Sidebar -->
+        	<%-- Sidebar --%>
         	<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 	        	<jsp:include page="./includes/sidebar.jsp">
 					<jsp:param name="sidebarTitle" value="Spielberichte"/>
@@ -42,16 +42,17 @@
 			<div class="inner">				
 			<div class="content-list">
 				<ul>
-					<!-- Spielberichte -->
-					<c:forEach var="entry" items="${reportModel.entries}" varStatus="status">
+					<%-- Spielberichte --%>
+					<%-- <c:forEach var="entry" items="${reportModel.entries}" varStatus="status"> --%>
+					<c:forEach var="entry" items="${reportPage.pageItems}" varStatus="status">
 						<li class="one-col">
-							<!-- einzelner Bericht -->
+							<%-- einzelner Bericht --%>
 							<div  class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle" id="address-name" >${entry.topic}</h2>
 								<div id="submit-${status.index}" class="box-link down-raquo toggle-link right toggle">
 								</div>
 								<div class="toggle-content" style="display: none">
-									<!-- Kurzangeben -->
+									<%-- Kurzangeben --%>
 									<div class="box-info clearfix light-bg">
 										<div class="left half-width">
 											<table class="first">
@@ -89,10 +90,10 @@
 										</div>
 									</div>
 									<div class="box-body">
-										<!-- Text -->
+										<%-- Text --%>
 										<p>${entry.text}</p>
 										
-										<!-- Bearbeiten und löschen, wenn ein Admin angemeldet ist -->
+										<%-- Bearbeiten und löschen, wenn ein Admin angemeldet ist --%>
 										<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 											<sf:form style="display: inline-block" action="${linkReportsEdit}${entry.id}/" method="get">
 												<button class="dark-bg" type="submit"><div class="forward-raquo menu-link right"></div>Bearbeiten</button>
@@ -105,11 +106,11 @@
 									</div>
 								</div>
 							</div>
-							<!-- reports -->
+							<%-- reports --%>
 						</li>
 					</c:forEach>
 				</ul>
-				<!-- end Contentbox One-Col -->
+				<%-- end Contentbox One-Col --%>
 			</div>
 			</div>
 			</div>
@@ -119,9 +120,9 @@
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
-		<!-- javascript, das nach Laden ausgeführt werden soll -->
+		<%-- javascript, das nach Laden ausgeführt werden soll --%>
 		<script type="text/javascript" src="${jsPath}/onLoad.js"></script>
 	</body>
 </html>

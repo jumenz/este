@@ -6,16 +6,16 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">
-        	<!-- sidebar -->
+        	<%-- sidebar --%>
         	<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 				<jsp:include page="./includes/sidebar.jsp">
 					<jsp:param name="sidebarTitle" value="Forum"/>
@@ -43,9 +43,10 @@
 			<div class="inner">				
 			<div class="content-list">
 				<ul>
-					<c:forEach var="entry" items="${forumModel.entries}" varStatus="status">
+					<%-- <c:forEach var="entry" items="${forumModel.entries}" varStatus="status">--%>
+					<c:forEach var="entry" items="${pageForumEntry.pageItems}" varStatus="status">
 						<li class="one-col">
-							<!-- reports -->
+							<%-- reports --%>
 							<div  class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle" id="address-name" ><c:out value="${entry.topic}"></c:out></h2>
 								<div id="submit-${status.index}" class="box-link down-raquo toggle-link right toggle">
@@ -57,7 +58,7 @@
 									<div class="box-body">
 										<p>${entry.text}</p>
 										
-										<!-- Bearbeiten und löschen, wenn ein Admin angemeldet ist -->
+										<%-- Bearbeiten und löschen, wenn ein Admin angemeldet ist --%>
 										<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 											<sf:form style="display: inline-block" action="${linkForumEntryEdit}${entry.id}/" method="get">
 												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Bearbeiten</button>
@@ -67,25 +68,25 @@
 											</sf:form>
 										</security:authorize>
 									</div>
-									<!-- Contentbox Comments -->
+									<%-- Contentbox Comments --%>
 									<div>
-										<!-- Kommentare für den Foreneintrag laden -->
+										<%-- Kommentare für den Foreneintrag laden --%>
 										<security:authentication property="principal.username" var="author" scope="request"/>
 										<c:set var="comments" value="${entry.comments}"/>
 										<div  class="comment-content-box box-borders-top bg clearfix further-toggle-item">
-											<!-- Liste auslesen -->
+											<%-- Liste auslesen --%>
 											<h2 class="box-title link further-toggle" id="address-name" >Kommentare: ${fn:length(comments)}</h2>
 											<div class="box-link down-raquo toggle-link further-toggle right"></div>
 											<div class="further-toggle-content" style="display: none">
 												<div class="box-body box-borders-bottom">
 													<div class="comments">
-														<!-- bisherige Kommentare zum Foreneintrag -->
+														<%-- bisherige Kommentare zum Foreneintrag --%>
 														<c:forEach var="comment" items="${comments}" varStatus="status">
 															<div class="comment">
 																<p class="comment-name">${comment.author}</p>
 																<p class="comment-content">${comment.text}</p>
 																
-																<!-- Bei eigenen Kommentaren löschen Button anzeigen -->
+																<%-- Bei eigenen Kommentaren löschen Button anzeigen --%>
 																<c:if test="${author == comment.author}">
 																	<form method="get" action="${linkForumDeleteComment}${comment.id}/">
 																		<button class="button-delete"></button>
@@ -93,22 +94,22 @@
 																</c:if>
 															</div>
 														</c:forEach>
-														<!-- Formular für neuen Kommentar -->
+														<%-- Formular für neuen Kommentar --%>
 														<div class="comment">
 															<p class="comment-name">Neuen Kommentar verfassen</p>
 															<p class="comment-content">
 																<c:set var="newComment" value="${newComment}"/>
 																<sf:form action="./neuer-kommentar/${entry.id}/${author}/" method="POST" modelAttribute="newComment">
-																	<!-- Neuer Kommentar -->
+																	<%-- Neuer Kommentar --%>
 																	<sf:textarea 	path="text"
 																					id="text"
 																					rows="3"
 																					cols="80"
 																					placeholder="..."
 																	/><br>
-																	<!-- Fehlermeldung für den neuen Kommentar -->
+																	<%-- Fehlermeldung für den neuen Kommentar --%>
 																	<sf:errors path="text" cssClass="error"/><br>
-																	<!-- Buttons -->
+																	<%-- Buttons --%>
 																	<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Speichern</button>
 																	<button name="commit" type="reset" class="dark-bg"><div class="forward-raquo menu-link right"></div>Abbrechen</button>
 																</sf:form>
@@ -119,10 +120,10 @@
 											</div>
 										</div>
 									</div>
-									<!-- end Comment Box -->
+									<%-- end Comment Box --%>
 								</div>
 							</div>
-							<!-- reports -->
+							<%-- Foreneinträge --%>
 						</li>
 						
 						</c:forEach>
@@ -137,10 +138,10 @@
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
 		
-		<!-- javascript, das nach Laden ausgeführt werden soll -->
+		<%-- javascript, das nach Laden ausgeführt werden soll --%>
 		<script type="text/javascript" src="${jsPath}/onLoad.js"></script>
 	</body>
 </html>

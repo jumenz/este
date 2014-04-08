@@ -20,6 +20,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 
 
+
+import fhwedel.medienprojekt.fussball.model.pagination.Page;
 import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
@@ -165,6 +167,16 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 					this.forumEntryMapper
 				);
 		return list;
+	}
+	
+	/**
+	 * Liefert die Seitenansicht von Foreneinträgen.
+	 * @param 	currPage	int		anzuzeigende Seite
+	 * @param 	pageSize	int		Anzahl der Einträge pro Seite		
+	 * @return	Page<ForumEntry>	Seite mit Einträgen
+	 */
+	public Page<ForumEntry> getPage(int currPage, int pageSize) {
+		return this.fetchPage(Constants.dbForum, currPage, pageSize, this.forumEntryMapper);
 	}
 	
 	/**

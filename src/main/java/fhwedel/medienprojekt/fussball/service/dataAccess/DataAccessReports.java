@@ -17,6 +17,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 
 
+
+import fhwedel.medienprojekt.fussball.model.pagination.Page;
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
@@ -158,7 +160,7 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	
 	/* ----------------------- Auslesen --------------------------------- */
 	/**
-	 * Liefert einen ForenEintrag ausgehend von seiner id.
+	 * Liefert einen Spielbericht ausgehend von seiner id.
 	 * @param  id	id des gesuchten Eintrags
 	 * @return ForumEntry
 	 */
@@ -191,6 +193,16 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 				SQL_SELECT_ALL_REPORTS,
 				this.reportRowMapper
 			);
+	}
+	
+	/**
+	 * Liefert die Seitenansicht der Spielberichte.
+	 * @param 	currPage	int		anzuzeigende Seite
+	 * @param 	pageSize	int		Anzahl der Einträge pro Seite		
+	 * @return	Page<Report>	Seite mit Einträgen
+	 */
+	public Page<Report> getPage(int currPage, int pageSize) {
+		return this.fetchPage(Constants.dbReports, currPage, pageSize, this.reportRowMapper);
 	}
 	
 }

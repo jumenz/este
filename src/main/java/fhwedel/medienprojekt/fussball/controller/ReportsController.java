@@ -2,6 +2,7 @@ package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
 import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+import fhwedel.medienprojekt.fussball.model.pagination.Page;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
@@ -45,14 +48,15 @@ public class ReportsController {
 		PostView<Report> view = new PostView<Report>();
 		
 		// Einträge aus der Datenbank auslesen
-		ArrayList<Report> list = this.dataAccess.getAll();
+		/* ArrayList<Report> list = this.dataAccess.getAll();
 		for(int i=0; i<list.size(); i++) {
 			view.addEntry(list.get(i));
-		}
+		} */
+		Page<Report> page = this.dataAccess.getPage(1, 4);
 		
 		// In jsp zugreifbar machen
-		model.addAttribute("reportModel", view);
-		
+		//model.addAttribute("reportModel", view);
+		model.addAttribute("reportPage", page);
 		return Constants.viewNameReports;
 	}
 	
