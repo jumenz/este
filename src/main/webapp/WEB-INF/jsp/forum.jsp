@@ -43,8 +43,7 @@
 			<div class="inner">				
 			<div class="content-list">
 				<ul>
-					<%-- <c:forEach var="entry" items="${forumModel.entries}" varStatus="status">--%>
-					<c:forEach var="entry" items="${pageForumEntry.pageItems}" varStatus="status">
+					<c:forEach var="entry" items="${forumEntryPage.pageItems}" varStatus="status">
 						<li class="one-col">
 							<%-- reports --%>
 							<div  class="main-content-box box-borders-top bg clearfix toggle-item">
@@ -127,8 +126,9 @@
 						</li>
 						
 						</c:forEach>
-						
 					</ul>
+					<%-- Seitenanzeige --%>
+					<div>Seite <c:out value="${forumEntryPage.pageNumber}"></c:out> von <c:out value="${forumEntryPage.pagesAvailable}"></c:out></div>
 			</div>
 			</div>
 			</div>

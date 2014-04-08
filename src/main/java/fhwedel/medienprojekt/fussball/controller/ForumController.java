@@ -70,7 +70,7 @@ public class ForumController {
 		
 		Page<ForumEntry> page = this.dataAccessForum.getPage(1, 10);
 		//in jsp zugreifbar machen
-		model.addAttribute("pageForumEntry", page);
+		model.addAttribute("forumEntryPage", page);
 		// Neuen Kommentar anfügen, um Speichern zu ermöglichen
 		model.addAttribute("newComment", new Comment());
 		

@@ -111,6 +111,9 @@
 					</c:forEach>
 				</ul>
 				<%-- end Contentbox One-Col --%>
+			
+				<%-- Seitenanzeige --%>
+				<div>Seite <c:out value="${reportPage.pageNumber}"></c:out> von <c:out value="${reportPage.pagesAvailable}"></c:out></div>
 			</div>
 			</div>
 			</div>
