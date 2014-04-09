@@ -19,8 +19,8 @@
         	<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 				<jsp:include page="./includes/sidebar.jsp">
 					<jsp:param name="sidebarTitle" value="Forum"/>
-					<jsp:param name="abc" value="include"/>
 					<jsp:param name="search" value="include" />
+					<jsp:param name="searchLink" value="${linkForumSearch}"/>
 					<jsp:param name="nav" value="Startseite"/>
 					<jsp:param name="ref" value="${linkWelcome}"/>
 					<jsp:param name="nav" value="Eintrag verfassen"/>
@@ -32,7 +32,6 @@
 				<jsp:param name="sidebarTitle" value="Forum"/>
 				<jsp:param name="nav" value="Startseite"/>
 				<jsp:param name="ref" value="${linkWelcome}"/>
-				<jsp:param name="abc" value="include"/>
 				<jsp:param name="search" value="include" />
 			</jsp:include>
 			</security:authorize>

@@ -19,8 +19,8 @@
         	<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 	        	<jsp:include page="./includes/sidebar.jsp">
 					<jsp:param name="sidebarTitle" value="Spielberichte"/>
-					<jsp:param name="abc" value="include" />
 					<jsp:param name="search" value="include" />
+					<jsp:param name="searchLink" value="${linkReportsSearch}"/>
 					<jsp:param name="nav" value="Startseite"/>
 					<jsp:param name="ref" value="${linkWelcome}"/>
 					<jsp:param name="nav" value="Bericht verfassen"/>
@@ -30,7 +30,6 @@
 			<security:authorize access="hasRole('USER_GROUP_NO_ADMIN') or not isAuthenticated()">
 	        	<jsp:include page="./includes/sidebar.jsp">
 					<jsp:param name="sidebarTitle" value="Spielberichte"/>
-					<jsp:param name="abc" value="include" />
 					<jsp:param name="search" value="include" />
 					<jsp:param name="nav" value="Startseite"/>
 					<jsp:param name="ref" value="${linkWelcome}"/>

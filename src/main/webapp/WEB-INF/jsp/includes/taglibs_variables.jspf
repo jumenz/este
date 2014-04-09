@@ -32,8 +32,8 @@
 <c:set var="linkHome" value="${requestContextPath}/home/"></c:set>
 <%-- Spielberichte --%>
 <c:set var="linkReports" value="${requestContextPath}/berichte/"></c:set>
-<c:set var="linkReportsNext" value="${requestContextPath}/berichte/weitere/"></c:set>
-<c:set var="linkReportsPrev" value="${requestContextPath}/berichte/vorherige/"></c:set>
+<c:set var="linkReportsSearch" value="${requestContextPath}/berichte/suche"></c:set>
+<c:set var="linkReportsPage" value="${requestContextPath}/berichte/seite-{page}/"></c:set>
 <c:set var="linkReportsNew" value="${requestContextPath}/berichte/verfassen/"></c:set>
 <c:set var="linkReportsDelete" value="${requestContextPath}/berichte/loeschen/"></c:set>
 <c:set var="linkReportsEdit" value="${requestContextPath}/berichte/bearbeiten/"></c:set>
@@ -55,8 +55,8 @@
 <c:set var="linkGaleryRessources" value="${requestContextPath}/resources/data/galery/"></c:set>
 <%-- Forum --%>
 <c:set var="linkForum" value="${requestContextPath}/forum/"></c:set>
-<c:set var="linkForumNext" value="${requestContextPath}/forum/weiteres/"></c:set>
-<c:set var="linkForumPrev" value="${requestContextPath}/forum/vorheriges/"></c:set>
+<c:set var="linkForumSearch" value="${requestContextPath}/forum/suche"></c:set>
+<c:set var="linkForumPage" value="${requestContextPath}/forum/seite-{page}/"></c:set>
 <c:set var="linkForumNewEntry" value="${requestContextPath}/forum/neuer-eintrag/"></c:set>
 <c:set var="linkForumEntryEdit" value="${requestContextPath}/forum/bearbeiten/"></c:set>
 <c:set var="linkForumEntryDelete" value="${requestContextPath}/forum/loeschen/"></c:set>

@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+
 
 
 import fhwedel.medienprojekt.fussball.model.pagination.Page;
@@ -46,6 +48,9 @@ public class ForumController {
 	@Autowired
 	private DataErrorsComments dataErrorsComments;
 	
+	/** Anzahl der Einträge pro Seite */
+	final int forumEntriesPerPage = 10;
+	
 	/* ------------------ Methoden --------------------------- */
 	/* ------------------ Anzeige ---------------------------- */
 	/**
@@ -55,20 +60,7 @@ public class ForumController {
 	 * @param 	list	ArrayList<ForumEntry>	Liste mit Foreneinträgen
 	 * @param	model	Model
 	 */
-	public String prepareForumView(ArrayList<ForumEntry> list, Model model) {
-		PostView<ForumEntry> view = new PostView<ForumEntry>();
-		
-		// Kommentare laden
-		//this.dataAccessComments.getAllComments(list);
-		
-		//for(int i=0; i<list.size(); i++) {
-			// Einträge hinzufügen
-			//view.addEntry(list.get(i));
-		//}
-		// In jsp zugreifbar machen
-		//model.addAttribute("forumModel", view);
-		
-		Page<ForumEntry> page = this.dataAccessForum.getPage(1, 10);
+	public String prepareForumView(Page<ForumEntry> page, Model model) {
 		//in jsp zugreifbar machen
 		model.addAttribute("forumEntryPage", page);
 		// Neuen Kommentar anfügen, um Speichern zu ermöglichen
@@ -84,19 +76,10 @@ public class ForumController {
 	 */
 	@RequestMapping(value=Constants.linkForum, method=RequestMethod.GET)
 	public String displayForum(Model model) {
+		// Erste Seite laden
+		Page<ForumEntry> page = this.dataAccessForum.getPage(1, this.forumEntriesPerPage);
 		// Foreneinträge und Kommentare laden
-		return this.prepareForumView(this.dataAccessForum.getAll(), model);
-	}
-	
-	/**
-	 * Liefert Foreneinträge, die mit bestimmtem String beginnen.
-	 * @param	sub		String		gesuchter Anfangsstring
-	 * @param	model	Model
-	 */
-	@RequestMapping(value=Constants.linkForumStartingWith, method=RequestMethod.GET)
-	public String getForumEntriesStartingWith(@PathVariable String sub, Model model) {
-		// Einträge aus der Datenbank auslesen, die mit Substring beginnen
-		return this.prepareForumView(this.dataAccessForum.getAllStartingWith(sub), model);
+		return this.prepareForumView(page, model);
 	}
 	
 	/**
@@ -106,7 +89,12 @@ public class ForumController {
 	 */
 	@RequestMapping(value=Constants.linkForumContaining, method=RequestMethod.GET)
 	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
-		return this.prepareForumView(this.dataAccessForum.getAllIncluding(sub), model);
+		// TODO anders
+		Page<ForumEntry> page = new Page<ForumEntry>();
+		page.setPageItems(this.dataAccessForum.getAllIncluding(sub));
+		page.setPageNumber(1);
+		page.setPagesAvailable(1);
+		return this.prepareForumView(page, model);
 	}
 	
 	/**
@@ -115,11 +103,10 @@ public class ForumController {
 	 * @param 	src		String nach dem gesucht wird
 	 * @return	String	url auf die Redirect ausgeführt wird
 	 */
-	@RequestMapping(value=Constants.linkForum + "?search={src}", method=RequestMethod.GET)
-	public String searchEntries(@PathVariable String src) {
+	@RequestMapping(value=Constants.linkForumSearch, method=RequestMethod.GET)
+	public String searchEntries(@RequestParam(value="search") String sub) {
 		// Auf entsprechenden Pfad weiterleiten
-		return Constants.redirectForum +"~" + src;
-		// TODO geht noch nicht
+		return Constants.redirectForum +"~" + sub;
 	}
 	
 	/* ------------------ Neue Einträge -------------------------------- */
@@ -197,7 +184,6 @@ public class ForumController {
 	 */
 	@RequestMapping(value=Constants.linkForumEntryDelete, method=RequestMethod.POST) 
 	public String delete(@PathVariable int id) {
-		// TODO nicht über PathVariable
 		this.dataAccessForum.deleteById(id);
 		return Constants.redirectForum;
 	}

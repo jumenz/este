@@ -17,10 +17,10 @@ public class Constants {
 	static final String linkAboutUs = "/ueber-uns/";
 	static final String linkAboutUsEdit = "/ueber-uns/bearbeiten/";
 	static final String linkReports = "/berichte/";
+	static final String linkReportsSearch ="/berichte/suche";
 	static final String linkReportsStartingWith ="/berichte/#{sub}";
 	static final String linkReportsContaining ="/berichte/~{sub}";
-	static final String linkReportsNext = "/berichte/weitere/";
-	static final String linkReportsPrev = "/berichte/vorherige/";
+	static final String linkReportsPage = "/berichte/seite-{page}/";
 	static final String linkReportsNew = "/berichte/verfassen/";
 	static final String linkReportsEdit = "/berichte/bearbeiten/{id}/";
 	static final String linkReportsDelete = "/berichte/loeschen/{id}/";
@@ -38,8 +38,8 @@ public class Constants {
 	static final String linkGaleryUploadForm = "/galerie/upload/";
 	static final String linkGaleryUpload = "/galerie/load/";
 	static final String linkForum = "/forum/";
-	static final String linkForumNext = "/forum/weiteres/";
-	static final String linkForumPrev = "/forum/vorheriges/";
+	static final String linkForumSearch = "/forum/suche";
+	static final String linkForumPage = "/forum/seite-{page}/";
 	static final String linkForumNewEntry = "/forum/neuer-eintrag/";
 	static final String linkForumEntryEdit = "/forum/bearbeiten/{id}/";
 	static final String linkForumEntryDelete = "/forum/loeschen/{id}/";

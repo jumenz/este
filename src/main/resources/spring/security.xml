@@ -49,6 +49,9 @@
 		<intercept-url pattern="/forum/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/berichte/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		<intercept-url pattern="/berichte/loeschen/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
+		<intercept-url pattern="/registrieren/email-zulassen/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
+		<intercept-url pattern="/registrieren/loeschen**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
+		<intercept-url pattern="/registrieren/status**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		
 		<!-- Erst wenn Seite online -->
 		<!-- http 

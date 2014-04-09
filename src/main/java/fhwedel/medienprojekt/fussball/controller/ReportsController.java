@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 import fhwedel.medienprojekt.fussball.model.pagination.Page;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.PostView;
+import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessReports;
 import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsReports;
@@ -37,6 +41,9 @@ public class ReportsController {
 	@Autowired
 	private DataErrorsReports dataErrorsReports;
 	
+	/** Anzahl der Spielberichte pro Seite */
+	final int reportsPerPage = 10;
+	
 	/* --------------------- Anzeige -------------------------------- */
 	/**
 	 * Lädt die Spielberichte Seite
@@ -45,39 +52,10 @@ public class ReportsController {
 	 */
 	@RequestMapping(value=Constants.linkReports, method=RequestMethod.GET)
 	public String displayReports(Model model) {
-		PostView<Report> view = new PostView<Report>();
-		
-		// Einträge aus der Datenbank auslesen
-		/* ArrayList<Report> list = this.dataAccess.getAll();
-		for(int i=0; i<list.size(); i++) {
-			view.addEntry(list.get(i));
-		} */
-		Page<Report> page = this.dataAccess.getPage(1, 4);
+		Page<Report> page = this.dataAccess.getPage(1, this.reportsPerPage);
 		
 		// In jsp zugreifbar machen
-		//model.addAttribute("reportModel", view);
 		model.addAttribute("reportPage", page);
-		return Constants.viewNameReports;
-	}
-	
-	/**
-	 * Liefert Spielberichte, die mit bestimmtem String beginnen.
-	 * @param	sub		String	String, der am Anfang stehen soll
-	 * @param	model	Model
-	 */
-	@RequestMapping(value=Constants.linkReportsStartingWith, method=RequestMethod.GET)
-	public String getForumEntriesStartingWith(@PathVariable String sub, Model model) {
-		PostView<Report> view = new PostView<Report>();
-		
-		// Einträge aus der Datenbank auslesen, die mit Substring beginnen
-		ArrayList<Report> list = this.dataAccess.getAllStartingWith(sub);
-		for(int i=0; i<list.size(); i++) {
-			view.addEntry(list.get(i));
-		}
-		
-		// In jsp zugreifbar machen
-		model.addAttribute("reportModel", view);
-		
 		return Constants.viewNameReports;
 	}
 	
@@ -87,19 +65,28 @@ public class ReportsController {
 	 * @param	model	Model
 	 */
 	@RequestMapping(value=Constants.linkReportsContaining, method=RequestMethod.GET)
-	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
-		PostView<Report> view = new PostView<Report>();
-		
-		// Einträge aus der Datenbank auslesen, die den Substring enthalten
-		ArrayList<Report> list = this.dataAccess.getAllIncluding(sub);
-		for(int i=0; i<list.size(); i++) {
-			view.addEntry(list.get(i));
-		}
+	public String getReportsIncluding(@PathVariable String sub, Model model) {
+		Page<Report> page = new Page<Report>();
+		page.setPageItems(this.dataAccess.getAllIncluding(sub));
+		page.setPageNumber(1);
+		page.setPagesAvailable(1);
 		
 		// In jsp zugreifbar machen
-		model.addAttribute("reportModel", view);
+		model.addAttribute("reportPage", page);
 		
 		return Constants.viewNameReports;
+	}
+	
+	/**
+	 * Ermöglicht die Suche über das Suchfeld der Sidebar und leitet auf die 
+	 * URL der Form "/reports/~<Sucheingabe>" weiter
+	 * @param 	src		String nach dem gesucht wird
+	 * @return	String	url auf die Redirect ausgeführt wird
+	 */
+	@RequestMapping(value=Constants.linkReportsSearch, method=RequestMethod.GET)
+	public String searchEntries(@RequestParam(value="search") String sub) {
+		// Auf entsprechenden Pfad weiterleiten
+		return Constants.redirectReports +"~" + sub;
 	}
 	
 	/* ----------------------- Berichte verfassen ------------------------ */

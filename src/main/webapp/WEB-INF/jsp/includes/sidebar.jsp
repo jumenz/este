@@ -115,9 +115,10 @@
 				
 				<c:set var="searchSetting" scope="request" value="${param.search}"/>
 				<c:if test="${searchSetting == 'include'}">
+				<c:set var="searchLink" scope="request" value="${param.searchLink}"/>
 				<%--  Search Field  --%>
 				<div class="menublock-sidebar">
-					<form method="GET">
+					<form method="GET" action="${searchLink}">
 						<input size="25" name="search" placeholder="Suchen ..."/>
 						<button type="submit" style="display: none"></button>
 					</form>
