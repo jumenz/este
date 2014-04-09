@@ -6,16 +6,16 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">
-        	<!-- sidebar -->
+        	<%-- sidebar --%>
 			<jsp:include page="./includes/sidebar.jsp">
 				<jsp:param name="sidebarTitle" value="Über uns"/>
 				<jsp:param name="timer" value="false"/>
@@ -39,7 +39,7 @@
 			<div class="inner">				
 			<div class="content-list">
 				<ul>	
-					<!-- Der Verein -->
+					<%-- Der Verein --%>
 					<li class="one-col">
 						<div id="verein" class="main-content-box box-borders-top bg clearfix toggle-item">
 							<h2 class="box-title link toggle">Der Verein</h2>
@@ -55,7 +55,7 @@
 							</div>
 						</div>
 					</li>
-					<!-- Die Mannschaft -->
+					<%-- Die Mannschaft --%>
 					<li class="one-col">
 						<div id="mannschaft" class="main-content-box box-borders-top bg clearfix toggle-item">
 							<h2 class="box-title link toggle">Die Mannschaft</h2>
@@ -69,7 +69,7 @@
 							</div>
 						</div>
 					</li>
-					<!-- Trainer -->
+					<%-- Trainer --%>
 					<li class="one-col">
 						<div id="trainer" class="main-content-box box-borders-top bg clearfix toggle-item">
 							<h2 class="box-title link toggle">Die Trainer</h2>
@@ -95,7 +95,7 @@
 							</div>
 						</div>
 						</li>
-						<!-- Training -->
+						<%-- Training --%>
 						<li class="one-col">
 							<div id="training" class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle">Das Training</h2>
@@ -108,7 +108,7 @@
 								</div>
 							</div>
 						</li>
-						<!--  -->
+						<%--  --%>
 						<li class="one-col">							
 							<div id="anfahrt" class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle">Anfahrt</h2>
@@ -148,7 +148,7 @@
 						</li>
 				</ul>				
 				
-				<!-- Panel zum Bearbeiten der Seite, wenn Admin -->
+				<%-- Panel zum Bearbeiten der Seite, wenn Admin --%>
 				<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 					<form action="${linkAboutUsEdit}" method="get">
 						<button class="dark-bg" type="submit"><div class="forward-raquo menu-link right"></div>Bearbeiten</button>
@@ -164,9 +164,9 @@
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
-		<!-- javascript, das nach Laden ausgeführt werden soll -->
+		<%-- javascript, das nach Laden ausgeführt werden soll --%>
 		<script type="text/javascript" src="${jsPath}/onLoad.js"></script>
 	</body>
 </html>

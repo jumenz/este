@@ -6,19 +6,19 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">     
 			<div id="..." class="content-list">
 				<ul>
-					<!--Contentbox One-Col -->
-					<!-- Formular zum Registrieren -->	
+					<%--Contentbox One-Col --%>
+					<%-- Formular zum Registrieren --%>	
                      <security:authorize access="not isAuthenticated()">
 	                     <li class="one-col">
 	                         <div class="main-content-box box-borders bg clearfix">
@@ -26,23 +26,23 @@
 	                             <div class="box-body">
 									<sf:form action="${linkRegisterUser}" method="POST" modelAttribute="newUser">
 										<fieldset>
-											<!-- Username -->
+											<%-- Username --%>
 											<sf:input 	path="username"
 														value="${newUser.username}"
 														placeholder="Username"
 														class="full-width"
 											/><br>
-											<!-- Fehlermeldung für den Username -->
+											<%-- Fehlermeldung für den Username --%>
 											<sf:errors path="username" cssClass="error"/><br>
-											<!-- E-Mail Adresse -->
+											<%-- E-Mail Adresse --%>
 											<sf:input 	path="email"
 														value="${newUser.email}"
 														placeholder="E-Mail Adresse"
 														class="full-width"
 											/><br>
-											<!-- Fehlermeldung für die E-Mail Adresse -->
+											<%-- Fehlermeldung für die E-Mail Adresse --%>
 											<sf:errors path="email" cssClass="error"/><br>
-											<!-- Passwort -->
+											<%-- Passwort --%>
 											<sf:input	path="password" 
 														type="password"
 														value="${newUser.password}"
@@ -55,9 +55,9 @@
 														placeholder="Passwort"
 														class="full-width"
 											/><br>
-											<!-- Fehlermeldung für das Passwort -->
+											<%-- Fehlermeldung für das Passwort --%>
 											<sf:errors path="password" cssClass="error"/><br>
-											<!-- Buttons -->
+											<%-- Buttons --%>
 											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Registrieren</button>
 											<button name="reset" type="reset" class="dark-bg"><div class="forward-raquo menu-link right"></div>Abbrechen</button>
 										</fieldset>
@@ -74,24 +74,24 @@
                      </security:authorize>
                      
                      <security:authorize access="hasRole('USER_GROUP_ADMIN')">
-	                     <!-- Forumular zum hinzufügen von zugelassenen EMail Adressen -->
+	                     <%-- Forumular zum hinzufügen von zugelassenen EMail Adressen --%>
 	                     <li class="one-col">
 	                         <div class="main-content-box box-borders bg clearfix">
 	                             <h2 class="box-title">Neue Email zulassen</h2>
 	                             <div class="box-body">
 									<sf:form action="${linkRegisterNewPermission}" method="POST" modelAttribute="newPermission">
 										<fieldset>
-											<!-- E-Mail Adresse -->
+											<%-- E-Mail Adresse --%>
 											<sf:input 	path="email"
 														placeholder="E-Mail Adresse"
 														value="E-Mail Adresse"
 														class="full-width"
 											/><br>
-											<!-- Admin Status -->
+											<%-- Admin Status --%>
 											<sf:checkbox path="adminStatus"/>User soll Admin Status erhalten<br>
-											<!-- Fehlermeldung für die E-Mail Adresse -->
+											<%-- Fehlermeldung für die E-Mail Adresse --%>
 											<sf:errors path="email" cssClass="error"/><br>
-											<!-- Buttons -->
+											<%-- Buttons --%>
 											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Zulassen</button>
 											<button name="reset" type="reset" class="dark-bg"><div class="forward-raquo menu-link right"></div>Abbrechen</button>
 										</fieldset>
@@ -101,7 +101,7 @@
 	                     </li>
 	                 
                      
-	                     <!-- Forumular zum Bearbeiten bestehender Zulassungen -->
+	                     <%-- Forumular zum Bearbeiten bestehender Zulassungen --%>
 	                     <li class="one-col">
 	                         <div class="main-content-box box-borders bg clearfix">
 	                             <h2 class="box-title">Bisher zugelassene EMails</h2>
@@ -123,7 +123,7 @@
 	                         </div>
 	                     </li>
 	                 </security:authorize>
-                 	<!-- end Contentbox One-Col -->
+                 	<%-- end Contentbox One-Col --%>
 				</ul>
 			</div>
 		</div>
@@ -131,7 +131,7 @@
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
 	</body>
 </html>

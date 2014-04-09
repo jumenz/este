@@ -6,46 +6,46 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 		
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">     
 			<div id="..." class="content-list">
 				<ul>
 				
-					<!-- Loginformular wird nur angezeigt, wenn der User nicht angemeldet ist -->
+					<%-- Loginformular wird nur angezeigt, wenn der User nicht angemeldet ist --%>
 					<security:authorize access="not isAuthenticated()">
-						<!--Contentbox One-Col -->
-						<!-- Formular zum Registrieren -->	
+						<%--Contentbox One-Col --%>
+						<%-- Formular zum Registrieren --%>	
 	                     <li class="one-col">
 	                         <div class="main-content-box box-borders bg clearfix">
 	                             <h2 class="box-title">Login</h2>
 	                             <div class="box-body">
 									<sf:form action="${linkLogin}" method="POST" modelAttribute="loginUser">
 										<fieldset>
-											<!-- Username -->
+											<%-- Username --%>
 											<sf:input 	path="username"
 														placeholder="Username"
 														value="${loginUser.username}"
 														class="full-width"
 											/><br>
 											<sf:errors path="username" cssClass="error"/><br>
-											<!-- Passwort -->
+											<%-- Passwort --%>
 											<sf:input	path="password" 
 														type="password"
 														placeholder="Passwort"
 														value="${loginUser.password}"
 														class="full-width"
 											/><br>
-											<!-- Fehlermeldung für den Login -->
+											<%-- Fehlermeldung für den Login --%>
 											<sf:errors path="password" cssClass="error"/><br>
-											<!-- Buttons -->
-											<!-- <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/> Eingeloggt bleiben<br> -->
+											<%-- Buttons --%>
+											<%-- <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/> Eingeloggt bleiben<br> --%>
 											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Anmelden</button>
 											<button name="reset" type="reset" class="dark-bg"><div class="forward-raquo menu-link right"></div>Abbrechen</button>
 										</fieldset>
@@ -56,7 +56,7 @@
 				</security:authorize>
 				</ul>
 							
-				<!-- Sollte User eingeloggt sein, folgende Meldung anzeigen -->
+				<%-- Sollte User eingeloggt sein, folgende Meldung anzeigen --%>
 				<security:authorize access="isAuthenticated()">
 					<p>Du bist bereits angemeldet.</p>
 				</security:authorize>
@@ -66,7 +66,7 @@
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
 	</body>
 </html>

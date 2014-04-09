@@ -1,18 +1,18 @@
 <%@include file="./taglibs_variables.jspf" %>
-<!-- footer -->
+<%-- footer --%>
 	<ul class="footer">
 	
-	<!-- Nur für ausgeloggte User -->
+	<%-- Nur für ausgeloggte User --%>
 	<security:authorize access="not isAuthenticated()">
-		<!-- Login, bzw. Registrierung -->
+		<%-- Login, bzw. Registrierung --%>
 		<li> 
 			<form method="get" name="footer-login-register-form" action="${linkLogin}">
 				<input class="buttom-invisible footer-space-bottom" type="submit" value="Login"><br>
-				<!--  <span class="footer-info">
+				<%--  <span class="footer-info">
 					<input type="text" name="login-name" placeholder="Username">
 				</span><br>
 				<span class="footer-info footer-space-bottom">
-				<input type="password" name="login-name" placeholder="Passwort"></span><br>-->
+				<input type="password" name="login-name" placeholder="Passwort"></span><br>--%>
 			</form>
 			<form method="get" action="${linkRegister}">
 				<input class="buttom-invisible" type="submit" value="Registrieren"/>
@@ -20,17 +20,17 @@
 		</li>
 	</security:authorize>
 	
-	<!-- Nur für eingeloggte User -->
+	<%-- Nur für eingeloggte User --%>
 	<security:authorize access="isAuthenticated()">
 		<li>
-			<!--  <form method="get" action="${linkLogout}">
+			<%--  <form method="get" action="${linkLogout}">
 				<input class="buttom-invisible" type="submit" value="Logout"/>
-			</form>  -->
+			</form>  --%>
  			<img class="footer-logo" src="${dataPath}/images/logo-este.png">
 		</li>
 	</security:authorize>
 	
-	<!-- Addresse -->
+	<%-- Addresse --%>
 	<li> 
 		<span class="footer-heading footer-space-bottom">Kontakt</span>
 		<span class="footer-info">SV Este 06/70 e.V.</span>
@@ -39,7 +39,7 @@
 		<span class="footer-info footer-space-bottom">21129 Hamburg</span>
 		<span class="footer-info"><a href="mailto:damen-este0670@web.de">damen-este0670@web.de</a></span>
 	</li>
-	<!-- Shortlinks -->	
+	<%-- Shortlinks --%>	
 	<li> 
 		<span class="footer-heading footer-space-bottom">Nützliches</span>
 		<span class="footer-info"><a href="${linkAboutUs}">Über uns</a></span>

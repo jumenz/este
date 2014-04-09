@@ -1,8 +1,8 @@
 <%@include file="../includes/taglibs_variables.jspf" %>
 <div class="header">
-	<!-------------- banner -------------->
+	<%-------------- banner --------------%>
 	<img class="banner" src="${dataPath}/images/img-header.jpg"/>
-	<!-------------- main navigation ------->
+	<%-------------- main navigation -------%>
 	<ul class="nav">
 		<li class="nav-wide">
 			<a href="${linkAboutUs}">
@@ -42,7 +42,7 @@
 					Home
 				</a>
 	            <ul class="submenue">
-	                <!--<li><form name="add_list" action="../Controller/AddressesController.php" method="get" ><button class="submenu-link" type="submit" name="action" value="list">Adressbuch</button></form></li>-->
+	                <%--<li><form name="add_list" action="../Controller/AddressesController.php" method="get" ><button class="submenu-link" type="submit" name="action" value="list">Adressbuch</button></form></li>--%>
 	                <li><a href="${linkAddresses}">Adressbuch</a></li>
 	                <li><a href="#">Termine</a></li>
 	                <li><a href="${linkForum}">Forum</a></li>
@@ -50,7 +50,7 @@
 	            </ul>
 			</li>
 		</security:authorize>
-		<!-- for smaller displays -->
+		<%-- for smaller displays --%>
 		<li class="nav-reduced">
 			<img src="${dataPath}/icons/icon-menue.png"/>
 			<ul class="submenue">
@@ -69,12 +69,12 @@
 		</li>
 	</ul>
 	
-	<!----------- Breadcrub ----------------->
+	<%----------- Breadcrub -----------------%>
 	<div class="breadcrumb">
-		<!-- <span class="breadcrumb--step"><a>Pfad1</a> - </span>
+		<%-- <span class="breadcrumb--step"><a>Pfad1</a> - </span>
 		<span class="breadcrumb--step"><a>Pfad2</a> - </span>
-		<span class="breadcrumb--current">Hier</span>  -->
-		<!-- Begrüßung für eingeloggte User -->
+		<span class="breadcrumb--current">Hier</span>  --%>
+		<%-- Begrüßung für eingeloggte User --%>
 		<security:authorize access="isAuthenticated()">Hallo <security:authentication property="principal.username"/>!</security:authorize>
 	</div>
 </div>

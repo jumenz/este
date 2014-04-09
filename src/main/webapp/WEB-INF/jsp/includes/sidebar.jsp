@@ -1,6 +1,6 @@
 <%@include file="../includes/taglibs_variables.jspf" %>
 
-<!-- 
+<%-- 
 	Sidebar der Seite 
 	Beim Includieren der Sidebar können folgende Parameter übergeben werden:
 	
@@ -11,7 +11,7 @@
 						-> das erste nav gehört zum ersten ref usw.
 	timer 			- 	auf "include" setzen, um den Kalender in der Sidebar anzuzeigen
 	abc				- 	auf "include" setzen, um die Alphabetfläche in der Sidebar anzuzeigen
--->
+--%>
 <div id="sidebar" class="content-layout-cell sidebar">
     <div class="outer">
         <div class="inner">
@@ -21,7 +21,7 @@
                     <h2 class="menu-title link" id="menu-sidebar" >${param.title }</h2>
                 </div>              
                            
-               <!-- Sidebar Menu -->
+               <%-- Sidebar Menu --%>
                <%  
 					String[] navList = request.getParameterValues("nav");
                		String[] navRefs = request.getParameterValues("ref");
@@ -29,7 +29,7 @@
 				%> 
 				<div id="box-menu-sidebar" class="menublock-sidebar menu-sidebar light-bg">
 					<ul class="menu">
-						<!-- links in sidebar navigation -->
+						<%-- links in sidebar navigation --%>
 						<% for (String item : navList) {  %>
 							<li>
 								<a href=<%= navRefs[current] %>>
@@ -57,12 +57,12 @@
 						});
 					});
 				</script>
-				<!-- end Sidebar Menu -->
+				<%-- end Sidebar Menu --%>
 				
-				<!-- include Timer if timer is set true -->
+				<%-- include Timer if timer is set true --%>
 				<c:set var="timerSetting" scope="request" value="${param.timer}"/>
 				<c:if test="${timerSetting == 'include'}">
-				   <!-- Timer -->
+				   <%-- Timer --%>
 					<div class="menublock-sidebar timer">
 						<div class="timer-inner">
 							<ul class="timer-menu display-desktop">
@@ -109,13 +109,13 @@
 							</ul>
 						</div>
 					</div>
-					<!-- end Timer -->
+					<%-- end Timer --%>
 				</c:if>
 				<c:remove var="timerSetting"/>
 				
 				<c:set var="searchSetting" scope="request" value="${param.search}"/>
 				<c:if test="${searchSetting == 'include'}">
-				<!--  Search Field  -->
+				<%--  Search Field  --%>
 				<div class="menublock-sidebar">
 					<form method="GET">
 						<input size="25" name="search" placeholder="Suchen ..."/>
@@ -124,10 +124,10 @@
 				</div>
 				</c:if>
 				
-				<!-- include ABC if abc is set true -->
+				<%-- include ABC if abc is set true --%>
 				<c:set var="abcSetting" scope="request" value="${param.abc}"/>
 				<c:if test="${abcSetting == 'include'}">
-	                <!-- ABC -->
+	                <%-- ABC --%>
 	                <div class="menublock-sidebar timer">
 	                    <div class="timer-inner">
 	                        <ul class="timer-content">
@@ -146,7 +146,7 @@
 	                    </div>
 	                </div>
 	
-	                <!-- end ABC -->
+	                <%-- end ABC --%>
 	            </c:if>
 	            <c:remove var="abcSetting"/>
             </div>

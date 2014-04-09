@@ -6,17 +6,17 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">
 			<div id="..." class="content-list">
-				<!-- three col view -->
+				<%-- three col view --%>
 				<ul>
 					<li class="three-col first">
 						<div class="main-content-box box-borders bg clearfix">
@@ -66,7 +66,7 @@
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
 	</body>
 </html>

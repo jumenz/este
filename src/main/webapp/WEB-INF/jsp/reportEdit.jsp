@@ -6,26 +6,26 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">      
 			<div id="..." class="content-list">
 				<ul>
-					 <!--Contentbox One-Col -->
+					 <%--Contentbox One-Col --%>
                      <li class="one-col">
                          <div class="main-content-box box-borders bg clearfix">
                              <h2 class="box-title">Neuen Spielbericht anlegen</h2>
                              <div class="box-body">
-                             	<!-- Formular zum anlegen eines neuen Spielberichts -->	
+                             	<%-- Formular zum anlegen eines neuen Spielberichts --%>	
 								<sf:form method="POST" modelAttribute="report">
 									<fieldset>
-											<!-- Titeleingabe -->
+											<%-- Titeleingabe --%>
 											<sf:textarea 	path="topic"
 															id="topic"
 															rows="1"
@@ -34,9 +34,9 @@
 															value="${report.topic}"
 															class="full-width"
 											/><br>
-											<!-- Fehlermeldung für den Titel -->
+											<%-- Fehlermeldung für den Titel --%>
 											<sf:errors path="topic" cssClass="error"/>
-											<!-- Titeleingabe -->
+											<%-- Titeleingabe --%>
 											<sf:textarea 	path="opponent"
 															id="opponent"
 															rows="1"
@@ -45,9 +45,9 @@
 															value="${report.opponent}"
 															class="full-width"
 											/><br>
-											<!-- Fehlermeldung für den Titel -->
+											<%-- Fehlermeldung für den Titel --%>
 											<sf:errors path="topic" cssClass="error"/><br>
-											<!-- Punktestände -->
+											<%-- Punktestände --%>
 											Halbzeit (Heim:Gast)
 											<sf:input 	path="scoreFirstHalfHome" 
 														size="2" 
@@ -69,18 +69,18 @@
 														id="scoreHalftimeGuest"
 														placeholder="0" 
 														value="${report.scoreSecondHalfGuest}"/><br>
-											<!-- Fehlermeldung -->
+											<%-- Fehlermeldung --%>
 											<sf:errors path="score*" cssClass="error"/><br>
-											<!-- Heimspielangabe -->
+											<%-- Heimspielangabe --%>
 											<c:if test="${report.homeMatch}">
 												<sf:checkbox path="homeMatch" label="Heimspiel" checked="checked"/><br>
 											</c:if>
 											<c:if test="${!report.homeMatch}">
 												<sf:checkbox path="homeMatch" label="Heimspiel"/><br>
 											</c:if>
-											<!-- Fehlermeldung -->
+											<%-- Fehlermeldung --%>
 											<sf:errors path="homeMatch" cssClass="error"/><br>
-											<!-- Text -->
+											<%-- Text --%>
 											<sf:textarea 	path="text" 
 															id="text" 
 															placeholder="Tippe hier deinen Text ..."
@@ -89,9 +89,9 @@
 															cols="120"
 															class="full-width"
 											/><br>
-											<!-- Fehlermeldung für den Text -->
+											<%-- Fehlermeldung für den Text --%>
 											<sf:errors path="text" cssClass="error"/><br>
-											<!-- Buttons -->
+											<%-- Buttons --%>
 											<button class="dark-bg" name="commit" type="submit"><div class="forward-raquo menu-link right"></div>Speichern</button>
 											<button class="dark-bg" name="reset" type="reset"><div class="forward-raquo menu-link right"></div>Zurücksetzen</button>
 									</fieldset>
@@ -99,17 +99,17 @@
                              </div>
                          </div>
                      </li>
-                 	 <!-- end Contentbox One-Col -->
+                 	 <%-- end Contentbox One-Col --%>
 				</ul>
 				
-				<!-- end Contentbox One-Col -->
+				<%-- end Contentbox One-Col --%>
 			</div>
 		</div>
 		</div>
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
 	</body>
 </html>

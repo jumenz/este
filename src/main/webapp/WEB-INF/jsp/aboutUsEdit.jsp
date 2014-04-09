@@ -6,19 +6,19 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">
 			<div class="content-list">
 				<ul>
 					<sf:form method="POST" modelAttribute="aboutUsContent">
-					<!-- Der Verein -->
+					<%-- Der Verein --%>
 					<li class="one-col">
 						<div id="verein" class="main-content-box box-borders-top bg clearfix toggle-item">
 							<h2 class="box-title link toggle">Der Verein</h2>
@@ -39,7 +39,7 @@
 							</div>
 						</div>
 					</li>
-					<!-- Die Mannschaft -->
+					<%-- Die Mannschaft --%>
 					<li class="one-col">
 						<div id="mannschaft" class="main-content-box box-borders-top bg clearfix toggle-item">
 							<h2 class="box-title link toggle">Die Mannschaft</h2>
@@ -60,7 +60,7 @@
 							</div>
 						</div>
 					</li>
-					<!-- Trainer -->
+					<%-- Trainer --%>
 					<li class="one-col">
 						<div id="trainer" class="main-content-box box-borders-top bg clearfix toggle-item">
 							<h2 class="box-title link toggle">Die Trainer</h2>
@@ -108,7 +108,7 @@
 							</div>
 						</div>
 						</li>
-						<!-- Training -->
+						<%-- Training --%>
 						<li class="one-col">
 							<div id="training" class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle">Das Training</h2>
@@ -129,7 +129,7 @@
 								</div>
 							</div>
 						</li>
-						<!--  -->
+						<%--  --%>
 						<li class="one-col">							
 							<div id="anfahrt" class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle">Anfahrt</h2>
@@ -202,9 +202,9 @@
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
-		<!-- javascript, das nach Laden ausgeführt werden soll -->
+		<%-- javascript, das nach Laden ausgeführt werden soll --%>
 		<script type="text/javascript" src="${jsPath}/onLoad.js"></script>
 	</body>
 </html>

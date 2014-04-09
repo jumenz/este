@@ -6,16 +6,16 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">
-        	<!-- Sidebar -->
+        	<%-- Sidebar --%>
         	<jsp:include page="./includes/sidebar.jsp">
 				<jsp:param name="sidebarTitle" value="..."/>
 				<jsp:param name="abc" value="include" />
@@ -36,7 +36,7 @@
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
 	</body>
 </html>

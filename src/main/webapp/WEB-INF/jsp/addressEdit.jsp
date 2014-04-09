@@ -6,19 +6,19 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-<!-- content -->
+<%-- content --%>
 <div class="main-container">
-<!-- Content -->
+<%-- Content --%>
 <div class="container">
 	<div class="main">
         <div class="main-inner">
        
 			<div id="edit-address" class="content-list">
 				<ul>
-					<!--Contentbox One-Col -->
+					<%--Contentbox One-Col --%>
                     <li class="one-col">
                     	<div class="main-content-box box-borders bg clearfix">
                         	<h2 class="box-title">
@@ -27,7 +27,7 @@
                         		${addressEditModel.name}
 							</h2>
                             <div class="box-body">
-                             	<!-- Address edit form -->	
+                             	<%-- Address edit form --%>	
 								<sf:form method="POST" modelAttribute="addressEditModel">
 									<ul>
 								        <li class="first two-col">
@@ -145,7 +145,7 @@
 								        </button>
 									</p>
 								</sf:form>
-								<!-- end edit address form -->
+								<%-- end edit address form --%>
 								<p>
 									<form action="${linkAddressDelete}${addressEditModel.id}/" method="GET" style="display: inline-block">
 										<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Account Löschen</button>
@@ -155,17 +155,17 @@
 						</div>
 					</li>
 				</ul>
-            	<!-- end Contentbox One-Col Dropdown -->
+            	<%-- end Contentbox One-Col Dropdown --%>
             </div>
         </div>
     </div>
 </div>
-<!-- end main Content small-->
+<%-- end main Content small--%>
 </div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>	
-		<!-- javascript, das nach Laden ausgeführt werden soll -->
+		<%-- javascript, das nach Laden ausgeführt werden soll --%>
 		<script type="text/javascript" src="${jsPath}/onLoad.js"></script>
 	</body>
 </html>

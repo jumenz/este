@@ -9,33 +9,33 @@
 </jsp:include>
 	
 <body>
-	<!-- header -->
+	<%-- header --%>
 	<jsp:include page="./includes/header.jsp"/>
 
-	<!-- content -->
+	<%-- content --%>
     <div class="main-container">
-    <!-- Content -->
+    <%-- Content --%>
     <div class="container">
     <div class="main">
     <div class="main-inner">
-    	<!-- Sidebar -->
+    	<%-- Sidebar --%>
     	<jsp:include page="./includes/sidebar.jsp">
 		<jsp:param name="sidebarTitle" value="Adressbuch"/>
 		<jsp:param name="abc" value="include" />
 		<jsp:param name="nav" value="Liste"/>
 		<jsp:param name="ref" value="#" />
 		</jsp:include>
-		<!-- end Sidebar -->
+		<%-- end Sidebar --%>
 
-<!-- main Content small-->
+<%-- main Content small--%>
 <div id="main-content-small" class="content-layout-cell main-content main-content-small">
     <div class="outer">
         <div class="inner">
             <div id="addressbook" class="content-list">
-                <!--Contentbox One-Col Dropdown -->
+                <%--Contentbox One-Col Dropdown --%>
                 <ul>
-				<!-- <li class="one-col">
-					<!-- mail @all -->
+				<%-- <li class="one-col">
+					<%-- mail @all --%>
                 	<li class="one-col">
                         <div class="main-content-box box-borders-top bg clearfix">
                             <h2 class="box-title link" >Alle</h2>
@@ -99,7 +99,7 @@
 								        </li>
 								    </ul>
 									<p>
-										<!-- TOD0 if admin or id==id for each address -->
+										<%-- TOD0 if admin or id==id for each address --%>
 									    <c:if test="${isAdmin == 1 || address.id == userId}">
 										    <sf:form action="${linkAddressEdit}${address.id}/" method="GET" style="display: inline-block">
 												<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Eintrag Bearbeiten</button>
@@ -117,22 +117,22 @@
 							<c:otherwise><c:set var="abc" value="${abc}"/></c:otherwise>
 						</c:choose>
 					</c:forEach>
-					<!-- end all entries -->
+					<%-- end all entries --%>
 				</ul>
-                <!-- end Contentbox One-Col Dropdown -->
+                <%-- end Contentbox One-Col Dropdown --%>
             </div>
         </div>
     </div>
 </div>
-<!-- end main Content small-->
+<%-- end main Content small--%>
 		</div>
 		</div>
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>	
-		<!-- javascript, das nach Laden ausgeführt werden soll -->
+		<%-- javascript, das nach Laden ausgeführt werden soll --%>
 		<script type="text/javascript" src="${jsPath}/onLoad.js"></script>
 	</body>
 </html>

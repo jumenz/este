@@ -6,27 +6,27 @@
 	</jsp:include>
 		
 	<body>
-		<!-- header -->
+		<%-- header --%>
 		<jsp:include page="./includes/header.jsp"/>
 
-		<!-- content -->
+		<%-- content --%>
         <div class="main-container">
-        <!-- Content -->
+        <%-- Content --%>
         <div class="container">
         <div class="main">
         <div class="main-inner">
        
 			<div id="..." class="content-list">
 				<ul>
-					<!--Contentbox One-Col -->
+					<%--Contentbox One-Col --%>
                      <li class="one-col">
                          <div class="main-content-box box-borders bg clearfix">
                              <h2 class="box-title">Foreneintrag</h2>
                              <div class="box-body">
-                             	<!-- Formular zum anlegen eines neuen Spielberichts -->	
+                             	<%-- Formular zum anlegen eines neuen Spielberichts --%>	
 								<sf:form method="POST" modelAttribute="forumEntry">
 									<fieldset>
-										<!-- Titeleingabe -->
+										<%-- Titeleingabe --%>
 										<sf:textarea 	path="topic"
 														id="topic"
 														rows="1"
@@ -34,9 +34,9 @@
 														value="${forumEntry.topic}"
 														placeholder="Titel"
 										/><br>
-										<!-- Fehlermeldung für den Titel -->
+										<%-- Fehlermeldung für den Titel --%>
 										<sf:errors path="topic" cssClass="error"/><br>
-										<!-- Kurzbeschreibung -->
+										<%-- Kurzbeschreibung --%>
 										<sf:textarea 	path="description" 
 														id="description"
 														rows="5"
@@ -44,9 +44,9 @@
 														value="${forumEntry.description}"
 														placeholder="Kurzbeschreibung"
 										/><br>
-										<!-- Fehlermeldung für die Kurzbeschreibung -->
+										<%-- Fehlermeldung für die Kurzbeschreibung --%>
 										<sf:errors path="description" cssClass="error"/><br>
-										<!-- Text -->
+										<%-- Text --%>
 										<sf:textarea 	path="text" 
 														id="text"
 														value="${forumEntry.text}"
@@ -54,9 +54,9 @@
 														rows="20"
 														cols="120"
 										/><br>
-										<!-- Fehlermeldung für den Text -->
+										<%-- Fehlermeldung für den Text --%>
 										<sf:errors path="text" cssClass="error"/><br>
-										<!-- Buttons -->
+										<%-- Buttons --%>
 										<button class="dark-bg" name="commit" type="submit"><div class="forward-raquo menu-link right"></div>Speichern</button>
 										<button class="dark-bg" name="reset" type="reset"><div class="forward-raquo menu-link right"></div>Zurücksetzen</button>
 									</fieldset>
@@ -64,7 +64,7 @@
                              </div>
                          </div>
                      </li>
-                 	<!-- end Contentbox One-Col -->
+                 	<%-- end Contentbox One-Col --%>
 				</ul>
 			</div>
 		</div>
@@ -72,7 +72,7 @@
 		</div>
 		</div>
 		
-		<!-- footer -->
+		<%-- footer --%>
 		<jsp:include page="./includes/footer.jsp"/>
 	</body>
 </html>
