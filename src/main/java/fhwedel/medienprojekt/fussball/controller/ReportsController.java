@@ -173,7 +173,6 @@ public class ReportsController {
 	 */
 	@RequestMapping(value=Constants.linkReportsDelete, method=RequestMethod.POST) 
 	public String delete(@PathVariable int id) {
-		// TODO nicht über PathVariable
 		this.dataAccess.deleteById(id);
 		return Constants.redirectReports;
 	}
