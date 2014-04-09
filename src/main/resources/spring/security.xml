@@ -35,13 +35,23 @@
 			bestimmte URLs nur eingeloggten Usern anzeigen
 			Achtung: spezifische zuerst, dann allgemeinere
 		 -->
+		
+		<intercept-url pattern="/addressbuch/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/home/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/logout/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/forum/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/forum/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
+		<intercept-url pattern="/forum/neuer-eintrag/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
+		<intercept-url pattern="/forum/neuer-kommentar/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/forum/loeschen/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/forum/kommentar-entfernen/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/addressbuch/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/home/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/logout/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/ueber-uns/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		<intercept-url pattern="/impressum/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		<intercept-url pattern="/berichte/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
+		<intercept-url pattern="/berichte/loeschen/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		
 		<!-- Erst wenn Seite online -->
 		<!-- http 

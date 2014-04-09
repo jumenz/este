@@ -229,7 +229,7 @@ public class ForumController {
 	 * @return	String		Redirect auf Forenseite
 	 */
 	@RequestMapping(value=Constants.linkForumDeleteComment, method=RequestMethod.GET)
-	public String deleteNewComment(@PathVariable int id) {
+	public String deleteComment(@PathVariable int id) {
 		this.dataAccessComments.deleteComment(id);
 		return Constants.redirectForum;
 	}
