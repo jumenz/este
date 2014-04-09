@@ -1,0 +1,17 @@
+/* ------------------------ Profilangaben ---------------------------------- */
+.profile {
+	clear: both;
+	width: 100%;
+}
+.profile .about-us-img-trainer {
+	float: right;
+	width: 30%;
+	height: auto;
+	display: inline;
+	padding-left: 5%;
+	padding-bottom: 5%;
+}
+.profile-description {
+	width: 96%;
+	padding: 2%;
+}

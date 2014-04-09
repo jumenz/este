@@ -20,6 +20,10 @@ public class Page<E extends Post> {
 	/* ------------- Klassenvariablen ------------------- */
     /** Aktuelle Seite */
 	private int pageNumber;
+	/** nächste Seite */
+	private int nextPage;
+	/** vorherige Seite */
+	private int prevPage;
 	/** Gesamtzahl der Seiten */
     private int pagesAvailable;
     /** Liste an Einträgen */
@@ -39,7 +43,7 @@ public class Page<E extends Post> {
      * @return	int		Seitenzahl
      */
     public int getPageNumber() {
-        return pageNumber;
+        return this.pageNumber;
     }
     
     /* ------------- Gesamtseitenzahl --------------------- */
@@ -55,8 +59,39 @@ public class Page<E extends Post> {
      * @return	int		Gesamtanzahl
      */
     public int getPagesAvailable() {
-        return pagesAvailable;
+        return this.pagesAvailable;
     }
+    
+    /* --------- vorherige und nachfolgende Seiten ----------*/
+    /**
+     * Setzt die vorherige Seitenzahl.
+     * @param pageNumber	int		Nummer
+     */
+    public void setNextPage(int pageNumber) {
+        this.nextPage = pageNumber;
+    }
+    /**
+     * Liefert die vorherige Seitenzahl.
+     * @return	int		Seitenzahl
+     */
+    public int getNextPage() {
+        return this.nextPage;
+    }
+    /**
+     * Setzt die nachfolgende Seitenzahl.
+     * @param pageNumber	int		Nummer
+     */
+    public void setPrevPage(int pageNumber) {
+        this.prevPage = pageNumber;
+    }
+    /**
+     * Liefert die nachfolgende Seitenzahl.
+     * @return	int		Seitenzahl
+     */
+    public int getPrevPage() {
+        return this.prevPage;
+    }
+    
     
     /* --------------- Einträge --------------------- */
     /**
@@ -71,6 +106,18 @@ public class Page<E extends Post> {
      * @return	List<E>		Eintragsliste
      */
     public List<E> getPageItems() {
-        return pageItems;
+        return this.pageItems;
+    }
+    
+    /* ---------------- weitere Methoden ----------------- */
+    /**
+     * Berechnet die vorherige und folgende Seite der aktuellen Page.
+     */
+    public void initPagination() {
+    	// nächste Seitenzahl berechnen oder auf Gesamtseitenzahl setzen, wenn schon
+    	// auf letzter Seite
+    	this.nextPage = (this.pageNumber < this.pagesAvailable) ? this.pageNumber+1 : this.pagesAvailable;
+    	// vorherige Seite berechnen oder auf erste Seite setzen, wenn schon auf erster
+    	this.prevPage = (this.pageNumber > 1) ? this.pageNumber-1 : 1;
     }
 }

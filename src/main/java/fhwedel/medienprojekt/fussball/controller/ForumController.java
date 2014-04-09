@@ -83,6 +83,19 @@ public class ForumController {
 	}
 	
 	/**
+	 * Lädt eine bestimmte Seite des Forums
+	 * @param 	mode	Model
+	 * @return  String 	Viewname
+	 */
+	@RequestMapping(value=Constants.linkForumPage, method=RequestMethod.GET)
+	public String displayForum(@PathVariable("page") int showPage, Model model) {
+		// Erste Seite laden
+		Page<ForumEntry> page = this.dataAccessForum.getPage(showPage, this.forumEntriesPerPage);
+		// Foreneinträge und Kommentare laden
+		return this.prepareForumView(page, model);
+	}
+	
+	/**
 	 * Liefert Foreneinträge, die mit bestimmtem String beginnen.
 	 * @param	sub		String		gesuchter Substring
 	 * @param	model	Model

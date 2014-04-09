@@ -127,7 +127,23 @@
 						</c:forEach>
 					</ul>
 					<%-- Seitenanzeige --%>
-					<div>Seite <c:out value="${forumEntryPage.pageNumber}"></c:out> von <c:out value="${forumEntryPage.pagesAvailable}"></c:out></div>
+					<table class="pagination">
+						<tr>
+							<td class="pagination-previous">
+								<c:if test="${forumEntryPage.pageNumber > 1}">
+									<a href="${linkForumPage}${forumEntryPage.prevPage}/">vorherige</a>
+								</c:if>
+							</td>
+							<td class="pagination-info">
+								Seite <c:out value="${forumEntryPage.pageNumber}"></c:out> von <c:out value="${forumEntryPage.pagesAvailable}"></c:out>
+							</td>
+							<td class="pagination-next">
+								<c:if test="${forumEntryPage.pageNumber < forumEntryPage.pagesAvailable}">
+									<a href="${linkForumPage}${forumEntryPage.nextPage}/">weitere</a>
+								</c:if>
+							</td>
+						</tr>
+					</table>
 			</div>
 			</div>
 			</div>

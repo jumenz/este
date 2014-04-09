@@ -411,37 +411,6 @@ aside, .main {
     height: 0;
 }
 
-/* ------------------------ Kommentare ------------------------------ */
-.comments {
-	
-}
-.comment {
-	padding: 1% 5%;
-	margin: 3%;
-	background-color: #FFFFFF;
-	border-radius: 25px 25px 25px 0px;
-	-moz-border-radius: 25px 25px 25px 0px;
-	-webkit-border-radius: 25px 25px 25px 0px;
-	border: 0px solid #000000;
-	position: relative;
-}
-.comment .button-delete {
-	display: none;
-}
-.comment:hover .button-delete {
-	display: inline-block;
-}
-.comment .button-delete {
-	right: -10px;
-	top: -10px;
-}
-.ccomment-content {
-	
-}
-.comment-name {
-	font-weight: bold;
-}
-
 /* ------------------------ Sidebar --------------------------------- */
 
 .sidebar {
@@ -518,24 +487,6 @@ aside, .main {
     width: 42px;
 }
 
-
-/* ------------------------ Profilangaben ---------------------------------- */
-.profile {
-	clear: both;
-	width: 100%;
-}
-.profile .about-us-img-trainer {
-	float: right;
-	width: 30%;
-	height: auto;
-	display: inline;
-	padding-left: 5%;
-	padding-bottom: 5%;
-}
-.profile-description {
-	width: 96%;
-	padding: 2%;
-}
 /* -------------- */
 a.show-link {
 	text-decoration: underline;

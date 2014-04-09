@@ -128,6 +128,9 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
         List<E> res = namedParameterJdbcTemplate.query(SQL_FETCH_ROWS, params, rowMapper);
         page.setPageItems(res);
         
+        // vorherige und nächste Seitenzahl berechnen
+        page.initPagination();
+        
         return page;
     }
 	

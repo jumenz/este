@@ -60,6 +60,20 @@ public class ReportsController {
 	}
 	
 	/**
+	 * Lädt eine bestimmte Seite der Spielberichte
+	 * @param 	mode	Model
+	 * @return  String 	Viewname
+	 */
+	@RequestMapping(value=Constants.linkReportsPage, method=RequestMethod.GET)
+	public String displayForum(@PathVariable("page") int showPage, Model model) {
+		// Erste Seite laden
+		Page<Report> page = this.dataAccess.getPage(showPage, this.reportsPerPage);
+		// In jsp zugreifbar machen
+		model.addAttribute("reportPage", page);
+		return Constants.viewNameReports;
+	}
+	
+	/**
 	 * Liefert Spielberichte, die mit bestimmtem String beginnen.
 	 * @param	sub		String		String der enthalten sein soll
 	 * @param	model	Model

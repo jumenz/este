@@ -111,8 +111,24 @@
 				</ul>
 				<%-- end Contentbox One-Col --%>
 			
-				<%-- Seitenanzeige --%>
-				<div>Seite <c:out value="${reportPage.pageNumber}"></c:out> von <c:out value="${reportPage.pagesAvailable}"></c:out></div>
+				<table class="pagination">
+					<tr>
+						<td class="pagination-previous">
+							<c:if test="${reportPage.pageNumber > 1}">
+								<a href="${linkForumPage}${reportPage.prevPage}/">vorherige</a>
+							</c:if>
+						</td>
+						<td class="pagination-info">
+							Seite <c:out value="${reportPage.pageNumber}"></c:out> von <c:out value="${reportPage.pagesAvailable}"></c:out>
+						</td>
+						<td class="pagination-next">
+							<c:if test="${reportPage.pageNumber < reportPage.pagesAvailable}">
+								<a href="${linkForumPage}${reportPage.nextPage}/">weitere</a>
+							</c:if>
+						</td>
+					</tr>
+				</table>
+				
 			</div>
 			</div>
 			</div>

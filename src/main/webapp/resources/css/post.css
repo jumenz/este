@@ -1,0 +1,42 @@
+/* ------------------------ Kommentare ------------------------------ */
+.comment {
+	padding: 1% 5%;
+	margin: 3%;
+	background-color: #FFFFFF;
+	border-radius: 25px 25px 25px 0px;
+	-moz-border-radius: 25px 25px 25px 0px;
+	-webkit-border-radius: 25px 25px 25px 0px;
+	border: 0px solid #000000;
+	position: relative;
+}
+.comment .button-delete {
+	display: none;
+}
+.comment:hover .button-delete {
+	display: inline-block;
+}
+.comment .button-delete {
+	right: -10px;
+	top: -10px;
+}
+.comment-name {
+	font-weight: bold;
+}
+
+/* ------------------ Pagination ------------------- */
+.pagination {
+	font-size: smaller;
+	width: 100%;
+}
+.pagination td {
+	width: 33%
+}
+.pagination-previous {
+	text-align: left;
+}
+.pagination-next{
+	text-align: right;
+}
+.pagination-info {
+	text-align: center;
+}
