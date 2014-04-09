@@ -1,20 +1,20 @@
-#addresses .input.input-text {
+#edit-address .input-text {
     width: 98%;
     padding-left: 2%;
 }
-#addresses .input#street {
+#edit-address .input#street {
     width: 83%;
 }
-#addresses .input#nr {
+#edit-address .input#nr {
     width: 14%;
 }
-#addresses .input#zipcode {
+#edit-address .input#zipcode {
     width: 34%;
 }
-#addresses .input#city {
+#edit-address .input#city {
     width: 63%;
 }
-#addresses #require {
+#edit-address #require {
     margin-top: 12px;
 }
 fieldset#buttons {
