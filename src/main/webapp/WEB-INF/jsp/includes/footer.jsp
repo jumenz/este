@@ -8,11 +8,6 @@
 		<li> 
 			<form method="get" name="footer-login-register-form" action="${linkLogin}">
 				<input class="buttom-invisible footer-space-bottom" type="submit" value="Login"><br>
-				<%--  <span class="footer-info">
-					<input type="text" name="login-name" placeholder="Username">
-				</span><br>
-				<span class="footer-info footer-space-bottom">
-				<input type="password" name="login-name" placeholder="Passwort"></span><br>--%>
 			</form>
 			<form method="get" action="${linkRegister}">
 				<input class="buttom-invisible" type="submit" value="Registrieren"/>
@@ -23,10 +18,7 @@
 	<%-- Nur für eingeloggte User --%>
 	<security:authorize access="isAuthenticated()">
 		<li>
-			<%--  <form method="get" action="${linkLogout}">
-				<input class="buttom-invisible" type="submit" value="Logout"/>
-			</form>  --%>
- 			<img class="footer-logo" src="${dataPath}/images/logo-este.png">
+ 			<img class="footer-logo" src="${dataPath}/images/logo-este.png" alt="este-logo"/>
 		</li>
 	</security:authorize>
 	
@@ -39,6 +31,7 @@
 		<span class="footer-info footer-space-bottom">21129 Hamburg</span>
 		<span class="footer-info"><a href="mailto:damen-este0670@web.de">damen-este0670@web.de</a></span>
 	</li>
+	
 	<%-- Shortlinks --%>	
 	<li> 
 		<span class="footer-heading footer-space-bottom">Nützliches</span>

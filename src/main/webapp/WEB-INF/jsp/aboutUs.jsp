@@ -48,13 +48,16 @@
 							<div class="toggle-content" style="display: none">
 								<div class="box-body">
 									<p>
-									<img class="about-us-img-logo" src="${dataPath}/images/logo-este.png">
+									<img 	class="about-us-img-logo" 
+											src="${dataPath}/images/logo-este.png"
+											alt="logo-este"/>
 									${aboutUsContent.companyText}
 									</p>
 								</div>
 							</div>
 						</div>
 					</li>
+					
 					<%-- Die Mannschaft --%>
 					<li class="one-col">
 						<div id="mannschaft" class="main-content-box box-borders-top bg clearfix toggle-item">
@@ -64,11 +67,14 @@
 							<div class="toggle-content" style="display: none">
 								<div class="box-body">
 									<p>${aboutUsContent.teamText}</p>
-									<img class="about-us-img-team" src="${dataPath}/galery/K640_picture24.JPG">
+									<img 	class="about-us-img-team" 
+											src="${dataPath}/galery/K640_picture24.JPG"
+											alt="mannschaft-este-damen" />
 								</div>
 							</div>
 						</div>
 					</li>
+					
 					<%-- Trainer --%>
 					<li class="one-col">
 						<div id="trainer" class="main-content-box box-borders-top bg clearfix toggle-item">
@@ -80,14 +86,18 @@
 									<div class="profile">
 										<h3>${aboutUsContent.trainerFirstName}</h3><br>
 										<div class="profile-description">
-											<img class="about-us-img-trainer" src="${dataPath}/images/K640_trainer-m.JPG" />
+											<img 	class="about-us-img-trainer" 
+													src="${dataPath}/images/K640_trainer-m.JPG" 
+													alt="este-damen-trainer"/>
 											<p>${aboutUsContent.trainerFirstText}</p>
 										</div>
 									</div>
 									<div class="profile">
 										<h3>${aboutUsContent.trainerSecondName}</h3><br>
 										<div class="profile-description">
-											<img class="about-us-img-trainer" src="${dataPath}/images/K640_trainer-s.JPG" />
+											<img 	class="about-us-img-trainer" 
+													src="${dataPath}/images/K640_trainer-s.JPG" 
+													alt="este-damen-trainer"/>
 											<p>${aboutUsContent.trainerSecondText}</p>
 										</div>
 									</div>
@@ -95,6 +105,7 @@
 							</div>
 						</div>
 						</li>
+						
 						<%-- Training --%>
 						<li class="one-col">
 							<div id="training" class="main-content-box box-borders-top bg clearfix toggle-item">
@@ -108,7 +119,8 @@
 								</div>
 							</div>
 						</li>
-						<%--  --%>
+						
+						<%-- Anfahrt --%>
 						<li class="one-col">							
 							<div id="anfahrt" class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle">Anfahrt</h2>
@@ -134,6 +146,8 @@
 								</div>
 							</div>
 						</li>
+						
+						<%-- Kontakt --%>
 						<li class="one-col">
 							<div id="kontakt" class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle">Kontakt</h2>

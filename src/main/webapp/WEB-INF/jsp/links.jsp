@@ -18,11 +18,13 @@
 			<div id="..." class="content-list">
 				<%-- three col view --%>
 				<ul>
+				
+					<%-- Link Fussballtabelle --%>
 					<li class="three-col first">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Tabelle</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-fussball-de.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Hier findest du die aktuelle Tabellenplätze und Torverhältnisse der Bezirksklasse West.</p>
@@ -32,11 +34,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Link Spielplan --%>
 					<li class="three-col first">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Spielplan</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-fussball-de.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Wirf hier einen genaueren Blick auf den Spielplan.</p>
@@ -46,11 +50,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Link Begegnungen --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Begegnungen</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/demo.jpg" />
+								<img src="${dataPath}/images/img-fussball-de.jpg" />
 							</div>
 							<div class="box-body">
 								<p>Hier erfährst du genaueres über die Begegnungen.</p>

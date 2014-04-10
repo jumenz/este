@@ -1,7 +1,7 @@
 <%@include file="../includes/taglibs_variables.jspf" %>
 <div class="header">
 	<%-------------- banner --------------%>
-	<img class="banner" src="${dataPath}/images/img-header.jpg"/>
+	<img class="banner" src="${dataPath}/images/img-header.jpg" alt="banner-este-damen"/>
 	<%-------------- main navigation -------%>
 	<ul class="nav">
 		<li class="nav-wide">
