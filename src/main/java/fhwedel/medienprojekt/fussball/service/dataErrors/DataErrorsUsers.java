@@ -48,7 +48,12 @@ public class DataErrorsUsers extends AbstractDataErrors {
 		// Der Username darf nicht leer oder schon vergeben sein
 		if(this.isEmpty(username)) {
 			bindingResult.rejectValue("username", "error.username.empty");
-		} else if (this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
+		} else if(!this.isAlphanumeric(username)) {
+			// Nur nahmen und Buchstbane für sprechende Namen verwenden 
+			// und Injections wie <script ...> zu verhindern
+			bindingResult.rejectValue("username", "error.username.notAlphanumeric");
+		}
+		else if (this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
 			bindingResult.rejectValue("username", "error.username.duplicate");
 		}
 	}

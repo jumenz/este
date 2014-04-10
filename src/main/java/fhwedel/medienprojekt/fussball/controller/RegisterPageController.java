@@ -90,8 +90,7 @@ public class RegisterPageController {
 	@RequestMapping(value=Constants.linkRegisterSaveUser, method=RequestMethod.POST)
 	public String register(@ModelAttribute("newUser") User newUser, BindingResult bindingResult, Model model, Errors errors) {
 		// Bei Fehlern wieder auf Formular redirecten
-		boolean hasErrors = this.dataErrorsUsers.hasErrors(newUser, bindingResult);
-		if(bindingResult.hasErrors() || hasErrors) {
+		if(bindingResult.hasErrors() || this.dataErrorsUsers.hasErrors(newUser, bindingResult)) {
 			model.addAttribute("newPermission", new Permission());
 			model.addAttribute("allPermissions", this.dataAccessPermissions.getAll());
 			return Constants.viewNameRegister;
