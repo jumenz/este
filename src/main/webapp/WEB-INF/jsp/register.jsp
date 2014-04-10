@@ -56,7 +56,7 @@
 														class="full-width"
 											/><br>
 											<%-- Fehlermeldung für das Passwort --%>
-											<sf:errors path="password" cssClass="error"/><br>
+											<sf:errors path="password" cssClass="error"/><br><br>
 											<%-- Buttons --%>
 											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Registrieren</button>
 											<button name="reset" type="reset" class="dark-bg"><div class="forward-raquo menu-link right"></div>Abbrechen</button>
