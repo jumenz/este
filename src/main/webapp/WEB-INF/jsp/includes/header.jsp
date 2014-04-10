@@ -18,6 +18,11 @@
 			<a href="${linkGalery}">
 				Galerie
 			</a>
+			<ul class="submenue">
+				<security:authorize access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')">
+					<li><a href="${linkGaleryUpload}">Bilder hochladen</a></li>
+				</security:authorize>
+			</ul>
 		</li>
 		<li class="nav-wide">
 			<a href="${linkLinks}">
@@ -46,6 +51,9 @@
 	                <li><a href="${linkAddresses}">Adressbuch</a></li>
 	                <li><a href="#">Termine</a></li>
 	                <li><a href="${linkForum}">Forum</a></li>
+	                <security:authorize access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')">
+						<li><a href="${linkRegister}">User bearbeiten</a></li>
+					</security:authorize>
 	                <li><a href="${linkLogout}">Logout</a></li>
 	            </ul>
 			</li>
@@ -56,8 +64,12 @@
 			<ul class="submenue">
 				<li><a href="${linkAboutUs}">Über uns</a></li>
 				<li><a href="${linkReports}">Spielberichte</a></li>
-				<li><a href="${linkGalery}">Galerie</a></li>
 				<li><a href="${linkLinks}">Links</a></li>
+				<li><a href="${linkGalery}">Galerie</a></li>
+				<security:authorize access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')">
+					<li><a href="${linkRegister}">User bearbeiten</a></li>
+					<li><a href="${linkGaleryUpload}">Bilder hochladen</a></li>
+				</security:authorize>
 				<security:authorize access="isAuthenticated()">
 					<li><a href="${linkHome}">Home</a></li>
 					<li><a href="${linkLogout}">Logout</a></li>
@@ -71,11 +83,10 @@
 	
 	<%----------- Breadcrub -----------------%>
 	<div class="breadcrumb">
-		<%-- <span class="breadcrumb--step"><a>Pfad1</a> - </span>
-		<span class="breadcrumb--step"><a>Pfad2</a> - </span>
-		<span class="breadcrumb--current">Hier</span>  --%>
 		<%-- Begrüßung für eingeloggte User --%>
-		<security:authorize access="isAuthenticated()">Hallo <security:authentication property="principal.username"/>!</security:authorize>
+		<security:authorize access="isAuthenticated()">
+			Hallo <security:authentication property="principal.username"/>!
+		</security:authorize>
 	</div>
 </div>
 
