@@ -78,12 +78,16 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 	 */
 	public ArrayList<E> getAllIncluding(String sub) {
 		ArrayList<E> res = new ArrayList<E>();
-		// Alle auslesen
 		ArrayList<E> all = this.getAll();
+		E entry;
 		
 		// Alle finden, die einen gesuchten String enthalten
 		for(int i=0; i < all.size(); i++) {
-			if(stringContainsSub(all.get(i).getTopic(), sub)) {
+			entry = all.get(i);
+			if(stringContainsSub(entry.getTopic(), sub)
+			   || stringContainsSub(entry.getText(), sub)) {
+				// anfügen wenn der gesuchte String im Titel oder
+				// im Text vorkommt
 				res.add(all.get(i));
 			}
 		}
@@ -102,7 +106,7 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
     public Page<E> fetchPage(final String db, final int pageNo, final int pageSize, final ParameterizedRowMapper<E> rowMapper) {
     	// SQL Anweisungen
     	final String SQL_COUNT_ROWS = "SELECT count(*) FROM " + db;
-    	final String SQL_FETCH_ROWS = "SELECT * FROM " + db + " LIMIT :start, :end";
+    	final String SQL_FETCH_ROWS = "SELECT * FROM " + db + " ORDER BY date DESC LIMIT :start, :end";
     	Map<String,Object> params = new HashMap<String, Object>();
     	
         // Anzahl der Einträge herausfinden
@@ -125,7 +129,7 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
         params.put("end", endRow);
         
         // Liste auslesen und setzen
-        List<E> res = namedParameterJdbcTemplate.query(SQL_FETCH_ROWS, params, rowMapper);
+        ArrayList<E> res = (ArrayList<E>) namedParameterJdbcTemplate.query(SQL_FETCH_ROWS, params, rowMapper);
         page.setPageItems(res);
         
         // vorherige und nächste Seitenzahl berechnen

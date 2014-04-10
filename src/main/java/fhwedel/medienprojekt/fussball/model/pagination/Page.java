@@ -2,7 +2,6 @@ package fhwedel.medienprojekt.fussball.model.pagination;
 
 /** externe Klassen */
 import java.util.ArrayList;
-import java.util.List;
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.Post;
@@ -27,7 +26,7 @@ public class Page<E extends Post> {
 	/** Gesamtzahl der Seiten */
     private int pagesAvailable;
     /** Liste an Einträgen */
-    private List<E> pageItems = new ArrayList<E>();
+    private ArrayList<E> pageItems = new ArrayList<E>();
 
     /* ------------- Setter / Getter-Methoden ------------ */
     /* ------------- aktuelle Seitennummer --------------- */
@@ -96,16 +95,16 @@ public class Page<E extends Post> {
     /* --------------- Einträge --------------------- */
     /**
      * Setzt die Liste der Einträge.
-     * @param pageItems		List<E>		Liste der Einträge
+     * @param pageItems		ArrayList<E>		Liste der Einträge
      */
-    public void setPageItems(List<E> pageItems) {
+    public void setPageItems(ArrayList<E> pageItems) {
         this.pageItems = pageItems;
     }
     /**
      * Liefert die Liste der Einträge.
-     * @return	List<E>		Eintragsliste
+     * @return	ArrayList<E>		Eintragsliste
      */
-    public List<E> getPageItems() {
+    public ArrayList<E> getPageItems() {
         return this.pageItems;
     }
     

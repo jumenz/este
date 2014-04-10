@@ -63,6 +63,8 @@ public class ForumController {
 	public String prepareForumView(Page<ForumEntry> page, Model model) {
 		//in jsp zugreifbar machen
 		model.addAttribute("forumEntryPage", page);
+		// Kommentare auslesen
+		this.dataAccessComments.getAllComments(page.getPageItems());
 		// Neuen Kommentar anfügen, um Speichern zu ermöglichen
 		model.addAttribute("newComment", new Comment());
 		
@@ -76,10 +78,8 @@ public class ForumController {
 	 */
 	@RequestMapping(value=Constants.linkForum, method=RequestMethod.GET)
 	public String displayForum(Model model) {
-		// Erste Seite laden
-		Page<ForumEntry> page = this.dataAccessForum.getPage(1, this.forumEntriesPerPage);
-		// Foreneinträge und Kommentare laden
-		return this.prepareForumView(page, model);
+		// erste Seite laden
+		return this.displayForum(1, model);
 	}
 	
 	/**
@@ -96,17 +96,20 @@ public class ForumController {
 	}
 	
 	/**
-	 * Liefert Foreneinträge, die mit bestimmtem String beginnen.
+	 * Liefert Foreneinträge, die einen bestimmten String beinhalten.
 	 * @param	sub		String		gesuchter Substring
 	 * @param	model	Model
 	 */
 	@RequestMapping(value=Constants.linkForumContaining, method=RequestMethod.GET)
 	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
-		// TODO anders
+		// Seite mit Suchergebnissen erstellen
 		Page<ForumEntry> page = new Page<ForumEntry>();
 		page.setPageItems(this.dataAccessForum.getAllIncluding(sub));
+		// alle Ergebnisse auf einer Seite anzeigen
 		page.setPageNumber(1);
 		page.setPagesAvailable(1);
+
+		// Anzeigen
 		return this.prepareForumView(page, model);
 	}
 	
@@ -130,9 +133,8 @@ public class ForumController {
 	 */
 	@RequestMapping(value=Constants.linkForumNewEntry, method=RequestMethod.GET)
 	public String displayNewForumEntryForm(Model model) {
-		// Neues ForumEntry Objekt in jsp zugreifbar machen
+		// Neues ForumEntry Objekt in jsp zugreifbar machen und Formular laden
 		model.addAttribute(new ForumEntry());
-		// Formular laden
 		return Constants.viewNameForumEdit;
 	}
 	
@@ -163,7 +165,7 @@ public class ForumController {
 	 */
 	@RequestMapping(value=Constants.linkForumEntryEdit, method=RequestMethod.GET)
 	public String loadEditForm(@PathVariable int id, Model model) {
-		// Report auslesen
+		// Foreneintrag auslesen und zu Bearbeitung anzeigen
 		model.addAttribute("forumEntry", this.dataAccessForum.getById(id));
 		return Constants.viewNameForumEdit;
 	}
@@ -197,6 +199,7 @@ public class ForumController {
 	 */
 	@RequestMapping(value=Constants.linkForumEntryDelete, method=RequestMethod.POST) 
 	public String delete(@PathVariable int id) {
+		// Löschen und Forum anzeigen
 		this.dataAccessForum.deleteById(id);
 		return Constants.redirectForum;
 	}
@@ -229,6 +232,7 @@ public class ForumController {
 	 */
 	@RequestMapping(value=Constants.linkForumDeleteComment, method=RequestMethod.GET)
 	public String deleteComment(@PathVariable int id) {
+		// Löschen und Forum anzeigen
 		this.dataAccessComments.deleteComment(id);
 		return Constants.redirectForum;
 	}
