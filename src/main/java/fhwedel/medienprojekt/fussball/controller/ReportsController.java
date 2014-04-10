@@ -1,8 +1,6 @@
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,15 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
-
 import org.springframework.web.bind.annotation.RequestParam;
-
 import fhwedel.medienprojekt.fussball.model.pagination.Page;
+
 /** eigene Klassen */
-import fhwedel.medienprojekt.fussball.model.post.PostView;
-import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
 import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessReports;
 import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsReports;
