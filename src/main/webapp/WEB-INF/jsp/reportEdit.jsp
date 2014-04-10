@@ -27,7 +27,6 @@
 									<fieldset>
 											<%-- Titeleingabe --%>
 											<sf:textarea 	path="topic"
-															id="topic"
 															rows="1"
 															cols="120"
 															placeholder="Titel"
@@ -38,7 +37,6 @@
 											<sf:errors path="topic" cssClass="error"/>
 											<%-- Titeleingabe --%>
 											<sf:textarea 	path="opponent"
-															id="opponent"
 															rows="1"
 															cols="120"
 															placeholder="Name des Gegners"
@@ -50,23 +48,24 @@
 											<%-- Punktestände --%>
 											Halbzeit (Heim:Gast)
 											<sf:input 	path="scoreFirstHalfHome" 
-														size="2" 
-														id="scoreHalftime"
+														type="number"
+														min="0"
 														placeholder="0" 
 														value="${report.scoreFirstHalfHome}"/> :
 											<sf:input 	path="scoreFirstHalfGuest" 
-														size="2" id="scoreHalftimeGuest"
+														type="number"
+														min="0"
 														placeholder="0"
 														value="${report.scoreFirstHalfGuest}"/><br>
 											<br>Endstand (Heim:Gast)
 											<sf:input 	path="scoreSecondHalfHome" 
-														size="2" 
-														id="finalScore" 
+														type="number"
+														min="0"
 														placholder="0"
 														value="${report.scoreSecondHalfHome}"/> :
 											<sf:input 	path="scoreSecondHalfGuest" 
-														size="2" 
-														id="scoreHalftimeGuest"
+														type="number"
+														min="0"
 														placeholder="0" 
 														value="${report.scoreSecondHalfGuest}"/><br>
 											<%-- Fehlermeldung --%>
@@ -82,7 +81,6 @@
 											<sf:errors path="homeMatch" cssClass="error"/><br>
 											<%-- Text --%>
 											<sf:textarea 	path="text" 
-															id="text" 
 															placeholder="Tippe hier deinen Text ..."
 															value="report.text"
 															rows="20"
