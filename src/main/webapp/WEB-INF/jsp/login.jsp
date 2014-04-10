@@ -21,6 +21,7 @@
 					<%-- Loginformular wird nur angezeigt, wenn der User nicht angemeldet ist --%>
 					<security:authorize access="not isAuthenticated()">
 						<%--Contentbox One-Col --%>
+						
 						<%-- Formular zum Registrieren --%>	
 	                     <li class="one-col">
 	                         <div class="main-content-box box-borders bg clearfix">
@@ -34,7 +35,6 @@
 														value="${loginUser.username}"
 														class="full-width"
 											/><br>
-											<sf:errors path="username" cssClass="error"/><br>
 											<%-- Passwort --%>
 											<sf:input	path="password" 
 														type="password"
@@ -42,8 +42,9 @@
 														value="${loginUser.password}"
 														class="full-width"
 											/><br>
-											<%-- Fehlermeldung für den Login --%>
-											<sf:errors path="password" cssClass="error"/><br>
+											<%-- Fehlermeldung für den Login (eine gemeinsame für beide Felder) --%>
+											<sf:errors path="*" cssClass="error"/><br>
+											
 											<%-- Buttons --%>
 											<%-- <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/> Eingeloggt bleiben<br> --%>
 											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Anmelden</button>
@@ -60,6 +61,7 @@
 				<security:authorize access="isAuthenticated()">
 					<p>Du bist bereits angemeldet.</p>
 				</security:authorize>
+				
 			</div>
 		</div>
 		</div>

@@ -51,7 +51,7 @@ public class DataErrorsLogin extends AbstractDataErrors {
 	private void validateUsername(String username, BindingResult bindingResult) {
 		// Der Username darf nicht leer oder schon vergeben sein
 		if (this.isEmpty(username) || !this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
-			bindingResult.rejectValue("username", "error.login.username");
+			bindingResult.rejectValue("username", "error.login.missmatch");
 		}
 	}
 	
@@ -62,10 +62,15 @@ public class DataErrorsLogin extends AbstractDataErrors {
 	 * @param 	bindingResult	BindingResult	zum Anfügen von Fehlern
 	 */
 	private void validatePassword(User user, BindingResult bindingResult) {
-		// Das Passwort muss dem der Datenbank entsprechen
 		ArrayList<User> dbUser = this.dataAccessUsers.getUserData(user.getUsername());
-		if(this.isEmpty(user.getPassword()) ||!areSame(dbUser.get(0).getPassword(), user.getPassword())) {
-			bindingResult.rejectValue("password", "error.login.password");
+		// Nur prüfen, wenn noch kein Fehler vorliegt, damit die Fehlermeldung nur einmal
+		// angehängt wird
+		if(!bindingResult.hasErrors()) {
+			// Das Passwort muss dem der Datenbank entsprechen
+			if(	this.isEmpty(user.getPassword()) 
+				||!areSame(dbUser.get(0).getPassword(), user.getPassword())) {
+					bindingResult.rejectValue("password", "error.login.missmatch");
+			}
 		}
 	}
 }

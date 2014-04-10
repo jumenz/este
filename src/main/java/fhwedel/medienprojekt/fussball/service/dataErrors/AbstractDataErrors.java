@@ -164,7 +164,6 @@ public abstract class AbstractDataErrors {
 		params.put("value", value);
 		SqlRowSet res = this.namedParameterJdbcTemplate.queryForRowSet(SQL_SELECT_STRING, params);
 		
-		// first() liefert true, falls es eine valide erste Reihe gibt, sonst false
 		return res.first();
 	}
 }
