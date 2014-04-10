@@ -25,7 +25,7 @@
 	position: fixed;
 	left: 0px;
 	top: 35%;
-	background-image: url("../data/buttons/button-home-galery.png");
+	background-image: url("../data/buttons/button-galery-back.png");
 	background-size: 100%;
 	background-repeat: no-repeat;
 	height: 100%;
@@ -77,8 +77,8 @@
 	}
 	.galery-close {
 		width: 100%;
-		height: 30px;
+		height: 60px;
 		top: 0;
-		background-image: url("../data/buttons/button-home.galery-h.png");
+		background-image: url("../data/buttons/button-galery-back-h.png");
 	}
 }
