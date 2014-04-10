@@ -28,6 +28,10 @@
                              		 ectype mutipart/form-data:	Jedes Feld wird als einzelner Teil des POST Request behandelt,
                              		 							nicht nur als Name-Wert-Paar
                              	--%>
+								<p>
+									Du kannst hier nur JPG oder PNG Dateien hochladen.<br>
+									Bitte komprimiere die Bilder vor dem Upload auf eine geringere Auflösung, um lange Ladezeiten zu verhindern.
+								</p>
 								<form 	action="${linkGaleryUpload}"
 										method="POST"
 										enctype="multipart/form-data">

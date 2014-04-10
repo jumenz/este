@@ -34,7 +34,7 @@
 														placeholder="Username"
 														value="${loginUser.username}"
 														class="full-width"
-											/><br>
+											/><br><br>
 											<%-- Passwort --%>
 											<sf:input	path="password" 
 														type="password"
@@ -43,12 +43,18 @@
 														class="full-width"
 											/><br>
 											<%-- Fehlermeldung für den Login (eine gemeinsame für beide Felder) --%>
-											<sf:errors path="*" cssClass="error"/><br>
+											<sf:errors path="*" cssClass="error"/><br><br>
 											
 											<%-- Buttons --%>
 											<%-- <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/> Eingeloggt bleiben<br> --%>
-											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Anmelden</button>
-											<button name="reset" type="reset" class="dark-bg"><div class="forward-raquo menu-link right"></div>Abbrechen</button>
+											<button name="commit" type="submit" class="dark-bg">
+												<div class="forward-raquo menu-link right"></div>
+												Anmelden
+											</button>
+											<button name="reset" type="reset" class="dark-bg">
+												<div class="forward-raquo menu-link right"></div>
+												Abbrechen
+											</button>
 										</fieldset>
 									</sf:form>
 	                             </div>
