@@ -18,11 +18,13 @@
 			<div id="..." class="content-list">
 				<%-- three col view --%>
 				<ul>
+				
+					<%-- Über uns --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Über Uns</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-aboutus.jpg" />
+								<img src="${dataPath}/images/img-aboutus.jpg" alt="ueber-uns-este"/>
 							</div>
 							<div class="box-body">
 								<p>Erfahre mehr über Este 06/70.</p>
@@ -33,11 +35,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Bildergalerie --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Galerie</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-galery.jpg" />
+								<img src="${dataPath}/images/img-galery.jpg" alt="este-damen-bildergalerie"/>
 							</div>
 							<div class="box-body">
 								<p>Weitere Impressionen.</p>
@@ -48,11 +52,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Kontakt --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Kontakt</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-contact.jpg" />
+								<img src="${dataPath}/images/img-contact.jpg" alt="este-damen-kontakt"/>
 							</div>
 							<div class="box-body">
 								<p>Du hast noch Fragen oder Anliegen?</p>
@@ -63,11 +69,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Links --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Links</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-links.jpg" />
+								<img src="${dataPath}/images/img-links.jpg" alt="este-damen-links"/>
 							</div>
 							<div class="box-body">
 								<p>Weitere Informationen findest du hier!</p>
@@ -78,11 +86,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Spielberichte --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Spielberichte</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-reports.jpg" />
+								<img src="${dataPath}/images/img-reports.jpg" alt="este-damen-spielberichte"/>
 							</div>
 							<div class="box-body">
 								<p>Texte zu den vergangenen Spielen.</p>
@@ -93,11 +103,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Registrierung --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Registrierung</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-register.jpg" />
+								<img src="${dataPath}/images/img-register.jpg" alt="este-damen-registrierung"/>
 							</div>
 							<div class="box-body">
 								<p>Melde dich hier an.</p>

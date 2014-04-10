@@ -18,11 +18,13 @@
 					
 				<%-- three col view --%>
 				<ul>
+				
+					<%-- Adressbuch --%>
 					<li class="three-col ">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Adressbuch</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-addresses.jpg" />
+								<img src="${dataPath}/images/img-addresses.jpg" alt="este-damen-adressbuch"/>
 							</div>
 							<div class="box-body">
 								<p>Adressen aller Spielerinnen und Trainer.</p>
@@ -33,11 +35,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Terminplaner --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Terminplaner</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-calendar.jpg" />
+								<img src="${dataPath}/images/img-calendar.jpg" alt="este-damen-terminplaner"/>
 							</div>
 							<div class="box-body">
 								<p>Terminplaner der Mannschaft.</p>
@@ -48,11 +52,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Forum --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Forum</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-forum.jpg" />
+								<img src="${dataPath}/images/img-forum.jpg" alt="este-damen-forum"/>
 							</div>
 							<div class="box-body">
 								<p>Hier geht es zum Forum.</p>
@@ -63,11 +69,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Dokumente --%>
 					<li class="three-col ">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Dokumente</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-documents.jpg" />
+								<img src="${dataPath}/images/img-documents.jpg" alt="este-damen-dokumente"/>
 							</div>
 							<div class="box-body">
 								<p>Download wichtiger Dateien.</p>
@@ -78,11 +86,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Spielberichte --%>
 					<li class="three-col ">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Spielberichte</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-reports.jpg" />
+								<img src="${dataPath}/images/img-reports.jpg" alt="este-damen-spielberichte"/>
 							</div>
 							<div class="box-body">
 								<p>Texte zu den vergangenen Spielen.</p>
@@ -93,11 +103,13 @@
 							</a>
 						</div>
 					</li>
+					
+					<%-- Links --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Links</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-links.jpg" />
+								<img src="${dataPath}/images/img-links.jpg" alt="este-damen-links"/>
 							</div>
 							<div class="box-body">
 								<p>Shortcuts zu den wichtigsten, für alle sichtbaren Seiten.</p>
@@ -108,6 +120,7 @@
 						</div>
 					</li>
 				</ul>
+				
 				<%-- end three col view --%>
 			</div>
 		</div>

@@ -56,7 +56,7 @@
 						<div class="main-content-box box-borders bg clearfix">
 							<h2 class="box-title">Begegnungen</h2>
 							<div class="box-head">
-								<img src="${dataPath}/images/img-fussball-de.jpg" />
+								<img src="${dataPath}/images/img-fussball-de.jpg" alt="fussball-de-logo" />
 							</div>
 							<div class="box-body">
 								<p>Hier erfährst du genaueres über die Begegnungen.</p>
