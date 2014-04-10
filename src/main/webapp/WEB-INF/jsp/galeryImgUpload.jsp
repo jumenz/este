@@ -32,8 +32,9 @@
 										method="POST"
 										enctype="multipart/form-data">
 									Bild hochladen:
-									<input name="image" type="file"/><br>
-									<input type="submit" value="Hochladen"/>
+									<input name="image" type="file"/>
+									<br><br>
+									<button type="submit" value="Hochladen" class="dark-bg"><div class="forward-raquo menu-link right"></div>Hochladen</button>
 								</form>
 								<%-- Ende Formular --%>
                              </div>
