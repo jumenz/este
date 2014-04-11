@@ -60,7 +60,7 @@ public class ForumController {
 	 */
 	private String prepareForumView(Page<ForumEntry> page, Model model) {
 		// Kommentare laden, mit Foreneintrag zugreifbar machen und anzeigen
-		this.dataAccessComments.getAllComments(page.getPageItems());
+		this.dataAccessComments.getAllCommentsForForumEntries(page.getPageItems());
 		model.addAttribute("forumEntryPage", page);
 		model.addAttribute("newComment", new Comment());
 		

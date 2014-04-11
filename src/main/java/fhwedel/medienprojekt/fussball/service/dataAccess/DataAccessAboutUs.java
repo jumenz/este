@@ -21,7 +21,7 @@ import fhwedel.medienprojekt.fussball.model.statics.AboutUsContent;
  * @author Ellen Schwartau Minf9888
  *
  */
-public class DataAccessAboutUs extends AbstractDataAccess {
+public class DataAccessAboutUs extends AbstractDataAccess<AboutUsContent> {
 	/* ----------------------- Klassenvariablen --------------------------------- */
 	/**
 	 * Mapper

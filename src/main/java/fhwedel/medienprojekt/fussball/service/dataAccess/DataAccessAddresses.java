@@ -21,7 +21,7 @@ import fhwedel.medienprojekt.fussball.model.user.addresses.Address;
  * @author Julia
  *
  */
-public class DataAccessAddresses extends AbstractDataAccess {
+public class DataAccessAddresses extends AbstractDataAccess<Address> {
 	
 	/* ----------------------- Klassenvariablen --------------------------------- */
 	/**
@@ -158,14 +158,6 @@ public class DataAccessAddresses extends AbstractDataAccess {
 	 * @param 	id	int		ID der Adresse
 	 */
 	public void delete(int id) {
-		final String SQL_DELETE_ADDRESS = 
-				"DELETE FROM " + Constants.dbAddresses + " WHERE "
-				+ Constants.dbAddressesId + "=:id";
-		
-		// ID setzen
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		// löschen
-		this.namedParameterJdbcTemplate.update(SQL_DELETE_ADDRESS, params);
+		this.deleteById(id, Constants.dbAddresses);
 	}
 }

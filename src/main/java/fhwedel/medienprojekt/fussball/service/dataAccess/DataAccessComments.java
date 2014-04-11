@@ -29,10 +29,10 @@ import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
  * Ermöglich beispielsweise das Updaten bestehender, einfügen neuer
  * oder auslesen von Informationen über bestehende Foreneinträge.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
-public class DataAccessComments extends AbstractDataAccess {
+public class DataAccessComments extends AbstractDataAccessPost<Comment> {
 	/* ----------------------- Klassenvariablen --------------------------------- */
 	/**
 	 * Comment Mapper
@@ -107,25 +107,20 @@ public class DataAccessComments extends AbstractDataAccess {
 	 * @param 	id	 int	Id des Kommentars
 	 */
 	public void deleteComment(int id) {
-		final String SQL_DELETE_REPORT_BY_ID = 
-				"DELETE FROM " + Constants.dbComments 
-				+ " WHERE " 
-				+ Constants.dbCommentsId + "=:id";
-		
-		// ID setzen
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		// löschen
-		this.namedParameterJdbcTemplate.update(SQL_DELETE_REPORT_BY_ID, params);
+		this.deleteById(id, Constants.dbComments);
 	}
 	
 	/* ------------------------- Auslesen ------------------------------------- */
+	public ArrayList<Comment> getAll() {
+		return this.getAll(Constants.dbComments, this.commentMapper);
+	}
+	
 	/**
 	 * Liest zu einer Liste von Foreneinträgen die Kommentare aus 
 	 * und fügt die den Foreneinträgen an.
 	 * @param 	list	Liste an Foreneinträgen
 	 */
-	public void getAllComments(ArrayList<ForumEntry> list) {
+	public void getAllCommentsForForumEntries(ArrayList<ForumEntry> list) {
 		// Kommentarliste laden
 		for (int j=0; j<list.size(); j++) {
 			Integer id = list.get(j).getId();

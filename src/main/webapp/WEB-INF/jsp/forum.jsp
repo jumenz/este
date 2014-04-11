@@ -16,6 +16,7 @@
         <div class="main">
         <div class="main-inner">
         	<%-- sidebar --%>
+        	<%-- Admin-Sidebar --%>
         	<security:authorize access="hasRole('USER_GROUP_ADMIN')">
 				<jsp:include page="./includes/sidebar.jsp">
 					<jsp:param name="sidebarTitle" value="Forum"/>
@@ -27,6 +28,7 @@
 					<jsp:param name="ref" value="${linkForumNewEntry}"/>
 				</jsp:include>
 			</security:authorize>
+			<%-- Sidebar No-Admin --%>
 			<security:authorize access="hasRole('USER_GROUP_NO_ADMIN')">
 			<jsp:include page="./includes/sidebar.jsp">
 				<jsp:param name="sidebarTitle" value="Forum"/>

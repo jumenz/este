@@ -7,22 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-
-
-
-
-
-
-
-
-
 import fhwedel.medienprojekt.fussball.model.pagination.Page;
-import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 
@@ -32,7 +20,7 @@ import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
  * Ermöglich beispielsweise das Updaten bestehender, einfügen neuer
  * oder auslesen von Informationen über bestehende Foreneinträge.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
 public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
@@ -140,15 +128,11 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	/* ------------------------ Löschen -------------------------------------- */
 	/**
 	 * Löscht einen Foreneintrag ausgehend von seiner id.
-	 * @param 	id	int		ID des Spielberichts
+	 * @param 	id	int		ID des Foreneintrags
 	 */
 	public void deleteById(int id) {
-		final String SQL_DELETE_FORUM_ENTRY_BY_ID = "DELETE FROM " + Constants.dbForum + " WHERE id=:id";
-		// ID setzen
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		// löschen
-		this.namedParameterJdbcTemplate.update(SQL_DELETE_FORUM_ENTRY_BY_ID, params);
+		// Löschen
+		this.deleteById(id, Constants.dbForum);
 	}
 	
 	/* ------------------------- Auslesen ------------------------------------- */
@@ -158,15 +142,7 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 * @return ArrayList<ForumEntry>	Liste aller Foreneinträge
 	 */
 	public ArrayList<ForumEntry> getAll() {
-		// Alle Foren-Einträge nach Datum sortiert auslesen (neueste zuerst)
-		final String SQL_ALL_FORUM_ENTRIES = "SELECT * FROM " + Constants.dbForum + " ORDER BY date DESC";
-		// Foreneinträge laden
-		ArrayList<ForumEntry> list = 
-				(ArrayList<ForumEntry>) namedParameterJdbcTemplate.query(
-					SQL_ALL_FORUM_ENTRIES,
-					this.forumEntryMapper
-				);
-		return list;
+		return this.getAll(Constants.dbForum, this.forumEntryMapper);
 	}
 	
 	/**
@@ -178,44 +154,14 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	public Page<ForumEntry> getPage(int currPage, int pageSize) {
 		return this.fetchPage(Constants.dbForum, currPage, pageSize, this.forumEntryMapper);
 	}
-	
-	/**
-	 * Liefert die ID eines Foreneintrags
-	 * @param entry
-	 * @return
-	 */
-	public int getId(ForumEntry entry) {
-		/* SQL Abfrage für Id, ausgehend von Date_Time und Author */
-		final String SQL_QUERY_GET_ID =
-				"SELECT id FROM " + Constants.dbForum + " WHERE (date = :date) AND (author = :author)";
-		/* Name-Wert Paare für Abfrage festlegen */
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("author", entry.getAuthor());
-		params.put("date", entry.getDate());
-		/* id auslesen */
-		return this.namedParameterJdbcTemplate.queryForInt(SQL_QUERY_GET_ID, params);
-	}
-	
+		
 	/**
 	 * Liefert einen ForenEintrag ausgehend von seiner id.
 	 * @param  id	id des gesuchten Eintrags
 	 * @return ForumEntry
 	 */
 	public ForumEntry getById(int id) {
-		// SQL
-		final String SQL_SELECT_FORUM_ENTRY_BY_ID = 
-				"SELECT * FROM " + Constants.dbForum + " WHERE (id = :id)";
-		// Parameter zuweisen
-		SqlParameterSource namedParameters = 
-				new MapSqlParameterSource("id", Integer.valueOf(id));
-		// SQL Abfrage ausführen und Ergebnis auf einen Foren-Eintrag mappen
-		return (ForumEntry) namedParameterJdbcTemplate.queryForObject(
-								// SQL Abfrage
-								SQL_SELECT_FORUM_ENTRY_BY_ID,
-								// Parameter
-								namedParameters,
-								this.forumEntryMapper
-							);
+		return this.getById(id, Constants.dbForum, this.forumEntryMapper);
 	}
 	
 }

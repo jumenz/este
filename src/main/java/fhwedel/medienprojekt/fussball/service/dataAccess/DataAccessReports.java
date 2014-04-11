@@ -7,23 +7,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-
-
-
-
-
-
 import fhwedel.medienprojekt.fussball.model.pagination.Page;
-import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
-import fhwedel.medienprojekt.fussball.model.post.report.Scores;
 
+/**
+ * Service
+ * Service für die Datenbankarbeit der Spielberichte.
+ * Ermöglich beispielsweise das Updaten bestehender, einfügen neuer
+ * oder auslesen von Informationen über bestehende Spielberichte.
+ * 
+ * @author Ellen Schwartau Minf9888
+ *
+ */
 public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	/* ---------------------- Klassenvariablen ------------------------------ */
 	/** Row Mapper */
@@ -148,14 +147,7 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	 * @param 	id	int		ID des Spielberichts
 	 */
 	public void deleteById(int id) {
-		final String SQL_DELETE_REPORT_BY_ID = 
-				"DELETE FROM " + Constants.dbReports + " WHERE " + Constants.dbReportsId + " = :id";
-		
-		// ID setzen
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		// löschen
-		this.namedParameterJdbcTemplate.update(SQL_DELETE_REPORT_BY_ID, params);
+		this.deleteById(id, Constants.dbReports);
 	}
 	
 	/* ----------------------- Auslesen --------------------------------- */
@@ -165,19 +157,7 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	 * @return ForumEntry
 	 */
 	public Report getById(int id) {
-		final String SQL_SELECT_REPORT_BY_ID = 
-				"SELECT * FROM " + Constants.dbReports + " WHERE " + Constants.dbReportsId + " = :id";
-		
-		// Parameter zuweisen
-		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(id));
-		// SQL Abfrage ausführen und Ergebnis auf einen Foren-Eintrag mappen
-		return (Report) namedParameterJdbcTemplate.queryForObject(
-								// SQL Abfrage
-								SQL_SELECT_REPORT_BY_ID,
-								// Parameter
-								namedParameters,
-								this.reportRowMapper
-							);
+		return this.getById(id, Constants.dbReports, this.reportRowMapper);
 	}
 	
 	/**
@@ -185,14 +165,7 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	 * @return ArrayList<Report>
 	 */
 	public ArrayList<Report> getAll() {
-		final String SQL_SELECT_ALL_REPORTS = 
-				"SELECT * FROM " + Constants.dbReports + " ORDER BY date DESC";
-		
-		// Alle Einträge auslesen
-		return (ArrayList<Report>) namedParameterJdbcTemplate.query(
-				SQL_SELECT_ALL_REPORTS,
-				this.reportRowMapper
-			);
+		return this.getAll(Constants.dbReports, this.reportRowMapper);
 	}
 	
 	/**

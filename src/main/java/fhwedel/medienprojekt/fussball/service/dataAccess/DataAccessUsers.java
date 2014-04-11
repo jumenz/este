@@ -6,20 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-
-
-
-import org.springframework.validation.BindingResult;
-
 
 /** eigene Klassen */
-import fhwedel.medienprojekt.fussball.model.user.Permission;
 import fhwedel.medienprojekt.fussball.model.user.User;
 import fhwedel.medienprojekt.fussball.model.user.UserGroup;
 
@@ -32,7 +22,7 @@ import fhwedel.medienprojekt.fussball.model.user.UserGroup;
  * @author Ellen Schwartau Minf9888
  *
  */
-public class DataAccessUsers extends AbstractDataAccess {
+public class DataAccessUsers extends AbstractDataAccess<User> {
 	/* ----------------------- Klassenvariablen --------------------------------- */
 	/**
 	 * User Mapper
@@ -158,7 +148,6 @@ public class DataAccessUsers extends AbstractDataAccess {
 	 * @return	UserGroup
 	 */
 	public UserGroup getUserGroup(String username, String password) {
-		// TODO nur über Usernamen?
 		/* Userdaten auslesen, und sichergehen, dass nur ein Element gefunden */
 		ArrayList<User> userData = this.getUserData(username);
 		assert (userData.size()==1): "Mehrere User mit diesen Zugangsdaten vorhanden.";
@@ -172,21 +161,7 @@ public class DataAccessUsers extends AbstractDataAccess {
 	 * @return	User			ausgelesener User
 	 */
 	private User getUserById(int id) {
-		final String SQL_SELECT_USER_BY_ID = 
-				"SELECT * FROM " + Constants.dbUsers 
-				+ " WHERE ("
-				+ Constants.dbUsersId + " = :id)";
-		/* Name-Wert Paare für Abfrage festlegen */
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		/* User auslesen */
-		ArrayList<User> res 
-			= (ArrayList<User>) this.namedParameterJdbcTemplate.query(
-									SQL_SELECT_USER_BY_ID, 
-									params, 
-									this.userMapper
-								);
-		return (res.isEmpty()) ? null : res.get(0);
+		return this.getById(id, Constants.dbUsers, this.userMapper);
 	}
 		
 	/**
@@ -226,14 +201,6 @@ public class DataAccessUsers extends AbstractDataAccess {
 	 * @param 	id	int		ID des Users
 	 */
 	public void delete(int id) {
-		final String SQL_DELETE_USER = 
-				"DELETE FROM " + Constants.dbUsers + " WHERE "
-				+ Constants.dbUsersId + "=:id";
-		
-		// ID setzen
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		// löschen
-		this.namedParameterJdbcTemplate.update(SQL_DELETE_USER, params);
+		this.deleteById(id, Constants.dbUsers);
 	}
 }

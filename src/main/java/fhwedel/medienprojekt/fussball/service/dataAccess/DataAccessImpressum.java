@@ -20,7 +20,7 @@ import fhwedel.medienprojekt.fussball.model.statics.ImpressumContent;
  * @author Ellen Schwartau Minf9888
  *
  */
-public class DataAccessImpressum extends AbstractDataAccess {
+public class DataAccessImpressum extends AbstractDataAccess<ImpressumContent> {
 	/* ----------------------- Klassenvariablen --------------------------------- */
 	/**
 	 * Mapper

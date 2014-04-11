@@ -20,10 +20,10 @@ import fhwedel.medienprojekt.fussball.model.user.User;
  * Ermöglich beispielsweise das Updaten bestehender, einfügen neuer
  * oder auslesen von Informationen über bestehende User.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
-public class DataAccessPermissions extends AbstractDataAccess {
+public class DataAccessPermissions extends AbstractDataAccess<Permission> {
 	/* ----------------------- Klassenvariablen --------------------------------- */
 	/**
 	 * Permission Mapper
@@ -74,7 +74,6 @@ public class DataAccessPermissions extends AbstractDataAccess {
 				+ Constants.dbPermissionsAdminState
 				+ ") VALUES (:email, :admin_state)";
 
-		// TODO Verschlüsselung
 		/* Werte Namen zuweisen */
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("email", permission.getEmail());
@@ -152,19 +151,7 @@ public class DataAccessPermissions extends AbstractDataAccess {
 	 * @return	Permission
 	 */
 	public Permission getPermissionById(int id) {
-		final String SQL_SELECT_PERMISSION_BY_ID = 
-				"SELECT * FROM " + Constants.dbPermissions 
-				+  " WHERE ("
-				+ Constants.dbPermissionsId
-				+ "= :id)";
-		/* Name-Wert Paare für Abfrage festlegen */
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		
-		/* Auslesen und prüfen, dass genau ein Ergebnis vorliegt */
-		ArrayList<Permission> res = (ArrayList<Permission>) this.namedParameterJdbcTemplate.query(SQL_SELECT_PERMISSION_BY_ID, params, this.permissionMapper);
-		
-		return (res.isEmpty()) ? null : res.get(0);
+		return this.getById(id, Constants.dbPermissions, this.permissionMapper);
 	}
 	
 	/**
@@ -172,14 +159,7 @@ public class DataAccessPermissions extends AbstractDataAccess {
 	 * @return ArrayList<Permission>	Liste aller Permissions
 	 */
 	public ArrayList<Permission> getAll() {
-		// Alle Permissions aus Datenbank auslesen
-		final String SQL_SELECT_ALL_PERMISSIONS = 
-				"SELECT * FROM " + Constants.dbPermissions;
-		
-		return (ArrayList<Permission>) namedParameterJdbcTemplate.query(
-				SQL_SELECT_ALL_PERMISSIONS,
-				this.permissionMapper
-			);
+		return this.getAll(Constants.dbPermissions, this.permissionMapper);
 	}
 	
 	/* ---------------- Bearbeiten ------------------------ */
@@ -237,14 +217,6 @@ public class DataAccessPermissions extends AbstractDataAccess {
 	 * @param 	id	id der Erlaubnis, die gelöscht werden soll
 	 */
 	public void remove(int id) {
-		final String SQL_DELETE_PERMISSION = 
-				"DELETE FROM " + Constants.dbPermissions 
-				+ " WHERE ("
-				+ Constants.dbPermissionsId
-				+ " = :id)";
-		/* Werte Namen zuweisen */
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("id", id);
-		namedParameterJdbcTemplate.update(SQL_DELETE_PERMISSION, params);
+		this.deleteById(id, Constants.dbPermissions);
 	}
 }
