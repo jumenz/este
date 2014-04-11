@@ -83,6 +83,12 @@
 	</bean>
 	
 	<!-- Fehlerbehandlungen -->
+	<bean id="DataErrorsReports" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsReports"/>
+	<bean id="DataErrorsForum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsForum"/>
+	<bean id="DataErrorsComments" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsComments"/>
+	<bean id="DataErrorsAboutUs" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAboutUs"/>
+	<bean id="DataErrorsImpressum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsImpressum"/>
+	<bean id="DataErrorsAddresses" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAddresses"/>
 	<bean id="DataErrorsUsers" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
@@ -90,24 +96,6 @@
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
 	<bean id="DataErrorsLogin" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsLogin">
-		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-	</bean>
-	<bean id="DataErrorsReports" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsReports">
-		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-	</bean>
-	<bean id="DataErrorsForum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsForum">
-		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-	</bean>
-	<bean id="DataErrorsComments" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsComments">
-		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-	</bean>
-	<bean id="DataErrorsAboutUs" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAboutUs">
-		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-	</bean>
-	<bean id="DataErrorsImpressum" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsImpressum">
-		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-	</bean>
-	<bean id="DataErrorsAddresses" class="fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAddresses">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
 	</bean>
 	

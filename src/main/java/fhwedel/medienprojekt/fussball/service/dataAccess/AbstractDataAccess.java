@@ -4,6 +4,8 @@ package fhwedel.medienprojekt.fussball.service.dataAccess;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -64,13 +66,17 @@ public abstract class AbstractDataAccess<E> {
 		// Parameter zuweisen
 		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(id));
 		// SQL Abfrage ausführen und Ergebnis auf einen Post-Eintrag mappen
-		return (E) namedParameterJdbcTemplate.queryForObject(
-								// SQL Abfrage
-								SQL_SELECT_BY_ID,
-								// Parameter
-								namedParameters,
-								rowMapper
-							);
+		try {
+			return (E) namedParameterJdbcTemplate.queryForObject(
+									// SQL Abfrage
+									SQL_SELECT_BY_ID,
+									// Parameter
+									namedParameters,
+									rowMapper
+								);
+		} catch (DataAccessException e) {
+			return null;
+		}
 	}
 	
 	/**

@@ -14,7 +14,7 @@ import fhwedel.medienprojekt.fussball.model.user.Permission;
  * @author Ellen Schwartau Minf9888
  *
  */
-public class DataErrorsPermissions extends AbstractDataErrors {
+public class DataErrorsPermissions extends AbstractDataErrorsDBHelper {
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
 	/**
 	 * Default-Konstruktor.

@@ -14,7 +14,7 @@ import fhwedel.medienprojekt.fussball.model.user.User;
  * @author Ellen Schwartau Minf9888
  *
  */
-public class DataErrorsUsers extends AbstractDataErrors {
+public class DataErrorsUsers extends AbstractDataErrorsDBHelper {
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
 	/**
 	 * Default-Konstruktor.

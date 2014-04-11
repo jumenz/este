@@ -17,7 +17,7 @@ import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
  * @author Ellen Schwartau Minf9888
  *
  */
-public class DataErrorsLogin extends AbstractDataErrors {
+public class DataErrorsLogin extends AbstractDataErrorsDBHelper {
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
 	/** Datenbankanbindung */
 	@Autowired
