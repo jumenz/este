@@ -84,7 +84,6 @@
 											<%-- E-Mail Adresse --%>
 											<sf:input 	path="email"
 														placeholder="E-Mail Adresse"
-														value="E-Mail Adresse"
 														class="full-width"
 											/><br>
 											<%-- Admin Status --%>
@@ -106,19 +105,33 @@
 	                         <div class="main-content-box box-borders bg clearfix">
 	                             <h2 class="box-title">Bisher zugelassene EMails</h2>
 	                             <div class="box-body">
-									<c:forEach var="permission" items="${allPermissions}" varStatus="status">
-										<sf:form style="display: inline-block" action="${linkRegister}loeschen-${permission.id}/">
-											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Löschen</button>
-										</sf:form>
-										<sf:form style="display: inline-block" action="${linkRegister}status-${permission.id}/" method="get">
-											<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Status ändern</button>
-										</sf:form>
-										${permission.email}     
-										Status: 
-										<c:if test="${permission.adminStatus}"> Admin</c:if>
-										<c:if test="${!permission.adminStatus}"> kein Admin</c:if>
-										<br>
-									</c:forEach>
+	                             	<table class="permission-overview">
+										<c:forEach var="permission" items="${allPermissions}" varStatus="status">
+											<tr>
+												<td>
+													<%-- Email Adresse --%>
+													${permission.email}
+												</td>
+												<td>
+													<%-- Schaltflächen --%>
+													<sf:form style="display: inline-block" action="${linkRegister}loeschen-${permission.id}/">
+														<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Löschen</button>
+													</sf:form>
+												</td>
+												<td>
+													<%-- Status --%>
+													<strong>Status:</strong>
+													<c:if test="${permission.adminStatus}"> Admin</c:if>
+													<c:if test="${!permission.adminStatus}"> kein Admin</c:if>
+												</td>
+												<td>
+													<sf:form style="display: inline-block" action="${linkRegister}status-${permission.id}/" method="get">
+														<button name="commit" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Status ändern</button>
+													</sf:form>
+												</td>
+											</tr>
+										</c:forEach>
+									</table>
 	                             </div>
 	                         </div>
 	                     </li>
