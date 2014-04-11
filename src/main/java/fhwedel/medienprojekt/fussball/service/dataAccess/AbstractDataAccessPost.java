@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import fhwedel.medienprojekt.fussball.model.pagination.Page;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.Post;
+import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
 
 /**
  * Abstralte Service Klasse
@@ -22,7 +23,7 @@ import fhwedel.medienprojekt.fussball.model.post.Post;
  */
 public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDataAccess {
 	
-	/* ---------------------------- Datenbankarbeit ----------------------------------- */
+	/* ---------------------------- Datenbankarbeit --------------------------- */
 	/* ------------------------- Auslesen ------------------------------------- */
 	/**
 	 * Liest alle Foreneinträge aus der Datenbank aus.
@@ -95,6 +96,55 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 		return res;
 	}
 	
+	/* ---------------- Seitenansicht --------------------------------- */
+	
+	/**
+	 * Manuelle Erstellung einer Seite.
+	 * @param 	pageNumber	int				Aktuell angezeigte Seite
+	 * @param 	prevPage	int				vorherige Seite
+	 * @param 	nextPage	int				folgende Seite
+	 * @param 	items		ArrayList<E>	Einträge
+	 * @return	page		Page			Erstellte Seite
+	 */
+	public Page<E> setPage(int pageNumber, int prevPage, int nextPage, ArrayList<E> items) {
+		Page<E> page = new Page<E>();
+		page.setPageItems(items);
+		page.setPageNumber(1);
+		page.setPagesAvailable(1);
+		
+		return page;
+	}
+	
+	/**
+	 * Initialisiert eine Page.
+	 * Berechnet die benötigten Seitenzahlen.
+	 * @param 	db			String	Name der Datenbank
+	 * @param 	pageNo		int		Nummer der Seite
+	 * @param 	pageSize	int		Anzahl an Einträgen pro Seite
+	 * @return	page		Page	initialisierte Seite
+	 */
+	private Page<E> initPage(String db, final int pageNo, final int pageSize) {
+		final Page<E> page = new Page<E>();
+		final String SQL_COUNT_ROWS = "SELECT count(*) FROM " + db;
+		
+		// Anzahl der Einträge berechnen
+        final int rowCount = namedParameterJdbcTemplate.queryForInt(SQL_COUNT_ROWS, new HashMap<String, Object>());
+        
+		// Seitenzahlen berechnen
+        int pageCount = rowCount / pageSize;
+        if (rowCount > pageSize * pageCount) {
+            pageCount++;
+        }
+
+        // initialisieren
+        page.setPageNumber(pageNo);
+        page.setPagesAvailable(pageCount);
+        // vorherige und nächste Seitenzahl berechnen
+        page.initPagination();
+        
+        return page;
+	}
+	
 	/**
 	 * Selektiert eine Seitenansicht aus Posts.
 	 * @param db			String		Name der Datenbank
@@ -104,24 +154,11 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 	 * @return	page		Page		Seite mit Einträgen
 	 */
     public Page<E> fetchPage(final String db, final int pageNo, final int pageSize, final ParameterizedRowMapper<E> rowMapper) {
-    	// SQL Anweisungen
-    	final String SQL_COUNT_ROWS = "SELECT count(*) FROM " + db;
     	final String SQL_FETCH_ROWS = "SELECT * FROM " + db + " ORDER BY date DESC LIMIT :start, :end";
-    	Map<String,Object> params = new HashMap<String, Object>();
-    	
-        // Anzahl der Einträge herausfinden
-        final int rowCount = namedParameterJdbcTemplate.queryForInt(SQL_COUNT_ROWS, params);
+        Map<String,Object> params = new HashMap<String, Object>();
 
-        // Seitenzahlen berechnen
-        int pageCount = rowCount / pageSize;
-        if (rowCount > pageSize * pageCount) {
-            pageCount++;
-        }
-
-        // Page Object erstellen
-        final Page<E> page = new Page<E>();
-        page.setPageNumber(pageNo);
-        page.setPagesAvailable(pageCount);
+        // Seitenzahlen initialisieren
+        Page<E> page = this.initPage(db, pageNo, pageSize);
         // Start- und Endreihe berechnen
         final int startRow = (pageNo - 1) * pageSize;
         final int endRow = startRow + pageSize;
@@ -129,11 +166,9 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
         params.put("end", endRow);
         
         // Liste auslesen und setzen
-        ArrayList<E> res = (ArrayList<E>) namedParameterJdbcTemplate.query(SQL_FETCH_ROWS, params, rowMapper);
-        page.setPageItems(res);
-        
-        // vorherige und nächste Seitenzahl berechnen
-        page.initPagination();
+        page.setPageItems(
+        		(ArrayList<E>) namedParameterJdbcTemplate.query(SQL_FETCH_ROWS, params, rowMapper)
+        	);
         
         return page;
     }

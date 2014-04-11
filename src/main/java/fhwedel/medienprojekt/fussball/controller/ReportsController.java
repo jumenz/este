@@ -1,6 +1,7 @@
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,38 @@ public class ReportsController {
 	/** Anzahl der Spielberichte pro Seite */
 	final int reportsPerPage = 10;
 	
-	/* --------------------- Anzeige -------------------------------- */
+	/* --------------------- Methoden ------------------------------ */
+	/* --------------------- Hilfsfunktionen ----------------------- */
+	/**
+	 * Hilfsfunktion
+	 * Bereitet die Anzeige der Spielberichte vor.
+	 * @param 	model	Model
+	 * @param 	page	Page	Seite mit Spielberichten
+	 * @return	String	Viewname der Spielberichte
+	 */
+	private String prepareDisplayReports(Model model, Page<Report> page) {
+		// In jsp zugreifbar machen
+		model.addAttribute("reportPage", page);
+		return Constants.viewNameReports;
+	}
+	
+	/**
+	 * Hilfsfunktion
+	 * Bereitet das Bearbeiten oder neu Erstellen eines
+	 * Spielberichts vor.
+	 * @param 	model	Model
+	 * @param 	report	Report	Spielbericht
+	 * @return	String	Viewname des Bearbeitungsformulars
+	 */
+	private String prepareEditReport(Model model, Report report) {
+		// neues Report Objekt in jsp zugreifbar machen
+		model.addAttribute("report", report);
+		// jsp zum Erstellen eines neuen Berichts laden
+		return Constants.viewNameReportsEdit;
+	}
+	
+	/* --------------- Anzeigen -------------------------------------- */
+	
 	/**
 	 * Lädt die Spielberichte Seite
 	 * @param	model	Model
@@ -45,11 +77,8 @@ public class ReportsController {
 	 */
 	@RequestMapping(value=Constants.linkReports, method=RequestMethod.GET)
 	public String displayReports(Model model) {
-		Page<Report> page = this.dataAccess.getPage(1, this.reportsPerPage);
-		
-		// In jsp zugreifbar machen
-		model.addAttribute("reportPage", page);
-		return Constants.viewNameReports;
+		// erste Seite laden
+		return this.prepareDisplayReports(model, this.dataAccess.getPage(1, this.reportsPerPage));
 	}
 	
 	/**
@@ -59,29 +88,21 @@ public class ReportsController {
 	 */
 	@RequestMapping(value=Constants.linkReportsPage, method=RequestMethod.GET)
 	public String displayForum(@PathVariable("page") int showPage, Model model) {
-		// Erste Seite laden
-		Page<Report> page = this.dataAccess.getPage(showPage, this.reportsPerPage);
-		// In jsp zugreifbar machen
-		model.addAttribute("reportPage", page);
-		return Constants.viewNameReports;
+		// gewünschte Seite laden
+		return this.prepareDisplayReports(model, this.dataAccess.getPage(showPage, this.reportsPerPage));
 	}
 	
 	/**
-	 * Liefert Spielberichte, die mit bestimmtem String beginnen.
+	 * Liefert Spielberichte, die einen bestimmtem String beinhalten.
 	 * @param	sub		String		String der enthalten sein soll
 	 * @param	model	Model
 	 */
 	@RequestMapping(value=Constants.linkReportsContaining, method=RequestMethod.GET)
 	public String getReportsIncluding(@PathVariable String sub, Model model) {
-		Page<Report> page = new Page<Report>();
-		page.setPageItems(this.dataAccess.getAllIncluding(sub));
-		page.setPageNumber(1);
-		page.setPagesAvailable(1);
-		
-		// In jsp zugreifbar machen
-		model.addAttribute("reportPage", page);
-		
-		return Constants.viewNameReports;
+		// Suchergebnisse auf einer Seite anzeigen
+		ArrayList<Report> res = this.dataAccess.getAllIncluding(sub);
+		Page<Report> page = this.dataAccess.setPage(1, 1, 1, res);
+		return this.prepareDisplayReports(model, page);
 	}
 	
 	/**
@@ -104,10 +125,8 @@ public class ReportsController {
 	 */
 	@RequestMapping(value=Constants.linkReportsNew, method=RequestMethod.GET)
 	public String displayNewReportForm(Model model) {
-		// neues Report Objekt in jsp zugreifbar machen
-		model.addAttribute(new Report());
-		// jsp zum Erstellen eines neuen Berichts laden
-		return Constants.viewNameReportsEdit;
+		// Editierseitemit neuem Bericht laden
+		return this.prepareEditReport(model, new Report());
 	}
 	
 	/**
@@ -122,11 +141,9 @@ public class ReportsController {
 		if(bindingResult.hasErrors()  || this.dataErrorsReports.hasErrors(newReport, bindingResult)) {
 			return Constants.viewNameReportsEdit;
 		}
-		
 		// Speichern und Spielberichte laden
 		this.dataAccess.save(newReport);
 		
-		// jsp zum Erstellen eines neuen Berichts laden
 		return Constants.redirectReports;
 	}
 	
@@ -139,9 +156,8 @@ public class ReportsController {
 	 */
 	@RequestMapping(value=Constants.linkReportsEdit, method=RequestMethod.GET)
 	public String loadEditForm(@PathVariable int id, Model model) {
-		// Report auslesen
-		model.addAttribute("report", this.dataAccess.getById(id));
-		return Constants.viewNameReportsEdit;
+		// Bearbeitungsformular mit referenziertem Bericht auslesen
+		return this.prepareEditReport(model, this.dataAccess.getById(id));
 	}
 	
 	/**
@@ -157,11 +173,9 @@ public class ReportsController {
 		if(bindingResult.hasErrors() || this.dataErrorsReports.hasErrors(report, bindingResult)) {
 			return Constants.viewNameReports;
 		}
-		
 		// Speichern und Spielberichte laden
 		this.dataAccess.update(id, report);
 		
-		// jsp zum Erstellen eines neuen Berichts laden
 		return Constants.redirectReports;
 	}
 	
@@ -173,6 +187,7 @@ public class ReportsController {
 	 */
 	@RequestMapping(value=Constants.linkReportsDelete, method=RequestMethod.POST) 
 	public String delete(@PathVariable int id) {
+		// Löschen und Redirect
 		this.dataAccess.deleteById(id);
 		return Constants.redirectReports;
 	}

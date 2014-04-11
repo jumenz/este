@@ -97,7 +97,7 @@
 															<p class="comment-name">Neuen Kommentar verfassen</p>
 															<p class="comment-content">
 																<c:set var="newComment" value="${newComment}"/>
-																<sf:form action="./neuer-kommentar/${entry.id}/${author}/" method="POST" modelAttribute="newComment">
+																<sf:form action="${linkForumNewComment}${entry.id}/${author}/" method="POST" modelAttribute="newComment">
 																	<%-- Neuer Kommentar --%>
 																	<sf:textarea 	path="text"
 																					id="text"

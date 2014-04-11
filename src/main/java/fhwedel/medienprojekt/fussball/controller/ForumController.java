@@ -1,6 +1,8 @@
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import fhwedel.medienprojekt.fussball.model.pagination.Page;
 
 /** eigene Klassen */
@@ -47,7 +50,7 @@ public class ForumController {
 	final int forumEntriesPerPage = 10;
 	
 	/* ------------------ Methoden --------------------------- */
-	/* ------------------ Anzeige ---------------------------- */
+	/* ------------------ Hilfsfunktionen ------------------- */
 	/**
 	 * Hilfsfunktion.
 	 * Fügt die Liste an einträgen dem Model an und stellt ein neues
@@ -55,19 +58,31 @@ public class ForumController {
 	 * @param 	list	ArrayList<ForumEntry>	Liste mit Foreneinträgen
 	 * @param	model	Model
 	 */
-	public String prepareForumView(Page<ForumEntry> page, Model model) {
-		//in jsp zugreifbar machen
-		model.addAttribute("forumEntryPage", page);
-		// Kommentare auslesen
+	private String prepareForumView(Page<ForumEntry> page, Model model) {
+		// Kommentare laden, mit Foreneintrag zugreifbar machen und anzeigen
 		this.dataAccessComments.getAllComments(page.getPageItems());
-		// Neuen Kommentar anfügen, um Speichern zu ermöglichen
+		model.addAttribute("forumEntryPage", page);
 		model.addAttribute("newComment", new Comment());
 		
 		return Constants.viewNameForum;
 	}
 	
 	/**
-	 * Lädt das Forum
+	 * Hilfsfunktion.
+	 * Lädt die Bearbeitungsseite eines Foreneintrags.
+	 * @param 	entry	ForumEntry	Foreneintrag
+	 * @param 	model	Model
+	 * @return	String	ViewName des Bearbeitungsformulars
+	 */
+	private String prepareForumEdit(ForumEntry entry, Model model) {
+		// Eintrag anfügen und Formular anzeigen
+		model.addAttribute("forumEntry", entry);
+		return Constants.viewNameForumEdit;
+	}
+	
+	/* ------------------ Anzeige ---------------------------- */
+	/**
+	 * Lädt die erste Seite des Forums.
 	 * @param 	mode	Model
 	 * @return  String 	Viewname
 	 */
@@ -78,16 +93,14 @@ public class ForumController {
 	}
 	
 	/**
-	 * Lädt eine bestimmte Seite des Forums
+	 * Lädt eine bestimmte Seite des Forums.
 	 * @param 	mode	Model
 	 * @return  String 	Viewname
 	 */
 	@RequestMapping(value=Constants.linkForumPage, method=RequestMethod.GET)
 	public String displayForum(@PathVariable("page") int showPage, Model model) {
-		// Erste Seite laden
-		Page<ForumEntry> page = this.dataAccessForum.getPage(showPage, this.forumEntriesPerPage);
-		// Foreneinträge und Kommentare laden
-		return this.prepareForumView(page, model);
+		// Erste Seite laden und anzeigen
+		return this.prepareForumView(this.dataAccessForum.getPage(showPage, this.forumEntriesPerPage), model);
 	}
 	
 	/**
@@ -97,14 +110,9 @@ public class ForumController {
 	 */
 	@RequestMapping(value=Constants.linkForumContaining, method=RequestMethod.GET)
 	public String getForumEntriesIncluding(@PathVariable String sub, Model model) {
-		// Seite mit Suchergebnissen erstellen
-		Page<ForumEntry> page = new Page<ForumEntry>();
-		page.setPageItems(this.dataAccessForum.getAllIncluding(sub));
-		// alle Ergebnisse auf einer Seite anzeigen
-		page.setPageNumber(1);
-		page.setPagesAvailable(1);
-
-		// Anzeigen
+		// Suchergebnisse auf einer Seite anzeigen
+		ArrayList<ForumEntry> res = this.dataAccessForum.getAllIncluding(sub);
+		Page<ForumEntry> page = this.dataAccessForum.setPage(1, 1, 1, res);
 		return this.prepareForumView(page, model);
 	}
 	
@@ -129,8 +137,7 @@ public class ForumController {
 	@RequestMapping(value=Constants.linkForumNewEntry, method=RequestMethod.GET)
 	public String displayNewForumEntryForm(Model model) {
 		// Neues ForumEntry Objekt in jsp zugreifbar machen und Formular laden
-		model.addAttribute(new ForumEntry());
-		return Constants.viewNameForumEdit;
+		return this.prepareForumEdit(new ForumEntry(), model);
 	}
 	
 	/**
@@ -161,8 +168,7 @@ public class ForumController {
 	@RequestMapping(value=Constants.linkForumEntryEdit, method=RequestMethod.GET)
 	public String loadEditForm(@PathVariable int id, Model model) {
 		// Foreneintrag auslesen und zu Bearbeitung anzeigen
-		model.addAttribute("forumEntry", this.dataAccessForum.getById(id));
-		return Constants.viewNameForumEdit;
+		return this.prepareForumEdit(this.dataAccessForum.getById(id), model);
 	}
 	
 	/**
@@ -182,7 +188,6 @@ public class ForumController {
 		// Speichern und Spielberichte laden
 		this.dataAccessForum.update(id, forumEntry);
 		
-		// jsp zum Erstellen eines neuen Berichts laden
 		return Constants.redirectForum;
 	}
 	

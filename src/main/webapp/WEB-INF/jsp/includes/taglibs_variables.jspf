@@ -61,6 +61,7 @@
 <c:set var="linkForumEntryEdit" value="${requestContextPath}/forum/bearbeiten/"></c:set>
 <c:set var="linkForumEntryDelete" value="${requestContextPath}/forum/loeschen/"></c:set>
 <c:set var="linkForumDeleteComment" value="${requestContextPath}/forum/kommentar-entfernen/"></c:set>
+<c:set var="linkForumNewComment" value="${requestContextPath}/forum/neuer-kommentar/"></c:set>
 <%-- Adressbuch --%>
 <c:set var="linkAddresses" value="${requestContextPath}/adressbuch/"></c:set>
 <c:set var="linkAddressDelete" value="${requestContextPath}/adressbuch/loeschen/"></c:set>
