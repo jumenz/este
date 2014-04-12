@@ -61,9 +61,9 @@
 				<c:set var="abcSetting" scope="request" value="${param.abc}"/>
 				<c:if test="${abcSetting == 'include'}">
 	                <%-- ABC --%>
-	                <div class="menublock-sidebar timer">
-	                    <div class="timer-inner">
-	                        <ul class="timer-content">
+	                <div class="menublock-sidebar abc">
+	                    <div class="abc-inner">
+	                        <ul class="abc-content">
 	                        	<%-- ABC durchlaufen und jeden Buchstaben als Link bereitstellen --%>
 	                        	<%  for(int c = 65; c <= 90; c++) { 
 	                        		String str = "" + (char) c;

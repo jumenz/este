@@ -48,6 +48,34 @@
 	width: 100%;
 }
 
+/* ---------------- Alphabet ---------------- */
+.abc-inner {
+    padding: 0;
+    display: inline-block;
+}
+.abc ul li {
+    float: left;
+}
+.abc-menu, .abc-content {
+    display: inline-block;
+    width: 100%;
+}
+.abc .abc-menu li {
+    width: 33%;
+    line-height: 22px;
+}
+.abc .abc-content li {
+    margin: 1px;
+    width: 42px;
+}
+.abc .list-item {
+    text-align: center;
+    height: 9px;
+    padding-bottom: 20px;
+    padding-top: 13px;
+    width: 42px;
+}
+
 /* ---------------------------------------------------------------------
  * ------------------ Auflösungsspezifische Anpassung ------------------
  * ------------------------------------------------------------------ */
