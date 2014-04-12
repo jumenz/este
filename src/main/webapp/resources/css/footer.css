@@ -40,10 +40,6 @@
 	display: inline-block;
 	width: 100%;
 }
-.footer li:first-child {
-	/* erstes Item mit auto-width für mittige Positionierung */
-	width: auto;
-}
 /* -- Links -- */
 .footer a {
 	color: #FFFFFF;
@@ -75,6 +71,8 @@
 		margin: 10px 0;
 	}
 	.footer li:first-child {
+		/* erstes Item mit auto-width für mittige Positionierung */
+		width: auto;
 		text-align: center;
 	}
 	.footer img.footer-logo {

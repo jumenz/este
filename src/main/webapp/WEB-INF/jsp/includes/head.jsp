@@ -25,6 +25,7 @@
 	<link rel="stylesheet" type="text/css" href="${cssPath}/about-us.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/post.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/login-register.css"/>
+	<link rel="stylesheet" type="text/css" href="${cssPath}/sidebar.css"/>
 	
 	<%-- script --%>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

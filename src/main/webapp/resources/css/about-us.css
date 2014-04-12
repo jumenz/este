@@ -1,3 +1,4 @@
+/* ------------------ CSS zur Über-Uns Seite ------------------------------ */
 /* ------------------------ Profilangaben ---------------------------------- */
 .profile {
 	clear: both;
@@ -14,4 +15,31 @@
 .profile-description {
 	width: 96%;
 	padding: 2%;
+}
+
+/* -------------- Google Maps ----------------- */
+a.show-link {
+	text-decoration: underline;
+}
+.google-maps-wrapper {
+	padding: 2%;
+	width: 96%;
+	text-align:right;
+}
+.google-maps-map {
+	width: 100%;
+	height: 250px;
+}
+
+/* --------------- Images ----------------------- */
+.about-us-img-logo {
+	float: left;
+	width: 45%;
+	height: auto;
+	margin-right: 5%;
+	margin-bottom: 5%;
+}
+.about-us-img-team {
+	width: 100%;
+	height: auto;
 }

@@ -1,3 +1,4 @@
+/* Ein- oder ausblenden der Toggle-Elemente */
 $(document).ready(function() {
     $('.toggle-item').each(function(idx, itm) {
         $(itm).find('.toggle').on('click', function() {

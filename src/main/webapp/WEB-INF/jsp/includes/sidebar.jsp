@@ -16,28 +16,28 @@
     <div class="outer">
         <div class="inner">
             <div class="content-list dark-bg toggle-item">
+            	<%-- Titel breites Display --%>
                 <h2 class="sidebar-title display-desktop">${param.sidebarTitle }</h2>
+                <%-- Titel schmales Display --%>
                 <div id="menu-div" class="menublock-sidebar hidden-desktop toggle">
-                    <h2 class="menu-title link" id="menu-sidebar" >${param.title }</h2>
-                </div>              
+                    <h2 class="menu-title link" id="menu-sidebar" >${param.sidebarTitle }</h2>
+                </div>
                            
                <%-- Sidebar Menu --%>
-               <%  
-					String[] navList = request.getParameterValues("nav");
-               		String[] navRefs = request.getParameterValues("ref");
-               		int current = 0;
-				%> 
+               <c:set var="navList" scope="request" value="${param.nav}"/>
+               <c:set var="navRefs" scope="request" value="${param.ref}"/>
 				<div id="box-menu-sidebar" class="menublock-sidebar menu-sidebar light-bg">
 					<ul class="menu">
 						<%-- links in sidebar navigation --%>
-						<% for (String item : navList) {  %>
+						<c:forEach var="linkName" items="${navList}" varStatus="status">
 							<li>
-								<a href=<%= navRefs[current] %>>
-									<span><%= item %></span>
+								<c:set var="index" value="status.index"/>
+								<a href='<c:out value="${navRefs[num].index}"/>'>
+									<span>${linkName}</span>
 									<span class="forward-raquo menu-link right"></span>
 								</a>
 							</li>
-						<% current++;} %>
+						</c:forEach>
 					</ul>
 				</div>
 				<script type="text/javascript">
@@ -119,7 +119,7 @@
 				<%--  Search Field  --%>
 				<div class="menublock-sidebar">
 					<form method="GET" action="${searchLink}">
-						<input size="25" name="search" placeholder="Suchen ..."/>
+						<input name="search" placeholder="Suchen ..."/>
 						<button type="submit" style="display: none"></button>
 					</form>
 				</div>
@@ -132,6 +132,7 @@
 	                <div class="menublock-sidebar timer">
 	                    <div class="timer-inner">
 	                        <ul class="timer-content">
+	                        	<%-- ABC durchlaufen und jeden Buchstaben als Link bereitstellen --%>
 	                        	<%  for(int c = 65; c <= 90; c++) { 
 	                        		String str = "" + (char) c;
 	                        	%>
