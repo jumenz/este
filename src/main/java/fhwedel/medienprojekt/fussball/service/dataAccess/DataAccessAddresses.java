@@ -42,7 +42,7 @@ public class DataAccessAddresses extends AbstractDataAccess<Address> {
 					entry.setName(resultSet.getString(2));
 					entry.setPrename(resultSet.getString(3));
 					entry.setBirthday(resultSet.getString(4));
-					entry.setEmail(resultSet.getString(12));
+					entry.setEmail(resultSet.getString(14));
 					entry.setPhone(resultSet.getString(5));
 					entry.setMobile(resultSet.getString(6));
 					entry.setStreet(resultSet.getString(7));
@@ -101,7 +101,8 @@ public class DataAccessAddresses extends AbstractDataAccess<Address> {
 	public ArrayList<Address> getAll() {
 		// Alle Adress-Einträge absteigend sortiert auslesen.
 		//final String SQL_SELECT_ALL_ADDRESSES = "SELECT * FROM " + Constants.dbAddresses + " ORDER BY name ASC";
-		final String SQL_SELECT_ALL_ADDRESSES = "SELECT * FROM " + Constants.dbAddresses + " NATURAL JOIN " + Constants.dbUsers + " ORDER BY name ASC";
+		final String SQL_SELECT_ALL_ADDRESSES = "SELECT * FROM " + Constants.dbAddresses + " NATURAL JOIN " 
+				+ Constants.dbUsers + " NATURAL JOIN " + Constants.dbPermissions + " ORDER BY name ASC";
 
 		return (ArrayList<Address>) namedParameterJdbcTemplate.query(
 				SQL_SELECT_ALL_ADDRESSES, this.addressRowMapper);
@@ -113,9 +114,8 @@ public class DataAccessAddresses extends AbstractDataAccess<Address> {
 	 * @return Address
 	 */
 	public Address getById(int id) {
-		final String SQL_SELECT_BY_ID = 
-				"SELECT * FROM " + Constants.dbAddresses + " NATURAL JOIN " 
-						+ Constants.dbUsers + "  WHERE (" + Constants.dbAddressesId + "=:id)";
+		final String SQL_SELECT_BY_ID = "SELECT * FROM " + Constants.dbAddresses + " NATURAL JOIN " 
+				+ Constants.dbUsers + " NATURAL JOIN " + Constants.dbPermissions + " WHERE (" + Constants.dbAddressesId + "=:id)";
 		
 		// Parameter zuweisen
 		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(id));
