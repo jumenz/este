@@ -7,12 +7,9 @@
 			<%-- Login, bzw. Registrierung --%>
 			<li>
 				<div class="footer-item-wrapper"> 
-					<form method="get" name="footer-login-register-form" action="${linkLogin}">
-						<input class="buttom-invisible footer-space-bottom" type="submit" value="Login"><br>
-					</form>
-					<form method="get" action="${linkRegister}">
-						<input class="buttom-invisible" type="submit" value="Registrieren"/>
-					</form>
+					<img class="footer-logo-small footer-space-bottom" src="${dataPath}/images/logo-este.png" alt="este-logo"/>
+					<a class="footer-heading" href="${linkLogin}">Login</a>
+					<a class="footer-heading" href="${linkRegister}">Registrieren</a>
 				</div>
 			</li>
 		</security:authorize>

@@ -13,7 +13,7 @@
 }
 .footer li {
 	width: 30%;
-	padding: 0% 1%;
+	padding: 1%;
 	display: inline-block;
 	text-align: center;
 }
@@ -38,7 +38,6 @@
 .footer-item-wrapper {
 	text-align: left;
 	display: inline-block;
-	width: 100%;
 }
 /* -- Links -- */
 .footer a {
@@ -62,6 +61,11 @@
 	cursor: pointer;
 }
 
+/* --------- Logo ---------------- */
+.footer img.footer-logo-small {
+	width: 54%;
+	height: auto;
+}
 
 /* ------------------ media specific adaption ------------------------ */
 
@@ -85,5 +89,8 @@
 	}
 	.footer-heading {
 		display: none;
+	}
+	.footer-item-wrapper {
+		width: 100%;
 	}
 }
