@@ -31,6 +31,8 @@
 	        	<jsp:include page="./includes/sidebar.jsp">
 					<jsp:param name="sidebarTitle" value="Spielberichte"/>
 					<jsp:param name="search" value="include" />
+					<jsp:param name="nav" value="Startseite"/>
+					<jsp:param name="ref" value="${linkWelcome}"/>
 				</jsp:include>
 			</security:authorize>
        

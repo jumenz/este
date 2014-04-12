@@ -24,7 +24,7 @@
 .menu-sidebar {
     display: inline-block !important;
     margin: 40px 0 0 0;
-    padding: 12px 12px 0 12px;
+    padding: 12px;
     width: 88%;
 }
 .menublock-sidebar .abc-menu li.center {
