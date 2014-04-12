@@ -1,5 +1,7 @@
 .galery-outer-wrapper {
 		width: 100%;
+		display: inline-block;
+		background-color: #111111;
 	}
 
 .galery-inner-wrapper-two-col, 
@@ -39,7 +41,7 @@
 	width: 99%;
 	height: auto;
 	margin: 0.5%;
-	border: 2px solid white;
+	border: 2px solid #111111;
     border-radius: 2%;
     -moz-border-radius: 2%;
     -khtml-border-radius: 2%;
