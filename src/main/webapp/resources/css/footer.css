@@ -40,7 +40,7 @@
 	display: inline-block;
 	width: 100%;
 }
-.footer-item-wrapper:first-child {
+.footer li:first-child {
 	/* erstes Item mit auto-width für mittige Positionierung */
 	width: auto;
 }
