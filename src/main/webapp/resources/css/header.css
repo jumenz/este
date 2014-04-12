@@ -10,6 +10,7 @@
 /* ------------------- links ---------------------------------------- */
 .nav a {
 	color: #FFFFFF;
+	width: 100%;
 }
 .nav a:hover {
 	color: #CED1D1;

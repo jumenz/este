@@ -14,9 +14,7 @@
     color:#FFFFFF;
     left:12px;
     text-align: left;
-}
-.sidebar-title {
-    z-index: 100;
+	z-index: 100;
     top: 10px;
 }
 .menublock-sidebar {
@@ -29,7 +27,7 @@
     padding: 12px 12px 0 12px;
     width: 88%;
 }
-.menublock-sidebar .timer-menu li.center {
+.menublock-sidebar .abc-menu li.center {
     text-align: center;
 }
 .menu span {
@@ -82,7 +80,7 @@
 
 /* --------------- media < 1000px ----------------------------------- */
 @media (max-width: 1000px) {
-	/* Nur noch den Titel der Sidebar anzeigen */
+	/* Nur noch den Titel und Suche der Sidebar anzeigen */
     #box-menu-sidebar {
         display: none !important;
     }
@@ -96,4 +94,7 @@
     #menu-div {
         display: inline-block;
     }
+    .menublock-sidebar {
+	    display: none;
+	}
 }
