@@ -28,8 +28,8 @@
     	<jsp:include page="./includes/sidebar.jsp">
 		<jsp:param name="sidebarTitle" value="Adressbuch"/>
 		<jsp:param name="abc" value="include" />
-		<jsp:param name="nav" value="Liste"/>
-		<jsp:param name="ref" value="#" />
+		<jsp:param name="nav" value="Startseite"/>
+		<jsp:param name="ref" value="${linkWelcome}" />
 		</jsp:include>
 		<%-- end Sidebar --%>
 
