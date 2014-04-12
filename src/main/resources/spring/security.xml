@@ -12,7 +12,7 @@
 	<jdbc-user-service	id="userService" 
 						data-source-ref="dataSource"
 						users-by-username-query="select username, password, true from users where username=?"
-						authorities-by-username-query="select username, user_group from users where username=?"
+						authorities-by-username-query="select username, user_group, email from users where username=?"
 						></jdbc-user-service>
 
 	<authentication-manager alias="authenticationManager">

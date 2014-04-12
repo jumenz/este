@@ -1,21 +1,9 @@
-.footer-space-bottom {
-	margin-bottom: 1em;
-}
+/* ---------- Footer ---------- */
 .footer {
-	font-size:	small;
-	background-color: #666666;
-	color: white;
-	min-height: 100px;
-    padding: 1% 5%;
-	margin-top:	5%;
-	width: 90%;
-	text-align: center;
-}
-.footer a {
-	color: #FFFFFF;
-}
-.footer a:hover {
-	color: #CED1D1;
+	width: 100%;
+	max-width: 1000px;
+	display: inline-table;
+	padding: 0;
 }
 .footer-heading {
 	font-size: medium;
@@ -23,31 +11,50 @@
 	display: block;
 	text-transform: uppercase;
 }
+.footer li {
+	width: 30%;
+	padding: 0% 1%;
+	display: inline-block;
+	text-align: center;
+}
 .footer-info {
 	display: inline-block;
 	width: 100%;
 }
-.footer-info input {
-    margin-bottom: 4px;
-    padding-left: 7px;
-}
-.footer li {
-	width: 15%;
-	margin: 20px 0px;
-	padding: 0% 2.5%;
-	display: inline-block;
-	text-align: left;
+.footer-space-bottom {
+	margin-bottom: 1em;
 }
 
+/* -- Wrapper -- */
+.footer-wrapper {
+	font-size:	small;
+	background-color: #666666;
+	color: white;
+	min-height: 100px;
+	margin-top:	5%;
+	width: 100%;
+	text-align: center;
+}
+.footer-item-wrapper {
+	text-align: left;
+	display: inline-block;
+	width: 100%;
+}
+.footer-item-wrapper:first-child {
+	/* erstes Item mit auto-width für mittige Positionierung */
+	width: auto;
+}
+/* -- Links -- */
+.footer a {
+	color: #FFFFFF;
+}
+.footer a:hover {
+	color: #CED1D1;
+}
+
+/* -- Formular -- */
 .footer form {
 	margin: 0px;
-}
-.footer-nobreak {
-	display: inline;
-}
-.footer .menu-link {
-	position: relative;
-	top: 5px;
 }
 .footer [type=submit] {
 	text-transform: uppercase;
@@ -59,21 +66,20 @@
 	cursor: pointer;
 }
 
-.footer img.footer-logo {
-	
-}
 
 /* ------------------ media specific adaption ------------------------ */
-
-@media (max-width: 1000px) {
-	.footer li {
-		width: 25%;
-	}
-}
 
 @media (max-width: 600px) {
 	.footer li {
 		width: 95%;
+		margin: 10px 0;
+	}
+	.footer li:first-child {
+		text-align: center;
+	}
+	.footer img.footer-logo {
+	    height: 100px;
+	    width: auto;
 	}
 	.footer-info {
 		display: inline;

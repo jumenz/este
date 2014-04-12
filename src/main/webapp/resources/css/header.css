@@ -56,6 +56,7 @@ button.submenu-link:hover {
 	width: 100%;
 	max-width: 1000px;
 	margin: 0 auto;
+	padding: 0;
 	position: relative; 
 	display: inline-table;
 }
@@ -119,12 +120,11 @@ button.submenu-link:hover {
 /* ------------------ Breadcrumb ------------------------------------ */
 .breadcrumb {
 	text-align: left;
-	font-size: smaller;
+	font-size: small;
 	color: white;
 	background-color: #666666;
 	padding-left: 8%;
 	position: absolute;
-	bottom: -15px;
 	left: 0px;
 	width: 92%;
 	z-index: 0;
@@ -139,5 +139,10 @@ button.submenu-link:hover {
 	}
 	.nav li.nav-wide {
 		display: none;
+	}
+	.breadcrumb {
+		padding: 0;
+		width: 100%;
+		text-align: center;
 	}
 }
