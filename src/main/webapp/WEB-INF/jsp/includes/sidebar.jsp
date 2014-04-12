@@ -9,8 +9,8 @@
 	ref				- 	zur Angabe des Links auf den verlinkt werden soll
 						WICHTIG: nav und ref müssen in richtiger Reihenfolge angegeben werden
 						-> das erste nav gehört zum ersten ref usw.
-	timer 			- 	auf "include" setzen, um den Kalender in der Sidebar anzuzeigen
 	abc				- 	auf "include" setzen, um die Alphabetfläche in der Sidebar anzuzeigen
+	search			-	auf "include" setzen
 --%>
 <div id="sidebar" class="content-layout-cell sidebar">
     <div class="outer">
@@ -40,83 +40,12 @@
 						</c:forEach>
 					</ul>
 				</div>
-				<script type="text/javascript">
-					var menuVisible = 0;
-					$(function() {
-						$('#menu-sidebar').click(function(e){
-							e.preventDefault();
-							if (menuVisible === 0) {
-								// Box is currently hidden, show it:
-								$('#box-menu-sidebar').slideDown(200);
-								menuVisible = 1;
-							} else {
-								// Box is currently shown, hide it:
-								$('#box-menu-sidebar').slideUp(200);
-								menuVisible = 0;
-							}
-						});
-					});
-				</script>
-				<%-- end Sidebar Menu --%>
+				<%-- Ende Sidebar Menu --%>
 				
-				<%-- include Timer if timer is set true --%>
-				<c:set var="timerSetting" scope="request" value="${param.timer}"/>
-				<c:if test="${timerSetting == 'include'}">
-				   <%-- Timer --%>
-					<div class="menublock-sidebar timer">
-						<div class="timer-inner">
-							<ul class="timer-menu display-desktop">
-								<li>
-									<a href="#" class="back">
-										<div class="back-raquo menu-link left"></div>
-									</a>
-								</li>
-								<li class="center">
-									<span>2013</span>
-								</li>
-								<li>
-									<a href="#" class="forward">
-										<div class="forward-raquo menu-link right"></div>
-									</a>
-								</li>
-							</ul>
-							<ul class="timer-content">
-								<li class="hidden-desktop double-width">
-									<a href="#" class="timer-link">
-										<div class="list-item bg double-width">
-											<span>2012</span>
-										</div>
-									</a>
-								</li>
-								<% Integer i; for ( i=1; i<=12; i++ ) { %>
-									<li>
-										<a href="#" id=<%= "item-" + i.toString() %> class="timer-link">
-											<div class="list-item bg">
-												<span>
-													<%= i %>
-												</span>
-											</div>
-										</a>
-									</li>
-								<% } %>
-								<li class="hidden-desktop double-width">
-									<a href="#" class="timer-link">
-										<div class="list-item bg double-width">
-											<span>2014</span>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<%-- end Timer --%>
-				</c:if>
-				<c:remove var="timerSetting"/>
-				
+				<%--  Search Field  --%>
 				<c:set var="searchSetting" scope="request" value="${param.search}"/>
 				<c:if test="${searchSetting == 'include'}">
 				<c:set var="searchLink" scope="request" value="${param.searchLink}"/>
-				<%--  Search Field  --%>
 				<div class="menublock-sidebar">
 					<form method="GET" action="${searchLink}">
 						<input name="search" placeholder="Suchen ..."/>
@@ -124,8 +53,9 @@
 					</form>
 				</div>
 				</c:if>
+				<%-- Ende Suchfelde --%>
 				
-				<%-- include ABC if abc is set true --%>
+				<%-- Alphabet --%>
 				<c:set var="abcSetting" scope="request" value="${param.abc}"/>
 				<c:if test="${abcSetting == 'include'}">
 	                <%-- ABC --%>
@@ -147,10 +77,10 @@
 	                        </ul>
 	                    </div>
 	                </div>
-	
-	                <%-- end ABC --%>
 	            </c:if>
 	            <c:remove var="abcSetting"/>
+				<%-- Ende Alphabet --%>
+
             </div>
         </div>
     </div>
