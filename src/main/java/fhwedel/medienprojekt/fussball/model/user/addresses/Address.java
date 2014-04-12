@@ -1,10 +1,5 @@
 package fhwedel.medienprojekt.fussball.model.user.addresses;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 import org.springframework.core.style.ToStringCreator;
 
 /**
@@ -14,53 +9,38 @@ import org.springframework.core.style.ToStringCreator;
  * @author Julia
  *
  */
-@Entity
-@Table(name = "addresses")
 public class Address {
 	/* --------------- Klassenvariablen ----------------- */
 	/** ID */
-	@Column(name = "id")
 	private int id;
 	/** Name */
-	@Column(name = "name")
 	private String name;
 	/** Vorname */
-	@Column(name = "prename")
 	private String prename;
 	/** E-Mail */
-	@Column(name = "email")
 	private String email;
-	/** Geburtsdatum */
-	@Column(name = "birthday")
 	private String birthday;
 	/** Handynummer */
-    @Column(name = "mobile")
-    @Digits(fraction = 0, integer = 15)
 	private String mobile;
 	/** Festnetznummer */
-    @Column(name = "phone")
-    @Digits(fraction = 0, integer = 15)
 	private String phone;
 	/** Straße */
-	@Column(name = "street")
 	private String street;
 	/** Hausnummer */
-	@Column(name = "nr")
 	private String nr;
 	/** PLZ */
-    @Column(name = "zipcode")
-    @Digits(fraction = 0, integer = 5)
 	private String zipcode;
 	/** Ort */
-	@Column(name = "city")
 	private String city;
+	/** Username */
+	private String username;
 	
 	/* --------------- Konstruktorfunktionen ------------ */
 	/**
 	 * Default-Konstruktor.
 	 */
 	public Address() {
-		this(0,"","","","","","","","","","");
+		this(0,"","","","","","","","","","","");
 	}
 	
 	/**
@@ -77,8 +57,10 @@ public class Address {
 	 * @param nr
 	 * @param zipcode
 	 * @param city
+	 * @param username
 	 */
-	public Address(int id, String name, String prename, String birthday, String email, String mobile, String phone, String street, String nr, String zipcode, String city) {
+	public Address(int id, String name, String prename, String birthday, String email, String mobile, 
+			String phone, String street, String nr, String zipcode, String city, String username) {
 		this.id = id;
 		this.name = name;
 		this.prename = prename;
@@ -247,6 +229,20 @@ public class Address {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	/**
+	 * Liefert die Benutzernamen.
+	 * @return String Benutzernamen
+	 */
+	public String getUsername() {
+		return this.username;
+	}
+	/**
+	 * Setzt den Benutzernamen.
+	 * @param String Benutzernamen
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	
 	public String toString() {
         return new ToStringCreator(this)
@@ -261,6 +257,7 @@ public class Address {
                 .append("nr", this.nr)
                 .append("zipcode", this.zipcode)
                 .append("city", this.city)
+                .append("username", this.username)
                 .toString();
     }
 }

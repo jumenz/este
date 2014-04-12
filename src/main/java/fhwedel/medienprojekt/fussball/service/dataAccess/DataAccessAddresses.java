@@ -49,6 +49,7 @@ public class DataAccessAddresses extends AbstractDataAccess<Address> {
 					entry.setNr(resultSet.getString(8));
 					entry.setZipcode(resultSet.getString(9));
 					entry.setCity(resultSet.getString(10));
+					entry.setUsername(resultSet.getString(11));
 					return entry;
 				}
 			};
@@ -88,6 +89,7 @@ public class DataAccessAddresses extends AbstractDataAccess<Address> {
 		params.put("nr", address.getNr());
 		params.put("zipcode", address.getZipcode());
 		params.put("city", address.getCity());
+		params.put("username", address.getUsername());
 	}
 	
 	/* ------------------------- Auslesen ------------------------------------- */

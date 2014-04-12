@@ -1,4 +1,10 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
+<%-- Admin --%>
+<security:authorize access="hasRole('USER_GROUP_ADMIN')">
+    <c:set var="isAdmin" value="1"/>
+</security:authorize>
+<%-- User --%>
+<security:authentication property="principal.username" var="username" scope="request"/>
 <html>
 	<jsp:include page="./includes/head.jsp">
 		<jsp:param name="title" value="Forum"/>
