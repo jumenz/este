@@ -23,24 +23,26 @@
                     <h2 class="menu-title link" id="menu-sidebar" >${param.sidebarTitle }</h2>
                 </div>
                            
-               <%-- Sidebar Menu --%>
-               <c:set var="navList" scope="request" value="${param.nav}"/>
-               <c:set var="navRefs" scope="request" value="${param.ref}"/>
+               <!-- Sidebar Menu -->
+               <%  
+					String[] navList = request.getParameterValues("nav");
+               		String[] navRefs = request.getParameterValues("ref");
+               		int current = 0;
+				%> 
 				<div id="box-menu-sidebar" class="menublock-sidebar menu-sidebar light-bg">
 					<ul class="menu">
-						<%-- links in sidebar navigation --%>
-						<c:forEach var="linkName" items="${navList}" varStatus="status">
+						<!-- links in sidebar navigation -->
+						<% for (String item : navList) {  %>
 							<li>
-								<c:set var="index" value="status.index"/>
-								<a href='<c:out value="${navRefs[num].index}"/>'>
-									<span>${linkName}</span>
+								<a href=<%= navRefs[current] %>>
+									<span><%= item %></span>
 									<span class="forward-raquo menu-link right"></span>
 								</a>
 							</li>
-						</c:forEach>
+						<% current++;} %>
 					</ul>
 				</div>
-				<%-- Ende Sidebar Menu --%>
+				<!-- end Sidebar Menu -->
 				
 				<%--  Search Field  --%>
 				<c:set var="searchSetting" scope="request" value="${param.search}"/>

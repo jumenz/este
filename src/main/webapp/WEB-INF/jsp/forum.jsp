@@ -71,7 +71,6 @@
 									<%-- Contentbox Comments --%>
 									<div>
 										<%-- Kommentare für den Foreneintrag laden --%>
-										<security:authentication property="principal.username" var="author" scope="request"/>
 										<c:set var="comments" value="${entry.comments}"/>
 										<div  class="comment-content-box box-borders-top bg clearfix further-toggle-item">
 											<%-- Liste auslesen --%>
@@ -87,6 +86,7 @@
 																<p class="comment-content">${comment.text}</p>
 																
 																<%-- Bei eigenen Kommentaren löschen Button anzeigen --%>
+																<security:authentication property="principal.username" var="author" scope="request"/>
 																<c:if test="${author == comment.author}">
 																	<form method="get" action="${linkForumDeleteComment}${comment.id}/">
 																		<button class="button-delete"></button>
