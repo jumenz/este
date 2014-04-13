@@ -18,7 +18,6 @@
 			<div id="..." class="content-list">
 				<%-- three col view --%>
 				<ul>
-				
 					<%-- Link Fussballtabelle --%>
 					<li class="three-col first">
 						<div class="main-content-box box-borders bg clearfix">
@@ -66,6 +65,7 @@
 							</a>
 						</div>
 					</li>
+				</ul>
 			</div>
 		</div>
 		</div>

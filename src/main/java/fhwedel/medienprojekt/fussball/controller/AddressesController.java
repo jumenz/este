@@ -25,7 +25,7 @@ import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsUsers;
 /**
  * AddressesController
  * 
- * @author Julia
+ * @author @author Julia Menzel minf9950
  **/
 
 @Controller

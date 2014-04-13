@@ -36,18 +36,18 @@
 						</div>
 					</li>
 					
-					<%-- Terminplaner --%>
+					<%-- Kalender --%>
 					<li class="three-col">
 						<div class="main-content-box box-borders bg clearfix">
-							<h2 class="box-title">Terminplaner</h2>
+							<h2 class="box-title">Kalender</h2>
 							<div class="box-head">
 								<img src="${dataPath}/images/img-calendar.jpg" alt="este-damen-terminplaner"/>
 							</div>
 							<div class="box-body">
-								<p>Terminplaner der Mannschaft.</p>
+								<p>Kalender der Mannschaft.</p>
 								<p>Hier kannst du aktuelle Termine einsehen und Angaben zu deiner Teilnahme vornehmen.</p>
 							</div>
-							<a href="#">
+							<a href="${linkCalendar}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>

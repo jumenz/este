@@ -1,0 +1,15 @@
+/* ------------------ CSS zur Kalender-Seite ------------------------------ */
+
+/* -------------- Google Kalender Iframe----------------- */
+
+/* --------------- media < 1000px ----------------------------------- */
+@media (max-width: 1000px) {
+    #calendar iframe {
+    	width: 100%;
+    	height: 600px;
+    	overflow:hidden;
+	}
+	#calendar iframe[seamless]{
+		overflow: hidden;
+	}
+}

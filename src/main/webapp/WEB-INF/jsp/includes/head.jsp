@@ -6,9 +6,9 @@
 	<meta name="Content-language" content="de" />
 	
 	<%-- Info hierzu auf: http://seo.module23.com/seo.html --%>
-	<meta name="base" content="http://www.########.de" />
-	<meta name="keywords" content="wichtige Dinde hier rein" />
-	<meta name="copyright" content="Ellens Mannschaft" />
+	<meta name="base" content="http://www.damen-este0670.de" />
+	<meta name="keywords" content="Fußball, Frauen, Damen, Frauenmannschaft, Este, 06/70, Hamburg, Sport, Verein" />
+	<meta name="copyright" content="Este 06/70 Frauen" />
 	<meta name="city" content="Hamburg" />
 	<meta name="state" content="Hamburg" />
 	<meta name="zipcode" content="21129" />
@@ -26,6 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="${cssPath}/post.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/login-register.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/sidebar.css"/>
+	<link rel="stylesheet" type="text/css" href="${cssPath}/calendar.css"/>
 	
 	<%-- script --%>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

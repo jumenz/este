@@ -4,16 +4,11 @@ package fhwedel.medienprojekt.fussball.service.image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.io.FileUtils;
 
 /** eigene Klassen */
-
-import org.apache.commons.io.FilenameUtils;
-
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
 
 /**
@@ -51,7 +46,7 @@ public class ImageService {
 		}		
 	}
 	
-	private boolean isImage(File f, String s) {
+	public boolean isImage(File f, String s) {
 		return new File(f,s).isFile() && (s.toLowerCase().endsWith(".jpg") || (s.toLowerCase().endsWith(".jpg")));
 	}
 	

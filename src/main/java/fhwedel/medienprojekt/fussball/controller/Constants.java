@@ -11,6 +11,7 @@ public class Constants {
 	static final String linkClassPath = "/";
 	static final String linkHome = "/home/";
 	static final String linkWelcome = "/willkommen/";
+	static final String linkCalendar = "/kalender/";
 	static final String linkAddresses = "/adressbuch/";
 	static final String linkAddressEdit = "/adressbuch/bearbeiten/{id}";
 	static final String linkAddressDelete = "/adressbuch/loeschen/{id}/";
@@ -51,6 +52,7 @@ public class Constants {
 	/** Redirects */
 	static final String redirectHome = "redirect:/home/";
 	static final String redirectWelcome = "redirect:/willkommen/";
+	static final String redirectCalendar = "redirect:/kalender/";
 	static final String redirectAddresses = "redirect:/adressbuch/";
 	static final String redirectAboutUs = "redirect:/ueber-uns/";
 	static final String redirectReports = "redirect:/berichte/";
@@ -71,6 +73,7 @@ public class Constants {
 	/** View Names zum mappen der JSPs */
 	static final String viewNameHome = "home";
 	static final String viewNameWelcome = "welcome";
+	static final String viewNameCalendar = "calendar";
 	static final String viewNameAddresses = "addresses";
 	static final String viewNameAddressEdit = "addressEdit";
 	static final String viewNameForum = "forum";

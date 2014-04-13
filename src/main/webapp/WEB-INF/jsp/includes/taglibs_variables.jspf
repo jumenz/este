@@ -30,6 +30,8 @@
 <%-- LandingPages --%>
 <c:set var="linkWelcome" value="${requestContextPath}/willkommen/"></c:set>
 <c:set var="linkHome" value="${requestContextPath}/home/"></c:set>
+<%-- Kalender --%>
+<c:set var="linkCalendar" value="${requestContextPath}/kalender/"></c:set>
 <%-- Spielberichte --%>
 <c:set var="linkReports" value="${requestContextPath}/berichte/"></c:set>
 <c:set var="linkReportsSearch" value="${requestContextPath}/berichte/suche"></c:set>
