@@ -8,10 +8,10 @@ import java.util.Date;
  * Klasse für allgemeine Posts.
  * Enthält gemeinsame Variablen und setter/getter-Methoden.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
-public class Post {
+public abstract class Post {
 	/* ---------- Variablen ------------------ */
 	/** id des Eintrags */
 	private int id;

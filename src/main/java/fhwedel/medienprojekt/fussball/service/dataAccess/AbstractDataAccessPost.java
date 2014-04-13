@@ -146,19 +146,15 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 		final Page<E> page = new Page<E>();
 		final String SQL_COUNT_ROWS = "SELECT count(*) FROM " + db;
 		
-		// Anzahl der Einträge berechnen
         final int rowCount = namedParameterJdbcTemplate.queryForInt(SQL_COUNT_ROWS, new HashMap<String, Object>());
         
-		// Seitenzahlen berechnen
         int pageCount = rowCount / pageSize;
         if (rowCount > pageSize * pageCount) {
             pageCount++;
         }
 
-        // initialisieren
         page.setPageNumber(pageNo);
         page.setPagesAvailable(pageCount);
-        // vorherige und nächste Seitenzahl berechnen
         page.initPagination();
         
         return page;
@@ -172,19 +168,17 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 	 * @param rowMapper		RowMapper	Mappt ein Result auf ein Objekt
 	 * @return	page		Page		Seite mit Einträgen
 	 */
-    public Page<E> fetchPage(final String db, final int pageNo, final int pageSize, final ParameterizedRowMapper<E> rowMapper) {
+    public Page<E> fetchPage(	final String db, final int pageNo, final int pageSize, 
+    							final ParameterizedRowMapper<E> rowMapper) {
     	final String SQL_FETCH_ROWS = "SELECT * FROM " + db + " ORDER BY date DESC LIMIT :start, :end";
         Map<String,Object> params = new HashMap<String, Object>();
 
-        // Seitenzahlen initialisieren
         Page<E> page = this.initPage(db, pageNo, pageSize);
-        // Start- und Endreihe berechnen
         final int startRow = (pageNo - 1) * pageSize;
         final int endRow = startRow + pageSize;
         params.put("start", startRow);
         params.put("end", endRow);
         
-        // Liste auslesen und setzen
         page.setPageItems(
         		(ArrayList<E>) namedParameterJdbcTemplate.query(SQL_FETCH_ROWS, params, rowMapper)
         	);

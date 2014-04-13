@@ -87,7 +87,7 @@ public class ReportsController {
 	 * @return  String 	Viewname
 	 */
 	@RequestMapping(value=Constants.linkReportsPage, method=RequestMethod.GET)
-	public String displayForum(@PathVariable("page") int showPage, Model model) {
+	public String displayReports(@PathVariable("page") int showPage, Model model) {
 		// gewünschte Seite laden
 		return this.prepareDisplayReports(model, this.dataAccess.getPage(showPage, this.reportsPerPage));
 	}
