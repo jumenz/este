@@ -44,14 +44,13 @@
 			</security:authorize>
 			<security:authorize access="isAuthenticated()">
 				<li class="nav-wide">
-					<a href="${linkHome}">
-						Home
-					</a>
+					<a href="${linkHome}">Home</a>
 		            <ul class="submenue">
 		                <%--<li><form name="add_list" action="../Controller/AddressesController.php" method="get" ><button class="submenu-link" type="submit" name="action" value="list">Adressbuch</button></form></li>--%>
 		                <li><a href="${linkAddresses}">Adressbuch</a></li>
 		                <li><a href="${linkCalendar}">Termine</a></li>
 		                <li><a href="${linkForum}">Forum</a></li>
+		                <li><a href="${linkDocuments}">Dokumente</a></li>
 		                <security:authorize access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')">
 							<li><a href="${linkRegister}">User bearbeiten</a></li>
 						</security:authorize>

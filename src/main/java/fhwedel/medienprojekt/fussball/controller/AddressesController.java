@@ -116,27 +116,7 @@ public class AddressesController {
 		// jsp zum Adressbuch
 		return Constants.redirectAddresses;
 	}
-	
-	/**
-	 * Speichert eine editierte Adresse mit entsprechender ID.
-	 * @param 	id				int				Id der bearbeiteten Adresse
-	 * @param	address			Address			bearbeitete Adresse
-	 * @param 	bindingResult	BindingResult	
-	 * @return
-	 
-	@RequestMapping(value=Constants.linkAddressEdit, method=RequestMethod.POST)
-	public String edit(@PathVariable int id, @ModelAttribute("addressEditModel") Address address, BindingResult bindingResult) {
-		// Bei Fehlern erneut Formular aufrufen
-		if(bindingResult.hasErrors()|| this.dataErrorsAddresses.hasErrors(address, bindingResult)) {
-			return Constants.viewNameAddressEdit;
-		}
-		// Speichern und Adressbuch laden
-		this.dataAccessAddresses.update(id, address);
-		
-		// jsp zum Adressbuch
-		return Constants.redirectAddresses;
-	}*/
-	
+
 	/* -------------------- Adresse löschen --------------------------- */
 	/**
 	 * Löscht einen User und seine Adresse aufgehend von einer ID.

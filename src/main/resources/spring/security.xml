@@ -37,6 +37,7 @@
 			Achtung: spezifische zuerst, dann allgemeinere
 		 -->
 		<intercept-url pattern="/addressbuch/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/dokumente/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/home/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/logout/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/ueber-uns/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
@@ -65,7 +66,8 @@
 		<intercept-url pattern="/adressbuch/**" requires-channel="https"/>
 		<intercept-url pattern="/forum/**" requires-channel="https"/>
 		<intercept-url pattern="/registrieren/**" requires-channel="https"/>
-		<intercept-url pattern="/galerie/upload/" requires-channel="https"/> -->
+		<intercept-url pattern="/galerie/upload/" requires-channel="https"/>
+		<intercept-url pattern="/dokumente/**" requires-channel="https"/> -->
 		
 		<!-- rememberMe Funktionalität für 4 Wochen mit key "esteKey" zum verschlüsseln (MD5) -->
 		<remember-me key="esteKey"	user-service-ref="userService" token-validity-seconds="2419200"/>

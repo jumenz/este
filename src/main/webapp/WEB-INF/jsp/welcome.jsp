@@ -15,7 +15,7 @@
         <div class="container">
         <div class="main">
         <div class="main-inner">     
-			<div id="..." class="content-list">
+			<div id="welcome" class="content-list">
 				<%-- three col view --%>
 				<ul>
 				
@@ -98,7 +98,7 @@
 								<p>Texte zu den vergangenen Spielen.</p>
 								<p>Lies hier den Bericht zum letzten Spiel.</p>
 							</div>
-							<a href="#">
+							<a href="${linkReports}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>

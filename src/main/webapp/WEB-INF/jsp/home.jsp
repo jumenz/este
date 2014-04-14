@@ -14,7 +14,7 @@
         <div class="container">
         <div class="main">
         <div class="main-inner">      
-			<div id="..." class="content-list">
+			<div id="home" class="content-list">
 					
 				<%-- three col view --%>
 				<ul>
@@ -81,7 +81,7 @@
 								<p>Download wichtiger Dateien.</p>
 								<p>Hier findest die Übersicht der Mannschaftskasse und Ähnliches.</p>
 							</div>
-							<a href="#">
+							<a href="${linkDocuments}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>

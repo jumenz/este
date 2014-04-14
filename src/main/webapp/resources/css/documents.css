@@ -1,0 +1,10 @@
+/* ------------------ CSS zur Dokumente-Seite ------------------------------ */
+
+#document-upload form {
+	margin-top: 12px;
+	display: inline-block;
+}
+
+#documents h2 a {
+	color: #ffffff;
+}

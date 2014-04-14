@@ -1,8 +1,8 @@
 <%@include file="./includes/taglibs_variables.jspf" %>
 <html>
 	<jsp:include page="./includes/head.jsp">
-		<jsp:param name="title" value="Spielberichte"/>
-		<jsp:param name="description" value="Neuen Spielbericht verfassen"/>
+		<jsp:param name="title" value="Galerie Upload"/>
+		<jsp:param name="description" value="Neuen Bilder hochladen"/>
 	</jsp:include>
 		
 	<body>
@@ -15,7 +15,7 @@
         <div class="container">
         <div class="main">
         <div class="main-inner">      
-			<div id="..." class="content-list">
+			<div id="galery-upload" class="content-list">
 				<ul>
 					 <%--Contentbox One-Col --%>
                      <li class="one-col">

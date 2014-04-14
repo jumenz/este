@@ -35,6 +35,9 @@ public class Constants {
 	static final String linkImpressum = "/impressum/";
 	static final String linkImpressumEdit = "/impressum/bearbeiten/";
 	static final String linkLinks = "/links/";
+	static final String linkDocuments = "/dokumente/";
+	static final String linkDocumentsUploadForm = "/dokumente/upload/";
+	static final String linkDocumentsUpload = "/dokumente/load/";
 	static final String linkGalery = "/galerie/";
 	static final String linkGaleryUploadForm = "/galerie/upload/";
 	static final String linkGaleryUpload = "/galerie/load/";
@@ -63,6 +66,8 @@ public class Constants {
 	static final String redirectLogin = "redirect:/login/";
 	static final String redirectImpressum = "redirect:/impressum/";
 	static final String redirectLinks = "redirect:/links/";
+	static final String redirectDocuments = "redirect:/dokumente/";
+	static final String redirectDocumentsUpload = "redirect:/dokumente/upload/";
 	static final String redirectGalery = "redirect:/galerie/";
 	static final String redirectGaleryUpload = "redirect:/galerie/upload/";
 	static final String redirectForum = "redirect:/forum/";
@@ -87,6 +92,8 @@ public class Constants {
 	static final String viewNameImpressum = "impressum";
 	static final String viewNameImpressumEdit = "impressumEdit";
 	static final String viewNameLinks = "links";
+	static final String viewNameDocuments = "documents";
+	static final String viewNameDocumentsUpload = "documentsUpload";
 	static final String viewNameGalery = "galery";
 	static final String viewNameGaleryUpload = "galeryImgUpload";
 	

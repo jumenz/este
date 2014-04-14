@@ -55,6 +55,10 @@
 <c:set var="linkGaleryUploadForm" value="${requestContextPath}/galerie/upload/"></c:set>
 <c:set var="linkGaleryUpload" value="${requestContextPath}/galerie/load/"></c:set>
 <c:set var="linkGaleryRessources" value="${requestContextPath}/resources/data/galery/"></c:set>
+<%-- Dokumente --%>
+<c:set var="linkDocuments" value="${requestContextPath}/dokumente/"></c:set>
+<c:set var="linkDocumentsUploadForm" value="${requestContextPath}/dokumente/upload/"></c:set>
+<c:set var="linkDocumentsUpload" value="${requestContextPath}/dokumente/load/"></c:set>
 <%-- Forum --%>
 <c:set var="linkForum" value="${requestContextPath}/forum/"></c:set>
 <c:set var="linkForumSearch" value="${requestContextPath}/forum/suche"></c:set>
