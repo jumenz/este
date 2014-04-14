@@ -28,11 +28,11 @@
 	                             <div class="box-body">
 	                              <%-- Mehr infos zum Kalender auf https://support.google.com/calendar/answer/41207?hl=de --%>
 	                              	<%-- Kalender-Darstellung bei großen Displays --%>
-									<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;hl=de&amp;bgcolor=%23F5F3F5&amp;src=dameneste0670%40gmail.com&amp;color=%232F6309&amp;ctz=Europe%2FBerlin" 
+									<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;hl=de&amp;bgcolor=%23F5F3F5&amp;src=dameneste0670%40gmail.com&amp;color=%232F6309&amp;src=de.german%23holiday%40group.v.calendar.google.com&amp;color=%232F6213&amp;ctz=Europe%2FBerlin" 
 										class="display-desktop" style=" border-width:0 " width="976" height="600" frameborder="0" scrolling="no">
 									</iframe>
 									<%-- Listen-Darstellung bei kleinen Displays --%>
-									<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=600&amp;wkst=2&amp;hl=de&amp;bgcolor=%23F5F5F5&amp;src=dameneste0670%40gmail.com&amp;color=%232F6309&amp;ctz=Europe%2FBerlin" 
+									<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=600&amp;wkst=2&amp;hl=de&amp;bgcolor=%23F5F5F5&amp;src=dameneste0670%40gmail.com&amp;color=%232F6309&amp;src=de.german%23holiday%40group.v.calendar.google.com&amp;color=%232F6213&amp;ctz=Europe%2FBerlin" 
 										 class="hidden-desktop" seamless="seamless" style=" border-width:0 "frameborder="0" scrolling="no" height="600" width="100%" >
 									</iframe>
 	                             </div>

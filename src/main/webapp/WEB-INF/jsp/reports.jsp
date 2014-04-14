@@ -115,7 +115,7 @@
 					<tr>
 						<td class="pagination-previous">
 							<c:if test="${reportPage.pageNumber > 1}">
-								<a href="${linkForumPage}${reportPage.prevPage}/">vorherige</a>
+								<a href="${linkReportsPage}${reportPage.prevPage}/">vorherige</a>
 							</c:if>
 						</td>
 						<td class="pagination-info">
@@ -123,7 +123,7 @@
 						</td>
 						<td class="pagination-next">
 							<c:if test="${reportPage.pageNumber < reportPage.pagesAvailable}">
-								<a href="${linkForumPage}${reportPage.nextPage}/">weitere</a>
+								<a href="${linkReportsPage}${reportPage.nextPage}/">weitere</a>
 							</c:if>
 						</td>
 					</tr>

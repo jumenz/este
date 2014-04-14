@@ -114,7 +114,7 @@
 							<div class="box-body">
 								<p>Shortcuts zu den wichtigsten, für alle sichtbaren Seiten.</p>
 							</div>
-							<a href="${linkWelcome}">
+							<a href="${linkLinks}">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>

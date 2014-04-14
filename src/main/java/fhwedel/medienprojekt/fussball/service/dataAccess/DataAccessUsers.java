@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
@@ -93,23 +95,30 @@ public class DataAccessUsers extends AbstractDataAccess<User> {
 		
 		final String SQL_INSERT_NEW_EMPTY_ADDRESS = 
 				"INSERT INTO " + Constants.dbAddresses + " ("
-				+ Constants.dbUsersId + ") VALUES (:id)";
+				+ Constants.dbAddressesId  + ", "
+				+ Constants.dbAddressesName  + ", "
+				+ Constants.dbAddressesPrename  + ", "
+				+ Constants.dbAddressesBirthday  + ", "
+				+ Constants.dbAddressesMobile  + ", "
+				+ Constants.dbAddressesPhone  + ", "
+				+ Constants.dbAddressesStreet  + ", "
+				+ Constants.dbAddressesNr  + ", "
+				+ Constants.dbAddressesZipcode  + ", "
+				+ Constants.dbAddressesCity
+				+ ") VALUES (:id, :empty, :empty, :empty, :empty, :empty, :empty, :empty, :empty, :empty)";
 		
 		/* Werte Namen zuweisen */
-		Map<String,Object> UserParams = new HashMap<String,Object>();
-		UserParams.put("id", newUser.getId());
-		UserParams.put("username", newUser.getUsername());
-		UserParams.put("email", newUser.getEmail());
-		UserParams.put("password", newUser.getPassword());
-		UserParams.put("user_group", newUser.getUserGroupString());
-		
-		/* Werte Namen zuweisen */
-		Map<String,Object> AddressParams = new HashMap<String,Object>();
-		AddressParams.put("id", newUser.getId());
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("id", newUser.getId());
+		params.put("username", newUser.getUsername());
+		params.put("email", newUser.getEmail());
+		params.put("password", newUser.getPassword());
+		params.put("user_group", newUser.getUserGroupString());
+		params.put("empty", "");
 		
 		/* Speichern */
-		this.namedParameterJdbcTemplate.update(SQL_INSERT_NEW_USER, UserParams);
-		this.namedParameterJdbcTemplate.update(SQL_INSERT_NEW_EMPTY_ADDRESS, AddressParams);
+		this.namedParameterJdbcTemplate.update(SQL_INSERT_NEW_USER, params);
+		this.namedParameterJdbcTemplate.update(SQL_INSERT_NEW_EMPTY_ADDRESS, params);
 	}
 	
 	/* ------------------------- Auslesen ------------------------------------- */
