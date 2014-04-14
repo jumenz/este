@@ -36,7 +36,8 @@ public class AuthenticationService {
 	 */
 	public boolean authenticate(String username, String password) {
 	    try {
-	        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+	        Authentication authenticate 
+	        	= authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 	        if (authenticate.isAuthenticated()) {
 	            SecurityContextHolder.getContext().setAuthentication(authenticate);             
 	            return true;
