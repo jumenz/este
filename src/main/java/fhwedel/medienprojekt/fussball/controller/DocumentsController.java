@@ -3,19 +3,21 @@ package fhwedel.medienprojekt.fussball.controller;
 /** externe Klassen */
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+//import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
-import fhwedel.medienprojekt.fussball.model.Document;
 import fhwedel.medienprojekt.fussball.service.DocumentService;
 import fhwedel.medienprojekt.fussball.service.exception.DocumentUploadException;
 
@@ -57,7 +59,6 @@ public class DocumentsController {
 	 */
 	@RequestMapping(value=Constants.linkDocumentsUploadForm, method=RequestMethod.GET)
 	public String displayDocumentsUploadForm(Model model) {
-		model.addAttribute("newDocument", new Document());
 		return Constants.viewNameDocumentsUpload;
 	}
 	
@@ -65,20 +66,23 @@ public class DocumentsController {
 	 * Speichert ein neues Dokument.
 	 * 
 	 * @param	MultipartFile 	documentFile	Datei mit Multipart-Daten
-	 * @param	bindingResult	BindingResult
+	 * @param	Strinf			nocumentName	Name des Dokuments
 	 */
 	@RequestMapping(value=Constants.linkDocumentsUpload, method=RequestMethod.POST)
-	public String uploadDocument(@RequestParam(value="newDocument", required=true) MultipartFile documentFile, 
-								BindingResult bindingResult) {
+	public String uploadDocument(	@RequestParam(value="userfile", required=true) MultipartFile documentFile, 
+									@RequestParam(value="usertext", required=true) String documentName) {
+
+		if(documentFile.isEmpty()){
+			return Constants.redirectDocumentsUploadForm;
+		}
+		// gültigen Dokumente-Namen erstellen
+		documentName = documentService.validateDocumentName(documentName);
 		try {
-			if(!documentFile.isEmpty()){
-				// TODO
-				documentService.validateDocument(documentFile);
-				documentService.saveDocument("test.pdf",documentFile);
-			}
+			documentService.validateDocument(documentFile);
+			documentService.saveDocument(documentName, documentFile);
 		} catch(DocumentUploadException e){
-			bindingResult.reject(e.getMessage());
-			return"spitters/edit";
+			// TODO fehlerausgabe
+			return Constants.redirectDocumentsUploadForm;
 		}
 		return Constants.redirectDocuments;
 	}

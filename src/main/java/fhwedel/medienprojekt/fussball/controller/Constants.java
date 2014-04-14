@@ -67,7 +67,8 @@ public class Constants {
 	static final String redirectImpressum = "redirect:/impressum/";
 	static final String redirectLinks = "redirect:/links/";
 	static final String redirectDocuments = "redirect:/dokumente/";
-	static final String redirectDocumentsUpload = "redirect:/dokumente/upload/";
+	static final String redirectDocumentsUpload = "redirect:/dokumente/load/";
+	static final String redirectDocumentsUploadForm = "redirect:/dokumente/upload/";
 	static final String redirectGalery = "redirect:/galerie/";
 	static final String redirectGaleryUpload = "redirect:/galerie/upload/";
 	static final String redirectForum = "redirect:/forum/";

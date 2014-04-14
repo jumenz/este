@@ -75,6 +75,17 @@ public abstract class AbstractDataErrors {
 	}
 	
 	/**
+	 * Prüft, ob der angegebene Wert ausschließlich auf Buchstaben aufgebaut ist.
+	 * @param 	value	String	Eingabewert
+	 * @return	boolean	true:	Wert besteht nur aus Buchstaben
+	 * 					false:	Wert ist leer oder enthält weitere Zeichen
+	 */
+	public boolean isName(String value) {
+		assert(value != null);
+		return value.matches("[a-zA-ZäüöÄÜÖß-]+");
+	}
+	
+	/**
 	 * Prüft, ob der Eingabewert alphanumerisch ist.
 	 * @param 	value	String	Eingabewert
 	 * @return	boolean	true:	Wert ist alphanumerisch

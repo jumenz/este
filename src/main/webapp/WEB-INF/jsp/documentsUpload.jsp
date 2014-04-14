@@ -26,10 +26,13 @@
                              		 modelAttribute: Referenz auf Variable, die durch Controller zugreifbar gemacht wurde
                              		 ectype mutipart/form-data:	Jedes Feld wird als einzelner Teil des POST Request behandelt,
                              		 							nicht nur als Name-Wert-Paar --%>
-								<form action="${linkDocumentsUpload}" method="POST" enctype="multipart/form-data">
-									Dokument auswählen:
-									<input name="newDocument" type="file"/>
-									<br><br>
+								<form id="document-form" action="${linkDocumentsUpload}" method="POST" enctype="multipart/form-data" >
+									PDF Dokument auswählen:
+									<!-- <input name="newDocument" type="file"/> -->
+									<input id="file" type="file" name="userfile" required/><br />
+									Namen für das PDF eingeben:
+									<input id="filename" type="text" name="usertext" placeholder=" PDF Name *" value ="" required/><br /> 
+									<br><br>* Pflichtangabe<br><br>
 									<button type="submit" value="Hochladen" class="dark-bg"><div class="forward-raquo menu-link right"></div>Hochladen</button>
 								</form>
 								<%-- Ende Formular --%>

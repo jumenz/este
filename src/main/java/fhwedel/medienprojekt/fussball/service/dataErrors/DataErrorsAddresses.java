@@ -53,7 +53,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult		BindingResult
 	 */
 	private void validateName(String name, BindingResult bindingResult) {
-		if(this.isEmpty(name)) {
+		if(this.isEmpty(name) || !this.isName(name)) {
 			bindingResult.rejectValue("name", "error.address.name");
 		}
 	}
@@ -64,7 +64,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult		BindingResult
 	 */
 	private void validatePrename(String prename, BindingResult bindingResult) {
-		if(this.isEmpty(prename)) {
+		if(this.isEmpty(prename) || !this.isName(prename)) {
 			bindingResult.rejectValue("prename", "error.address.prename");
 		}
 	}
@@ -108,7 +108,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult			BindingResult
 	 */
 	private void validateStreet(String street, BindingResult bindingResult) {
-		if(this.isEmpty(street)) {
+		if(this.isEmpty(street) || !this.isName(street)) {
 			bindingResult.rejectValue("street", "error.address.street");
 		}
 	}
@@ -141,7 +141,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult		BindingResult
 	 */
 	private void validateCity(String city, BindingResult bindingResult) {
-		if(this.isEmpty(city)) {
+		if(this.isEmpty(city) || !this.isName(city)) {
 			bindingResult.rejectValue("city", "error.address.city");
 		}
 	}
