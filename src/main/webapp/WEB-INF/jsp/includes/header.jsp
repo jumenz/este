@@ -21,7 +21,7 @@
 				</a>
 				<ul class="submenue">
 					<security:authorize access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')">
-						<li><a href="${linkGaleryUpload}">Bilder hochladen</a></li>
+						<li><a href="${linkGaleryUploadForm}">Bilder hochladen</a></li>
 					</security:authorize>
 				</ul>
 			</li>

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
+
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
 import fhwedel.medienprojekt.fussball.model.galery.Image;
@@ -39,7 +41,7 @@ public class GaleryController {
 		try {
 			imgPaths = this.imageService.getImagPaths(request);
 		} catch (IOException e) {
-			// TODO
+			// leere Galery wird angezeigt
 		}
 		
 		// Bildpfade in drei Listen für die drei divs aufteilen 
@@ -96,19 +98,23 @@ public class GaleryController {
 	 * Speichert ein neues Bild in der Bildergalerie.
 	 * @param	MultipartFile 	imageFile		Datei mit Multipart-Daten
 	 * @param	bindingResult	BindingResult
+	 * @throws	ImageUploadException
 	 */
 	@RequestMapping(value=Constants.linkGaleryUpload, method=RequestMethod.POST)
-	public String uploadImage(	@RequestParam(value="image", required=true) MultipartFile imageFile, 
-								BindingResult bindingResult) {
-		try {
-			if(!imageFile.isEmpty()){
-				imageService.validateImage(imageFile);
-				imageService.saveImage("test.jpg",imageFile);
-			}
-		} catch(ImageUploadException e){
-			bindingResult.reject(e.getMessage());
-			return"spitters/edit";
+	public String uploadImage(	@RequestParam(value="image", required=true) MultipartFile imageFile,
+								@RequestParam(value="fileName", required=true) String fileName) throws ImageUploadException {
+		if(!imageFile.isEmpty()){
+			// prüfen
+			imageService.validate(imageFile);
+			// gültigen Dokumente-Namen erstellen
+			ArrayList<String> endings = new ArrayList<String>();
+			endings.add(".jpg");
+			endings.add(".png");
+			fileName = this.imageService.validateFileName(fileName, endings);
+			// speichern
+			imageService.saveImage(fileName,imageFile);
 		}
+
 		return Constants.redirectGalery;
 	}
 	

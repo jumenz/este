@@ -78,9 +78,11 @@ public class DocumentsController {
 			return Constants.redirectDocumentsUploadForm;
 		}
 		// gültigen Dokumente-Namen erstellen
-		documentName = documentService.validateDocumentName(documentName);
+		ArrayList<String> endings = new ArrayList<String>();
+		endings.add("pdf");
+		documentName = documentService.validateFileName(documentName, endings);
 		try {
-			documentService.validateDocument(documentFile);
+			documentService.validate(documentFile);
 			documentService.saveDocument(documentName, documentFile);
 		} catch(DocumentUploadException e){
 			// TODO fehlerausgabe

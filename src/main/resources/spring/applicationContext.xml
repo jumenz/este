@@ -104,5 +104,5 @@
 	
 	<!-- Upload Service -->
 	<bean id="ImageService" class="fhwedel.medienprojekt.fussball.service.uploads.image.ImageService"/>
-	<bean id="DocumentService" class="fhwedel.medienprojekt.fussball.service.DocumentService"/>
+	<bean id="DocumentService" class="fhwedel.medienprojekt.fussball.service.uploads.documents.DocumentService"/>
 </beans>
