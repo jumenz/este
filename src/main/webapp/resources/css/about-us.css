@@ -34,7 +34,7 @@ a.show-link {
 /* --------------- Images ----------------------- */
 .about-us-img-logo {
 	float: left;
-	width: 45%;
+	width: 15%;
 	height: auto;
 	margin-right: 5%;
 	margin-bottom: 5%;
@@ -42,4 +42,30 @@ a.show-link {
 .about-us-img-team {
 	width: 100%;
 	height: auto;
+}
+
+/* ----------------- Media < 500px ---------------------------------- */
+@media (max-width: 500px) {
+	img.about-us-img-logo {
+		width: 100%;
+		margin-right: 0px;
+	}
+	.profile .about-us-img-trainer {
+		width: 50%;
+	}
+}
+
+/* ----------------- Media < 249px ---------------------------------- */
+@media (max-width: 249px) {
+	.google-maps-wrapper {
+		text-align: left;
+	}
+	.google-maps-map {
+		display: none;
+	}
+	.profile .about-us-img-trainer {
+		width: 100%;
+		margin-left: 0px;
+		margin-top: 2%;
+	}
 }

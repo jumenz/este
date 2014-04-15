@@ -68,7 +68,7 @@
 								<div class="box-body">
 									<p>${aboutUsContent.teamText}</p>
 									<img 	class="about-us-img-team" 
-											src="${dataPath}/galery/K640_picture24.JPG"
+											src="${dataPath}/galery/K640_picture24.jpg"
 											alt="mannschaft-este-damen" />
 								</div>
 							</div>
@@ -87,7 +87,7 @@
 										<h3>${aboutUsContent.trainerFirstName}</h3><br>
 										<div class="profile-description">
 											<img 	class="about-us-img-trainer" 
-													src="${dataPath}/images/K640_trainer-m.JPG" 
+													src="${dataPath}/images/K640_trainer-m.jpg" 
 													alt="este-damen-trainer"/>
 											<p>${aboutUsContent.trainerFirstText}</p>
 										</div>
@@ -96,7 +96,7 @@
 										<h3>${aboutUsContent.trainerSecondName}</h3><br>
 										<div class="profile-description">
 											<img 	class="about-us-img-trainer" 
-													src="${dataPath}/images/K640_trainer-s.JPG" 
+													src="${dataPath}/images/K640_trainer-s.jpg" 
 													alt="este-damen-trainer"/>
 											<p>${aboutUsContent.trainerSecondText}</p>
 										</div>

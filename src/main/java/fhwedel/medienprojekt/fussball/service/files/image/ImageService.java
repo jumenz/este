@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service.image;
+package fhwedel.medienprojekt.fussball.service.files.image;
 
 /** externe Klassen */
 import java.io.File;
@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
-import org.apache.commons.io.FileUtils;
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
+import fhwedel.medienprojekt.fussball.service.files.AbstractFilesService;
 
 /**
  * ImageService
@@ -17,17 +17,18 @@ import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
  * 
  * @author Ellen Schwartau Minf9888
  */
-public class ImageService {	
+public class ImageService extends AbstractFilesService {	
 	/**
 	 * Prüft ein Image auf das richtige Format.
 	 * @param image
 	 */
-	public void validateImage(MultipartFile image){
+	@Override
+	public void validate(MultipartFile file) {
 		/* Als valides Bildformat vorerst nur jpeg und png erlaubt, damit keine
 		 * zips, exe-Dateien oder Ähnliches hochgeladen werden können. */
-		if(!image.getContentType().equals("image/jpeg") || !image.getContentType().equals("image/png")){
+		if(!(file.getContentType().equals("image/jpeg") || file.getContentType().equals("image/png"))){
 			// Bei anderem Format Exception werden
-			throw new ImageUploadException("OnlyJPGimagesaccepted");
+			throw new ImageUploadException("Es sind nur JPGs oder PNGs erlaubt.");
 		}
 	}
 	
@@ -39,38 +40,35 @@ public class ImageService {
 	 */
 	public void saveImage(String filename, MultipartFile image) throws ImageUploadException{
 		try {
-			File file = new File("C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/galery/" + filename);
-			FileUtils.writeByteArrayToFile(file, image.getBytes());
+			this.save(filename, image, "C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/galery/");
 		} catch(IOException e){
-			throw new ImageUploadException("Unabletosaveimage",e);
+			throw new ImageUploadException("Unable to save image",e);
 		}		
 	}
 	
+	/**
+	 * Prüft ein File darauf, ob ein Image vorliegt.
+	 * Valide Bildendungen sind hier jpg und png.
+	 * @param 	f	File	Datei
+	 * @param 	s	String	Dateiname
+	 * @return	boolean		
+	 */
 	public boolean isImage(File f, String s) {
-		return new File(f,s).isFile() && (s.toLowerCase().endsWith(".jpg") || (s.toLowerCase().endsWith(".jpg")));
+		return this.isFile(f, s) 
+					&& (s.toLowerCase().endsWith(".jpg") 
+					|| (s.toLowerCase().endsWith(".png")));
 	}
 	
+	/**
+	 * Liest die Image-Pfade aus dem Galery-Ordner aus.
+	 * @param 	request				Request
+	 * @return	ArrayList<String>	Bildpfade
+	 * @throws 	IOException
+	 */
 	public ArrayList<String> getImagPaths(HttpServletRequest request) throws IOException {
-		ArrayList<String> imgPaths = new ArrayList<String>();
 		String galeryPath = "C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/galery/";
 		String galeryUrl = request.getContextPath() + "/resources/data/galery/";
-		File dir = new File(galeryPath);
-		String imageNames[] = null;
 		
-		if(dir.isDirectory()) {
-			if(!dir.canRead()) {
-				dir.setReadable(true);
-				
-			}
-			imageNames = dir.list();
-		}
-		
-		if(imageNames != null) {
-			for(int i=0; i < imageNames.length; i++){
-				imgPaths.add(galeryUrl + imageNames[i]);
-			}
-		}
-		
-		return imgPaths;
+		return this.getPaths(galeryPath, galeryUrl);
 	}
 }

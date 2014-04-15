@@ -22,12 +22,12 @@
 	<link rel="stylesheet" type="text/css" href="${cssPath}/header.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/footer.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/addresses.css"/>
-	<link rel="stylesheet" type="text/css" href="${cssPath}/about-us.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/post.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/login-register.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/calendar.css"/>
 	<link rel="stylesheet" type="text/css" href="${cssPath}/documents.css"/>
+	<link rel="stylesheet" type="text/css" href="${cssPath}/about-us.css"/>
 	
 	<%-- script --%>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

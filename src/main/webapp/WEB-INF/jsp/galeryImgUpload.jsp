@@ -24,7 +24,6 @@
                              <div class="box-body">
                              	
                              	<%-- Formular zum hochladen eines neuen Bildes 
-                             		 modelAttribute: Referenz auf Variable, die durch Kontroller zugreifbar gemacht wurde
                              		 ectype mutipart/form-data:	Jedes Feld wird als einzelner Teil des POST Request behandelt,
                              		 							nicht nur als Name-Wert-Paar
                              	--%>
@@ -36,7 +35,10 @@
 										method="POST"
 										enctype="multipart/form-data">
 									Bild hochladen:
-									<input name="image" type="file"/>
+									<input name="image" type="file" required/>
+									<br><br>
+									Name des Bildes: 
+									<input id="filename" type="text" name="fileName" placeholder="Name des Bildes" value ="" required/>
 									<br><br>
 									<button type="submit" value="Hochladen" class="dark-bg"><div class="forward-raquo menu-link right"></div>Hochladen</button>
 								</form>

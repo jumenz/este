@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
+
+
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
-import fhwedel.medienprojekt.fussball.service.DocumentService;
 import fhwedel.medienprojekt.fussball.service.exception.DocumentUploadException;
+import fhwedel.medienprojekt.fussball.service.files.documents.DocumentService;
 
 @Controller
 public class DocumentsController {
@@ -76,9 +79,11 @@ public class DocumentsController {
 			return Constants.redirectDocumentsUploadForm;
 		}
 		// gültigen Dokumente-Namen erstellen
-		documentName = documentService.validateDocumentName(documentName);
+		ArrayList<String> endings = new ArrayList<String>();
+		endings.add(".pdf");
+		documentName = documentService.validateFileName(documentName, endings);
 		try {
-			documentService.validateDocument(documentFile);
+			documentService.validate(documentFile);
 			documentService.saveDocument(documentName, documentFile);
 		} catch(DocumentUploadException e){
 			// TODO fehlerausgabe
