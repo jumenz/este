@@ -15,7 +15,7 @@
         <div class="container">
         <div class="main">
         <div class="main-inner">     
-			<div id="..." class="content-list">
+			<div id="login" class="content-list">
 				<ul>
 				
 					<%-- Loginformular wird nur angezeigt, wenn der User nicht angemeldet ist --%>

@@ -15,7 +15,7 @@
         <div class="container">
         <div class="main">
         <div class="main-inner">     
-			<div id="..." class="content-list">
+			<div id="register" class="content-list">
 				<ul>
 					<%--Contentbox One-Col --%>
 					<%-- Formular zum Registrieren --%>	
