@@ -18,7 +18,6 @@ public class Report extends Post {
 	//@Pattern(regexp=".*", message="Bitte gib den Namen des Gegners ein.")
 	private String opponent;
 	/** Spielstände */
-	// private int[] scores = new int[4];
 	private int scoreFirstHalfHome;
 	private int scoreFirstHalfGuest;
 	private int scoreSecondHalfHome;
@@ -64,10 +63,10 @@ public class Report extends Post {
 		super(topic, text, author, date);
 		this.opponent = opponent;
 		this.homeMatch = homeMatch;
-		setScore(Scores.FIRST_HALF_HOME, firstHalfHome);
-		setScore(Scores.FIRST_HALF_GUEST, firstHalfGuest);
-		setScore(Scores.SECOND_HALF_HOME, secondHalfHome);
-		setScore(Scores.SECOND_HALF_GUEST, secondHalfGuest);
+		this.scoreFirstHalfHome = firstHalfHome;
+		this.scoreFirstHalfGuest = firstHalfGuest;
+		this.scoreSecondHalfHome = secondHalfHome;
+		this.scoreSecondHalfGuest = secondHalfGuest;
 	}
 	
 	/* ------------------------ getter / setter --------------------- */
@@ -161,23 +160,5 @@ public class Report extends Post {
 	public int getScoreSecondHalfGuest() {
 		return this.scoreSecondHalfGuest;
 	}
-	
-	/**
-	 * Setzt einen Spielstand zu einer bestimmten Halbzeit.
-	 * @param score		spezifiziert den zu setzenden Spielstand
-	 * @param value		Spielstand
-	 */
-	public void setScore(Scores score, int value) {
-		assert(value>=0);
-		// this.scores[score.ordinal()] = value;
-	}
-	/**
-	 * Liefert den Spielstand einer Mannschaft zu einer bestimmten Halbzeit.
-	 * @param score		gefragter Spielstand
-	 * @return			Spielstand
-	 */
-	//public int getScore(Scores score) {
-		// return this.scores[score.ordinal()];
-	//}
-	
+		
 }
