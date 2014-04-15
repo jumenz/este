@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service.image;
+package fhwedel.medienprojekt.fussball.service.uploads.image;
 
 /** externe Klassen */
 import java.io.File;
@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
+import fhwedel.medienprojekt.fussball.service.uploads.AbstractUploadService;
 
 /**
  * ImageService
@@ -17,15 +18,16 @@ import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
  * 
  * @author Ellen Schwartau Minf9888
  */
-public class ImageService {	
+public class ImageService extends AbstractUploadService {	
 	/**
 	 * Prüft ein Image auf das richtige Format.
 	 * @param image
 	 */
-	public void validateImage(MultipartFile image){
+	@Override
+	public void validate(MultipartFile file) {
 		/* Als valides Bildformat vorerst nur jpeg und png erlaubt, damit keine
 		 * zips, exe-Dateien oder Ähnliches hochgeladen werden können. */
-		if(!image.getContentType().equals("image/jpeg") || !image.getContentType().equals("image/png")){
+		if(!file.getContentType().equals("image/jpeg") || !file.getContentType().equals("image/png")){
 			// Bei anderem Format Exception werden
 			throw new ImageUploadException("OnlyJPGimagesaccepted");
 		}
@@ -46,27 +48,44 @@ public class ImageService {
 		}		
 	}
 	
+	/**
+	 * Prüft ein File darauf, ob ein Image vorliegt.
+	 * Valide Bildendungen sind hier jpg und png.
+	 * @param 	f	File	Datei
+	 * @param 	s	String	Dateiname
+	 * @return	boolean		
+	 */
 	public boolean isImage(File f, String s) {
-		return new File(f,s).isFile() && (s.toLowerCase().endsWith(".jpg") || (s.toLowerCase().endsWith(".jpg")));
+		return new File(f,s).isFile() 
+					&& (s.toLowerCase().endsWith(".jpg") 
+					|| (s.toLowerCase().endsWith(".png")));
 	}
 	
+	/**
+	 * Liest die Image-Pfade aus dem Galery-Ordner aus.
+	 * @param 	request				Request
+	 * @return	ArrayList<String>	Bildpfade
+	 * @throws 	IOException
+	 */
 	public ArrayList<String> getImagPaths(HttpServletRequest request) throws IOException {
 		ArrayList<String> imgPaths = new ArrayList<String>();
 		String galeryPath = "C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/galery/";
 		String galeryUrl = request.getContextPath() + "/resources/data/galery/";
-		File dir = new File(galeryPath);
 		String imageNames[] = null;
+		File dir = new File(galeryPath);
 		
 		if(dir.isDirectory()) {
 			if(!dir.canRead()) {
+				// Falls keine Leserechte vorhanden sind, diese setzen
 				dir.setReadable(true);
-				
 			}
+			// Dateinamen auslesen
 			imageNames = dir.list();
 		}
 		
 		if(imageNames != null) {
 			for(int i=0; i < imageNames.length; i++){
+				// Ressource URL erstellen
 				imgPaths.add(galeryUrl + imageNames[i]);
 			}
 		}

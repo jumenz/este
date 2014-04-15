@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service;
+package fhwedel.medienprojekt.fussball.service.uploads.documents;
 
 /** externe Klassen */
 import java.io.File;
@@ -24,10 +24,10 @@ import org.apache.commons.io.FileUtils;
 import fhwedel.medienprojekt.fussball.service.exception.DocumentUploadException;
 
 /**
- * ImageService
- * Dient dem Validieren und Speichern von Images.
+ * DocumentService
+ * Dient dem Validieren und Speichern von PDF-Dokumenten.
  * 
- * @author Ellen Schwartau Minf9888
+ * @author Julia Menzel
  */
 public class DocumentService {	
 	/**
@@ -127,7 +127,7 @@ public class DocumentService {
 	 */
 	public ArrayList<String> getDocumentNames(HttpServletRequest request) throws IOException {
 		ArrayList<String> documentNameList = new ArrayList<String>();
-		String documentPath = "/var/www/este/src/main/webapp/resources/data/documents/";
+		String documentPath = "C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/documents/";
 		File dir = new File(documentPath);
 		String documentNames[] = null;
 		

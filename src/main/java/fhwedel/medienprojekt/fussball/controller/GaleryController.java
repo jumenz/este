@@ -3,7 +3,9 @@ package fhwedel.medienprojekt.fussball.controller;
 /** externe Klassen */
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
 import fhwedel.medienprojekt.fussball.model.galery.Image;
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
-import fhwedel.medienprojekt.fussball.service.image.ImageService;
+import fhwedel.medienprojekt.fussball.service.uploads.image.ImageService;
 
 @Controller
 public class GaleryController {

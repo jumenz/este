@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
+
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
-import fhwedel.medienprojekt.fussball.service.DocumentService;
 import fhwedel.medienprojekt.fussball.service.exception.DocumentUploadException;
+import fhwedel.medienprojekt.fussball.service.uploads.documents.DocumentService;
 
 @Controller
 public class DocumentsController {
