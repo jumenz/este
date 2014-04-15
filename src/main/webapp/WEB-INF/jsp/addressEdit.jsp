@@ -29,7 +29,7 @@
 		                    	<div class="main-content-box box-borders bg clearfix">
 		                        	<h2 class="box-title">
 		                        		${addressEditModel.prename}
-		                        		<c:if test="${addressEditModel.name.compareTo('') != 0 && addressEditModel.prename.compareTo('') != 0}">,&nbsp;</c:if>
+		                        		<c:if test="${addressEditModel.name.compareTo('') != 0 && addressEditModel.prename.compareTo('') != 0}">&nbsp;</c:if>
 		                        		${addressEditModel.name}
 									</h2>
 		                            <div class="box-body">
@@ -41,7 +41,7 @@
 										                <div class="form-item">
 										                    <p class="input">
 																<sf:input 	path="prename"
-																			placeholder="Vorname"
+																			placeholder="Vorname *"
 																			id="prename"
 																			value="${addressEditModel.prename}"
 																			class="input input-text"
@@ -53,7 +53,7 @@
 										                    <p class="input">
 																<sf:input 	path="name"
 																			id="name"
-																			placeholder="Name"
+																			placeholder="Name *"
 																			value="${addressEditModel.name}"
 																			class="input input-text"
 																/><br>
@@ -64,14 +64,14 @@
 										                    <p class="input">
 																<sf:input 	path="street"
 																			id="street"
-																			placeholder="Straße"
+																			placeholder="Straße *"
 																			value="${addressEditModel.street}"
 																			class="input input-text"
-																/><br>
+																/>
 																<sf:errors path="street" cssClass="error"/>
 																<sf:input 	path="nr"
 																			id="nr"
-																			placeholder="Nr."
+																			placeholder="Nr. *"
 																			value="${addressEditModel.nr}"
 																			class="input input-text"
 																/><br>
@@ -82,14 +82,14 @@
 										                    <p class="input">
 																<sf:input 	path="zipcode"
 																			id="zipcode"
-																			placeholder="PLZ"
+																			placeholder="PLZ *"
 																			value="${addressEditModel.zipcode}"
 																			class="input input-text"
-																/><br>
+																/>
 																<sf:errors path="zipcode" cssClass="error"/>
 																<sf:input 	path="city"
 																			id="city"
-																			placeholder="Ort"
+																			placeholder="Ort *"
 																			value="${addressEditModel.city}"
 																			class="input input-text"
 																/><br>
@@ -126,7 +126,7 @@
 										                     <p class="input">
 																<sf:input 	path="birthday"
 																			id="birthday"
-																			placeholder="Geburtsdatum"
+																			placeholder="Geburtsdatum *"
 																			value="${addressEditModel.birthday}"
 																			class="input input-text"
 																/><br>
@@ -141,7 +141,7 @@
 										            </fieldset>
 										        </li>
 										    </ul>
-										    <p id="required">alle Felder sind Pflichtfelder</p>
+										    <p id="required">* Pflichtfelder</p>
 										    <button class="dark-bg" type="submit" name="commit">
 										    	<div class="forward-raquo menu-link right"></div>Aktualisieren
 										    </button>
@@ -151,7 +151,7 @@
 										</sf:form>
 										<%-- end edit address form --%>
 										<form action="${linkAddressDelete}${addressEditModel.id}/" method="GET" style="display: inline-block">
-											<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Account Löschen</button>
+											<button id="delete" type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>Account Löschen</button>
 										</form>
 									</div>
 								</div>
