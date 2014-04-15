@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service.uploads.documents;
+package fhwedel.medienprojekt.fussball.service.files.documents;
 
 /** externe Klassen */
 import java.io.File;
@@ -7,12 +7,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 /** eigene Klassen */
-import fhwedel.medienprojekt.fussball.service.uploads.AbstractUploadService;
+
 import fhwedel.medienprojekt.fussball.service.exception.DocumentUploadException;
+import fhwedel.medienprojekt.fussball.service.files.AbstractFilesService;
 
 /**
  * DocumentService
@@ -20,7 +23,7 @@ import fhwedel.medienprojekt.fussball.service.exception.DocumentUploadException;
  * 
  * @author Julia Menzel
  */
-public class DocumentService extends AbstractUploadService {	
+public class DocumentService extends AbstractFilesService {	
 	/* -------------- Klassenvariablen -------------------- */
 	/** Pfad zum Ordner der Dokumente */
 	private String documentPath = "C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/documents/";

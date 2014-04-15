@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service.uploads.image;
+package fhwedel.medienprojekt.fussball.service.files.image;
 
 /** externe Klassen */
 import java.io.File;
@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
-import fhwedel.medienprojekt.fussball.service.uploads.AbstractUploadService;
+import fhwedel.medienprojekt.fussball.service.files.AbstractFilesService;
 
 /**
  * ImageService
@@ -17,7 +17,7 @@ import fhwedel.medienprojekt.fussball.service.uploads.AbstractUploadService;
  * 
  * @author Ellen Schwartau Minf9888
  */
-public class ImageService extends AbstractUploadService {	
+public class ImageService extends AbstractFilesService {	
 	/**
 	 * Prüft ein Image auf das richtige Format.
 	 * @param image

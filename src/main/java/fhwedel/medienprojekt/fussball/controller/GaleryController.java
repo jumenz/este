@@ -3,7 +3,9 @@ package fhwedel.medienprojekt.fussball.controller;
 /** externe Klassen */
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
-import fhwedel.medienprojekt.fussball.service.uploads.image.ImageService;
+import fhwedel.medienprojekt.fussball.service.files.image.ImageService;
 
 /**
  * Übernimmt das Anzeigen der Bildergalerie.
@@ -99,7 +102,8 @@ public class GaleryController {
 	 */
 	@RequestMapping(value=Constants.linkGaleryUpload, method=RequestMethod.POST)
 	public String uploadImage(	@RequestParam(value="image", required=true) MultipartFile imageFile,
-								@RequestParam(value="fileName", required=true) String fileName) throws ImageUploadException {
+								@RequestParam(value="fileName", required=true) String fileName) 
+										throws ImageUploadException {
 		if(!imageFile.isEmpty()){
 			// prüfen
 			imageService.validate(imageFile);

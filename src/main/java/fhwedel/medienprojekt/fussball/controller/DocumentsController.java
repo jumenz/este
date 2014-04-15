@@ -18,10 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
 import fhwedel.medienprojekt.fussball.service.exception.DocumentUploadException;
-import fhwedel.medienprojekt.fussball.service.uploads.documents.DocumentService;
+import fhwedel.medienprojekt.fussball.service.files.documents.DocumentService;
 
 @Controller
 public class DocumentsController {

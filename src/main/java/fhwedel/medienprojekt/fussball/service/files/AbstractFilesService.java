@@ -1,4 +1,4 @@
-package fhwedel.medienprojekt.fussball.service.uploads;
+package fhwedel.medienprojekt.fussball.service.files;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Ellen Schwartau Minf988
  *
  */
-public abstract class AbstractUploadService {
+public abstract class AbstractFilesService {
 	/* --------------- Validierung ---------------- */
 	/**
 	 * Prüft eine Datei auf das richtige Format.
