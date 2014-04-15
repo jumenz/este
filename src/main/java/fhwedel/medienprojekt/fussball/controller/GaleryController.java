@@ -3,27 +3,25 @@ package fhwedel.medienprojekt.fussball.controller;
 /** externe Klassen */
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
-
-
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.controller.Constants;
-import fhwedel.medienprojekt.fussball.model.galery.Image;
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
 import fhwedel.medienprojekt.fussball.service.uploads.image.ImageService;
 
+/**
+ * Übernimmt das Anzeigen der Bildergalerie.
+ * @author Ellen Schwartau Minf9888
+ *
+ */
 @Controller
 public class GaleryController {
 	
@@ -90,7 +88,6 @@ public class GaleryController {
 	 */
 	@RequestMapping(value=Constants.linkGaleryUploadForm, method=RequestMethod.GET)
 	public String displayGaleryImgUploadForm(Model model) {
-		model.addAttribute("img", new Image());
 		return Constants.viewNameGaleryUpload;
 	}
 	
