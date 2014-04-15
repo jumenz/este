@@ -32,6 +32,7 @@
 														placeholder="Impressum ..."
 														value="${impressumContent.text}"
 														class="full-width"
+														required="true"
 										/><br>
 										<sf:errors path="text" cssClass="error"/><br>
 										<button class="dark-bg" type="submit"><div class="forward-raquo menu-link right"></div>Speichern</button>

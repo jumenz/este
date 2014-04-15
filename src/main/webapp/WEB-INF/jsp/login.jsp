@@ -34,6 +34,7 @@
 														placeholder="Username"
 														value="${loginUser.username}"
 														class="full-width"
+														required="true"
 											/><br><br>
 											<%-- Passwort --%>
 											<sf:input	path="password" 
@@ -41,6 +42,7 @@
 														placeholder="Passwort"
 														value="${loginUser.password}"
 														class="full-width"
+														required="true"
 											/><br>
 											<%-- Fehlermeldung für den Login (eine gemeinsame für beide Felder) --%>
 											<sf:errors path="*" cssClass="error"/><br><br>

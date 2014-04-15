@@ -33,6 +33,7 @@
 														cols="120"
 														value="${forumEntry.topic}"
 														placeholder="Titel"
+														required="true"
 										/><br>
 										<%-- Fehlermeldung für den Titel --%>
 										<sf:errors path="topic" cssClass="error"/><br>
@@ -43,6 +44,7 @@
 														cols="120"
 														value="${forumEntry.description}"
 														placeholder="Kurzbeschreibung"
+														required="true"
 										/><br>
 										<%-- Fehlermeldung für die Kurzbeschreibung --%>
 										<sf:errors path="description" cssClass="error"/><br>
@@ -53,6 +55,7 @@
 														placeholder="Tippe hier deinen Text"
 														rows="20"
 														cols="120"
+														required="true"
 										/><br>
 										<%-- Fehlermeldung für den Text --%>
 										<sf:errors path="text" cssClass="error"/><br>

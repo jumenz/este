@@ -31,6 +31,7 @@
 														value="${newUser.username}"
 														placeholder="Username"
 														class="full-width"
+														required="true"
 											/><br>
 											<%-- Fehlermeldung für den Username --%>
 											<sf:errors path="username" cssClass="error"/><br>
@@ -39,6 +40,7 @@
 														value="${newUser.email}"
 														placeholder="E-Mail Adresse"
 														class="full-width"
+														required="true"
 											/><br>
 											<%-- Fehlermeldung für die E-Mail Adresse --%>
 											<sf:errors path="email" cssClass="error"/><br>
@@ -48,12 +50,14 @@
 														value="${newUser.password}"
 														placeholder="Passwort"
 														class="full-width"
+														required="true"
 											/><br><br>
 											<sf:input	path="passwordCompare"
 														type="password"
 														value="${newUser.passwordCompare}"
 														placeholder="Passwort"
 														class="full-width"
+														required="true"
 											/><br>
 											<%-- Fehlermeldung für das Passwort --%>
 											<sf:errors path="password" cssClass="error"/><br><br>
@@ -85,6 +89,7 @@
 											<sf:input 	path="email"
 														placeholder="E-Mail Adresse"
 														class="full-width"
+														required="true"
 											/><br>
 											<%-- Admin Status --%>
 											<sf:checkbox path="adminStatus"/>User soll Admin Status erhalten<br>

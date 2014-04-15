@@ -32,6 +32,7 @@
 															placeholder="Titel"
 															value="${report.topic}"
 															class="full-width"
+															required="true"
 											/><br>
 											<%-- Fehlermeldung für den Titel --%>
 											<sf:errors path="topic" cssClass="error"/>
@@ -42,6 +43,7 @@
 															placeholder="Name des Gegners"
 															value="${report.opponent}"
 															class="full-width"
+															required="true"
 											/><br>
 											<%-- Fehlermeldung für den Titel --%>
 											<sf:errors path="topic" cssClass="error"/><br>
@@ -51,23 +53,31 @@
 														type="number"
 														min="0"
 														placeholder="0" 
-														value="${report.scoreFirstHalfHome}"/> :
+														value="${report.scoreFirstHalfHome}"
+														required="true"
+														/> :
 											<sf:input 	path="scoreFirstHalfGuest" 
 														type="number"
 														min="0"
 														placeholder="0"
-														value="${report.scoreFirstHalfGuest}"/><br>
+														value="${report.scoreFirstHalfGuest}"
+														required="true"
+														/><br>
 											<br>Endstand (Heim:Gast)
 											<sf:input 	path="scoreSecondHalfHome" 
 														type="number"
 														min="0"
 														placholder="0"
-														value="${report.scoreSecondHalfHome}"/> :
+														value="${report.scoreSecondHalfHome}"
+														required="true"
+														/> :
 											<sf:input 	path="scoreSecondHalfGuest" 
 														type="number"
 														min="0"
 														placeholder="0" 
-														value="${report.scoreSecondHalfGuest}"/><br>
+														value="${report.scoreSecondHalfGuest}"
+														required="true"
+														/><br>
 											<%-- Fehlermeldung --%>
 											<sf:errors path="score*" cssClass="error"/><br>
 											<%-- Heimspielangabe --%>
@@ -86,6 +96,7 @@
 															rows="20"
 															cols="120"
 															class="full-width"
+															required="true"
 											/><br>
 											<%-- Fehlermeldung für den Text --%>
 											<sf:errors path="text" cssClass="error"/><br>

@@ -45,6 +45,7 @@
 																			id="prename"
 																			value="${addressEditModel.prename}"
 																			class="input input-text"
+																			required="true"
 																/><br>
 																<sf:errors path="prename" cssClass="error"/>
 										                    </p>
@@ -56,6 +57,7 @@
 																			placeholder="Name *"
 																			value="${addressEditModel.name}"
 																			class="input input-text"
+																			required="true"
 																/><br>
 																<sf:errors path="name" cssClass="error"/>
 										                    </p>
@@ -67,6 +69,7 @@
 																			placeholder="Straße *"
 																			value="${addressEditModel.street}"
 																			class="input input-text"
+																			required="true"
 																/>
 																<sf:errors path="street" cssClass="error"/>
 																<sf:input 	path="nr"
@@ -74,6 +77,7 @@
 																			placeholder="Nr. *"
 																			value="${addressEditModel.nr}"
 																			class="input input-text"
+																			required="true"
 																/><br>
 																<sf:errors path="nr" cssClass="error"/>
 										                    </p>
@@ -85,6 +89,7 @@
 																			placeholder="PLZ *"
 																			value="${addressEditModel.zipcode}"
 																			class="input input-text"
+																			required="true"
 																/>
 																<sf:errors path="zipcode" cssClass="error"/>
 																<sf:input 	path="city"
@@ -92,6 +97,7 @@
 																			placeholder="Ort *"
 																			value="${addressEditModel.city}"
 																			class="input input-text"
+																			required="true"
 																/><br>
 																<sf:errors path="city" cssClass="error"/>
 										                    </p>
@@ -129,6 +135,7 @@
 																			placeholder="Geburtsdatum *"
 																			value="${addressEditModel.birthday}"
 																			class="input input-text"
+																			required="true"
 																/><br>
 																<sf:errors path="birthday" cssClass="error"/>
 										                    </p>
