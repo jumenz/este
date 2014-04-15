@@ -26,8 +26,8 @@ import fhwedel.medienprojekt.fussball.service.files.AbstractFilesService;
 public class DocumentService extends AbstractFilesService {	
 	/* -------------- Klassenvariablen -------------------- */
 	/** Pfad zum Ordner der Dokumente */
-	private String documentPath = "C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/documents/";
-	// private String documentPath = "/var/www/este/src/main/webapp/resources/data/documents/";
+	//private String documentPath = "C:/Users/Ellen/workspace/medienprojekt/este/src/main/webapp/resources/data/documents/";
+	 private String documentPath = "/var/www/este/src/main/webapp/resources/data/documents/";
 	
 	/**
 	 * Prüft ein Dokument auf das richtige Format.
@@ -39,7 +39,7 @@ public class DocumentService extends AbstractFilesService {
 		 * zips, exe-Dateien oder Ähnliches hochgeladen werden können. */
 		if(!document.getContentType().equals("application/pdf")){
 			// Bei anderem Format Exception werden
-			throw new DocumentUploadException("OnlyPDFdocumentsAccepted");
+			throw new DocumentUploadException("Es sind nur PDFs erlaubt.");
 		}
 	}
 	
@@ -54,7 +54,7 @@ public class DocumentService extends AbstractFilesService {
 		try {
 			this.save(name, document, this.documentPath);
 		} catch(IOException e){
-			throw new DocumentUploadException("UnableToSaveDocument",e);
+			throw new DocumentUploadException("Es war nicht möglich das Dokument zu speichern",e);
 		}		
 	}
 	
