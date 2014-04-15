@@ -64,7 +64,10 @@ public abstract class AbstractUploadService {
 		String str = dateFormat.format(new Date());
 		fileName = str.concat(fileName);
 		
-		return fileName.concat(ending);
+		// Endung (wieder) anfügen
+		return (ending.equals(new String("")) && acceptedEndings.size() > 0) 
+				? fileName.concat(acceptedEndings.get(0)) 
+				: fileName.concat(ending);
 	}
 	
 	/* ------------- Speichern ----------------- */

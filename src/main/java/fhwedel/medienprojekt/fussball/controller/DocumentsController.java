@@ -79,7 +79,7 @@ public class DocumentsController {
 		}
 		// gültigen Dokumente-Namen erstellen
 		ArrayList<String> endings = new ArrayList<String>();
-		endings.add("pdf");
+		endings.add(".pdf");
 		documentName = documentService.validateFileName(documentName, endings);
 		try {
 			documentService.validate(documentFile);
