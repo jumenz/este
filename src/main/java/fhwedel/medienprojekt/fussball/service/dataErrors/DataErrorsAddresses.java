@@ -84,7 +84,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult			BindingResult
 	 */
 	private void validateMobile(String mobile, BindingResult bindingResult) {
-		if(this.isEmpty(mobile) || !this.isPhoneNumber(mobile)) {
+		if(!this.isEmpty(mobile) && !this.isPhoneNumber(mobile)) {
 			bindingResult.rejectValue("mobile", "error.address.mobile.invalid");
 		}
 	}
@@ -95,7 +95,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult		BindingResult
 	 */
 	private void validatePhone(String phone, BindingResult bindingResult) {
-		if(this.isEmpty(phone) || !this.isPhoneNumber(phone)) {
+		if(!this.isEmpty(phone) && !this.isPhoneNumber(phone)) {
 			bindingResult.rejectValue("phone", "error.address.phone.invalid");
 		}
 	}

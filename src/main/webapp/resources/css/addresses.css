@@ -20,3 +20,6 @@
 fieldset#buttons {
     width: 100%;
 }
+#edit-address #delete {
+	margin-top: 12px;
+}

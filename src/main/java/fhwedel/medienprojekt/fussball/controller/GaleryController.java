@@ -97,7 +97,6 @@ public class GaleryController {
 	/**
 	 * Speichert ein neues Bild in der Bildergalerie.
 	 * @param	MultipartFile 	imageFile		Datei mit Multipart-Daten
-	 * @param	bindingResult	BindingResult
 	 * @throws	ImageUploadException
 	 */
 	@RequestMapping(value=Constants.linkGaleryUpload, method=RequestMethod.POST)
