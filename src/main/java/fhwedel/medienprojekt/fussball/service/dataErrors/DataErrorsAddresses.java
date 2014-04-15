@@ -6,8 +6,6 @@ import org.springframework.validation.BindingResult;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.addresses.Address;
 
-
-
 /**
  * Service
  * Übernimmt die Fehlerbehandlung für das Adressbuch.

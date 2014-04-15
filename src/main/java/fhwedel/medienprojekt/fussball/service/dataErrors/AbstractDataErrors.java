@@ -17,26 +17,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
  *
  */
 public abstract class AbstractDataErrors {
-	/* ----------------------- Klassenvariablen --------------------------------- */
-	/** JDBC Template */
-	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
-	/* ----------------- Setter / Getter-Methoden ------------------------------- */
-	/**
-	 * Setzt das Template
-	 * @param jdbcTemplate
-	 */
-	public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
-		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-	}
-	
-	/**
-	 * Liefert das jdbcTemplate
-	 * @return NamedParameterJdbcTemplate
-	 */
-	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
-		return this.namedParameterJdbcTemplate;
-	}
 	
 	/* ------------------- Methoden zum Prüfen der Eingaben -------------------- */
 	/**
@@ -156,26 +136,5 @@ public abstract class AbstractDataErrors {
 		int length = value.length();
 		
 		return (length >= min) && (length <= max);
-	}
-
-	/**
-	 * Prüft, ob ein Eingabewert bereits in einer bestimmten Tabelle unter einer 
-	 * bestimmten Spalte vorhanden ist.
-	 * @param 	table		String						Tabellenname der DB
-	 * @param 	col			String						Spaltenname der DB
-	 * @param 	value		String						Eingabewert
-	 * @param	jdbcTempl	NameParameterJdbcTemplate	Datenbanktemplate
-	 * @return	boolean		true:						Wert ist bereits enthalten
-	 * 						false:						Wert ist noch nicht enthalten
-	 */
-	public boolean inDb(String table, String col, String value, NamedParameterJdbcTemplate jdbcTempl) {
-		final String SQL_SELECT_STRING =
-				"SELECT * FROM " + table + " WHERE " + col + " = :value";
-		// Parameter zuweisen
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("value", value);
-		SqlRowSet res = jdbcTempl.queryForRowSet(SQL_SELECT_STRING, params);
-		
-		return res.first();
 	}
 }

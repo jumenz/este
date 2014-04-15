@@ -502,34 +502,13 @@ aside, .main {
     }
 }
 
+/* ----------------- Media < 500px ---------------------------------- */
 @media (max-width: 500px) {
-	/* Profile im �ber uns anpassen */
-	.about-us-img-logo {
-		width: 100%;
-		margin-right: 0px;
-	}
-	.profile .about-us-img-trainer {
-		width: 50%;
-	}
-	
 	/* 3col anpassen */
     .content-list ul li.three-col .box-body {
     	height: auto;
     }
 }
 
-@media (max-width: 249px) {
-	.google-maps-wrapper {
-		text-align: left;
-	}
-	.google-maps-map {
-		display: none;
-	}
-	.profile .about-us-img-trainer {
-		width: 100%;
-		margin-left: 0px;
-		margin-top: 2%;
-	}
-}
 
 
