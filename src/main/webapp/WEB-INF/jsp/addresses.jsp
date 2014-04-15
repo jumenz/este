@@ -115,9 +115,8 @@
 										</form>
 									</c:if>
 									<form action="mailto:${address.email}" style="display: inline-block">
-										<button type="submit" class="dark-bg"><div class="forward-raquo menu-link right"></div>E-Mail</button>
+										<button type="submit" class="dark-bg email-button"><div class="forward-raquo menu-link right"></div>E-Mail</button>
 									</form>
-                                </a>
 								</div>
 							</div>
 						</li>

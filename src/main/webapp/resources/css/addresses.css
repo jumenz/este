@@ -1,3 +1,9 @@
+#addressbook .address-list {
+	margin-bottom: 12px;
+}
+#addressbook .email-button {
+	margin-left: 30px;
+}
 #edit-address .input-text {
     width: 98%;
     padding-left: 2%;
@@ -22,4 +28,14 @@ fieldset#buttons {
 }
 #edit-address #delete {
 	margin-top: 12px;
+}
+/* ----------------- Media ---------------------------------- */
+@media (max-width: 510px) {
+    #addressbook button {
+	margin-top: 12px;
+	}
+	
+	#addressbook .email-button {
+		margin-left: 0;
+	}
 }

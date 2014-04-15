@@ -5,3 +5,12 @@
 .permission-overview td {
 	padding: 2px;
 }
+
+
+/* ----------------- Media ---------------------------------- */
+@media (max-width: 500px) {
+    #register button,
+    #login button {
+		margin-top: 12px;
+	}
+}
