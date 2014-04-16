@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.controller;
 
 /** Externe Klassen */
@@ -24,11 +33,8 @@ import fhwedel.medienprojekt.fussball.model.user.Permission;
 import fhwedel.medienprojekt.fussball.controller.Constants;
 
 /**
- * RegisterController
- * @author Ellen Schwartau Minf9888
- *
- *@CookieValue(value = "foo", defaultValue = "hello") String fooCookie
- *
+ * Controller
+ * Übernimmt die Anzeige und Verarbeitung der Register-Seite.
  */
 @Controller
 public class RegisterPageController {

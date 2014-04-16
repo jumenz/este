@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
@@ -21,9 +30,8 @@ import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
 import fhwedel.medienprojekt.fussball.service.files.image.ImageService;
 
 /**
- * Übernimmt das Anzeigen der Bildergalerie.
- * @author Ellen Schwartau Minf9888
- *
+ * Controller
+ * Übernimmt das Anzeigen und verarbeiten der Bildergalerie.
  */
 @Controller
 public class GaleryController {

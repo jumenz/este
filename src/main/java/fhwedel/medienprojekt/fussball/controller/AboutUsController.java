@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau
+ */
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
@@ -16,10 +25,8 @@ import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessAboutUs;
 import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsAboutUs;
 
 /**
+ * Controller
  * Bearbeitet alle Requests, die mit /ueber-uns/ beginnen.
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 @Controller
 public class AboutUsController {
