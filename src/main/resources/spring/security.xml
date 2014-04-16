@@ -48,6 +48,7 @@
 		<intercept-url pattern="/forum/loeschen/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/forum/kommentar-entfernen/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/forum/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/berichte/verfassen/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		<intercept-url pattern="/berichte/bearbeiten/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		<intercept-url pattern="/berichte/loeschen/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>
 		<intercept-url pattern="/registrieren/email-zulassen/**" access="isAuthenticated() and hasRole('USER_GROUP_ADMIN')"/>

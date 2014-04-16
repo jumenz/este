@@ -45,7 +45,7 @@ public class DataErrorsImpressum extends AbstractDataErrors {
 		if(this.isEmpty(text)) {
 			bindingResult.rejectValue("text", "error.impressum.empty");
 		} else if (!this.checkLength(text, 1, 5000)) {
-			bindingResult.rejectValue("text", "error.impressum.length");
+			bindingResult.rejectValue("text", "error.length.5000");
 		}
 	}
 	

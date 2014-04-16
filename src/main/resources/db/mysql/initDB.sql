@@ -1,26 +1,20 @@
-CREATE TABLE IF NOT EXISTS team  (
-  id		 INT NOT NULL PRIMARY KEY,
-  first_name VARCHAR(30),
-  last_name  VARCHAR(30)
-) ENGINE=InnoDB;
-
 CREATE TABLE IF NOT EXISTS forum  (
   id			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   date			DATE NOT NULL,
-  author 		VARCHAR(30),
-  topic 		VARCHAR(30),
-  description 	VARCHAR(150),
-  text			VARCHAR(500),
+  author 		VARCHAR(100),
+  topic 		VARCHAR(100),
+  description 	VARCHAR(500),
+  text			TEXT(10000),
   has_comments	BOOLEAN
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS report  (
   id				INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   date		 		DATE NOT NULL,
-  author 			VARCHAR(30),
-  topic 			VARCHAR(30),
-  text				VARCHAR(1500),
-  opponent 			VARCHAR(30),
+  author 			VARCHAR(100),
+  topic 			VARCHAR(100),
+  text				TEXT(10000),
+  opponent 			VARCHAR(100),
   first_half_home	INT NOT NULL,
   first_half_guest	INT NOT NULL,
   second_half_home	INT NOT NULL,
@@ -30,22 +24,22 @@ CREATE TABLE IF NOT EXISTS report  (
 CREATE TABLE IF NOT EXISTS comments (
   id			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   date			DATE NOT NULL,
-  author		VARCHAR(30),
-  text			VARCHAR(30),
+  author		VARCHAR(100),
+  text			VARCHAR(1000),
   ref			INT NOT NULL,
   FOREIGN KEY (ref) REFERENCES forum(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS permissions (
   id			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  email			VARCHAR(50) NOT NULL UNIQUE,
+  email			VARCHAR(100) NOT NULL UNIQUE,
   admin_state	boolean NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS users (
   id			INT NOT NULL PRIMARY KEY,
-  username		VARCHAR(50) NOT NULL UNIQUE,
-  email			VARCHAR(50) NOT NULL,
+  username		VARCHAR(100) NOT NULL UNIQUE,
+  email			VARCHAR(100) NOT NULL,
   password		VARCHAR(50) NOT NULL,
   user_group	VARCHAR(50) NOT NULL,
   FOREIGN KEY (email) REFERENCES permissions(email) ON DELETE CASCADE,
