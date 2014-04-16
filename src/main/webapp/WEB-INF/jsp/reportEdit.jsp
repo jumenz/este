@@ -55,7 +55,7 @@
 															required="true"
 											/><br>
 											<%-- Fehlermeldung für den Titel --%>
-											<sf:errors path="topic" cssClass="error"/><br>
+											<sf:errors path="opponent" cssClass="error"/><br>
 											<%-- Punktestände --%>
 											Halbzeit (Heim:Gast)
 											<sf:input 	path="scoreFirstHalfHome" 

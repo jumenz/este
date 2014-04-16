@@ -55,6 +55,8 @@ public class DataErrorsReports extends AbstractDataErrorsPost<Report> {
 	private void validateOpponent(String opponent, BindingResult bindingResult) {
 		if(this.isEmpty(opponent)) {
 			bindingResult.rejectValue("opponent", "error.report.opponent");
+		}  else if (!this.checkLength(opponent, 1, 100)) {
+			bindingResult.rejectValue("opponent", "error.length.100");
 		}
 	}
 	

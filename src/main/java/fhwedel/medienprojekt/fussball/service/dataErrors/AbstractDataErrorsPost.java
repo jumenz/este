@@ -33,12 +33,14 @@ abstract class AbstractDataErrorsPost<E extends Post> extends AbstractDataErrors
 	
 	/**
 	 * Prüft, ob der Titel des Foreneintrags nicht leer ist.
-	 * @param title			String			Titel
+	 * @param topic 		String			Titel
 	 * @param bindingResult	BindingResult
 	 */
-	protected void validateTopic(String title, BindingResult bindingResult) {
-		if(this.isEmpty(title)) {
+	protected void validateTopic(String topic, BindingResult bindingResult) {
+		if(this.isEmpty(topic)) {
 			bindingResult.rejectValue("topic", "error.post.topic");
+		}  if (!this.checkLength(topic, 1, 100)) {
+			bindingResult.rejectValue("topic", "error.length.100");
 		}
 	}
 
@@ -50,6 +52,8 @@ abstract class AbstractDataErrorsPost<E extends Post> extends AbstractDataErrors
 	protected void validateText(String text, BindingResult bindingResult) {
 		if(this.isEmpty(text)) {
 			bindingResult.rejectValue("text", "error.post.text");
+		}  else if (!this.checkLength(text, 1, 5000)) {
+			bindingResult.rejectValue("text", "error.length.5000");
 		}
 	}
 	

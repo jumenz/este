@@ -55,6 +55,8 @@ public class DataErrorsUsers extends AbstractDataErrorsDBHelper {
 		}
 		else if (this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
 			bindingResult.rejectValue("username", "error.username.duplicate");
+		} else if (!this.checkLength(username, 1, 100)) {
+			bindingResult.rejectValue("username", "error.length.100");
 		}
 	}
 	
@@ -92,6 +94,8 @@ public class DataErrorsUsers extends AbstractDataErrorsDBHelper {
 			bindingResult.rejectValue("email", "error.email.duplicate");
 		} else if (!this.inDb(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
 			bindingResult.rejectValue("email", "error.email.permission");
+		} else if (!this.checkLength(email, 1, 100)) {
+			bindingResult.rejectValue("email", "error.length.100");
 		}
 	}
 }

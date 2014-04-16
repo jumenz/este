@@ -51,6 +51,8 @@ public class DataErrorsForum extends AbstractDataErrorsPost<ForumEntry> {
 	private void validateDescription(String description, BindingResult bindingResult) {
 		if(this.isEmpty(description)) {
 			bindingResult.rejectValue("description", "error.forum.description");
+		}  else if (!this.checkLength(description, 1, 500)) {
+			bindingResult.rejectValue("description", "error.length.500");
 		}
 	}
 	
