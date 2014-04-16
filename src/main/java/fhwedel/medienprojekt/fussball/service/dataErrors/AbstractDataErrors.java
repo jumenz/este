@@ -54,7 +54,7 @@ public abstract class AbstractDataErrors {
 	}
 	
 	/**
-	 * Prüft, ob der angegebene Wert ausschließlich auf Buchstaben aufgebaut ist.
+	 * Prüft, ob der angegebene Wert einer Namensangabe entspricht.
 	 * @param 	value	String	Eingabewert
 	 * @return	boolean	true:	Wert besteht nur aus Buchstaben
 	 * 					false:	Wert ist leer oder enthält weitere Zeichen
@@ -62,6 +62,18 @@ public abstract class AbstractDataErrors {
 	public boolean isName(String value) {
 		assert(value != null);
 		return value.matches("[a-zA-ZäüöÄÜÖß-]+");
+	}
+	
+	
+	/**
+	 * Prüft, ob der angegebene Wert einer Straßenangabe entspricht.
+	 * @param 	value	String	Eingabewert
+	 * @return	boolean	true:	Wert besteht nur aus Buchstaben
+	 * 					false:	Wert ist leer oder enthält weitere Zeichen
+	 */
+	public boolean isStreet(String value) {
+		assert(value != null);
+		return value.replaceAll("\\s+", "").matches("[a-zA-ZäüöÄÜÖß.-]+");
 	}
 	
 	/**

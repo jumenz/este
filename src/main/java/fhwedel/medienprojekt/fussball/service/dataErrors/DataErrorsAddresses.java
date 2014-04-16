@@ -126,7 +126,7 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult			BindingResult
 	 */
 	private void validateStreet(String street, BindingResult bindingResult) {
-		if(this.isEmpty(street) || !this.isName(street)) {
+		if(this.isEmpty(street) || !this.isStreet(street)) {
 			bindingResult.rejectValue("street", "error.address.street");
 		}  else if (!this.checkLength(street, 1, 100)) {
 			bindingResult.rejectValue("street", "error.length.100");
