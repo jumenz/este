@@ -59,6 +59,8 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validateName(String name, BindingResult bindingResult) {
 		if(this.isEmpty(name) || !this.isName(name)) {
 			bindingResult.rejectValue("name", "error.address.name");
+		}  else if (!this.checkLength(name, 1, 100)) {
+			bindingResult.rejectValue("name", "error.length.100");
 		}
 	}
 	
@@ -70,6 +72,8 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validatePrename(String prename, BindingResult bindingResult) {
 		if(this.isEmpty(prename) || !this.isName(prename)) {
 			bindingResult.rejectValue("prename", "error.address.prename");
+		} else if (!this.checkLength(prename, 1, 100)) {
+			bindingResult.rejectValue("prename", "error.length.100");
 		}
 	}
 	
@@ -81,6 +85,8 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validateBirthday(String birthday, BindingResult bindingResult) {
 		if(this.isEmpty(birthday) || !this.isDate(birthday)) {
 			bindingResult.rejectValue("birthday", "error.address.birthday");
+		} else if (!this.checkLength(birthday, 1, 10)) {
+			bindingResult.rejectValue("birthday", "error.length.10");
 		}
 	}
 	
@@ -92,6 +98,8 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validateMobile(String mobile, BindingResult bindingResult) {
 		if(!this.isEmpty(mobile) && !this.isPhoneNumber(mobile)) {
 			bindingResult.rejectValue("mobile", "error.address.mobile.invalid");
+		} else if (!this.checkLength(mobile, 1, 100)) {
+			bindingResult.rejectValue("mobile", "error.length.100");
 		}
 	}
 	
@@ -103,6 +111,8 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validatePhone(String phone, BindingResult bindingResult) {
 		if(!this.isEmpty(phone) && !this.isPhoneNumber(phone)) {
 			bindingResult.rejectValue("phone", "error.address.phone.invalid");
+		} else if (!this.checkLength(phone, 1, 100)) {
+			bindingResult.rejectValue("phone", "error.length.100");
 		}
 	}
 	
@@ -114,6 +124,8 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validateStreet(String street, BindingResult bindingResult) {
 		if(this.isEmpty(street) || !this.isName(street)) {
 			bindingResult.rejectValue("street", "error.address.street");
+		}  else if (!this.checkLength(street, 1, 100)) {
+			bindingResult.rejectValue("street", "error.length.100");
 		}
 	}
 	
@@ -125,8 +137,10 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validateNr(String nr, BindingResult bindingResult) {
 		if(this.isEmpty(nr)) {
 			bindingResult.rejectValue("nr", "error.address.nr");
+		} else if (!this.checkLength(nr, 1, 8)) {
+			bindingResult.rejectValue("nr", "error.length.8");
 		}
-	}
+	} 
 	
 	/**
 	 * Prüft, ob eine PLZ eingegeben wurde.
@@ -136,6 +150,8 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validateZipcode(String zipcode, BindingResult bindingResult) {
 		if(this.isEmpty(zipcode) || !this.isNumeric(zipcode)) {
 			bindingResult.rejectValue("zipcode", "error.address.zipcode.invalid");
+		}  else if (!this.checkLength(zipcode, 1, 12)) {
+			bindingResult.rejectValue("zipcode", "error.length.12");
 		}
 	}
 	
@@ -147,6 +163,8 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	private void validateCity(String city, BindingResult bindingResult) {
 		if(this.isEmpty(city) || !this.isName(city)) {
 			bindingResult.rejectValue("city", "error.address.city");
+		} else if (!this.checkLength(city, 1, 100)) {
+			bindingResult.rejectValue("city", "error.length.100");
 		}
 	}
 }
