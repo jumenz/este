@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.dataAccess;
 
 /** externe Klassen */
@@ -16,9 +25,6 @@ import fhwedel.medienprojekt.fussball.model.statics.ImpressumContent;
  * Service
  * Übernimmt die Datenbankarbeit zum Laden, Bearbeiten und speichern
  * des Impressums.
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 public class DataAccessImpressum extends AbstractDataAccess<ImpressumContent> {
 	/* ----------------------- Klassenvariablen --------------------------------- */

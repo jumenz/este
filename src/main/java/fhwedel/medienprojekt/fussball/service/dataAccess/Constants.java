@@ -1,10 +1,17 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ *  @author Julia Menzel Minf9950
+ */
 package fhwedel.medienprojekt.fussball.service.dataAccess;
 
 /**
  * Enthält Konstanten für die Datenbankarbeit.
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 public class Constants {
 	// Mehrfach vorkommende Spaltennamen
