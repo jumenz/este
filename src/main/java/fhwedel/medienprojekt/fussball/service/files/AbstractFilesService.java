@@ -1,5 +1,15 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.files;
 
+/** externe Klassen */
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -12,9 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * Service
  * Abstrakte Klasse für den Upload von Dateien.
- * 
- * @author Ellen Schwartau Minf988
- *
  */
 public abstract class AbstractFilesService {
 	/* --------------- Validierung ---------------- */
