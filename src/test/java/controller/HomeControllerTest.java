@@ -1,5 +1,15 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package controller;
-/** import Java classes */
+
+/** externe Klassen */
 import static org.junit.Assert.*;
 import org.junit.Test;
 /** import own classes */
@@ -7,15 +17,12 @@ import fhwedel.medienprojekt.fussball.controller.HomeController;
 
 /**
  * HomeControllerTest
- * Tests the functionality of the Home Controller.
- * 
- * @author Ellen
+ * Testet die Funktionalität des HomeControllers.
  */
 public class HomeControllerTest {
 	
 	/**
-	 * The HomeController should return "home" as viewName, when displayHome
-	 * is executed. 
+	 * Testet den zurückgegebenen ViewName. 
 	 */
 	@Test
 	public void testDisplayHome() {

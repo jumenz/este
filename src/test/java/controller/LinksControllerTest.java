@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package controller;
 
 import static org.junit.Assert.*;
@@ -7,9 +16,7 @@ import fhwedel.medienprojekt.fussball.controller.LinksController;
 
 /**
  * LinksControllerTest
- * Tests the functionality of the Home Controller.
- * 
- * @author Ellen Schwartau Minf9888
+ * Testet die Funktionalität des Controllers der Link-Seite.
  */
 public class LinksControllerTest {
 	
