@@ -1,16 +1,21 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.model.post;
 
+/** externe Klassen */
 import java.util.Date;
 
-/** externe Klassen */
-
-
 /**
+ * Post
  * Klasse für allgemeine Posts.
  * Enthält gemeinsame Variablen und setter/getter-Methoden.
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 public abstract class Post {
 	/* ---------- Variablen ------------------ */

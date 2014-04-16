@@ -1,11 +1,17 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.model.user;
 
 /**
  * User
  * repräsentiert einen Nutzer der Seite.
- * 
- * @author Ellen
- *
  */
 public class User {
 	/* --------------- Klassenvariablen ----------------- */

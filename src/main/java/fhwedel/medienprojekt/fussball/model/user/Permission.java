@@ -1,11 +1,18 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.model.user;
 
 /**
- * Erlaubnis für bestimmte EMail-Adresse, sich als
- * User zu registrieren.
- * 
- * @author Ellen
- *
+ * Permission
+ * Stellt die Erlaubnis für bestimmte EMail-Adresse, sich als
+ * User zu registrieren, dar.
  */
 public class Permission {
 	/* ------------- Klassenvariablen ----------- */
