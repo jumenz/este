@@ -115,6 +115,7 @@
 																					rows="3"
 																					cols="80"
 																					placeholder="..."
+																					required="true"
 																	/><br>
 																	<%-- Fehlermeldung für den neuen Kommentar --%>
 																	<sf:errors path="text" cssClass="error"/><br>

@@ -42,6 +42,7 @@
 													placeholder="Text über den Verein ..."
 													value="${aboutUsContent.companyText}"
 													class="full-width"
+													required="true"
 									/><br>
 									<sf:errors path="companyText" cssClass="error"/><br>
 								</div>
@@ -63,6 +64,7 @@
 													placeholder="Text über den Verein ..."
 													value="${aboutUsContent.teamText}"
 													class="full-width"
+													required="true"
 									/><br>
 									<sf:errors path="teamText" cssClass="error"/><br>
 								</div>
@@ -84,6 +86,7 @@
 													placeholder="Name Trainer ..."
 													value="${aboutUsContent.trainerFirstName}"
 													class="full-width"
+													required="true"
 									/><br>
 									<sf:errors path="trainerFirstName" cssClass="error"/><br>
 									<sf:textarea 	path="trainerFirstText"
@@ -93,6 +96,7 @@
 													placeholder="Text Matschi ..."
 													value="${aboutUsContent.trainerFirstText}"
 													class="full-width"
+													required="true"
 									/><br>
 									<sf:errors path="trainerFirstText" cssClass="error"/><br>
 									<sf:textarea 	path="trainerSecondName"
@@ -102,6 +106,7 @@
 													placeholder="Name Trainer ..."
 													value="${aboutUsContent.trainerSecondName}"
 													class="full-width"
+													required="true"
 									/><br>
 									<sf:errors path="trainerSecondName" cssClass="error"/><br>
 									<sf:textarea 	path="trainerSecondText"
@@ -111,6 +116,7 @@
 													placeholder="Text Simon ..."
 													value="${aboutUsContent.trainerSecondText}"
 													class="full-width"
+													required="true"
 									/><br>
 									<sf:errors path="trainerSecondText" cssClass="error"/><br>
 								</div>
@@ -132,6 +138,7 @@
 														placeholder="Text zum Training ..."
 														value="${aboutUsContent.trainingText}"
 														class="full-width"
+														required="true"
 										/><br>
 										<sf:errors path="trainingText" cssClass="error"/><br>
 									</div>
@@ -154,6 +161,7 @@
 														placeholder="Anfahrt zum Sportplatz Neuenfelde ..."
 														value="${aboutUsContent.approachPlayingFieldTrainingText}"
 														class="full-width"
+														required="true"
 										/><br>
 										<sf:errors path="approachPlayingFieldTrainingText" cssClass="error"/><br>
 										<br>
@@ -164,6 +172,7 @@
 														placeholder="Anfahrt zum Sportplatz in Cranz ..."
 														value="${aboutUsContent.approachPlayingFieldMatchText}"
 														class="full-width"
+														required="true"
 										/><br>
 										<sf:errors path="approachPlayingFieldMatchText" cssClass="error"/><br>
 										<sf:textarea 	path="approachPublicTransportText"
@@ -173,6 +182,7 @@
 														placeholder="Anfahrt mit öffentlichen Verkehrsmitteln ..."
 														value="${aboutUsContent.approachPublicTransportText}"
 														class="full-width"
+														required="true"
 										/><br>
 										<sf:errors path="approachPublicTransportText" cssClass="error"/><br>
 									</div>
@@ -193,6 +203,7 @@
 														placeholder="Text zum Kontakt ..."
 														value="${aboutUsContent.contactText}"
 														class="full-width"
+														required="true"
 										/><br>
 										<sf:errors path="contactText" cssClass="error"/><br>
 									</div>
