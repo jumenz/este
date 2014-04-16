@@ -47,7 +47,7 @@
 	<script type="text/javascript" src="${jsPath}/FormController.js"></script>
 
 	<%-- others --%>
-	<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="${dataPath}/icons/favicon.ico" type="image/x-icon" />
 	
 	<%-- page specific settings --%>
 	<title>Este Frauen | ${param.title}</title>

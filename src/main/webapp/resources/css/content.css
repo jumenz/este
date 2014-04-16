@@ -1,3 +1,15 @@
+/*
+	FH Wedel - Projekt Medieninformatik
+
+	Ellen Schwartau 	- Minf9888 
+	Julia Menzel 		- Minf9950
+	
+	@date 	2014-04-16
+	@author	Ellen Schwartau
+	@author	Julia Menzel
+*/
+/* ------------------ CSS für alle Seiten --------------------------- */
+
 /* ---------------------------------------------------------------------
  * ---------------- html Elemente --------------------------------------
  * ---------------------------------------------------------------------
@@ -81,26 +93,22 @@ button .forward-raquo {
 .full-width {
 	width: 100%;
 }
+
 /* ---------------------------------------------------------------------
  * ---------------- eigene Klassen  ------------------------------------
  * ---------------------------------------------------------------------
  */
-
 #header, #footer {
     width: 100%;
     height: 150px;
     background-color: #666666;
 }
-
 aside, .main {
     display: block;
 }
-
-
 .color-font {
     color: deeppink !important;
 }
-
 .button-auto-width {
 	width: auto;
 }
@@ -140,7 +148,6 @@ aside, .main {
 }
 
 /* ------------------- Hintergrund --------------------------------- */
-
 .dark-bg {
     background-color: #666666;
     color: #ffffff;
@@ -194,6 +201,7 @@ aside, .main {
 	right: -10px;
 	top: -10px;
 }
+
 /* ---------------------- Links ------------------------------------- */
 
 .link, .menu-link, .content-link {
@@ -413,7 +421,7 @@ aside, .main {
 }
 
 /* ---------------------------------------------------------------------
- * ------------------ Auflzsungsspezifische Anpassung ------------------
+ * ------------------ Auflösungsspezifische Anpassung ------------------
  * ------------------------------------------------------------------ */
 
 /* --------------- media < 1000px ----------------------------------- */

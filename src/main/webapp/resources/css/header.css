@@ -1,13 +1,25 @@
-/* --------------------- header (wrapper ) -------------------------- */
+/*
+	FH Wedel - Projekt Medieninformatik
+
+	Ellen Schwartau 	- Minf9888 
+	Julia Menzel 		- Minf9950
+	
+	@date 	2014-04-16
+	@author	Ellen Schwartau
+	@author	Julia Menzel
+*/
+/* ------------------ CSS für den Header --------------------------- */
+/* ------------------- header (wrapper ) --------------------- */
 .header {
 	position: relative;
 }
 
-/* ------------------------- Banner --------------------------------- */
+/* ------------------- Banner --------------------------------- */
 .banner	{ 
 	width: 100%;
 }
-/* ------------------- links ---------------------------------------- */
+
+/* ------------------- links ---------------------------------- */
 .nav a {
 	color: #FFFFFF;
 	width: 100%;
@@ -30,7 +42,7 @@ button.submenu-link:hover {
     background: transparent;
 }
 
-/* ----------------------- Navigatinswrapper ------------------------ */
+/* -------------------- Navigatinswrapper ---------------------- */
 .nav-wrapper {
 	height: 30px;
 	width: 100%;
@@ -51,7 +63,7 @@ button.submenu-link:hover {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313', GradientType=0 );
 }
 
-/* ------------------- Navigation ----------------------------------- */
+/* --------------------- Navigation ---------------------------- */
 .nav {	
 	/* Navigation auf Breite des Contents begrenzen */
 	width: 100%;
@@ -86,7 +98,8 @@ button.submenu-link:hover {
 	padding-right: 3%;
 	margin-top: -3px;
 }
-/* ----------------Drop down Menu ----------------------------------- */
+
+/* ---------------------- Drop down Menu -------------------------- */
 .nav ul { 
 	display: none 
 }
@@ -94,7 +107,6 @@ button.submenu-link:hover {
 	display: block; 
 	margin-top: 50px; 
 }
-
 .submenue {
 	width: 100%;
 	position: absolute;
@@ -118,7 +130,7 @@ button.submenu-link:hover {
 	background: #292929;
 }
 
-/* ------------------ Breadcrumb ------------------------------------ */
+/* ------------------ Breadcrumb ----------------------------------- */
 .breadcrumb {
 	text-align: left;
 	font-size: small;
@@ -132,7 +144,6 @@ button.submenu-link:hover {
 }
 
 /* ------------------ media specific adaption ------------------------ */
-
 @media (max-width: 500px) {
 	/* reduced navigation */
 	.nav li.nav-reduced {
