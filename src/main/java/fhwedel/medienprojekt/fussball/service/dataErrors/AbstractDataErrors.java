@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /**
@@ -5,9 +14,6 @@ package fhwedel.medienprojekt.fussball.service.dataErrors;
  * Implementiert gemeinsame Methoden für die erbenden Klassen
  * zur Behandlung von Datenerrors, die z.B. bei der Verarbeitung
  * von Formulardaten auftreten können.
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 public abstract class AbstractDataErrors {
 	

@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.dataAccess;
 
 /** externe Klassen */
@@ -14,9 +23,6 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 /**
  * Abstralte Service Klasse
  * Implementiert enthält das JDBC Template für die Datenbankarbeit.
- * 
- * @author Ellen Schwartau Minf 9888
- *
  */
 public abstract class AbstractDataAccess<E> {
 	/* ----------------------- Klassenvariablen --------------------------------- */

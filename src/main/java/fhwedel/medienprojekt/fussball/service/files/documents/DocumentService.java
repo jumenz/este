@@ -1,27 +1,28 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Julia Menzel Minf9950
+ */
 package fhwedel.medienprojekt.fussball.service.files.documents;
 
 /** externe Klassen */
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.web.multipart.MultipartFile;
 
 /** eigene Klassen */
-
 import fhwedel.medienprojekt.fussball.service.exception.DocumentUploadException;
 import fhwedel.medienprojekt.fussball.service.files.AbstractFilesService;
 
 /**
  * DocumentService
  * Dient dem Validieren und Speichern von PDF-Dokumenten.
- * 
- * @author Julia Menzel
  */
 public class DocumentService extends AbstractFilesService {	
 	/* -------------- Klassenvariablen -------------------- */

@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
@@ -9,9 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fhwedel.medienprojekt.fussball.controller.Constants;
 
 /**
- * Logout Controller.
- * @author Ellen Schwartau Minf9888
- *
+ * Controller
+ * Übernimmt die Verarbeitung der Logout-Seite.
  */
 @Controller
 public class LogoutController {

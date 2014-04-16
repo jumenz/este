@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Julia Menzel 9950
+ */
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /** externe Klassen */
@@ -9,9 +18,6 @@ import fhwedel.medienprojekt.fussball.model.user.addresses.Address;
 /**
  * Service
  * Übernimmt die Fehlerbehandlung für das Adressbuch.
- * 
- * @author julia
- *
  */
 public class DataErrorsAddresses extends AbstractDataErrors {
 	/* ------------------ Konstanten -------------------------------------------- */

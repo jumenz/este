@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /** externe Klassen */
@@ -6,13 +15,9 @@ import org.springframework.validation.BindingResult;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.user.User;
 
-
 /**
  * Service
  * Übernimmt die Fehlerbehandlung für Users.
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 public class DataErrorsUsers extends AbstractDataErrorsDBHelper {
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
@@ -55,6 +60,8 @@ public class DataErrorsUsers extends AbstractDataErrorsDBHelper {
 		}
 		else if (this.inDb(Constants.dbUsers, Constants.dbUsersUsername, username)) {
 			bindingResult.rejectValue("username", "error.username.duplicate");
+		} else if (!this.checkLength(username, 1, 100)) {
+			bindingResult.rejectValue("username", "error.length.100");
 		}
 	}
 	
@@ -92,6 +99,8 @@ public class DataErrorsUsers extends AbstractDataErrorsDBHelper {
 			bindingResult.rejectValue("email", "error.email.duplicate");
 		} else if (!this.inDb(Constants.dbPermissions, Constants.dbUsersEmail, email)) {
 			bindingResult.rejectValue("email", "error.email.permission");
+		} else if (!this.checkLength(email, 1, 100)) {
+			bindingResult.rejectValue("email", "error.length.100");
 		}
 	}
 }

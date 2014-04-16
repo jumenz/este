@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.dataAccess;
 
 /** externe Klassen */
@@ -15,9 +24,6 @@ import fhwedel.medienprojekt.fussball.model.post.Post;
 /**
  * Abstralte Service Klasse
  * Implementiert gemeinsame Methoden für die erbenden Klassen
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDataAccess<E> {
 	
@@ -33,12 +39,13 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 	 * Liest alle Einträge aus einer Datenbank aus.
 	 * @param	db			String						Datenbankname
 	 * @param	rowMapper	ParameterizedRowMapper<E>	Mapper
-	 * @return 	ArrayList<ForumEntry>		Liste aller Foreneinträge
+	 * @param	orderById	voolean						Angabe, ob auch nach Id sortiert werden soll
+	 * @return 	ArrayList<E>							Liste aller Einträge
 	 */
-	@Override
-	public ArrayList<E> getAll(String db, ParameterizedRowMapper<E> rowMapper) {
-		final String SQL_SELECT_ALL = 
-				"SELECT * FROM " + db + " ORDER BY date DESC";
+	public ArrayList<E> getAll(String db, ParameterizedRowMapper<E> rowMapper, boolean orderById) {
+		final String SQL_SELECT_ALL = orderById 
+				? "SELECT * FROM " + db + " ORDER BY date DESC, id DESC"
+				: "SELECT * FROM " + db + " ORDER BY date DESC";
 		
 		// Alle Einträge auslesen
 		return (ArrayList<E>) namedParameterJdbcTemplate.query(
@@ -169,8 +176,10 @@ public abstract class AbstractDataAccessPost<E extends Post> extends AbstractDat
 	 * @return	page		Page		Seite mit Einträgen
 	 */
     public Page<E> fetchPage(	final String db, final int pageNo, final int pageSize, 
-    							final ParameterizedRowMapper<E> rowMapper) {
-    	final String SQL_FETCH_ROWS = "SELECT * FROM " + db + " ORDER BY date DESC LIMIT :start, :end";
+    							final ParameterizedRowMapper<E> rowMapper, boolean orderById) {
+    	final String SQL_FETCH_ROWS = orderById 
+    			? "SELECT * FROM " + db + " ORDER BY date DESC, id DESC LIMIT :start, :end"
+    			: "SELECT * FROM " + db + " ORDER BY date DESC LIMIT :start, :end";
         Map<String,Object> params = new HashMap<String, Object>();
 
         Page<E> page = this.initPage(db, pageNo, pageSize);

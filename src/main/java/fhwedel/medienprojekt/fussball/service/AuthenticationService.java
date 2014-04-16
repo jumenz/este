@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +17,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
+ * AuthenticationService
  * Service zur Authentifizierung eines Users 
  * nach dem Login.
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 public class AuthenticationService {
 	/* ----------------- Klassenvariablen ---------------- */

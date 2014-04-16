@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.model.post.forum;
 
 /** eigene Klassen */
@@ -9,12 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
-
 /**
+ * ForumEntry
  * Klasse zur Implementierung von Forenbeiträgen.
- * 
- * @author Ellen
- *
  */
 public class ForumEntry extends Post {
 	/* ---------- Variablen ------------------ */

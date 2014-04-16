@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.model.post.comment;
 
 /** externe Klassen */
@@ -8,10 +17,8 @@ import fhwedel.medienprojekt.fussball.model.post.Post;
 
 
 /**
+ * Comments
  * Klasse zur Implementierung von Kommentaren.
- * 
- * @author Ellen
- *
  */
 public class Comment extends Post {
 	/* ---------- Variablen ------------------ */
@@ -32,7 +39,7 @@ public class Comment extends Post {
 	 * @param topic		String		Thema
 	 * @param text		String		Inhalt
 	 * @param author	String		Author
-	 * @param date		Date 		Erstellungszeitpunkt
+	 * @param date		DateTime	Erstellungszeitpunkt
 	 */
 	public Comment(String topic, String text, String author, Date date) {
 		// TODO Author auslesen, der den Kommentar verfasst hat

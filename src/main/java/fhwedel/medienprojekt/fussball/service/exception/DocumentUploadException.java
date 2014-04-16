@@ -1,10 +1,18 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Julia Menzel Minf9950
+ */
 package fhwedel.medienprojekt.fussball.service.exception;
 
 import java.lang.RuntimeException;
 
 /**
  * Exception, für den Fall, dass beim Upload eines neuen Dokuments ein Fehler auftritt.
- * @author Ellen
  */
 public class DocumentUploadException extends RuntimeException {
     /**

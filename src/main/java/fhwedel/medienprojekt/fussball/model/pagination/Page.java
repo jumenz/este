@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.model.pagination;
 
 /** externe Klassen */
@@ -9,9 +18,7 @@ import fhwedel.medienprojekt.fussball.model.post.Post;
 /**
  * Page-Klasse
  * Stellt die Seitenansicht einer Liste an Einträgen dar.
- * 
- * @author Ellen Schwartau Minf9888
- *
+
  * @param <E>	Unterklasse der Post Klasse
  */
 public class Page<E extends Post> {

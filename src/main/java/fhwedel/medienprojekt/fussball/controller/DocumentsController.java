@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Julia Menzel Minf9950
+ */
 package fhwedel.medienprojekt.fussball.controller;
 
 /** externe Klassen */
@@ -17,6 +26,10 @@ import fhwedel.medienprojekt.fussball.controller.Constants;
 import fhwedel.medienprojekt.fussball.service.exception.ImageUploadException;
 import fhwedel.medienprojekt.fussball.service.files.documents.DocumentService;
 
+/**
+ * Controller
+ * Übernimmt die Anzeige und Verarbeitung des Dokumente Managers.
+ */
 @Controller
 public class DocumentsController {
 		

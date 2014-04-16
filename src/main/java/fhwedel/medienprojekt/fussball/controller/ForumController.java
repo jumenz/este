@@ -1,9 +1,11 @@
 /**
- * Medienprojekt FH Wedel
+ * FH Wedel - Projekt Medieninformatik
  * 
- * @category    controller
- * @copyright   Copyright (c) 2014 Ellen Schwartau, Julia Menzel
- * @author		Ellen Schwartau
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
  */
 package fhwedel.medienprojekt.fussball.controller;
 
@@ -32,7 +34,8 @@ import fhwedel.medienprojekt.fussball.service.dataErrors.DataErrorsForum;
 import fhwedel.medienprojekt.fussball.controller.Constants;
 
 /**
- * Controller zur Anzeige des Forums.
+ * Controller
+ * Übernimmt die Anzeige und Verarbeitung des Forums.
  */
 @Controller
 public class ForumController {

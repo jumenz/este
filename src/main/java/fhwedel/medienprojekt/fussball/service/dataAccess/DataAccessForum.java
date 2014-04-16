@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.dataAccess;
 
 /** externe Klassen */
@@ -19,9 +28,6 @@ import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
  * Übernimmt die Datenbankarbeit zum Verarbeiten von Foreneinträgen.
  * Ermöglich beispielsweise das Updaten bestehender, einfügen neuer
  * oder auslesen von Informationen über bestehende Foreneinträge.
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	/* ----------------------- Klassenvariablen --------------------------------- */
@@ -142,7 +148,7 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 * @return ArrayList<ForumEntry>	Liste aller Foreneinträge
 	 */
 	public ArrayList<ForumEntry> getAll() {
-		return this.getAll(Constants.dbForum, this.forumEntryMapper);
+		return this.getAll(Constants.dbForum, this.forumEntryMapper, true);
 	}
 	
 	/**
@@ -152,7 +158,7 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 * @return	Page<ForumEntry>	Seite mit Einträgen
 	 */
 	public Page<ForumEntry> getPage(int currPage, int pageSize) {
-		return this.fetchPage(Constants.dbForum, currPage, pageSize, this.forumEntryMapper);
+		return this.fetchPage(Constants.dbForum, currPage, pageSize, this.forumEntryMapper, true);
 	}
 		
 	/**

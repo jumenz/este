@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Julia Menzel Minf9950
+ */
 package fhwedel.medienprojekt.fussball.model.user.addresses;
 
 import org.springframework.core.style.ToStringCreator;
@@ -5,9 +14,6 @@ import org.springframework.core.style.ToStringCreator;
 /**
  * Address
  * Repräsentiert eine Adresse.
- * 
- * @author Julia
- *
  */
 public class Address {
 	/* --------------- Klassenvariablen ----------------- */

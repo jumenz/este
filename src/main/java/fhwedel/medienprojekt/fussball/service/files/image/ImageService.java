@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.files.image;
 
 /** externe Klassen */
@@ -17,8 +26,6 @@ import fhwedel.medienprojekt.fussball.service.files.AbstractFilesService;
 /**
  * ImageService
  * Dient dem Validieren und Speichern von Images.
- * 
- * @author Ellen Schwartau Minf9888
  */
 public class ImageService extends AbstractFilesService {	
 	/** Pfad zum Ordner der Bilder */
