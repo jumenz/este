@@ -1,5 +1,12 @@
-<%@include file="../includes/taglibs_variables.jspf" %>
+<%-- 
+	FH Wedel - Projekt Medieninformatik
 
+	Ellen Schwartau 	- Minf9888 
+	Julia Menzel 		- Minf9950
+	
+	@date 	2014-04-16
+	@author	Ellen Schwartau
+ --%>
 <%-- 
 	Sidebar der Seite 
 	Beim Includieren der Sidebar können folgende Parameter übergeben werden:
@@ -12,6 +19,7 @@
 	abc				- 	auf "include" setzen, um die Alphabetfläche in der Sidebar anzuzeigen
 	search			-	auf "include" setzen
 --%>
+<%@include file="../includes/taglibs_variables.jspf" %>
 <div id="sidebar" class="content-layout-cell sidebar">
     <div class="outer">
         <div class="inner">

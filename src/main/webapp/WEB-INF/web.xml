@@ -5,7 +5,7 @@
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
-	<!-- Einstellungen fÃ¼r Web-Anwednungen mit Spring -->
+	<!-- Einstellungen für Web-Anwednungen mit Spring -->
 
     <display-name>Fussball</display-name>
     <description>Fussball</description>
@@ -19,7 +19,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         <param-value>classpath:spring/applicationContext.xml</param-value>
     </context-param>
 
-	<!-- Listener fÃ¼r Web Application Context -->
+	<!-- Listener für Web Application Context -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -37,10 +37,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     </servlet>
 
 	<!-- 
-		Angabe auf welche URLs der Dispatcher hï¿½ren soll (hier alle, um URLs einfach zu halten) 
-		Alternativ wÃ¤re z.B. /app/ mÃ¶glich, damit fÃ¼r statische Seiten kein Dispatcher 
+		Angabe auf welche URLs der Dispatcher hören soll (hier alle, um URLs einfach zu halten) 
+		Alternativ wäre z.B. /app/ möglich, damit für statische Seiten kein Dispatcher 
 		verwendet wird
-		Um statische Seiten nicht ï¿½ber Dispatcher zu laden: <mvc:ressources> verwenden)
+		Um statische Seiten nicht über Dispatcher zu laden: <mvc:ressources> verwenden)
 	-->
     <servlet-mapping>
         <servlet-name>fussball</servlet-name>
