@@ -96,10 +96,12 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult			BindingResult
 	 */
 	private void validateMobile(String mobile, BindingResult bindingResult) {
-		if(!this.isEmpty(mobile) && !this.isPhoneNumber(mobile)) {
-			bindingResult.rejectValue("mobile", "error.address.mobile.invalid");
-		} else if (!this.checkLength(mobile, 1, 100)) {
-			bindingResult.rejectValue("mobile", "error.length.100");
+		if(!this.isEmpty(mobile)) {
+			if(!this.isPhoneNumber(mobile)) {
+				bindingResult.rejectValue("mobile", "error.address.mobile.invalid");
+			} else if (!this.checkLength(mobile, 1, 100)) {
+				bindingResult.rejectValue("mobile", "error.length.100");
+			}
 		}
 	}
 	
@@ -109,10 +111,12 @@ public class DataErrorsAddresses extends AbstractDataErrors {
 	 * @param bindingResult		BindingResult
 	 */
 	private void validatePhone(String phone, BindingResult bindingResult) {
-		if(!this.isEmpty(phone) && !this.isPhoneNumber(phone)) {
-			bindingResult.rejectValue("phone", "error.address.phone.invalid");
-		} else if (!this.checkLength(phone, 1, 100)) {
-			bindingResult.rejectValue("phone", "error.length.100");
+		if(!this.isEmpty(phone)) {
+			if(!this.isPhoneNumber(phone)) {
+				bindingResult.rejectValue("phone", "error.address.phone.invalid");
+			} else if (!this.checkLength(phone, 1, 100)) {
+				bindingResult.rejectValue("phone", "error.length.100");
+			}
 		}
 	}
 	
