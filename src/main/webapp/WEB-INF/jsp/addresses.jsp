@@ -50,17 +50,19 @@
                 <%--Contentbox One-Col Dropdown --%>
                 <ul>
 					<%-- mail @all --%>
+                    <c:set var="count" value="${addressModel.entries.size()}"/>
+					<c:if test="${count > 0}"></c:if>
                 	<li class="one-col">
                         <div class="main-content-box box-borders-top bg clearfix">
                             <h2 class="box-title link" >Alle</h2>
-                            <c:set var="emailCount" value="${addressModel.entries.size()}"/>
-                            <a class="right box-link" href="mailto:<c:forEach var="address" items="${addressModel.entries}" varStatus="status">${address.email},%20</c:forEach>&amp;subject=Este%2006/70">
-                            	<span>E-Mail</span>
+
+                            	<a class="right box-link" href="mailto:<c:forEach var="address" items="${addressModel.entries}" varStatus="status">${address.email},%20</c:forEach>">                            	<span>E-Mail</span>
                             	<span id="submit-all" class="forward-raquo menu-link right"></span>
                             </a>
 							<div id="submit-${status.index}" class="box-link forward-raquo menu-link right toggle"></div>
                         </div>
                     </li>
+                    
 					<%-- ID Berechnung für die Anker. Immer der erste Eintrag beginnend mit einem neuen Buchstaben bekommt als ID den Buchstabens --%>
 					<c:choose>
 						<c:when test="${!addressModel.entries.isEmpty() && addressModel.entries.get(0).name.compareTo('') != 0}"><c:set var="abc" value="${addressModel.entries.get(0).name.charAt(0)}"/></c:when>

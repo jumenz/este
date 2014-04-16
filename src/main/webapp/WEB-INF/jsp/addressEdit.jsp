@@ -37,9 +37,8 @@
 		                    <li class="one-col">
 		                    	<div class="main-content-box box-borders bg clearfix">
 		                        	<h2 class="box-title">
-		                        		${addressEditModel.prename}
-		                        		<c:if test="${addressEditModel.name.compareTo('') != 0 && addressEditModel.prename.compareTo('') != 0}">&nbsp;</c:if>
-		                        		${addressEditModel.name}
+		                        		${addressEditModel.prename}<c:if test="${addressEditModel.name.compareTo('') != 0 && addressEditModel.prename.compareTo('') != 0}">&nbsp;</c:if>${addressEditModel.name}
+		                        		&nbsp;(${addressEditModel.username})
 									</h2>
 		                            <div class="box-body">
 		                             	<%-- Address edit form --%>
