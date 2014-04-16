@@ -8,11 +8,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 /**
- * Abstralte Service Klasse
- * Beinhaltet Datenbankabfragen zur Fehlerbehandlung.
- * 
- * @author Ellen Schwartau Minf9888
- *
+ * Abstrakte Service Klasse
+ * Beinhaltet gemeinsame Methoden der Fehlerbehandlung der erbenden Klassen.
+ * Beherbergt außerdem das JdbcTemplate und dessen set- und get-Methode.
  */
 public abstract class AbstractDataErrorsDBHelper extends AbstractDataErrors {
 	/* ----------------------- Klassenvariablen --------------------------------- */

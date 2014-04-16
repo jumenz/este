@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /** externe Klassen */
@@ -6,13 +15,9 @@ import org.springframework.validation.BindingResult;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.report.Report;
 
-
 /**
  * Service
  * Übernimmt die Fehlerbehandlung für Spielberichte.
- * 
- * @author Ellen Schwartau Minf9888
- *
  */
 public class DataErrorsReports extends AbstractDataErrorsPost<Report> {
 	/* ------------------ Konstruktorfunktionen --------------------------------- */

@@ -1,3 +1,12 @@
+/**
+ * FH Wedel - Projekt Medieninformatik
+ * 
+ * Ellen Schwartau 	- Minf9888
+ * Julia Menzel 	- Minf9950
+ * 
+ *  @date	2014-04-16
+ *  @author	Ellen Schwartau Minf9888
+ */
 package fhwedel.medienprojekt.fussball.service.dataErrors;
 
 /** externe Klassen */
@@ -12,10 +21,7 @@ import fhwedel.medienprojekt.fussball.service.dataAccess.DataAccessUsers;
 
 /**
  * Service
- * Übernimmt die Fehlerbehandlung für Users.
- * 
- * @author Ellen Schwartau Minf9888
- *
+ * Übernimmt die Fehlerbehandlung für den Login.
  */
 public class DataErrorsLogin extends AbstractDataErrorsDBHelper {
 	/* ------------------ Konstruktorfunktionen --------------------------------- */
