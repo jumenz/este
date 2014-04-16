@@ -165,7 +165,12 @@ public class ReportsController {
 	@RequestMapping(value=Constants.linkReportsEdit, method=RequestMethod.GET)
 	public String loadEditForm(@PathVariable int id, Model model) {
 		// Bearbeitungsformular mit referenziertem Bericht auslesen
-		return this.prepareEditReport(model, this.dataAccess.getById(id));
+		Report report = this.dataAccess.getById(id);
+		if(report != null) {
+			return this.prepareEditReport(model, report);
+		}
+		// Falls kein Bericht unter der ID gefunden wurde wieder Reports anzeigen
+		return Constants.redirectReports;
 	}
 	
 	/**

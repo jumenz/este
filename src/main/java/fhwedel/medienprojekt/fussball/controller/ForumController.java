@@ -176,7 +176,13 @@ public class ForumController {
 	@RequestMapping(value=Constants.linkForumEntryEdit, method=RequestMethod.GET)
 	public String loadEditForm(@PathVariable int id, Model model) {
 		// Foreneintrag auslesen und zu Bearbeitung anzeigen
-		return this.prepareForumEdit(this.dataAccessForum.getById(id), model);
+		ForumEntry entry = this.dataAccessForum.getById(id);
+		if (entry != null) {
+			return this.prepareForumEdit(entry, model);
+		}
+		// Fall kein Foreneintrag unter der ID ausgelesen werden konnte 
+		// wird das Forum angezeigt
+		return Constants.redirectForum;
 	}
 	
 	/**

@@ -102,8 +102,14 @@ public class AddressesController {
 	@RequestMapping(value=Constants.linkAddressEdit, method=RequestMethod.GET)
 	public String loadEditForm(@PathVariable int id, Model model) {
 		// Adresse auslesen
-		model.addAttribute("addressEditModel", this.dataAccessAddresses.getById(id));
-		return Constants.viewNameAddressEdit;
+		Address address = this.dataAccessAddresses.getById(id);
+		if(address != null) {
+			model.addAttribute("addressEditModel", address);
+			return Constants.viewNameAddressEdit;
+		}
+		// Falls Addresse nicht ausgelesen werden konnte,
+		// wieder das Addressbuch anzeigen
+		return Constants.redirectAddresses;
 	}
 
 	/**
