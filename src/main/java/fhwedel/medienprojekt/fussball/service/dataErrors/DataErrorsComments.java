@@ -12,6 +12,8 @@ package fhwedel.medienprojekt.fussball.service.dataErrors;
 /** externe Klassen */
 import org.springframework.validation.BindingResult;
 
+
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.comment.*;;
 
@@ -38,5 +40,21 @@ public class DataErrorsComments extends AbstractDataErrorsPost<Comment> {
 		/* Die Eingabefelder dürfen nicht leer sein */
 		this.validateText(comment.getText(), bindingResult);
 		return bindingResult.hasErrors();
+	}
+	
+	/**
+	 * Prüft, ob ein Text zum Foreneintrag angegeben ist.
+	 * @param text			String			Text
+	 * @param bindingResult	BindingResult	
+	 * @param allowedLength	int				erlaubte Länge
+	 * @param errorKey		String			Key der Längen-ErrorMessage
+	 */
+	@Override
+	protected void validateText(String text, BindingResult bindingResult) {
+		if(this.isEmpty(text)) {
+			bindingResult.rejectValue("text", "error.post.text");
+		}  else if (!this.checkLength(text, 1, 1000)) {
+			bindingResult.rejectValue("text", "error.length.1000");
+		}
 	}
 }

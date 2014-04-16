@@ -226,7 +226,8 @@ public class ForumController {
 	 * @param 	bindingResult	BindingResult
 	 */
 	@RequestMapping(value=Constants.linkForumNewComment, method=RequestMethod.POST)
-	public String saveNewForumComment(@PathVariable("id") int id, @PathVariable("author") String author, Comment newComment, BindingResult bindingResult) {
+	public String saveNewForumComment(	@PathVariable("id") int id, @PathVariable("author") String author, 
+										@ModelAttribute("newComment") Comment newComment, BindingResult bindingResult) {
 		newComment.setAuthor(author);
 		// Bei Fehlern wieder auf Formular redirecten
 		if(bindingResult.hasErrors() || this.dataErrorsComments.hasErrors(newComment, bindingResult)) {

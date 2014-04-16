@@ -53,12 +53,14 @@ abstract class AbstractDataErrorsPost<E extends Post> extends AbstractDataErrors
 	 * Prüft, ob ein Text zum Foreneintrag angegeben ist.
 	 * @param text			String			Text
 	 * @param bindingResult	BindingResult	
+	 * @param allowedLength	int				erlaubte Länge
+	 * @param errorKey		String			Key der Längen-ErrorMessage
 	 */
 	protected void validateText(String text, BindingResult bindingResult) {
 		if(this.isEmpty(text)) {
 			bindingResult.rejectValue("text", "error.post.text");
-		}  else if (!this.checkLength(text, 1, 5000)) {
-			bindingResult.rejectValue("text", "error.length.5000");
+		}  else if (!this.checkLength(text, 1, 10000)) {
+			bindingResult.rejectValue("text", "error.length.10000");
 		}
 	}
 	
