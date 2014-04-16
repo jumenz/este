@@ -142,7 +142,7 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 * @return ArrayList<ForumEntry>	Liste aller Foreneinträge
 	 */
 	public ArrayList<ForumEntry> getAll() {
-		return this.getAll(Constants.dbForum, this.forumEntryMapper);
+		return this.getAll(Constants.dbForum, this.forumEntryMapper, true);
 	}
 	
 	/**
@@ -152,7 +152,7 @@ public class DataAccessForum extends AbstractDataAccessPost<ForumEntry> {
 	 * @return	Page<ForumEntry>	Seite mit Einträgen
 	 */
 	public Page<ForumEntry> getPage(int currPage, int pageSize) {
-		return this.fetchPage(Constants.dbForum, currPage, pageSize, this.forumEntryMapper);
+		return this.fetchPage(Constants.dbForum, currPage, pageSize, this.forumEntryMapper, true);
 	}
 		
 	/**

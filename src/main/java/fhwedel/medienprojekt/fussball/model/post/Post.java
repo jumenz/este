@@ -1,7 +1,8 @@
 package fhwedel.medienprojekt.fussball.model.post;
 
-/** externe Klassen */
 import java.util.Date;
+
+/** externe Klassen */
 
 
 /**
@@ -98,7 +99,7 @@ public abstract class Post {
 	
 	/**
 	 * Setzt den Zeitpunkt des Beitrags.
-	 * @param date
+	 * @param date	Date
 	 */
 	public void setDate(Date date) {
 		this.date = date;

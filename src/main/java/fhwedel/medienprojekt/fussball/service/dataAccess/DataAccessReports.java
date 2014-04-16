@@ -165,7 +165,7 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	 * @return ArrayList<Report>
 	 */
 	public ArrayList<Report> getAll() {
-		return this.getAll(Constants.dbReports, this.reportRowMapper);
+		return this.getAll(Constants.dbReports, this.reportRowMapper, true);
 	}
 	
 	/**
@@ -175,7 +175,7 @@ public class DataAccessReports extends AbstractDataAccessPost<Report> {
 	 * @return	Page<Report>	Seite mit Einträgen
 	 */
 	public Page<Report> getPage(int currPage, int pageSize) {
-		return this.fetchPage(Constants.dbReports, currPage, pageSize, this.reportRowMapper);
+		return this.fetchPage(Constants.dbReports, currPage, pageSize, this.reportRowMapper, true);
 	}
 	
 }

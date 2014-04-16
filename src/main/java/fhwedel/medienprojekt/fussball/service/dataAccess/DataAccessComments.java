@@ -7,21 +7,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
-
-
-
-
-
-
-import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.forum.ForumEntry;
+import fhwedel.medienprojekt.fussball.model.post.comment.Comment;
 
 /**
  * Service
@@ -112,7 +105,7 @@ public class DataAccessComments extends AbstractDataAccessPost<Comment> {
 	
 	/* ------------------------- Auslesen ------------------------------------- */
 	public ArrayList<Comment> getAll() {
-		return this.getAll(Constants.dbComments, this.commentMapper);
+		return this.getAll(Constants.dbComments, this.commentMapper, false);
 	}
 	
 	/**

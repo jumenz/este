@@ -42,6 +42,7 @@
 															value="${report.topic}"
 															class="full-width"
 															required="true"
+															
 											/><br>
 											<%-- Fehlermeldung für den Titel --%>
 											<sf:errors path="topic" cssClass="error"/>
@@ -53,6 +54,7 @@
 															value="${report.opponent}"
 															class="full-width"
 															required="true"
+															
 											/><br>
 											<%-- Fehlermeldung für den Titel --%>
 											<sf:errors path="opponent" cssClass="error"/><br>
@@ -106,6 +108,7 @@
 															cols="120"
 															class="full-width"
 															required="true"
+															
 											/><br>
 											<%-- Fehlermeldung für den Text --%>
 											<sf:errors path="text" cssClass="error"/><br>

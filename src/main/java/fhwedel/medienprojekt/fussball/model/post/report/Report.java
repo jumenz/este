@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Klasse zur Implementierung von Spielberichten.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
 public class Report extends Post {

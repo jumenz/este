@@ -3,6 +3,9 @@ package fhwedel.medienprojekt.fussball.model.post.comment;
 /** externe Klassen */
 import java.util.Date;
 
+import org.joda.time.DateTime;
+
+
 /** eigene Klassen */
 import fhwedel.medienprojekt.fussball.model.post.Post;
 
@@ -10,7 +13,7 @@ import fhwedel.medienprojekt.fussball.model.post.Post;
 /**
  * Klasse zur Implementierung von Kommentaren.
  * 
- * @author Ellen
+ * @author Ellen Schwartau Minf9888
  *
  */
 public class Comment extends Post {
@@ -32,7 +35,7 @@ public class Comment extends Post {
 	 * @param topic		String		Thema
 	 * @param text		String		Inhalt
 	 * @param author	String		Author
-	 * @param date		Date 		Erstellungszeitpunkt
+	 * @param date		DateTime	Erstellungszeitpunkt
 	 */
 	public Comment(String topic, String text, String author, Date date) {
 		// TODO Author auslesen, der den Kommentar verfasst hat

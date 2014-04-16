@@ -88,6 +88,7 @@
 											<div class="further-toggle-content" style="display: none">
 												<div class="box-body box-borders-bottom">
 													<div class="comments">
+														<security:authentication property="principal.username" var="author" scope="request"/>
 														<%-- bisherige Kommentare zum Foreneintrag --%>
 														<c:forEach var="comment" items="${comments}" varStatus="status">
 															<div class="comment">
@@ -95,7 +96,6 @@
 																<p class="comment-content">${comment.text}</p>
 																
 																<%-- Bei eigenen Kommentaren löschen Button anzeigen --%>
-																<security:authentication property="principal.username" var="author" scope="request"/>
 																<c:if test="${author == comment.author}">
 																	<form method="get" action="${linkForumDeleteComment}${comment.id}/">
 																		<button class="button-delete"></button>
